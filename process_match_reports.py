@@ -1,53 +1,27 @@
 import requests
 import os
-from dotenv import load_dotenv
-import outputs
+from mongo_connection import MongoConnection
 
-
-def main():
-    # Accept user input for the file name
-    tournament_name = input("Enter the tournament file name (Enter to use LCC_Season_2): ")
-    file_path = f"tournaments/{(tournament_name,'LCC_Season_2')[tournament_name == '']}.txt"    
-    file_name = file_path.split("/")[-1].split(".")[0]
-  
-    # Open the file and read the match IDs
-    with open(file_path, "r") as file:
-        match_ids = file.readlines()
-
-    if not match_ids:
-        print("No match IDs found in the file.")
-        return
+def process_match(match_id):
     
-    processed_matches = []
-    # For each listed match, fetch and transform the data
-    for match_id in match_ids:
-        match_id = match_id.strip()
-        match_url = f"https://americas.api.riotgames.com/lol/match/v5/matches/NA1_{match_id}"
-        riot_match_data = fetch_riot_data(match_url)
-        processed_match = process_match_data(riot_match_data)
-        # Fetch and process timeline data
-        timeline_url = match_url + "/timeline"
-        riot_timeline_data = fetch_riot_data(timeline_url)
-        processed_timeline_data = process_timeline_data(riot_timeline_data)
-        position_data = get_position_data(riot_match_data["info"]["participants"])
-        for position, teams in position_data.items():
-            processed_timeline_data[teams[100]]["csd14"] = processed_timeline_data[teams[100]]["cs14"] - processed_timeline_data[teams[200]]["cs14"]
-            processed_timeline_data[teams[200]]["csd14"] = processed_timeline_data[teams[200]]["cs14"] - processed_timeline_data[teams[100]]["cs14"]
-        # Merge the timeline data with the match data
-        processed_match["participants"] = [dict(participant, **processed_timeline_data[participant["puuid"]]) for participant in processed_match["participants"]]
-        
-        ordered_keys = ["puuid", "player", "champion", "role", "win", "gameLength", "champLevel", "kills", "deaths", "assists", "kda", "kp", "cs", "csm", "cs14", "csd14", "gold", "gpm", "dmg", "dpm", "teamDmg%", "dmgTakenTeam%", "firstBlood", "soloBolos", "tripleKills", "quadraKills", "pentaKills", "multikills", "visionScore", "vspm", "ccTime", "effectiveHealShield", "objectivesStolen"]
-        processed_match["participants"] = [{key: participant[key] for key in ordered_keys} for participant in processed_match["participants"]]
-        
-        # Dump each processed match data to json file for future additional programmatic use
-        outputs.build_match_json(file_name, match_id, processed_match)
-        
-        # Add to list for excel workbook
-        processed_matches.append(processed_match)
-    outputs.build_cumulative_reports(processed_matches, aggregate_player_season_data(processed_matches))
-    outputs.build_match_sheets(processed_matches)
-    outputs.build_player_sheets(processed_matches)
-    print("Excel workbook created successfully.")
+    match_url = f"https://americas.api.riotgames.com/lol/match/v5/matches/NA1_{match_id}"
+    riot_match_data = fetch_riot_data(match_url)
+    processed_match = process_match_data(riot_match_data)
+    # Fetch and process timeline data
+    timeline_url = match_url + "/timeline"
+    riot_timeline_data = fetch_riot_data(timeline_url)
+    processed_timeline_data = process_timeline_data(riot_timeline_data)
+    position_data = get_position_data(riot_match_data["info"]["participants"])
+    for position, teams in position_data.items():
+        processed_timeline_data[teams[100]]["csd14"] = processed_timeline_data[teams[100]]["cs14"] - processed_timeline_data[teams[200]]["cs14"]
+        processed_timeline_data[teams[200]]["csd14"] = processed_timeline_data[teams[200]]["cs14"] - processed_timeline_data[teams[100]]["cs14"]
+    # Merge the timeline data with the match data
+    processed_match["participants"] = [dict(participant, **processed_timeline_data[participant["puuid"]]) for participant in processed_match["participants"]]
+    
+    ordered_keys = ["puuid", "player", "champion", "role", "win", "gameLength", "champLevel", "kills", "deaths", "assists", "kda", "kp", "cs", "csm", "cs14", "csd14", "gold", "gpm", "dmg", "dpm", "teamDmg%", "dmgTakenTeam%", "firstBlood", "soloBolos", "tripleKills", "quadraKills", "pentaKills", "multikills", "visionScore", "vspm", "ccTime", "effectiveHealShield", "objectivesStolen"]
+    processed_match["participants"] = [{key: participant[key] for key in ordered_keys} for participant in processed_match["participants"]]
+    return processed_match
+   
 
 def get_position_data(participants):
     position_data = {
@@ -66,48 +40,54 @@ def get_position_data(participants):
             position_data[position][team] = puuid
     return position_data
 
-def aggregate_player_season_data(match_data):
-    player_data = {}
-    for match in match_data:
-        for participant in match["participants"]:
-            puuid = participant['puuid']
-            if puuid not in player_data:
-                player_data[puuid] = {
-                    'riotIdGameName': participant['player'],
-                    'matches': 0,
-                    'game_minutes': 0,
-                    'kills': 0,
-                    'deaths': 0,
-                    'assists': 0,
-                    'kda': 0,
-                    'dmg': 0,
-                    'dpm': 0,
-                    'cs': 0,
-                    'csm': 0,
-                    'totalCsd14': 0,
-                    'avgCsd14': 0,
-                    'first_blood': 0,
-                    'solo_kills': 0
-                }
-            player_data[puuid]['matches'] += 1
-            player_data[puuid]['game_minutes'] += round(participant['gameLength'], 2)
-            player_data[puuid]['kills'] += participant['kills']
-            player_data[puuid]['deaths'] += participant['deaths']
-            player_data[puuid]['assists'] += participant['assists']
-            if player_data[puuid]['deaths'] == 0:
-                player_data[puuid]['kda'] = player_data[puuid]['kills'] + player_data[puuid]['assists']
-            else:
-                player_data[puuid]['kda'] = round((player_data[puuid]['kills'] + player_data[puuid]['assists']) / player_data[puuid]['deaths'], 2)
-            player_data[puuid]['dmg'] += participant['dmg']
-            player_data[puuid]['dpm'] = round(player_data[puuid]['dmg'] / player_data[puuid]['game_minutes'], 2)
-            player_data[puuid]['cs'] += participant['cs']
-            player_data[puuid]['csm'] = round(player_data[puuid]['cs'] / player_data[puuid]['game_minutes'], 2)
-            player_data[puuid]['totalCsd14'] += participant['csd14']
-            player_data[puuid]['first_blood'] += participant['firstBlood']
-            player_data[puuid]['solo_kills'] += participant['soloBolos']
-    for puuid, pdata in player_data.items():
-        pdata['avgCsd14'] = round(pdata['totalCsd14']/pdata["matches"], 1)
-    return player_data
+def aggregate_player_season_data(match):
+    for participant in match["participants"]:
+        puuid = participant['puuid']
+        #get player season data from db
+        db = MongoConnection().get_player_stats_collection()
+        player = db.find_one({"puuid": puuid})
+        
+        if not player:
+            player = {
+                'puuid': puuid,
+                'riotIdGameName': participant['player'],
+                'matches': 0,
+                'game_minutes': 0,
+                'kills': 0,
+                'deaths': 0,
+                'assists': 0,
+                'kda': 0,
+                'dmg': 0,
+                'dpm': 0,
+                'cs': 0,
+                'csm': 0,
+                'totalCsd14': 0,
+                'avgCsd14': 0,
+                'first_blood': 0,
+                'solo_kills': 0
+            }
+        player['matches'] += 1
+        player['game_minutes'] += round(participant['gameLength'], 2)
+        player['kills'] += participant['kills']
+        player['deaths'] += participant['deaths']
+        player['assists'] += participant['assists']
+        if player['deaths'] == 0:
+            player['kda'] = player['kills'] + player['assists']
+        else:
+            player['kda'] = round((player['kills'] + player['assists']) / player['deaths'], 2)
+        player['dmg'] += participant['dmg']
+        player['dpm'] = round(player['dmg'] / player['game_minutes'], 2)
+        player['cs'] += participant['cs']
+        player['csm'] = round(player['cs'] / player['game_minutes'], 2)
+        player['totalCsd14'] += participant['csd14']
+        player['first_blood'] += participant['firstBlood']
+        player['solo_kills'] += participant['soloBolos']
+        
+    # for player in players:
+    #     for puuid, pdata in player.items():
+    #         pdata['avgCsd14'] = round(pdata['totalCsd14']/pdata["matches"], 1)
+        db.update_one({"puuid": puuid}, {"$set": player}, upsert=True)
+    
 
 def fetch_riot_data(url):
     api_key = os.getenv("RIOT_API_KEY")
@@ -194,5 +174,3 @@ def process_participant_data(participant_data):
     participant_information["effectiveHealShield"] = round(participant_data["challenges"]["effectiveHealAndShielding"],0)
     return participant_information
 
-load_dotenv(dotenv_path=".env", verbose=True, override=True)           
-main()
