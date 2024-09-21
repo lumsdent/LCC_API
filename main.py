@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 from process_match_reports import process_match, aggregate_player_season_data
 from flask_cors import CORS
 from mongo_connection import MongoConnection
+from summoner import get_summoner_data
 
 app = Flask(__name__)
 CORS(app)
@@ -43,6 +44,11 @@ def get_match(match_id):
 def get_player_stats():
     player_data = list(player_stats.find({}, {'_id': 0}))
     return jsonify(player_data)
+
+@app.route('/summoner/<summoner_name>/<summoner_tag>', methods=['GET'])
+def get_summoner(summoner_name, summoner_tag):
+    summoner = get_summoner_data(summoner_name, summoner_tag)
+    return jsonify(summoner)
  
 if __name__ == '__main__':
     load_dotenv(dotenv_path=".env", verbose=True, override=True)  
