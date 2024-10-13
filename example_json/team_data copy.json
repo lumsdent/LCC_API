@@ -1,0 +1,170 @@
+{
+  "team": {
+    "_id": { "$oid": "66ef3ce4b35c8269fae088be" },
+    "team_name": "LCC_Champs",
+    "rosters": {
+      "2": [
+        {
+          "role": "TOP",
+          "player": {
+            "puuid": "c2xoTJ33QjBVjNX4U2IzxcvMwd9keVQE0M0AcoJfh9l_82XMZSo07zyjg87RmWV-KjnlXqMzqcFm-A",
+            "userName": "Oasis psychotikk"
+          }
+        },
+        {
+          "role": "SUPPORT",
+          "player": {
+            "puuid": "_SNthaZiRpWnwXiCppy5_mRf_wssHvfDkmQD6Uq93n-JBpwi_e-kagAwNge0gBBR3h9LDFjI-Kh7fg",
+            "userName": "Oasis Jags"
+          }
+        }
+      ]
+    }
+  },
+
+  "roles": [
+    "TOP",
+    "JUNGLE",
+    "MID",
+    "ADC",
+    "SUPPORT",
+    "TOP_SUB",
+    "JUNGLE_SUB",
+    "MID_SUB",
+    "ADC_SUB",
+    "SUPPORT_SUB",
+    "FLEX",
+    "FLEX_SUB"
+  ],
+
+  "player": {
+    "_id": { "$oid": "66ef3ce4b35c8269fae088be" },
+    "puuid": "123",
+    "player_name": "TopDiff",
+    "profile_img": "189",
+    "teams": [{ "1": "LCC_Champs" }, { "2": "LCC_Chumps" }],
+    "matches": ["45679284863", "45679284864"],
+    "champ_stats": [
+      {
+          "champion": "Aatrox",
+          "games_played": "10",
+          "kills": "45",
+          "deaths": "42",
+          "assists": "63"
+        },
+        {
+          "champion": "Darius",
+          "games_played": "5",
+          "kills": "23",
+          "deaths": "12",
+          "assists": "34"
+        },
+        {
+          "champion": "Garen",
+          "games_played": "5",
+          "kills": "23",
+          "deaths": "12",
+          "assists": "34"
+        }
+      ],
+     
+      "aggregate_stats": {
+          "games_played": "15",
+          "kills": "68",
+          "deaths": "54",
+          "assists": "97"
+        }
+  },
+
+
+  "matches": {
+    "season": "2",
+    "match_id": "45679284863",
+    "blue_team": {
+      "team_name": "LCC_Champs",
+      "participants": [
+        {
+          "TOP": {
+            "player_id": "123",
+            "champion": "Aatrox",
+            "kills": "5",
+            "deaths": "2",
+            "assists": "3"
+          }
+        },
+        {
+          "JUNGLE": {
+            "id": "123",
+            "name": "TopDiff",
+            "profile_img": "icon.png"
+          }
+        },
+        {
+          "MID": {
+            "id": "123",
+            "name": "TopDiff",
+            "profile_img": "icon.png"
+          }
+        },
+        {
+          "ADC": {
+            "id": "123",
+            "name": "TopDiff",
+            "profile_img": "icon.png"
+          }
+        },
+        {
+          "SUPPORT": {
+            "id": "123",
+            "name": "TopDiff",
+            "profile_img": "icon.png"
+          }
+        }
+      ]
+    },
+    "red_team": {
+      "team_name": "LCC_Chumps",
+      "participants": [
+        {
+          "TOP": {
+            "player_id": "123",
+            "champion": "Aatrox",
+            "kills": "5",
+            "deaths": "2",
+            "assists": "3",
+            "build": ["item1", "item2", "item3"],
+            "vod": "https://www.youtube.com/watch?v=123"
+          }
+        },
+        {
+          "JUNGLE": {
+            "id": "123",
+            "name": "TopDiff",
+            "profile_img": "icon.png"
+          }
+        },
+        {
+          "MID": {
+            "id": "123",
+            "name": "TopDiff",
+            "profile_img": "icon.png"
+          }
+        },
+        {
+          "ADC": {
+            "id": "123",
+            "name": "TopDiff",
+            "profile_img": "icon.png"
+          }
+        },
+        {
+          "SUPPORT": {
+            "id": "123",
+            "name": "TopDiff",
+            "profile_img": "icon.png"
+          }
+        }
+      ]
+    }
+  }
+}
