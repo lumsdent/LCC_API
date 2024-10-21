@@ -8,7 +8,8 @@
         "level": 30,
         "email": "topdiff@gmail.com",
         "bio": "I'm a top laner who loves to play tanks and bruisers.",
-        "icon": 505,
+        "primaryRole": "Top",
+        "secondaryRole": "Jungle",
         "images": {
           "icon": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/profileicon/505.png",
           "banner": "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/TahmKench_0.jpg"
@@ -72,16 +73,11 @@
           },
           "deaths": 5,
           "firstBloodKill": false,
-          "gameEndedInEarlySurrender": false,
-          "gameEndedInSurrender": false,
+          "mvp": false,
           "goldEarned": 10347,
           "goldSpent": 8250,
-          "individualPosition": "TOP",
           "kills": 6,
-          "lane": "TOP",
-          "neutralMinionsKilled": 0,
-          "profileIcon": 1109,
-          "role": "SOLO",
+          "cs": 122,
           "runes": {
             "primary": {
               "name": "Precision",
@@ -114,7 +110,6 @@
               "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/spell/SummonerTeleport.png"
             }
           ],
-          "teamEarlySurrendered": false,
           "team": {
             "name": "Ixtali Iguanas",
             "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/-1.png",
@@ -122,7 +117,6 @@
             "side": "Blue"
           },
           "teamPosition": "TOP",
-          "totalMinionsKilled": 124,
           "vod": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
           "win": true,
           "vs": {
@@ -178,16 +172,10 @@
             },
             "deaths": 5,
             "firstBloodKill": false,
-            "gameEndedInEarlySurrender": false,
-            "gameEndedInSurrender": false,
             "goldEarned": 10347,
             "goldSpent": 8250,
-            "individualPosition": "TOP",
             "kills": 6,
-            "lane": "TOP",
-            "neutralMinionsKilled": 0,
-            "profileIcon": 1109,
-            "role": "SOLO",
+            "cs": 0,
             "runes": {
               "primary": {
                 "name": "Precision",
@@ -220,7 +208,6 @@
                 "image": "SummonerTeleport.png"
               }
             },
-            "teamEarlySurrendered": false,
             "team": {
               "name": "Chump Changers",
               "image": "https://cdn.communitydragon.org/latest/honor/emblem/generic",
@@ -228,13 +215,10 @@
               "side": "Red"
             },
             "teamPosition": "TOP",
-            "totalMinionsKilled": 124,
             "win": false
           }
         }
       ],
-      "primaryRole": "Top",
-      "secondaryRole": "Jungle",
       "championStats": {
         "allTime": [
           {
@@ -871,6 +855,7 @@
         "kills": "45",
         "deaths": "42",
         "assists": "63",
+        "killParticipationTotal": "3.75",
         "killParticipation": "0.75",
         "kda": "2.45",
         "goldEarned": "10347",

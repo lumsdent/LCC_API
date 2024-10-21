@@ -102,5 +102,6 @@ def ddragon_get_runes_dict(version="14.2.1"):
     url = f"http://ddragon.leagueoflegends.com/cdn/{version}/data/en_US/runesReforged.json"
     html = requests.get(url).json()
     perk_dict = {item["id"]: item["key"] for item in html} #Domination (8100), Inspiration (8300), Precision (8000), Resolve (8400), Sorcery (8200)
-    rune_dict = {rune["id"]: rune["key"] for item in html for slot in item["slots"] for rune in slot["runes"]}
+    rune_dict = {rune["id"]: rune["key"] for item in html for
+                 slot in item["slots"] for rune in slot["runes"]}
     return perk_dict | rune_dict
