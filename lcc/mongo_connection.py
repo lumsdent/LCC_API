@@ -11,6 +11,12 @@ class MongoConnection:
 
     def get_matches_collection(self):
         return self.db['matches']
+    
+    def get_teams_collection(self):
+        return self.db['teams']    
 
-    def get_player_stats_collection(self):
-        return self.db['player_stats']
+    def get_player_collection(self):
+        return self.db['players']
+    
+    def get_practice_collection(self):
+        return self.db['practice']

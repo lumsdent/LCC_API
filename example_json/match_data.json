@@ -1,0 +1,1485 @@
+{
+    "data": {
+      "metadata": {
+        "dataVersion": "2",
+        "matchId": "NA1_4980010890",
+        "participants": [
+          "ViL-fqc_05wIgsqrNTZm4GTXv24-oNM0A4p41gcFdq9ltxyATnijVFkdBdE9EEQnErx4q81yTGZT1A",
+          "Sm9i6Wu7jp3XzIoSsZIEJHmIV64GxNgfng8nqTEzFbxbxjOkCZmAXZR9t9DcnciG0mWv89IbDY9Lkw",
+          "YQXX_YWLJ9DpLQ8Eqfonmga5JtjvqvRHEc49kNNdE717-NXSqozQn8w-qjk70R0lJrYyG65TE3HZ3w",
+          "snhkMeKiyMCrcD33fdPokYooM4ENudF-clYWdAhsj3sVyzGs11O_wS1Oa2Zrgw1q2mYRrwiWwiaTcg",
+          "nQ2VyBLCPO9Avie4lkRvXrUWOBfznA2s4V9Qf59uzD87BWPCMatq1dcIjzmhFOr-FuRlClzwfMRIJA",
+          "NXI8oLuiHEaEYiE9mc1mUC1CgbdUNuoIB4Iz3__jPjTBSUZ3XkVeg4pjc4TgxMSV63hMxT2DDSRqtQ",
+          "S1YcGpWaf5erIrx6pdhwJorhis2zaCOEvyBrTaeqVSfRaMwzoXUynwu2willEUwnOXF3Za9y13iimA",
+          "qVuw8MpQ1jk9pinzpAh6LIWowY4hjnbUkMJq8nJZ_PfdAtXoJoRt2bs0dT79H3xtsiJd1vGgXhpusg",
+          "5U0sb_NKk_baARqrpvFnYHSDA1D9qW8dk05Ptx6DA-TKzAlv0rbpGgeSyp9J-1ZrplJ_Vbo3N9WLoA",
+          "vEdac3yp21FNBsN29rG2dlg6Vjj45r2790gNutCMuJer6ET6204fKRNrQ_Qm6IFYjKVGQLdrkmCy5w"
+        ]
+      },
+      "info": {
+        "gameCreation": 1713749736915,
+        "gameDuration": 1376,
+        "gameEndTimestamp": 1713751194217,
+        "gameId": 4980010890,
+        "gameMode": "CLASSIC",
+        "gameName": "77221b1f-e203-44de-b112-93e21def330d",
+        "gameStartTimestamp": 1713749817854,
+        "gameType": "CUSTOM_GAME",
+        "gameVersion": "14.8",
+        "mapId": 11,
+        "vod": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+        "teams": [
+          {
+            "name": "Ixtali Iguanas",
+            "side": "Blue",
+            "teamId": 100,
+            "gameOutcome": "Draw",
+            "score": 1,
+            "kills": 10,
+            "gold": 48637,
+            "bans": [
+              {
+                "id": 223,
+                "name": "TahmKench",
+                "image": {
+                  "full": "TahmKench.png",
+                  "loading": "TahmKench_0.jpg",
+                  "square": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/Aurora.png"
+                },
+                "title": "the River King",
+                "pickTurn": 1
+              },
+              {
+                "id": 223,
+                "name": "TahmKench",
+                "image": {
+                  "full": "TahmKench.png",
+                  "loading": "TahmKench_0.jpg",
+                  "square": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/Sejuani.png"
+                },
+                "title": "the River King",
+                "pickTurn": 3
+              },
+              {
+                "id": 223,
+                "name": "TahmKench",
+                "image": {
+                  "full": "TahmKench.png",
+                  "loading": "TahmKench_0.jpg",
+                  "square": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/Jinx.png"
+                },
+                "title": "the River King",
+                "pickTurn": 2
+              },
+              {
+                "id": 223,
+                "name": "TahmKench",
+                "image": {
+                  "full": "TahmKench.png",
+                  "loading": "TahmKench_0.jpg",
+                  "square": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/Rumble.png"
+                },
+                "title": "the River King",
+                "pickTurn": 5
+              },
+              {
+                "id": 223,
+                "name": "TahmKench",
+                "image": {
+                  "full": "TahmKench.png",
+                  "loading": "TahmKench_0.jpg",
+                  "square": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/Annie.png"
+                },
+                "title": "the River King",
+                "pickTurn": 4
+              }
+            ],
+            "objectives": {
+              "baron": {
+                "first": false,
+                "kills": 0,
+                "image": "https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-match-history/global/default/baron-100.png"
+              },
+              "champion": {
+                "first": false,
+                "kills": 4
+              },
+              "dragon": {
+                "first": true,
+                "kills": 1,
+                "image": "https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-match-history/global/default/dragon-100.png"
+              },
+              "horde": {
+                "first": false,
+                "kills": 1,
+                "image": "https://raw.communitydragon.org/latest/game/assets/ux/minimap/icons/horde.png"
+              },
+              "inhibitor": {
+                "first": false,
+                "kills": 0,
+                "image": "https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-match-history/global/default/inhibitor-100.png"
+              },
+              "riftHerald": {
+                "first": false,
+                "kills": 0,
+                "image": "https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-match-history/global/default/herald-100.png"
+              },
+              "tower": {
+                "first": false,
+                "kills": 0,
+                "image": "https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-match-history/global/default/tower-100.png"
+              }
+            },
+            "players": [
+              {
+                "role": "TOP",
+                "build": [
+                  {
+                    "id": 1054,
+                    "name": "Doran's Shield",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/1054.png"
+                  },
+                  {
+                    "id": 3084,
+                    "name": "Overlord's Bloodmail",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3084.png"
+                  },
+                  {
+                    "id": 2031,
+                    "name": "Refillable Potion",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/2031.png"
+                  },
+                  {
+                    "id": 3009,
+                    "name": "Immortal Shieldbow",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3009.png"
+                  },
+                  {
+                    "id": 4633,
+                    "name": "Goredrinker",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/4633.png"
+                  },
+                  {
+                    "id": 3067,
+                    "name": "Kindlegem",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3067.png"
+                  }
+                ],
+                "trinket": {
+                  "id": 3340,
+                  "name": "Stealth Ward",
+                  "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3340.png"
+                },
+                "champion": {
+                  "id": 223,
+                  "name": "TahmKench",
+                  "image": {
+                    "full": "TahmKench.png",
+                    "loading": "TahmKench_0.jpg",
+                    "square": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/TahmKench.png"
+                  },
+                  "title": "the River King",
+                  "level": 15,
+                  "experience": 14069
+                },
+                "assists": 1,
+                "deaths": 2,
+                "kills": 2,
+                "profile": {
+                  "puuid": "c2xoTJ33QjBVjNX4U2IzxcvMwd9keVQE0M0AcoJfh9l_82XMZSo07zyjg87RmWV-KjnlXqMzqcFm-A",
+                  "name": "TopDiff",
+                  "tag": "NA",
+                  "level": 30,
+                  "email": "topdiff@gmail.com",
+                  "bio": "I'm a top laner who loves to play tanks and bruisers.",
+                  "icon": 505,
+                  "images": {
+                    "icon": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/profileicon/505.png",
+                    "banner": "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/TahmKench_0.jpg"
+                  }
+                },
+                "runes": {
+                  "primary": {
+                    "name": "Precision",
+                    "image": "perk-images/Styles/Precision/Precision.png",
+                    "keystone": {
+                      "name": "Lethal Tempo",
+                      "id": 8008,
+                      "image": "https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Precision/PressTheAttack/PressTheAttack.png",
+                      "shortDesc": "1.5s after damaging a champion gain a large amount of Attack Speed. Lethal Tempo allows you to temporarily exceed the attack speed limit.",
+                      "longDesc": "1.5s after damaging a champion gain 40 - 110% Attack Speed (based on level) for 3s. Attacking a champion extends the effect to 6s.",
+                      "key": "8008"
+                    }
+                  },
+                  "secondary": {
+                    "name": "Domination",
+                    "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7200_domination.png"
+                  }
+                },
+                "summonerSpells": [
+                  {
+                    "casts": 3,
+                    "id": 4,
+                    "name": "Flash",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/spell/SummonerFlash.png"
+                  },
+                  {
+                    "casts": 4,
+                    "id": 12,
+                    "name": "Teleport",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/spell/SummonerTeleport.png"
+                  }
+                ],
+                "firstBlood": false,
+                "mvp": false,
+                "cs": 322,
+                "cs14": 108,
+                "csm": 8.5,
+                "effectiveHealAndShielding": 2533.677734375,
+                "firstBloodKill": false,
+                "goldEarned": 8063,
+                "goldSpent": 5825,
+                "goldPerMinute": 351.47007584514756,
+                "kda": 20,
+                "killParticipation": 0.7692307692307693,
+                "neutralMinionsKilled": 0,
+                "soloKills": 1,
+                "teamDamagePercentage": 0.2646285560315761,
+                "totalDamageDealtToChampions": 14615,
+                "damagePerMinute": 637.0295947770143,
+                "totalDamageTaken": 4224,
+                "damageTakenOnTeamPercentage": 0.07712553674868768,
+                "visionScore": 43,
+                "visionScorePerMinute": 1.9092156280807766,
+                "visionWardsBoughtInGame": 3,
+                "wardsKilled": 4,
+                "wardsPlaced": 16
+              },
+              {
+                "role": "JUNGLE",
+                "build": [
+                  {
+                    "id": 1054,
+                    "name": "Doran's Shield",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/1054.png"
+                  },
+                  {
+                    "id": 3084,
+                    "name": "Overlord's Bloodmail",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3084.png"
+                  },
+                  {
+                    "id": 2031,
+                    "name": "Refillable Potion",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/2031.png"
+                  },
+                  {
+                    "id": 3009,
+                    "name": "Immortal Shieldbow",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3009.png"
+                  },
+                  {
+                    "id": 4633,
+                    "name": "Goredrinker",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/4633.png"
+                  },
+                  {
+                    "id": 3067,
+                    "name": "Kindlegem",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3067.png"
+                  }
+                ],
+                "trinket": {
+                  "id": 3340,
+                  "name": "Stealth Ward",
+                  "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3340.png"
+                },
+                "champion": {
+                  "id": 223,
+                  "name": "Lillia",
+                  "image": {
+                    "full": "Lillia.png",
+                    "loading": "Lillia.jpg",
+                    "square": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/Lillia.png"
+                  },
+                  "title": "the River King",
+                  "level": 15,
+                  "experience": 14069
+                },
+                "assists": 1,
+                "deaths": 2,
+                "kills": 2,
+                "profile": {
+                  "puuid": "c2xoTJ33QjBVjNX4U2IzxcvMwd9keVQE0M0AcoJfh9l_82XMZSo07zyjg87RmWV-KjnlXqMzqcFm-A",
+                  "name": "TopDiff",
+                  "tag": "NA",
+                  "level": 30,
+                  "email": "topdiff@gmail.com",
+                  "bio": "I'm a top laner who loves to play tanks and bruisers.",
+                  "icon": 505,
+                  "images": {
+                    "icon": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/profileicon/505.png",
+                    "banner": "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/TahmKench_0.jpg"
+                  }
+                },
+                "runes": {
+                  "primary": {
+                    "name": "Precision",
+                    "image": "perk-images/Styles/Precision/Precision.png",
+                    "keystone": {
+                      "name": "Lethal Tempo",
+                      "id": 8008,
+                      "image": "https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Precision/PressTheAttack/PressTheAttack.png",
+                      "shortDesc": "1.5s after damaging a champion gain a large amount of Attack Speed. Lethal Tempo allows you to temporarily exceed the attack speed limit.",
+                      "longDesc": "1.5s after damaging a champion gain 40 - 110% Attack Speed (based on level) for 3s. Attacking a champion extends the effect to 6s.",
+                      "key": "8008"
+                    }
+                  },
+                  "secondary": {
+                    "name": "Domination",
+                    "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7200_domination.png"
+                  }
+                },
+                "summonerSpells": [
+                  {
+                    "casts": 3,
+                    "id": 4,
+                    "name": "Flash",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/spell/SummonerFlash.png"
+                  },
+                  {
+                    "casts": 4,
+                    "id": 12,
+                    "name": "Teleport",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/spell/SummonerTeleport.png"
+                  }
+                ],
+                "firstBlood": false,
+                "mvp": false,
+                "cs": 322,
+                "cs14": 108,
+                "csm": 8.5,
+                "effectiveHealAndShielding": 2533.677734375,
+                "firstBloodKill": false,
+                "goldEarned": 8063,
+                "goldSpent": 5825,
+                "goldPerMinute": 351.47007584514756,
+                "kda": 20,
+                "killParticipation": 0.7692307692307693,
+                "neutralMinionsKilled": 0,
+                "soloKills": 1,
+                "teamDamagePercentage": 0.2646285560315761,
+                "totalDamageDealtToChampions": 14615,
+                "damagePerMinute": 637.0295947770143,
+                "totalDamageTaken": 4224,
+                "damageTakenOnTeamPercentage": 0.07712553674868768,
+                "visionScore": 43,
+                "visionScorePerMinute": 1.9092156280807766,
+                "visionWardsBoughtInGame": 3,
+                "wardsKilled": 4,
+                "wardsPlaced": 16
+              },
+              {
+                "role": "MID_CARRY",
+                "build": [
+                  {
+                    "id": 1054,
+                    "name": "Doran's Shield",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/1054.png"
+                  },
+                  {
+                    "id": 3084,
+                    "name": "Overlord's Bloodmail",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3084.png"
+                  },
+                  {
+                    "id": 2031,
+                    "name": "Refillable Potion",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/2031.png"
+                  },
+                  {
+                    "id": 3009,
+                    "name": "Immortal Shieldbow",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3009.png"
+                  },
+                  {
+                    "id": 4633,
+                    "name": "Goredrinker",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/4633.png"
+                  },
+                  {
+                    "id": 3067,
+                    "name": "Kindlegem",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3067.png"
+                  }
+                ],
+                "trinket": {
+                  "id": 3340,
+                  "name": "Stealth Ward",
+                  "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3340.png"
+                },
+                "champion": {
+                  "id": 223,
+                  "name": "TahmKench",
+                  "image": {
+                    "full": "TahmKench.png",
+                    "loading": "TahmKench_0.jpg",
+                    "square": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/Syndra.png"
+                  },
+                  "title": "the River King",
+                  "level": 15,
+                  "experience": 14069
+                },
+                "assists": 1,
+                "deaths": 2,
+                "kills": 2,
+                "profile": {
+                  "puuid": "c2xoTJ33QjBVjNX4U2IzxcvMwd9keVQE0M0AcoJfh9l_82XMZSo07zyjg87RmWV-KjnlXqMzqcFm-A",
+                  "name": "TopDiff",
+                  "tag": "NA",
+                  "level": 30,
+                  "email": "topdiff@gmail.com",
+                  "bio": "I'm a top laner who loves to play tanks and bruisers.",
+                  "icon": 505,
+                  "images": {
+                    "icon": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/profileicon/505.png",
+                    "banner": "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/TahmKench_0.jpg"
+                  }
+                },
+                "runes": {
+                  "primary": {
+                    "name": "Precision",
+                    "image": "perk-images/Styles/Precision/Precision.png",
+                    "keystone": {
+                      "name": "Lethal Tempo",
+                      "id": 8008,
+                      "image": "https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Precision/PressTheAttack/PressTheAttack.png",
+                      "shortDesc": "1.5s after damaging a champion gain a large amount of Attack Speed. Lethal Tempo allows you to temporarily exceed the attack speed limit.",
+                      "longDesc": "1.5s after damaging a champion gain 40 - 110% Attack Speed (based on level) for 3s. Attacking a champion extends the effect to 6s.",
+                      "key": "8008"
+                    }
+                  },
+                  "secondary": {
+                    "name": "Domination",
+                    "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7200_domination.png"
+                  }
+                },
+                "summonerSpells": [
+                  {
+                    "casts": 3,
+                    "id": 4,
+                    "name": "Flash",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/spell/SummonerFlash.png"
+                  },
+                  {
+                    "casts": 4,
+                    "id": 12,
+                    "name": "Teleport",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/spell/SummonerTeleport.png"
+                  }
+                ],
+                "firstBlood": false,
+                "mvp": false,
+                "cs": 322,
+                "cs14": 108,
+                "csm": 8.5,
+                "effectiveHealAndShielding": 2533.677734375,
+                "firstBloodKill": false,
+                "goldEarned": 8063,
+                "goldSpent": 5825,
+                "goldPerMinute": 351.47007584514756,
+                "kda": 20,
+                "killParticipation": 0.7692307692307693,
+                "neutralMinionsKilled": 0,
+                "soloKills": 1,
+                "teamDamagePercentage": 0.2646285560315761,
+                "totalDamageDealtToChampions": 14615,
+                "damagePerMinute": 637.0295947770143,
+                "totalDamageTaken": 4224,
+                "damageTakenOnTeamPercentage": 0.07712553674868768,
+                "visionScore": 43,
+                "visionScorePerMinute": 1.9092156280807766,
+                "visionWardsBoughtInGame": 3,
+                "wardsKilled": 4,
+                "wardsPlaced": 16
+              },
+              {
+                "role": "BOT_CARRY",
+                "build": [
+                  {
+                    "id": 1054,
+                    "name": "Doran's Shield",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/1054.png"
+                  },
+                  {
+                    "id": 3084,
+                    "name": "Overlord's Bloodmail",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3084.png"
+                  },
+                  {
+                    "id": 2031,
+                    "name": "Refillable Potion",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/2031.png"
+                  },
+                  {
+                    "id": 3009,
+                    "name": "Immortal Shieldbow",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3009.png"
+                  },
+                  {
+                    "id": 4633,
+                    "name": "Goredrinker",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/4633.png"
+                  },
+                  {
+                    "id": 3067,
+                    "name": "Kindlegem",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3067.png"
+                  }
+                ],
+                "trinket": {
+                  "id": 3340,
+                  "name": "Stealth Ward",
+                  "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3340.png"
+                },
+                "champion": {
+                  "id": 223,
+                  "name": "TahmKench",
+                  "image": {
+                    "full": "TahmKench.png",
+                    "loading": "TahmKench_0.jpg",
+                    "square": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/Varus.png"
+                  },
+                  "title": "the River King",
+                  "level": 15,
+                  "experience": 14069
+                },
+                "assists": 1,
+                "deaths": 2,
+                "kills": 2,
+                "profile": {
+                  "puuid": "c2xoTJ33QjBVjNX4U2IzxcvMwd9keVQE0M0AcoJfh9l_82XMZSo07zyjg87RmWV-KjnlXqMzqcFm-A",
+                  "name": "TopDiff",
+                  "tag": "NA",
+                  "level": 30,
+                  "email": "topdiff@gmail.com",
+                  "bio": "I'm a top laner who loves to play tanks and bruisers.",
+                  "icon": 505,
+                  "images": {
+                    "icon": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/profileicon/505.png",
+                    "banner": "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/TahmKench_0.jpg"
+                  }
+                },
+                "runes": {
+                  "primary": {
+                    "name": "Precision",
+                    "image": "perk-images/Styles/Precision/Precision.png",
+                    "keystone": {
+                      "name": "Lethal Tempo",
+                      "id": 8008,
+                      "image": "https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Precision/PressTheAttack/PressTheAttack.png",
+                      "shortDesc": "1.5s after damaging a champion gain a large amount of Attack Speed. Lethal Tempo allows you to temporarily exceed the attack speed limit.",
+                      "longDesc": "1.5s after damaging a champion gain 40 - 110% Attack Speed (based on level) for 3s. Attacking a champion extends the effect to 6s.",
+                      "key": "8008"
+                    }
+                  },
+                  "secondary": {
+                    "name": "Domination",
+                    "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7200_domination.png"
+                  }
+                },
+                "summonerSpells": [
+                  {
+                    "casts": 3,
+                    "id": 4,
+                    "name": "Flash",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/spell/SummonerFlash.png"
+                  },
+                  {
+                    "casts": 4,
+                    "id": 12,
+                    "name": "Teleport",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/spell/SummonerTeleport.png"
+                  }
+                ],
+                "firstBlood": false,
+                "mvp": false,
+                "cs": 322,
+                "cs14": 108,
+                "csm": 8.5,
+                "effectiveHealAndShielding": 2533.677734375,
+                "firstBloodKill": false,
+                "goldEarned": 8063,
+                "goldSpent": 5825,
+                "goldPerMinute": 351.47007584514756,
+                "kda": 20,
+                "killParticipation": 0.7692307692307693,
+                "neutralMinionsKilled": 0,
+                "soloKills": 1,
+                "teamDamagePercentage": 0.2646285560315761,
+                "totalDamageDealtToChampions": 14615,
+                "damagePerMinute": 637.0295947770143,
+                "totalDamageTaken": 4224,
+                "damageTakenOnTeamPercentage": 0.07712553674868768,
+                "visionScore": 43,
+                "visionScorePerMinute": 1.9092156280807766,
+                "visionWardsBoughtInGame": 3,
+                "wardsKilled": 4,
+                "wardsPlaced": 16
+              },
+              {
+                "role": "SUPPORT",
+                "build": [
+                  {
+                    "id": 1054,
+                    "name": "Doran's Shield",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/1054.png"
+                  },
+                  {
+                    "id": 3084,
+                    "name": "Overlord's Bloodmail",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3084.png"
+                  },
+                  {
+                    "id": 2031,
+                    "name": "Refillable Potion",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/2031.png"
+                  },
+                  {
+                    "id": 3009,
+                    "name": "Immortal Shieldbow",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3009.png"
+                  },
+                  {
+                    "id": 4633,
+                    "name": "Goredrinker",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/4633.png"
+                  },
+                  {
+                    "id": 3067,
+                    "name": "Kindlegem",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3067.png"
+                  }
+                ],
+                "trinket": {
+                  "id": 3340,
+                  "name": "Stealth Ward",
+                  "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3340.png"
+                },
+                "champion": {
+                  "id": 223,
+                  "name": "TahmKench",
+                  "image": {
+                    "full": "TahmKench.png",
+                    "loading": "TahmKench_0.jpg",
+                    "square": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/Seraphine.png"
+                  },
+                  "title": "the River King",
+                  "level": 15,
+                  "experience": 14069
+                },
+                "assists": 1,
+                "deaths": 2,
+                "kills": 2,
+                "profile": {
+                  "puuid": "c2xoTJ33QjBVjNX4U2IzxcvMwd9keVQE0M0AcoJfh9l_82XMZSo07zyjg87RmWV-KjnlXqMzqcFm-A",
+                  "name": "TopDiff",
+                  "tag": "NA",
+                  "level": 30,
+                  "email": "topdiff@gmail.com",
+                  "bio": "I'm a top laner who loves to play tanks and bruisers.",
+                  "icon": 505,
+                  "images": {
+                    "icon": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/profileicon/505.png",
+                    "banner": "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/TahmKench_0.jpg"
+                  }
+                },
+                "runes": {
+                  "primary": {
+                    "name": "Precision",
+                    "image": "perk-images/Styles/Precision/Precision.png",
+                    "keystone": {
+                      "name": "Lethal Tempo",
+                      "id": 8008,
+                      "image": "https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Precision/PressTheAttack/PressTheAttack.png",
+                      "shortDesc": "1.5s after damaging a champion gain a large amount of Attack Speed. Lethal Tempo allows you to temporarily exceed the attack speed limit.",
+                      "longDesc": "1.5s after damaging a champion gain 40 - 110% Attack Speed (based on level) for 3s. Attacking a champion extends the effect to 6s.",
+                      "key": "8008"
+                    }
+                  },
+                  "secondary": {
+                    "name": "Domination",
+                    "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7200_domination.png"
+                  }
+                },
+                "summonerSpells": [
+                  {
+                    "casts": 3,
+                    "id": 4,
+                    "name": "Flash",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/spell/SummonerFlash.png"
+                  },
+                  {
+                    "casts": 4,
+                    "id": 12,
+                    "name": "Teleport",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/spell/SummonerTeleport.png"
+                  }
+                ],
+                "firstBlood": false,
+                "mvp": false,
+                "cs": 322,
+                "cs14": 108,
+                "csm": 8.5,
+                "effectiveHealAndShielding": 2533.677734375,
+                "firstBloodKill": false,
+                "goldEarned": 8063,
+                "goldSpent": 5825,
+                "goldPerMinute": 351.47007584514756,
+                "kda": 20,
+                "killParticipation": 0.7692307692307693,
+                "neutralMinionsKilled": 0,
+                "soloKills": 1,
+                "teamDamagePercentage": 0.2646285560315761,
+                "totalDamageDealtToChampions": 14615,
+                "damagePerMinute": 637.0295947770143,
+                "totalDamageTaken": 4224,
+                "damageTakenOnTeamPercentage": 0.07712553674868768,
+                "visionScore": 43,
+                "visionScorePerMinute": 1.9092156280807766,
+                "visionWardsBoughtInGame": 3,
+                "wardsKilled": 4,
+                "wardsPlaced": 16
+              }
+            ]
+          },
+          {
+            "name": "Chump Changers",
+            "side": "Red",
+            "teamId": 200,
+            "gameOutcome": "Draw",
+            "score": 1,
+            "kills": 10,
+            "gold": 48231,
+            "bans": [
+              {
+                "id": 223,
+                "name": "TahmKench",
+                "image": {
+                  "full": "TahmKench.png",
+                  "loading": "TahmKench_0.jpg",
+                  "square": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/Caitlyn.png"
+                },
+                "title": "the River King",
+                "pickTurn": 5
+              },
+              {
+                "id": 223,
+                "name": "TahmKench",
+                "image": {
+                  "full": "TahmKench.png",
+                  "loading": "TahmKench_0.jpg",
+                  "square": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/Lucian.png"
+                },
+                "title": "the River King",
+                "pickTurn": 3
+              },
+              {
+                "id": 223,
+                "name": "TahmKench",
+                "image": {
+                  "full": "TahmKench.png",
+                  "loading": "TahmKench_0.jpg",
+                  "square": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/Renata.png"
+                },
+                "title": "the River King",
+                "pickTurn": 2
+              },
+              {
+                "id": 223,
+                "name": "TahmKench",
+                "image": {
+                  "full": "TahmKench.png",
+                  "loading": "TahmKench_0.jpg",
+                  "square": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/Hwei.png"
+                },
+                "title": "the River King",
+                "pickTurn": 1
+              },
+              {
+                "id": 223,
+                "name": "TahmKench",
+                "image": {
+                  "full": "TahmKench.png",
+                  "loading": "TahmKench_0.jpg",
+                  "square": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/Blitzcrank.png"
+                },
+                "title": "the River King",
+                "pickTurn": 4
+              }
+            ],
+            "objectives": {
+              "baron": {
+                "first": false,
+                "kills": 0,
+                "image": "https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-match-history/global/default/baron-200.png"
+              },
+              "champion": {
+                "first": false,
+                "kills": 4
+              },
+              "dragon": {
+                "first": true,
+                "kills": 1,
+                "image": "https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-match-history/global/default/dragon-200.png"
+              },
+              "horde": {
+                "first": false,
+                "kills": 1,
+                "image": "https://raw.communitydragon.org/latest/game/assets/ux/minimap/icons/horde.png"
+              },
+              "inhibitor": {
+                "first": false,
+                "kills": 0,
+                "image": "https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-match-history/global/default/inhibitor-200.png"
+              },
+              "riftHerald": {
+                "first": false,
+                "kills": 0,
+                "image": "https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-match-history/global/default/herald-200.png"
+              },
+              "tower": {
+                "first": false,
+                "kills": 0,
+                "image": "https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-match-history/global/default/tower-200.png"
+              }
+            },
+            "players": [
+              {
+                "role": "TOP",
+                "build": [
+                  {
+                    "id": 1054,
+                    "name": "Doran's Shield",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/1054.png"
+                  },
+                  {
+                    "id": 3084,
+                    "name": "Overlord's Bloodmail",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3084.png"
+                  },
+                  {
+                    "id": 2031,
+                    "name": "Refillable Potion",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/2031.png"
+                  },
+                  {
+                    "id": 3009,
+                    "name": "Immortal Shieldbow",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3009.png"
+                  },
+                  {
+                    "id": 4633,
+                    "name": "Goredrinker",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/4633.png"
+                  },
+                  {
+                    "id": 3067,
+                    "name": "Kindlegem",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3067.png"
+                  }
+                ],
+                "trinket": {
+                  "id": 3340,
+                  "name": "Stealth Ward",
+                  "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3340.png"
+                },
+                "champion": {
+                  "id": 223,
+                  "name": "TahmKench",
+                  "image": {
+                    "full": "TahmKench.png",
+                    "loading": "TahmKench_0.jpg",
+                    "square": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/Garen.png"
+                  },
+                  "title": "the River King",
+                  "level": 15,
+                  "experience": 14069
+                },
+                "assists": 1,
+                "deaths": 2,
+                "kills": 2,
+                "profile": {
+                  "puuid": "c2xoTJ33QjBVjNX4U2IzxcvMwd9keVQE0M0AcoJfh9l_82XMZSo07zyjg87RmWV-KjnlXqMzqcFm-A",
+                  "name": "TopDiff",
+                  "tag": "NA",
+                  "level": 30,
+                  "email": "topdiff@gmail.com",
+                  "bio": "I'm a top laner who loves to play tanks and bruisers.",
+                  "icon": 505,
+                  "images": {
+                    "icon": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/profileicon/505.png",
+                    "banner": "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/TahmKench_0.jpg"
+                  }
+                },
+                "runes": {
+                  "primary": {
+                    "name": "Precision",
+                    "image": "perk-images/Styles/Precision/Precision.png",
+                    "keystone": {
+                      "name": "Lethal Tempo",
+                      "id": 8008,
+                      "image": "https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Precision/PressTheAttack/PressTheAttack.png",
+                      "shortDesc": "1.5s after damaging a champion gain a large amount of Attack Speed. Lethal Tempo allows you to temporarily exceed the attack speed limit.",
+                      "longDesc": "1.5s after damaging a champion gain 40 - 110% Attack Speed (based on level) for 3s. Attacking a champion extends the effect to 6s.",
+                      "key": "8008"
+                    }
+                  },
+                  "secondary": {
+                    "name": "Domination",
+                    "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7200_domination.png"
+                  }
+                },
+                "summonerSpells": [
+                  {
+                    "casts": 3,
+                    "id": 4,
+                    "name": "Flash",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/spell/SummonerFlash.png"
+                  },
+                  {
+                    "casts": 4,
+                    "id": 12,
+                    "name": "Teleport",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/spell/SummonerTeleport.png"
+                  }
+                ],
+                "firstBlood": true,
+                "mvp": false,
+                "cs": 322,
+                "cs14": 108,
+                "csm": 8.5,
+                "effectiveHealAndShielding": 2533.677734375,
+                "firstBloodKill": false,
+                "goldEarned": 8063,
+                "goldSpent": 5825,
+                "goldPerMinute": 351.47007584514756,
+                "kda": 20,
+                "killParticipation": 0.7692307692307693,
+                "neutralMinionsKilled": 0,
+                "soloKills": 1,
+                "teamDamagePercentage": 0.2646285560315761,
+                "totalDamageDealtToChampions": 14615,
+                "damagePerMinute": 637.0295947770143,
+                "totalDamageTaken": 4224,
+                "damageTakenOnTeamPercentage": 0.07712553674868768,
+                "visionScore": 43,
+                "visionScorePerMinute": 1.9092156280807766,
+                "visionWardsBoughtInGame": 3,
+                "wardsKilled": 4,
+                "wardsPlaced": 16
+              },
+              {
+                "role": "JUNGLE",
+                "build": [
+                  {
+                    "id": 1054,
+                    "name": "Doran's Shield",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/1054.png"
+                  },
+                  {
+                    "id": 3084,
+                    "name": "Overlord's Bloodmail",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3084.png"
+                  },
+                  {
+                    "id": 2031,
+                    "name": "Refillable Potion",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/2031.png"
+                  },
+                  {
+                    "id": 3009,
+                    "name": "Immortal Shieldbow",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3009.png"
+                  },
+                  {
+                    "id": 4633,
+                    "name": "Goredrinker",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/4633.png"
+                  },
+                  {
+                    "id": 3067,
+                    "name": "Kindlegem",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3067.png"
+                  }
+                ],
+                "trinket": {
+                  "id": 3340,
+                  "name": "Stealth Ward",
+                  "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3340.png"
+                },
+                "champion": {
+                  "id": 223,
+                  "name": "Lillia",
+                  "image": {
+                    "full": "Lillia.png",
+                    "loading": "Lillia.jpg",
+                    "square": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/Vi.png"
+                  },
+                  "title": "the River King",
+                  "level": 15,
+                  "experience": 14069
+                },
+                "assists": 1,
+                "deaths": 2,
+                "kills": 2,
+                "profile": {
+                  "puuid": "c2xoTJ33QjBVjNX4U2IzxcvMwd9keVQE0M0AcoJfh9l_82XMZSo07zyjg87RmWV-KjnlXqMzqcFm-A",
+                  "name": "TopDiff",
+                  "tag": "NA",
+                  "level": 30,
+                  "email": "topdiff@gmail.com",
+                  "bio": "I'm a top laner who loves to play tanks and bruisers.",
+                  "icon": 505,
+                  "images": {
+                    "icon": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/profileicon/505.png",
+                    "banner": "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/TahmKench_0.jpg"
+                  }
+                },
+                "runes": {
+                  "primary": {
+                    "name": "Precision",
+                    "image": "perk-images/Styles/Precision/Precision.png",
+                    "keystone": {
+                      "name": "Lethal Tempo",
+                      "id": 8008,
+                      "image": "https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Precision/PressTheAttack/PressTheAttack.png",
+                      "shortDesc": "1.5s after damaging a champion gain a large amount of Attack Speed. Lethal Tempo allows you to temporarily exceed the attack speed limit.",
+                      "longDesc": "1.5s after damaging a champion gain 40 - 110% Attack Speed (based on level) for 3s. Attacking a champion extends the effect to 6s.",
+                      "key": "8008"
+                    }
+                  },
+                  "secondary": {
+                    "name": "Domination",
+                    "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7200_domination.png"
+                  }
+                },
+                "summonerSpells": [
+                  {
+                    "casts": 3,
+                    "id": 4,
+                    "name": "Flash",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/spell/SummonerFlash.png"
+                  },
+                  {
+                    "casts": 4,
+                    "id": 12,
+                    "name": "Teleport",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/spell/SummonerTeleport.png"
+                  }
+                ],
+                "firstBlood": false,
+                "mvp": false,
+                "cs": 322,
+                "cs14": 108,
+                "csm": 8.5,
+                "effectiveHealAndShielding": 2533.677734375,
+                "firstBloodKill": false,
+                "goldEarned": 8063,
+                "goldSpent": 5825,
+                "goldPerMinute": 351.47007584514756,
+                "kda": 20,
+                "killParticipation": 0.7692307692307693,
+                "neutralMinionsKilled": 0,
+                "soloKills": 1,
+                "teamDamagePercentage": 0.2646285560315761,
+                "totalDamageDealtToChampions": 14615,
+                "damagePerMinute": 637.0295947770143,
+                "totalDamageTaken": 4224,
+                "damageTakenOnTeamPercentage": 0.07712553674868768,
+                "visionScore": 43,
+                "visionScorePerMinute": 1.9092156280807766,
+                "visionWardsBoughtInGame": 3,
+                "wardsKilled": 4,
+                "wardsPlaced": 16
+              },
+              {
+                "role": "MID_CARRY",
+                "build": [
+                  {
+                    "id": 1054,
+                    "name": "Doran's Shield",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/1054.png"
+                  },
+                  {
+                    "id": 3084,
+                    "name": "Overlord's Bloodmail",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3084.png"
+                  },
+                  {
+                    "id": 2031,
+                    "name": "Refillable Potion",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/2031.png"
+                  },
+                  {
+                    "id": 3009,
+                    "name": "Immortal Shieldbow",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3009.png"
+                  },
+                  {
+                    "id": 4633,
+                    "name": "Goredrinker",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/4633.png"
+                  },
+                  {
+                    "id": 3067,
+                    "name": "Kindlegem",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3067.png"
+                  }
+                ],
+                "trinket": {
+                  "id": 3340,
+                  "name": "Stealth Ward",
+                  "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3340.png"
+                },
+                "champion": {
+                  "id": 223,
+                  "name": "TahmKench",
+                  "image": {
+                    "full": "TahmKench.png",
+                    "loading": "TahmKench_0.jpg",
+                    "square": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/Orianna.png"
+                  },
+                  "title": "the River King",
+                  "level": 15,
+                  "experience": 14069
+                },
+                "assists": 1,
+                "deaths": 2,
+                "kills": 2,
+                "profile": {
+                  "puuid": "c2xoTJ33QjBVjNX4U2IzxcvMwd9keVQE0M0AcoJfh9l_82XMZSo07zyjg87RmWV-KjnlXqMzqcFm-A",
+                  "name": "TopDiff",
+                  "tag": "NA",
+                  "level": 30,
+                  "email": "topdiff@gmail.com",
+                  "bio": "I'm a top laner who loves to play tanks and bruisers.",
+                  "icon": 505,
+                  "images": {
+                    "icon": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/profileicon/505.png",
+                    "banner": "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/TahmKench_0.jpg"
+                  }
+                },
+                "runes": {
+                  "primary": {
+                    "name": "Precision",
+                    "image": "perk-images/Styles/Precision/Precision.png",
+                    "keystone": {
+                      "name": "Lethal Tempo",
+                      "id": 8008,
+                      "image": "https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Precision/PressTheAttack/PressTheAttack.png",
+                      "shortDesc": "1.5s after damaging a champion gain a large amount of Attack Speed. Lethal Tempo allows you to temporarily exceed the attack speed limit.",
+                      "longDesc": "1.5s after damaging a champion gain 40 - 110% Attack Speed (based on level) for 3s. Attacking a champion extends the effect to 6s.",
+                      "key": "8008"
+                    }
+                  },
+                  "secondary": {
+                    "name": "Domination",
+                    "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7200_domination.png"
+                  }
+                },
+                "summonerSpells": [
+                  {
+                    "casts": 3,
+                    "id": 4,
+                    "name": "Flash",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/spell/SummonerFlash.png"
+                  },
+                  {
+                    "casts": 4,
+                    "id": 12,
+                    "name": "Teleport",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/spell/SummonerTeleport.png"
+                  }
+                ],
+                "firstBlood": false,
+                "mvp": false,
+                "cs": 322,
+                "cs14": 108,
+                "csm": 8.5,
+                "effectiveHealAndShielding": 2533.677734375,
+                "firstBloodKill": false,
+                "goldEarned": 8063,
+                "goldSpent": 5825,
+                "goldPerMinute": 351.47007584514756,
+                "kda": 20,
+                "killParticipation": 0.7692307692307693,
+                "neutralMinionsKilled": 0,
+                "soloKills": 1,
+                "teamDamagePercentage": 0.2646285560315761,
+                "totalDamageDealtToChampions": 14615,
+                "damagePerMinute": 637.0295947770143,
+                "totalDamageTaken": 4224,
+                "damageTakenOnTeamPercentage": 0.07712553674868768,
+                "visionScore": 43,
+                "visionScorePerMinute": 1.9092156280807766,
+                "visionWardsBoughtInGame": 3,
+                "wardsKilled": 4,
+                "wardsPlaced": 16
+              },
+              {
+                "role": "BOT_CARRY",
+                "build": [
+                  {
+                    "id": 1054,
+                    "name": "Doran's Shield",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/1054.png"
+                  },
+                  {
+                    "id": 3084,
+                    "name": "Overlord's Bloodmail",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3084.png"
+                  },
+                  {
+                    "id": 2031,
+                    "name": "Refillable Potion",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/2031.png"
+                  },
+                  {
+                    "id": 3009,
+                    "name": "Immortal Shieldbow",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3009.png"
+                  },
+                  {
+                    "id": 4633,
+                    "name": "Goredrinker",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/4633.png"
+                  },
+                  {
+                    "id": 3067,
+                    "name": "Kindlegem",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3067.png"
+                  }
+                ],
+                "trinket": {
+                  "id": 3340,
+                  "name": "Stealth Ward",
+                  "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3340.png"
+                },
+                "champion": {
+                  "id": 223,
+                  "name": "TahmKench",
+                  "image": {
+                    "full": "TahmKench.png",
+                    "loading": "TahmKench_0.jpg",
+                    "square": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/MissFortune.png"
+                  },
+                  "title": "the River King",
+                  "level": 15,
+                  "experience": 14069
+                },
+                "assists": 1,
+                "deaths": 2,
+                "kills": 2,
+                "profile": {
+                  "puuid": "c2xoTJ33QjBVjNX4U2IzxcvMwd9keVQE0M0AcoJfh9l_82XMZSo07zyjg87RmWV-KjnlXqMzqcFm-A",
+                  "name": "TopDiff",
+                  "tag": "NA",
+                  "level": 30,
+                  "email": "topdiff@gmail.com",
+                  "bio": "I'm a top laner who loves to play tanks and bruisers.",
+                  "icon": 505,
+                  "images": {
+                    "icon": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/profileicon/505.png",
+                    "banner": "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/TahmKench_0.jpg"
+                  }
+                },
+                "runes": {
+                  "primary": {
+                    "name": "Precision",
+                    "image": "perk-images/Styles/Precision/Precision.png",
+                    "keystone": {
+                      "name": "Lethal Tempo",
+                      "id": 8008,
+                      "image": "https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Precision/PressTheAttack/PressTheAttack.png",
+                      "shortDesc": "1.5s after damaging a champion gain a large amount of Attack Speed. Lethal Tempo allows you to temporarily exceed the attack speed limit.",
+                      "longDesc": "1.5s after damaging a champion gain 40 - 110% Attack Speed (based on level) for 3s. Attacking a champion extends the effect to 6s.",
+                      "key": "8008"
+                    }
+                  },
+                  "secondary": {
+                    "name": "Domination",
+                    "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7200_domination.png"
+                  }
+                },
+                "summonerSpells": [
+                  {
+                    "casts": 3,
+                    "id": 4,
+                    "name": "Flash",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/spell/SummonerFlash.png"
+                  },
+                  {
+                    "casts": 4,
+                    "id": 12,
+                    "name": "Teleport",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/spell/SummonerTeleport.png"
+                  }
+                ],
+                "firstBlood": false,
+                "mvp": false,
+                "cs": 322,
+                "cs14": 108,
+                "csm": 8.5,
+                "effectiveHealAndShielding": 2533.677734375,
+                "firstBloodKill": false,
+                "goldEarned": 8063,
+                "goldSpent": 5825,
+                "goldPerMinute": 351.47007584514756,
+                "kda": 20,
+                "killParticipation": 0.7692307692307693,
+                "neutralMinionsKilled": 0,
+                "soloKills": 1,
+                "teamDamagePercentage": 0.2646285560315761,
+                "totalDamageDealtToChampions": 14615,
+                "damagePerMinute": 637.0295947770143,
+                "totalDamageTaken": 4224,
+                "damageTakenOnTeamPercentage": 0.07712553674868768,
+                "visionScore": 43,
+                "visionScorePerMinute": 1.9092156280807766,
+                "visionWardsBoughtInGame": 3,
+                "wardsKilled": 4,
+                "wardsPlaced": 16
+              },
+              {
+                "role": "SUPPORT",
+                "build": [
+                  {
+                    "id": 1054,
+                    "name": "Doran's Shield",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/1054.png"
+                  },
+                  {
+                    "id": 3084,
+                    "name": "Overlord's Bloodmail",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3084.png"
+                  },
+                  {
+                    "id": 2031,
+                    "name": "Refillable Potion",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/2031.png"
+                  },
+                  {
+                    "id": 3009,
+                    "name": "Immortal Shieldbow",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3009.png"
+                  },
+                  {
+                    "id": 4633,
+                    "name": "Goredrinker",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/4633.png"
+                  },
+                  {
+                    "id": 3067,
+                    "name": "Kindlegem",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3067.png"
+                  }
+                ],
+                "trinket": {
+                  "id": 3340,
+                  "name": "Stealth Ward",
+                  "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3340.png"
+                },
+                "champion": {
+                  "id": 223,
+                  "name": "TahmKench",
+                  "image": {
+                    "full": "TahmKench.png",
+                    "loading": "TahmKench_0.jpg",
+                    "square": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/Leona.png"
+                  },
+                  "title": "the River King",
+                  "level": 15,
+                  "experience": 14069
+                },
+                "assists": 1,
+                "deaths": 2,
+                "kills": 2,
+                "profile": {
+                  "puuid": "c2xoTJ33QjBVjNX4U2IzxcvMwd9keVQE0M0AcoJfh9l_82XMZSo07zyjg87RmWV-KjnlXqMzqcFm-A",
+                  "name": "Oasis psychotikk",
+                  "tag": "NA",
+                  "level": 30,
+                  "email": "topdiff@gmail.com",
+                  "bio": "I'm a top laner who loves to play tanks and bruisers.",
+                  "icon": 505,
+                  "images": {
+                    "icon": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/profileicon/505.png",
+                    "banner": "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/TahmKench_0.jpg"
+                  }
+                },
+                "runes": {
+                  "primary": {
+                    "name": "Precision",
+                    "image": "perk-images/Styles/Precision/Precision.png",
+                    "keystone": {
+                      "name": "Lethal Tempo",
+                      "id": 8008,
+                      "image": "https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Precision/PressTheAttack/PressTheAttack.png",
+                      "shortDesc": "1.5s after damaging a champion gain a large amount of Attack Speed. Lethal Tempo allows you to temporarily exceed the attack speed limit.",
+                      "longDesc": "1.5s after damaging a champion gain 40 - 110% Attack Speed (based on level) for 3s. Attacking a champion extends the effect to 6s.",
+                      "key": "8008"
+                    }
+                  },
+                  "secondary": {
+                    "name": "Domination",
+                    "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7200_domination.png"
+                  }
+                },
+                "summonerSpells": [
+                  {
+                    "casts": 3,
+                    "id": 4,
+                    "name": "Flash",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/spell/SummonerFlash.png"
+                  },
+                  {
+                    "casts": 4,
+                    "id": 12,
+                    "name": "Teleport",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/spell/SummonerTeleport.png"
+                  }
+                ],
+                "firstBlood": false,
+                "mvp": true,
+                "cs": 322,
+                "cs14": 108,
+                "csm": 8.5,
+                "effectiveHealAndShielding": 2533.677734375,
+                "firstBloodKill": false,
+                "goldEarned": 8063,
+                "goldSpent": 5825,
+                "goldPerMinute": 351.47007584514756,
+                "kda": 20,
+                "killParticipation": 0.7692307692307693,
+                "neutralMinionsKilled": 0,
+                "soloKills": 1,
+                "teamDamagePercentage": 0.2646285560315761,
+                "totalDamageDealtToChampions": 14615,
+                "damagePerMinute": 637.0295947770143,
+                "totalDamageTaken": 4224,
+                "damageTakenOnTeamPercentage": 0.07712553674868768,
+                "visionScore": 43,
+                "visionScorePerMinute": 1.9092156280807766,
+                "visionWardsBoughtInGame": 3,
+                "wardsKilled": 4,
+                "wardsPlaced": 16
+              }
+            ]
+          }
+        ],
+        "tournamentCode": "NA04d7b-f71a7ab6-baa0-4aa7-8270-a1afe48a964a"
+      }
+    }
+  }
+  
