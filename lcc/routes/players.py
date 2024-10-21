@@ -4,17 +4,12 @@ from mongo_connection import MongoConnection
 from . import routes
 import requests
 
-from cassiopeia import Summoner, Runes
 
 players = MongoConnection().get_player_collection()
 
 
 @routes.route('/players/<puuid>', methods=['GET'])
 def get_player_by_puuid(puuid):
-    summoner = Summoner(puuid=puuid, region="NA")
-    for rune in Runes(region="NA").keystones:
-        print(rune.image.url)
-    print(summoner.champion_masteries.to_json())
     player_data = players.find_one({"puuid": puuid}, {'_id': 0})
     return jsonify(player_data)
 
