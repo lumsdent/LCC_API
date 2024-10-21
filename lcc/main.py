@@ -11,8 +11,9 @@ app.register_blueprint(routes)
 
 @app.route('/')
 def sanity_check():
+    """Check if the API is running"""
     return "Welcome to the LCC API!"
 
 if __name__ == '__main__':
-    load_dotenv(dotenv_path=".env", verbose=True, override=True)  
+    load_dotenv(dotenv_path=".env", verbose=True, override=True)
     app.run(debug='true', host='0.0.0.0')
