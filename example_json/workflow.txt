@@ -1,0 +1,113 @@
+a user registers generating their profile
+
+"profile": {
+        "puuid": "c2xoTJ33QjBVjNX4U2IzxcvMwd9keVQE0M0AcoJfh9l_82XMZSo07zyjg87RmWV-KjnlXqMzqcFm-A",
+        "name": "TopDiff",
+        "tag": "NA",
+        "level": 30,
+        "email": "topdiff@gmail.com",
+        "bio": "I'm a top laner who loves to play tanks and bruisers.",
+        "primaryRole": "Top",
+        "secondaryRole": "Jungle",
+        "images": {
+          "icon": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/profileicon/505.png",
+          "banner": "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/TahmKench_0.jpg"
+        }
+      }
+
+
+An Admin creates a list of team names
+    teams:[
+    {
+        id: 1,
+        name:teamA,
+    },
+    {
+        id: 2,
+        name:teamB,
+    },
+    {
+        id: 3,
+        name:teamC,
+    }
+    ]
+
+An Admin can also create a list of seasons 
+
+    seasons:[
+        {id: 1,
+        "type": "Regular",
+        name: "LCC Season 1"},
+        {id: 1T,
+        "type": "Tie-breaker",
+        name: "LCC Season 1 Tiebreakers"},
+        {id: 1P,
+        "type": "Playoff"
+        name: "LCC Season 1 Playoffs"}
+    ]
+
+An Admin can add teams to a season (tracked on the team rosters)
+    {
+        id: 1,
+        name:teamA,
+        rosters:[
+            {
+                1: {
+                    
+                    }
+            } 
+        ]
+         }
+
+That player gets drafted to a team and the Admin assigns the registered player to their position and team for a particular season
+    Ex. TopDiff is the new toplaner for teamA for season.id 1 
+
+    we need to add a roster for the teamA
+        {
+        id: 1,
+        name:teamA,
+        rosters:[
+            {
+                1: {
+                    "TOP": "c2xoTJ33QjBVjNX4U2IzxcvMwd9keVQE0M0AcoJfh9l_82XMZSo07zyjg87RmWV-KjnlXqMzqcFm-A" 
+                    }
+            } //puuid for TopDiff
+        ]
+         }
+
+    we need to add a team to topdiff player obj
+
+    {
+    "profile": {
+        "puuid": "c2xoTJ33QjBVjNX4U2IzxcvMwd9keVQE0M0AcoJfh9l_82XMZSo07zyjg87RmWV-KjnlXqMzqcFm-A",
+        "name": "TopDiff",
+        "tag": "NA",
+        "level": 30,
+        "email": "topdiff@gmail.com",
+        "bio": "I'm a top laner who loves to play tanks and bruisers.",
+        "primaryRole": "Top",
+        "secondaryRole": "Jungle",
+        "images": {
+          "icon": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/profileicon/505.png",
+          "banner": "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/TahmKench_0.jpg"
+        }
+      },
+      teams: [{1:"teamA"}]
+    }
+
+THE HARD PART
+The player plays champA in a match against teamB playing ChampB.
+The Admin adds the match ID, the team names, and the season (or selects a match in a season)
+
+    Add the match data to the database containing all 10 players in the game
+    for each player in game, find their matchup and add their matchup to their player data (10 iteration)
+        TopDiff champA vs OtherGuy champB on TopDiffs player data
+        OtherGuy champB vs TopDiff champA on OtherGuys player data
+
+        Check if the player has stats on champA
+        if not, insert champion stats for champA
+        if so, retrieve TopDiffs championStats for ChampA and add the new match to them.
+        update TopDiffs aggregateStats with the new match
+
+The Admin can upload a vod link with the match ID
+
