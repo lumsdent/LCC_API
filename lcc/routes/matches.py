@@ -14,14 +14,12 @@ def add_match():
     match_id = data["match_id"]
     if matches.find_one({"match_id": "NA1_" + match_id}) is None:
         processed_match = process_match(match_id)
-        # matches.insert_one(processed_match)
-    
+        # matches.insert_one(processed_match)   
         participants = processed_match.get("participants", [])
         for participant in participants:
             puuid = participant.get("puuid")
             if puuid:
                 update_player_matches(puuid, match_id)
-                
         return jsonify({'message': 'Match added successfully'})
     else:
         return jsonify({'message': 'Match already exists'})
@@ -35,4 +33,3 @@ def get_all_matches():
 def get_match(match_id):
     match_data = matches.find_one({"match_id": match_id}, {'_id': 0})
     return jsonify(match_data)
-

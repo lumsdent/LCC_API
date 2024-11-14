@@ -2,20 +2,22 @@
     "data": {
       "_id": { "$oid": "66ef3ce4b35c8269fae088be" },
       "profile": {
-        "puuid": "c2xoTJ33QjBVjNX4U2IzxcvMwd9keVQE0M0AcoJfh9l_82XMZSo07zyjg87RmWV-KjnlXqMzqcFm-A",
-        "name": "TopDiff",
-        "tag": "NA",
-        "level": 30,
-        "email": "topdiff@gmail.com",
         "bio": "I'm a top laner who loves to play tanks and bruisers.",
-        "primaryRole": "Top",
-        "secondaryRole": "Jungle",
+        "canSub": true,
+        "email": "topdiff@gmail.com",
         "images": {
-          "icon": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/profileicon/505.png",
-          "banner": "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/TahmKench_0.jpg"
-        }
+          "icon": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/profileicon/505.png"
+          // "banner": "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/TahmKench_0.jpg"
+        },
+        "level": 30,
+        "name": "TopDiff",
+        "primaryRole": "Top",
+        "puuid": "c2xoTJ33QjBVjNX4U2IzxcvMwd9keVQE0M0AcoJfh9l_82XMZSo07zyjg87RmWV-KjnlXqMzqcFm-A",
+        "revision_date": 1729813892413,
+        "secondaryRole": "Jungle",
+        "tag": "NA"
       },
-      "teams": [{ "1": "LCC_Champs" }, { "2": "LCC_Chumps" }],
+      "teams": [{ "1": {"name":"LCC_Champs", "role": "JUNGLE"} }, { "2": {"name":"LCC_Chumps", "role": "JUNGLE"} }],
       "seasons":["2", "3"],
       "matches": [
         {
