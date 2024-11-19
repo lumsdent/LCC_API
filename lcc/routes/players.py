@@ -3,6 +3,7 @@ from flask import request, jsonify
 from marshmallow import Schema, fields, EXCLUDE
 from riot_util import fetch_riot_data
 from mongo_connection import MongoConnection
+from process_match_reports import get_champion_mastery, find_player
 from . import routes
 import requests
 
@@ -17,17 +18,24 @@ def add_player():
     schema = ProfileSchema()
     images = ImageSchema().load(get_images(riot_data["profileIconId"]))
     player_data = schema.load({**form_data, **riot_data, "images": images})
+    champion_mastery = get_champion_mastery(player_data["puuid"])
     if players.find_one({"profile.puuid": player_data["puuid"]}) is None:
-        result = players.insert_one({"profile": player_data})
+        result = players.insert_one({"profile": player_data, "champion_mastery": champion_mastery})
         return jsonify({'message': 'Player added successfully'}, {'_id': str(result.inserted_id)})
     else:
-        return jsonify({'message': 'Player already exists'})
+        players.update_one(
+            {"profile.puuid": player_data["puuid"]},
+            {"$set": {"profile": player_data, "champion_mastery": champion_mastery}}
+        )
+        return jsonify({'message': 'Player already exists. Updated with provided data'})
+
 
 
 @routes.route('/players/<puuid>', methods=['GET'])
 def get_player_by_puuid(puuid):
-    player_data = players.find_one({"puuid": puuid}, {'_id': 0})
+    player_data = find_player(puuid)
     return jsonify(player_data)
+
 
 @routes.route('/players', methods=['GET'])
 def get_players():
@@ -62,6 +70,12 @@ def add_team_to_player(data, team_name, season):
     )
     return result
 
+def save_match_history(data):
+    players.find_one_and_update(
+        {"profile.puuid": data["profile"]["puuid"]},
+        {"$addToSet": {"match_history": data}}
+    )
+
 def get_images(profile_icon_id):
     return {
         "icon": f"{DDRAGON_URL}{CDN_VERSION}/img/profileicon/{profile_icon_id}.png"
@@ -69,11 +83,22 @@ def get_images(profile_icon_id):
 
 def ddragon_get_runes_dict(version="14.2.1"):
     url = f"http://ddragon.leagueoflegends.com/cdn/{version}/data/en_US/runesReforged.json"
-    html = requests.get(url).json()
-    perk_dict = {item["id"]: item["key"] for item in html} #Domination (8100), Inspiration (8300), Precision (8000), Resolve (8400), Sorcery (8200)
-    rune_dict = {rune["id"]: rune["key"] for item in html for
-                 slot in item["slots"] for rune in slot["runes"]}
-    return perk_dict | rune_dict
+    try:
+        response = requests.get(url, timeout=10)
+        response.raise_for_status()  # Raise an error for bad status codes
+        html = response.json()
+    except requests.exceptions.RequestException as e:
+        print(f"An error occurred: {e}")
+        return {}
+    perk_dict = {}
+    for item in html:
+        # Split the URL by '/' and get the last part
+        filename = item["icon"].split('/')[-1]
+        # Remove the file extension and convert to lowercase
+        rune_key = filename.split('.')[0].lower()
+        perk_dict[item["id"]] = rune_key # Domination (8100), Inspiration (8300), Precision (8000), Resolve (8400), Sorcery (8200)
+    rune_dict = {rune["id"]: rune["key"].lower() for item in html for slot in item["slots"] for rune in slot["runes"]}
+    return {**perk_dict, **rune_dict}
 
 class ImageSchema(Schema):
     icon = fields.String()
