@@ -51,31 +51,21 @@ def get_team_roster(team_name):
 @routes.route('/roster/<team_name>/<season>/add', methods=['POST'])
 def add_player_to_team(team_name, season):
     data = request.json
-    client = MongoClient()
-    session = client.start_session()
-    try:
-        with session.start_transaction():
 
-            if teams.find_one({"team_name": team_name}) is not None:
-                updated_team = teams.find_one_and_update(
-                    {"team_name": team_name },
-                    {"$addToSet": {f"rosters.{season}": data}},
-                    return_document=True 
-                )
-                result = add_team_to_player(data, team_name, season)
-                if result.modified_count == 0:
-                    raise Exception("Unable to add team to player")
-                updated_team = convert_object_ids(updated_team)
-                print(updated_team)
-                return jsonify({'message': 'Player added to team roster', 'updatedTeam': updated_team})
-            else:
-                return jsonify({'message': 'Team not found'})
-    except Exception as e:
-        session.abort_transaction()
-        return jsonify({'message': 'Error adding player to team roster', 'error': str(e)})
-    finally:
-        session.end_session()
-        
+    if teams.find_one({"team_name": team_name}) is not None:
+        updated_team = teams.find_one_and_update(
+            {"team_name": team_name },
+            {"$addToSet": {f"rosters.{season}": data}},
+            return_document=True
+        )
+        add_team_to_player(data, team_name, season)
+
+        updated_team = convert_object_ids(updated_team)
+        print(updated_team)
+        return jsonify({'message': 'Player added to team roster', 'updatedTeam': updated_team})
+    else:
+        return jsonify({'message': 'Team not found'})
+
 
 
 def convert_object_ids(document):

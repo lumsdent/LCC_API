@@ -363,7 +363,7 @@ def fetch_champion_data(version="14.20.1"):
 players = MongoConnection().get_player_collection()
 
 def find_player(puuid):
-    return players.find_one({"puuid": puuid}, {'_id': 0})
+    return players.find_one({"profile.puuid": puuid}, {'_id': 0})
     
 def get_objectives(team):
     team_objectives = team["objectives"]

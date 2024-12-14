@@ -14,7 +14,7 @@ def add_match():
     match_id = data["matchId"]
     if matches.find_one({"metadata.matchId": "NA1_" + match_id}) is None:
         processed_match = process_match(data)
-        save_match(processed_match)  
+        save_match(processed_match)
         roles = ["TOP", "JUNGLE", "MIDDLE", "BOTTOM", "SUPPORT"]
         matchups_data = []
         for role in roles:

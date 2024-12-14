@@ -63,9 +63,9 @@ def update_player_matches(puuid, match_id):
     )
 
 def add_team_to_player(data, team_name, season):
-    print(data)
+    print("here  ", data)
     result = players.update_one(
-        {"profile.puuid": data["puuid"]},
+        {"profile.puuid": data["player"]["puuid"]},
         {"$addToSet": {"teams": {season: {"role":data["role"],"name": team_name}}}}
     )
     return result
