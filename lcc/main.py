@@ -1,4 +1,4 @@
-from flask import Flask, redirect, url_for, request, make_response
+from flask import Flask, jsonify, redirect, url_for, request, make_response
 from dotenv import load_dotenv
 
 from flask_cors import CORS
@@ -10,7 +10,7 @@ from datetime import datetime, timedelta, timezone
 import jwt
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, supports_credentials=True, resources={r"/*": {"origins": "http://localhost:5173"}})
 
 app.register_blueprint(routes)
 
@@ -29,14 +29,23 @@ def sanity_check():
 
 @app.route("/auth/discord/login/")
 def login():
-    original_url = request.args.get('next', '/')
-    return discord.create_session(scope=["identify"], data={"next": original_url})
+    return discord.create_session(scope=["identify"])
 
 @app.route("/auth/discord/callback/")
 def callback():
     discord.callback()
-    original_url = request.args.get('next', '/')
-    return redirect(url_for(".me", next=original_url))
+    user = discord.fetch_user()
+    user_info = {
+        "id": user.id,
+        "username": user.username,
+        "discriminator": user.discriminator,
+        "avatar_url": str(user.avatar_url)
+    }
+    
+    token = generate_jwt(user_info)
+    response = make_response(redirect(os.getenv("FRONTEND_URL")))
+    response.set_cookie("token1", token, httponly=True, secure=False, samesite='Lax')
+    return response
 
 
 @app.errorhandler(Unauthorized)
@@ -47,17 +56,13 @@ def redirect_unauthorized(e):
 @app.route("/me/")
 def me():
     user = discord.fetch_user()
-    original_url = request.args.get('next', '/')
     user_info = {
         "id": user.id,
         "username": user.username,
         "discriminator": user.discriminator,
         "avatar_url": str(user.avatar_url)
     }
-    token = generate_jwt(user_info)
-    response = make_response(redirect(original_url))
-    response.set_cookie("token", token, httponly=True, secure=True, samesite='Lax')
-    return response
+    return user_info
 
 def generate_jwt(user_info):
     payload = {
@@ -67,6 +72,32 @@ def generate_jwt(user_info):
     token = jwt.encode(payload, app.secret_key, algorithm="HS256")
     return token
 
+def verify_jwt(token):
+    try:
+        payload = jwt.decode(token, app.secret_key, algorithms=["HS256"])
+        return payload
+    except jwt.ExpiredSignatureError:
+        return None
+    except jwt.InvalidTokenError:
+        return None
+
+@app.before_request
+def check_jwt():
+    if request.endpoint not in ['login', 'callback', 'logout', 'static']:
+        token = request.cookies.get("token1")
+        print("Token", token)
+        if not token:
+            return jsonify({"message": "Missing token"}), 401
+        payload = verify_jwt(token)
+        if not payload:
+            return jsonify({"message": "Invalid or expired token"}), 401
+
+@app.route("/logout/")
+def logout():
+    discord.revoke()
+    response = make_response(redirect(os.getenv('FRONTEND_URL')))
+    response.set_cookie("token1", "", expires=0)
+    return response
 if __name__ == '__main__':
     load_dotenv(dotenv_path=".env", verbose=True, override=True)
     app.run(debug='true', host='0.0.0.0')
