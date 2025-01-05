@@ -1,7 +1,5 @@
-from datetime import datetime, timedelta, timezone
 import os
 import secrets
-import jwt
 from flask import Flask, redirect, url_for, make_response
 from dotenv import load_dotenv
 
@@ -47,9 +45,7 @@ def callback():
         "avatar_url": str(user.avatar_url)
     }
     
-    token = generate_jwt(user_info)
     response = make_response(redirect(os.getenv("FRONTEND_URL")))
-    response.set_cookie("token1", token, httponly=True, secure=False, samesite='Lax')
     return response
 
 
@@ -69,22 +65,6 @@ def me():
     }
     return user_info
 
-def generate_jwt(user_info):
-    payload = {
-        "user": user_info,
-        "exp": datetime.now(timezone.utc) + timedelta(hours=1)  # Token expiration time
-        }
-    token = jwt.encode(payload, app.secret_key, algorithm="HS256")
-    return token
-
-def verify_jwt(token):
-    try:
-        payload = jwt.decode(token, app.secret_key, algorithms=["HS256"])
-        return payload
-    except jwt.ExpiredSignatureError:
-        return None
-    except jwt.InvalidTokenError:
-        return None
 
 @app.route("/logout/")
 def logout():
