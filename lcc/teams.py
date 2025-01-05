@@ -1,6 +1,6 @@
 from bson import ObjectId
 from flask import request, jsonify, Blueprint
-from mongo_connection import MongoConnection
+from .mongo_connection import MongoConnection
 from .players import add_team_to_player
 
 bp = Blueprint('teams', __name__)
