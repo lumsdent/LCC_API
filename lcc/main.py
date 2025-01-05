@@ -1,6 +1,6 @@
 import os
 import secrets
-from flask import Flask, redirect, url_for, make_response, session, g
+from flask import Flask, redirect, url_for, make_response, session, g, request
 from dotenv import load_dotenv
 
 from flask_cors import CORS
@@ -55,7 +55,9 @@ def redirect_unauthorized(e):
 	
 @app.route("/me/")
 def me():
-    user_info = {"id": session.get('id'), "username": session.get('username')}
+    user_id = request.cookies.get('token')
+    player = players.get_player_by_discord_id(user_id)
+    user_info = {"id": player.discord.id, "username": player.discord.username}
     return user_info
 
 
@@ -65,6 +67,7 @@ def logout():
     session.clear()
     response = make_response(redirect(os.getenv('FRONTEND_URL')))
     return response
+
 if __name__ == '__main__':
     load_dotenv(dotenv_path=".env", verbose=True, override=True)
     app.run(debug='true', host='0.0.0.0')
