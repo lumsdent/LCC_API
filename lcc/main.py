@@ -38,6 +38,7 @@ def login():
 def callback():
     discord.callback()
     user = discord.fetch_user()
+    app.logger.info(user)
     session.clear()
     session['id'] = user.id
     session['username'] = user.username
