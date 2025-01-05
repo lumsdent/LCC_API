@@ -39,8 +39,8 @@ def callback():
     discord.callback()
     user = discord.fetch_user()
     session.clear()
-    session['id'] = user['id']
-    session['username'] = user['username']
+    session['id'] = user.id
+    session['username'] = user.username
     response = make_response(redirect(os.getenv("FRONTEND_URL")))
     return response
 
@@ -59,8 +59,8 @@ def me():
 @app.route("/logout/")
 def logout():
     discord.revoke()
+    session.clear()
     response = make_response(redirect(os.getenv('FRONTEND_URL')))
-    response.set_cookie("token1", "", expires=0)
     return response
 if __name__ == '__main__':
     load_dotenv(dotenv_path=".env", verbose=True, override=True)
