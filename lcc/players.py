@@ -1,3 +1,4 @@
+from datetime import timedelta, datetime
 import os
 import requests
 from flask import request, jsonify, Blueprint
@@ -53,6 +54,20 @@ def get_player_by_puuid(puuid):
     player_data = find_player(puuid)
     return jsonify(player_data)
 
+def get_player_by_discord_id(discord_id):
+    player_data = players.find_one({"discord.id": discord_id}, {"_id": 0})
+    return player_data
+
+def create_player_login(user):
+    player_data = {"discord": {"id": user.id, "username": user.username, "login_expires": datetime.now() + timedelta(days=1)}}
+    result = players.insert_one(player_data)
+    return {"_id": str(result.inserted_id)}
+
+def update_player_login(user):
+    players.update_one(
+        {"discord.id": user.id},
+        {"$set": {"discord.login_expires": datetime.now() + timedelta(days=1)}}
+    )
 
 @bp.route('/', methods=['GET'])
 def get_players():

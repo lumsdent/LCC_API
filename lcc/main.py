@@ -38,14 +38,13 @@ def login():
 def callback():
     discord.callback()
     user = discord.fetch_user()
-    app.logger.info(user)
-    session.clear()
-    session['id'] = user.id
-    session['username'] = user.username
-    app.logger.info(session.get('id'))
+    player = players.get_player_by_discord_id(user.id)
+    if player is None:
+        player = players.create_player_login(user)
+    else:
+        players.update_player_login(player)
     response = make_response(redirect(os.getenv("FRONTEND_URL")))
-    response.set_cookie("username", user.username)
-    response.set_cookie("id", str(user.id))
+    response.set_cookie("token", user.id, httponly=True, secure=False, samesite='Lax')
     return response
 
 
