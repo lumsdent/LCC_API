@@ -42,6 +42,7 @@ def callback():
     session.clear()
     session['id'] = user.id
     session['username'] = user.username
+    app.logger.info(session.get('id'))
     response = make_response(redirect(os.getenv("FRONTEND_URL")))
     return response
 
