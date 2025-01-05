@@ -332,7 +332,7 @@ def get_champion_mastery(puuid):
         return top_champions
     except requests.exceptions.RequestException as e:
         print(f"An error occurred: {e}")
-        return {}
+        return []
 
 def get_champion_by_id(champion_id, version="14.20.1"):
     champion_data = fetch_champion_data()

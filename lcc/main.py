@@ -81,17 +81,6 @@ def verify_jwt(token):
     except jwt.InvalidTokenError:
         return None
 
-@app.before_request
-def check_jwt():
-    if request.endpoint not in ['login', 'callback', 'logout', 'static']:
-        token = request.cookies.get("token1")
-        print("Token", token)
-        if not token:
-            return jsonify({"message": "Missing token"}), 401
-        payload = verify_jwt(token)
-        if not payload:
-            return jsonify({"message": "Invalid or expired token"}), 401
-
 @app.route("/logout/")
 def logout():
     discord.revoke()

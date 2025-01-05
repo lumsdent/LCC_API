@@ -1,6 +1,5 @@
 from flask import request, jsonify
 
-from marshmallow import Schema, fields, EXCLUDE
 from riot_util import fetch_riot_data
 from mongo_connection import MongoConnection
 from process_match_reports import get_champion_mastery, find_player
@@ -14,22 +13,40 @@ players = MongoConnection().get_player_collection()
 @routes.route('/players/add', methods=['POST'])
 def add_player():
     form_data = request.json
+    print(form_data)
     riot_data = get_riot_data(form_data["name"], form_data["tag"])
-    schema = ProfileSchema()
-    images = ImageSchema().load(get_images(riot_data["profileIconId"]))
-    player_data = schema.load({**form_data, **riot_data, "images": images})
-    champion_mastery = get_champion_mastery(player_data["puuid"])
-    if players.find_one({"profile.puuid": player_data["puuid"]}) is None:
-        result = players.insert_one({"profile": player_data, "champion_mastery": champion_mastery})
+    discord_data = {"id": form_data["discord_id"], "username": form_data["discord_username"], "avatar_url": form_data["discord_avatar"]}
+    
+    profile_data = {"puuid": riot_data["puuid"],
+                                "name": riot_data["gameName"],
+                                "tag": riot_data["tagLine"],
+                                "level": riot_data["summonerLevel"],
+                                "email": form_data["email"],
+                                "bio": form_data["bio"],
+                                "primary_role": form_data["primaryRole"],
+                                "secondary_role": form_data["secondaryRole"],
+                                "can_sub": form_data["canSub"],
+                                "revision_date": riot_data["revisionDate"],
+                                "images": get_images(riot_data["profileIconId"])}
+    
+    player_data = {"profile": profile_data, "discord": discord_data, "champion_mastery": get_champion_mastery(profile_data["puuid"])}
+    
+    if players.find_one({"profile.puuid": profile_data["puuid"]}) is None:
+        result = players.insert_one(player_data)
         return jsonify({'message': 'Player added successfully'}, {'_id': str(result.inserted_id)})
     else:
         players.update_one(
-            {"profile.puuid": player_data["puuid"]},
-            {"$set": {"profile": player_data, "champion_mastery": champion_mastery}}
+            {"profile.puuid": profile_data["puuid"]},
+            {"$set": player_data}
         )
         return jsonify({'message': 'Player already exists. Updated with provided data'})
 
-
+@routes.route('/players/admins', methods=['GET'])
+def get_players_admin():
+    print("Getting admin players")
+    admin_players = list(players.find({"isAdmin": True}, {"_id": 0, "discord.id": 1}))
+    print(admin_players)
+    return jsonify(admin_players)
 
 @routes.route('/players/<puuid>', methods=['GET'])
 def get_player_by_puuid(puuid):
@@ -99,30 +116,3 @@ def ddragon_get_runes_dict(version="14.2.1"):
         perk_dict[item["id"]] = rune_key # Domination (8100), Inspiration (8300), Precision (8000), Resolve (8400), Sorcery (8200)
     rune_dict = {rune["id"]: rune["key"].lower() for item in html for slot in item["slots"] for rune in slot["runes"]}
     return {**perk_dict, **rune_dict}
-
-class ImageSchema(Schema):
-    icon = fields.String()
-    class Meta:
-        unknown = EXCLUDE
-
-class ProfileSchema(Schema):
-    puuid = fields.Str()
-    name = fields.Str()
-    tag = fields.Str()
-    level = fields.Int(data_key="summonerLevel")
-    email = fields.Str()
-    bio = fields.Str()
-    primary_role = fields.Str(data_key="primaryRole")
-    secondary_role = fields.Str(data_key="secondaryRole")
-    can_sub = fields.Bool(data_key="canSub")
-    images = fields.Nested(ImageSchema)
-    revision_date = fields.Int(data_key="revisionDate")
-    class Meta:
-        unknown = EXCLUDE
-
-class MatchSchema(Schema):
-    match_id = fields.Str()
-    match_date = fields.Str()
-    match_duration = fields.Int()
-    match_result = fields.Str()
-    match_stats = fields.Dict()
