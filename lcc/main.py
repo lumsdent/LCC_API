@@ -1,6 +1,6 @@
 import os
 import secrets
-from flask import Flask, redirect, url_for, make_response
+from flask import Flask, redirect, url_for, make_response, session, g
 from dotenv import load_dotenv
 
 from flask_cors import CORS
@@ -38,13 +38,9 @@ def login():
 def callback():
     discord.callback()
     user = discord.fetch_user()
-    user_info = {
-        "id": user.id,
-        "username": user.username,
-        "discriminator": user.discriminator,
-        "avatar_url": str(user.avatar_url)
-    }
-    
+    session.clear()
+    session['id'] = user['id']
+    session['username'] = user['username']
     response = make_response(redirect(os.getenv("FRONTEND_URL")))
     return response
 
@@ -56,13 +52,7 @@ def redirect_unauthorized(e):
 	
 @app.route("/me/")
 def me():
-    user = discord.fetch_user()
-    user_info = {
-        "id": user.id,
-        "username": user.username,
-        "discriminator": user.discriminator,
-        "avatar_url": str(user.avatar_url)
-    }
+    user_info = {"id": session.get('id'), "username": session.get('username')}
     return user_info
 
 
