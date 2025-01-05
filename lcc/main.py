@@ -45,7 +45,7 @@ def callback():
     app.logger.info(session.get('id'))
     response = make_response(redirect(os.getenv("FRONTEND_URL")))
     response.set_cookie("username", user.username)
-    response.set_cookie("id", user.id)
+    response.set_cookie("id", str(user.id))
     return response
 
 
