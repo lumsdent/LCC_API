@@ -1,8 +1,7 @@
 from flask import request, jsonify, Blueprint
-from riot_util import fetch_riot_data
-from mongo_connection import MongoConnection
-from process_match_reports import process_match, get_matchups
-from .players import update_player_matches, save_match_history
+from .mongo_connection import MongoConnection
+from .process_match_reports import process_match, get_matchups
+from .players import save_match_history
 
 bp = Blueprint('matches', __name__, url_prefix='/matches')
 

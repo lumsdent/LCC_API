@@ -1,9 +1,8 @@
-from flask import request, jsonify, Blueprint
-
-from riot_util import fetch_riot_data
-from mongo_connection import MongoConnection
-from process_match_reports import get_champion_mastery, find_player
+import os
 import requests
+from flask import request, jsonify, Blueprint
+from .mongo_connection import MongoConnection
+from .process_match_reports import get_champion_mastery, find_player
 
 bp = Blueprint('players', __name__, url_prefix='/players')
 
@@ -117,3 +116,11 @@ def ddragon_get_runes_dict(version="14.2.1"):
         perk_dict[item["id"]] = rune_key # Domination (8100), Inspiration (8300), Precision (8000), Resolve (8400), Sorcery (8200)
     rune_dict = {rune["id"]: rune["key"].lower() for item in html for slot in item["slots"] for rune in slot["runes"]}
     return {**perk_dict, **rune_dict}
+
+def fetch_riot_data(url):
+    api_key = os.getenv("RIOT_API_KEY")
+    headers = {"X-Riot-Token": api_key}
+    response = requests.get(url, headers=headers, timeout=10)
+    if response.status_code != 200:
+        raise requests.exceptions.HTTPError(f"Failed to fetch match data: {response.text}")
+    return response.json()

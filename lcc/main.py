@@ -11,7 +11,6 @@ from flask_discord import DiscordOAuth2Session, Unauthorized
 from . import players
 from . import teams
 from . import matches
-from . import practice
 
 app = Flask(__name__)
 CORS(app, supports_credentials=True)
@@ -19,7 +18,6 @@ CORS(app, supports_credentials=True)
 app.register_blueprint(players.bp)
 app.register_blueprint(teams.bp)
 app.register_blueprint(matches.bp)
-app.register_blueprint(practice.bp)
 
 app.secret_key = secrets.token_urlsafe(16)
 os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "true"
