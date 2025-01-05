@@ -1,7 +1,6 @@
 {
     "data": {
       "metadata": {
-        "dataVersion": "2",
         "matchId": "NA1_4980010890",
         "participants": [
           "ViL-fqc_05wIgsqrNTZm4GTXv24-oNM0A4p41gcFdq9ltxyATnijVFkdBdE9EEQnErx4q81yTGZT1A",
@@ -14,7 +13,9 @@
           "qVuw8MpQ1jk9pinzpAh6LIWowY4hjnbUkMJq8nJZ_PfdAtXoJoRt2bs0dT79H3xtsiJd1vGgXhpusg",
           "5U0sb_NKk_baARqrpvFnYHSDA1D9qW8dk05Ptx6DA-TKzAlv0rbpGgeSyp9J-1ZrplJ_Vbo3N9WLoA",
           "vEdac3yp21FNBsN29rG2dlg6Vjj45r2790gNutCMuJer6ET6204fKRNrQ_Qm6IFYjKVGQLdrkmCy5w"
-        ]
+        ],
+        "matchName": "Ixtali Iguanas vs. ChumpChangers",
+        "matchIdLCC": "12"
       },
       "info": {
         "gameCreation": 1713749736915,
@@ -33,7 +34,7 @@
             "name": "Ixtali Iguanas",
             "side": "Blue",
             "teamId": 100,
-            "gameOutcome": "Draw",
+            "gameResult": "Draw",
             "score": 1,
             "kills": 10,
             "gold": 48637,
@@ -206,9 +207,6 @@
                       "name": "Lethal Tempo",
                       "id": 8008,
                       "image": "https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Precision/PressTheAttack/PressTheAttack.png",
-                      "shortDesc": "1.5s after damaging a champion gain a large amount of Attack Speed. Lethal Tempo allows you to temporarily exceed the attack speed limit.",
-                      "longDesc": "1.5s after damaging a champion gain 40 - 110% Attack Speed (based on level) for 3s. Attacking a champion extends the effect to 6s.",
-                      "key": "8008"
                     }
                   },
                   "secondary": {
@@ -236,22 +234,20 @@
                 "cs14": 108,
                 "csm": 8.5,
                 "effectiveHealAndShielding": 2533.677734375,
-                "firstBloodKill": false,
                 "goldEarned": 8063,
                 "goldSpent": 5825,
-                "goldPerMinute": 351.47007584514756,
+                "gpm": 351.47007584514756,
                 "kda": 20,
                 "killParticipation": 0.7692307692307693,
-                "neutralMinionsKilled": 0,
                 "soloKills": 1,
-                "teamDamagePercentage": 0.2646285560315761,
-                "totalDamageDealtToChampions": 14615,
+                "teamDmgPercentage": 0.2646285560315761,
+                "dmg": 14615,
                 "damagePerMinute": 637.0295947770143,
                 "totalDamageTaken": 4224,
-                "damageTakenOnTeamPercentage": 0.07712553674868768,
+                "damageTakenPercent": 0.07712553674868768,
                 "visionScore": 43,
-                "visionScorePerMinute": 1.9092156280807766,
-                "visionWardsBoughtInGame": 3,
+                "vspm": 1.9092156280807766,
+                "visionWardsBought": 3,
                 "wardsKilled": 4,
                 "wardsPlaced": 16
               },
@@ -824,10 +820,6 @@
                 "kills": 0,
                 "image": "https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-match-history/global/default/baron-200.png"
               },
-              "champion": {
-                "first": false,
-                "kills": 4
-              },
               "dragon": {
                 "first": true,
                 "kills": 1,
@@ -912,20 +904,12 @@
                 "profile": {
                   "puuid": "c2xoTJ33QjBVjNX4U2IzxcvMwd9keVQE0M0AcoJfh9l_82XMZSo07zyjg87RmWV-KjnlXqMzqcFm-A",
                   "name": "TopDiff",
-                  "tag": "NA",
-                  "level": 30,
-                  "email": "topdiff@gmail.com",
-                  "bio": "I'm a top laner who loves to play tanks and bruisers.",
-                  "icon": 505,
-                  "images": {
-                    "icon": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/profileicon/505.png",
-                    "banner": "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/TahmKench_0.jpg"
-                  }
+                  "tag": "NA"
                 },
                 "runes": {
                   "primary": {
                     "name": "Precision",
-                    "image": "perk-images/Styles/Precision/Precision.png",
+                    "image": "https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Precision/Precision.png",
                     "keystone": {
                       "name": "Lethal Tempo",
                       "id": 8008,
