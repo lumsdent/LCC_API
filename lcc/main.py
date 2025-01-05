@@ -44,7 +44,7 @@ def callback():
     else:
         players.update_player_login(player)
     response = make_response(redirect(os.getenv("FRONTEND_URL")))
-    response.set_cookie("token", user.id, httponly=True, secure=False, samesite='Lax')
+    response.set_cookie("token", str(user.id), httponly=True, secure=False, samesite='Lax')
     return response
 
 
