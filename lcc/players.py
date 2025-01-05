@@ -1,16 +1,17 @@
-from flask import request, jsonify
+from flask import request, jsonify, Blueprint
 
 from riot_util import fetch_riot_data
 from mongo_connection import MongoConnection
 from process_match_reports import get_champion_mastery, find_player
-from . import routes
 import requests
+
+bp = Blueprint('players', __name__, url_prefix='/players')
 
 DDRAGON_URL = "https://ddragon.leagueoflegends.com/cdn/"
 CDN_VERSION = "14.20.1"
 players = MongoConnection().get_player_collection()
 
-@routes.route('/players/add', methods=['POST'])
+@bp.route('/add', methods=['POST'])
 def add_player():
     form_data = request.json
     print(form_data)
@@ -41,26 +42,26 @@ def add_player():
         )
         return jsonify({'message': 'Player already exists. Updated with provided data'})
 
-@routes.route('/players/admins', methods=['GET'])
+@bp.route('/admins', methods=['GET'])
 def get_players_admin():
     print("Getting admin players")
     admin_players = list(players.find({"isAdmin": True}, {"_id": 0, "discord.id": 1}))
     print(admin_players)
     return jsonify(admin_players)
 
-@routes.route('/players/<puuid>', methods=['GET'])
+@bp.route('/<puuid>', methods=['GET'])
 def get_player_by_puuid(puuid):
     player_data = find_player(puuid)
     return jsonify(player_data)
 
 
-@routes.route('/players', methods=['GET'])
+@bp.route('/', methods=['GET'])
 def get_players():
     player_data = list(players.find({}, {'_id': 0}))
     print(player_data)
     return jsonify(player_data)
 
-@routes.route('/players/spells', methods=['GET'])
+@bp.route('/spells', methods=['GET'])
 def get_runes():
     runes = ddragon_get_runes_dict()
     return jsonify(runes)

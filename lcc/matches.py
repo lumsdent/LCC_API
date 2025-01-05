@@ -1,13 +1,14 @@
-from flask import request, jsonify
+from flask import request, jsonify, Blueprint
 from riot_util import fetch_riot_data
 from mongo_connection import MongoConnection
-from . import routes
 from process_match_reports import process_match, get_matchups
 from .players import update_player_matches, save_match_history
 
+bp = Blueprint('matches', __name__, url_prefix='/matches')
+
 matches = MongoConnection().get_matches_collection()
 
-@routes.route('/matches/add', methods=['POST'])
+@bp.route('/add', methods=['POST'])
 def add_match():
     print('Adding match')
     data = request.json
@@ -26,12 +27,12 @@ def add_match():
     else:
         return jsonify({'message': 'Match already exists'})
 
-@routes.route('/matches', methods=['GET'])
+@bp.route('/', methods=['GET'])
 def get_all_matches():
     match_data = list(matches.find({}, {'_id': 0}))
     return jsonify(match_data)
 
-@routes.route('/matches/<match_id>', methods=['GET'])
+@bp.route('/<match_id>', methods=['GET'])
 def get_match(match_id):
     match_data = matches.find_one({"metadata.matchId": "NA1_" + match_id}, {'_id': 0})
     return jsonify({"data" :match_data})
