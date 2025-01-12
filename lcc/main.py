@@ -57,7 +57,7 @@ def redirect_unauthorized(e):
 def me():
     user_id = request.cookies.get('token')
     player = players.get_player_by_discord_id(user_id)
-    TODO: # player.discord.id AttributeError: 'dict' object has no attribute 'discord'
+    # TODO: player.discord.id AttributeError: 'dict' object has no attribute 'discord'
     return player
 
 
