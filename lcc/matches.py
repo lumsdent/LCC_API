@@ -9,8 +9,11 @@ matches = MongoConnection().get_matches_collection()
 
 @bp.route('/add', methods=['POST'])
 def add_match():
-    print('Adding match')
+    password = os.getenv("ADMIN_PW")
     data = request.json
+    if(data["password"] != password):
+        return jsonify({'message': 'Incorrect password'})
+    print('Adding match')
     match_id = data["matchId"]
     if matches.find_one({"metadata.matchId": "NA1_" + match_id}) is None:
         processed_match = process_match(data)
