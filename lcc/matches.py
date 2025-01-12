@@ -1,3 +1,4 @@
+import os
 from flask import request, jsonify, Blueprint
 from .mongo_connection import MongoConnection
 from .process_match_reports import process_match, get_matchups
