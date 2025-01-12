@@ -57,8 +57,8 @@ def redirect_unauthorized(e):
 def me():
     user_id = request.cookies.get('token')
     player = players.get_player_by_discord_id(user_id)
-    user_info = {"id": player.discord.id, "username": player.discord.username}
-    return user_info
+    TODO: # player.discord.id AttributeError: 'dict' object has no attribute 'discord'
+    return player
 
 
 @app.route("/logout/")

@@ -56,6 +56,7 @@ def get_player_by_puuid(puuid):
 
 def get_player_by_discord_id(discord_id):
     player_data = players.find_one({"discord.id": discord_id}, {"_id": 0})
+    
     return player_data
 
 def create_player_login(user):
