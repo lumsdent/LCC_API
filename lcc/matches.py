@@ -13,7 +13,7 @@ def add_match():
     password = os.getenv("ADMIN_PW")
     data = request.json
     if(data["password"] != password):
-        return jsonify({'message': 'Incorrect password'})
+        return jsonify({'message': 'Incorrect password'}), 401
     print('Adding match')
     match_id = data["matchId"]
     if matches.find_one({"metadata.matchId": "NA1_" + match_id}) is None:
@@ -26,9 +26,9 @@ def add_match():
             matchups_data.extend(matchups)
         for matchup in matchups_data:
             save_matchup(matchup)
-        return jsonify({'message': 'Match added successfully'})
+        return jsonify({'message': 'Match added successfully'}), 201
     else:
-        return jsonify({'message': 'Match already exists'})
+        return jsonify({'message': 'Match already exists'}), 409
 
 @bp.route('/', methods=['GET'])
 def get_all_matches():
