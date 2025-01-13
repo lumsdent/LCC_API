@@ -9,6 +9,9 @@ teams = MongoConnection().get_teams_collection()
 @bp.route('/teams/<season>/add', methods=['POST'])
 def add_team(season):
     data = request.json
+    password = os.getenv("ADMIN_PW")
+    if(data["password"] != password):
+        return jsonify({'message': 'Incorrect password'}), 401
     roster = data.get("roster", [])
     if teams.find_one({"team_name": data["teamName"]}) is None:
         teams.insert_one({"team_name": data["teamName"], "rosters": {season: roster}})
@@ -49,7 +52,9 @@ def get_team_roster(team_name):
 @bp.route('/roster/<team_name>/<season>/add', methods=['POST'])
 def add_player_to_team(team_name, season):
     data = request.json
-
+    password = os.getenv("ADMIN_PW")
+    if(data["password"] != password):
+        return jsonify({'message': 'Incorrect password'}), 401
     if teams.find_one({"team_name": data["team_name"]}) is not None:
         updated_team = teams.find_one_and_update(
             {"team_name": data["team_name"] },
