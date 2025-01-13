@@ -50,9 +50,9 @@ def get_team_roster(team_name):
 def add_player_to_team(team_name, season):
     data = request.json
 
-    if teams.find_one({"team_name": team_name}) is not None:
+    if teams.find_one({"team_name": data["team_name"]}) is not None:
         updated_team = teams.find_one_and_update(
-            {"team_name": team_name },
+            {"team_name": data["team_name"] },
             {"$addToSet": {f"rosters.{season}": data}},
             return_document=True
         )
