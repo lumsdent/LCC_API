@@ -1,0 +1,127 @@
+{
+    "role": "JUNGLE",
+    "build": [
+        {
+            "id": 3020,
+            "name": "Sorcerer's Shoes",
+            "image": "http://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3020.png"
+        },
+        {
+            "id": 3152,
+            "name": "Hextech Rocketbelt",
+            "image": "http://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3152.png"
+        },
+        {
+            "id": 1058,
+            "name": "Needlessly Large Rod",
+            "image": "http://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/1058.png"
+        },
+        {
+            "id": 1055,
+            "name": "Doran's Blade",
+            "image": "http://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/1055.png"
+        },
+        {
+            "id": 1052,
+            "name": "Amplifying Tome",
+            "image": "http://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/1052.png"
+        },
+        {
+            "id": 1052,
+            "name": "Amplifying Tome",
+            "image": "http://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/1052.png"
+        }
+    ],
+    "trinket": {
+        "id": 3340,
+        "name": "Stealth Ward",
+        "image": "http://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3340.png"
+    },
+    "champion": {
+        "id": 85,
+        "name": "Kennen",
+        "level": 12,
+        "experience": 9097,
+        "image": {
+            "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Kennen.png"
+        }
+    },
+    "assists": 0,
+    "deaths": 2,
+    "kills": 2,
+    "kda": 1,
+    "profile": {
+        "puuid": "ViL-fqc_05wIgsqrNTZm4GTXv24-oNM0A4p41gcFdq9ltxyATnijVFkdBdE9EEQnErx4q81yTGZT1A",
+        "name": "Unknown Summoner",
+        "tag": "NA"
+    },
+    "runes": {
+        "primary": {
+            "name": {
+                "name": "Sorcery",
+                "key": "7202_sorcery"
+            },
+            "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7202_sorcery.png",
+            "keystone": {
+                "id": 8214,
+                "name": "summonaery",
+                "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/sorcery/summonaery/summonaery.png"
+            }
+        },
+        "secondary": {
+            "name": {
+                "name": "Domination",
+                "key": "7200_domination"
+            },
+            "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7200_domination.png"
+        }
+    },
+    "summonerSpells": [
+        {
+            "casts": 1,
+            "id": 12,
+            "name": "Teleport",
+            "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/spell/SummonerTeleport.png"
+        },
+        {
+            "casts": 3,
+            "id": 4,
+            "name": "Flash",
+            "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/spell/SummonerFlash.png"
+        }
+    ],
+    "firstBlood": false,
+    "cs": 126,
+    "csm": 5.49,
+    "cs14": 114,
+    "dmg": 10470,
+    "dpm": 456.54,
+    "teamDmgPercent": 35.0,
+    "goldEarned": 6785,
+    "goldSpent": 6425,
+    "gpm": 295.86,
+    "killParticipation": 67.0,
+    "effectiveHealAndShielding": 0,
+    "totalDamageTaken": 12394,
+    "damageTakenPercent": 17.0,
+    "visionScore": 19,
+    "vspm": 0.83,
+    "visionWardsBought": 1,
+    "wardsKilled": 0,
+    "wardsPlaced": 9,
+    "soloKills": 1,
+    "team": {
+        "name": "Team Hospitalized",
+        "image": "team hospitalized.png"
+    },
+    "vs": {
+        "puuid": "S1YcGpWaf5erIrx6pdhwJorhis2zaCOEvyBrTaeqVSfRaMwzoXUynwu2willEUwnOXF3Za9y13iimA",
+        "teamImage": "discord kittens.png",
+        "teamName": "Discord Kittens",
+        "player": "Unknown Summoner",
+        "championName": "Vi",
+        "championImage": {
+            "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Vi.png"
+        }
+    }
+}

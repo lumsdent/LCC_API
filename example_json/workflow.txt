@@ -10,7 +10,7 @@ a user registers generating their profile
         "primaryRole": "Top",
         "secondaryRole": "Jungle",
         "images": {
-          "icon": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/profileicon/505.png",
+          "icon": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/profileicon/505.png",
           "banner": "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/TahmKench_0.jpg"
         }
       }
@@ -88,7 +88,7 @@ That player gets drafted to a team and the Admin assigns the registered player t
         "primaryRole": "Top",
         "secondaryRole": "Jungle",
         "images": {
-          "icon": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/profileicon/505.png",
+          "icon": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/profileicon/505.png",
           "banner": "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/TahmKench_0.jpg"
         }
       },

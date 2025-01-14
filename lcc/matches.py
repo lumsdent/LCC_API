@@ -19,6 +19,8 @@ def add_match():
     if matches.find_one({"metadata.matchId": "NA1_" + match_id}) is None:
         processed_match = process_match(data)
         save_match(processed_match)
+
+        # SAVE MATCH TO PLAYER HISTORY
         roles = ["TOP", "JUNGLE", "MIDDLE", "BOTTOM", "SUPPORT"]
         matchups_data = []
         for role in roles:

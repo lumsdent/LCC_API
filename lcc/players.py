@@ -8,7 +8,7 @@ from .process_match_reports import get_champion_mastery, find_player
 bp = Blueprint('players', __name__, url_prefix='/players')
 
 DDRAGON_URL = "https://ddragon.leagueoflegends.com/cdn/"
-CDN_VERSION = "14.20.1"
+CDN_VERSION = "15.1.1"
 players = MongoConnection().get_player_collection()
 
 @bp.route('/add', methods=['POST'])
@@ -28,7 +28,9 @@ def add_player():
                                 "secondary_role": form_data["secondaryRole"],
                                 "can_sub": form_data["canSub"],
                                 "revision_date": riot_data["revisionDate"],
-                                "images": get_images(riot_data["profileIconId"])}
+                                "images": get_images(riot_data["profileIconId"]),
+                                "availability": form_data["availability"],
+                                "is_active": True}
     
     player_data = {"profile": profile_data, "discord": discord_data, "champion_mastery": get_champion_mastery(profile_data["puuid"])}
     
@@ -42,33 +44,10 @@ def add_player():
         )
         return jsonify({'message': 'Player already exists. Updated with provided data'})
 
-@bp.route('/admins', methods=['GET'])
-def get_players_admin():
-    print("Getting admin players")
-    admin_players = list(players.find({"isAdmin": True}, {"_id": 0, "discord.id": 1}))
-    print(admin_players)
-    return jsonify(admin_players)
-
 @bp.route('/<puuid>', methods=['GET'])
 def get_player_by_puuid(puuid):
     player_data = find_player(puuid)
     return jsonify(player_data)
-
-def get_player_by_discord_id(discord_id):
-    player_data = players.find_one({"discord.id": discord_id}, {"_id": 0})
-    
-    return player_data
-
-def create_player_login(user):
-    player_data = {"discord": {"id": user.id, "username": user.username, "login_expires": datetime.now() + timedelta(days=1)}}
-    result = players.insert_one(player_data)
-    return {"_id": str(result.inserted_id)}
-
-def update_player_login(user):
-    players.update_one(
-        {"discord.id": user.id},
-        {"$set": {"discord.login_expires": datetime.now() + timedelta(days=1)}}
-    )
 
 @bp.route('/', methods=['GET'])
 def get_players():
@@ -96,7 +75,6 @@ def update_player_matches(puuid, match_id):
     )
 
 def add_team_to_player(data, team_name, season):
-    print("here  ", data)
     result = players.update_one(
         {"profile.puuid": data["player"]["puuid"]},
         {"$addToSet": {"teams": {season: {"role":data["role"],"name": data["team_name"]}}}}
@@ -104,18 +82,21 @@ def add_team_to_player(data, team_name, season):
     return result
 
 def save_match_history(data):
-    players.find_one_and_update(
-        {"profile.puuid": data["profile"]["puuid"]},
-        {"$addToSet": {"match_history": data}}
+    if players.find_one({"profile.puuid": data["profile"]["puuid"]}) is None:
+        players.insert_one({"profile": data["profile"], "match_history": [data], "champion_mastery": get_champion_mastery(data["profile"]["puuid"])})
+    else:
+        players.find_one_and_update(
+            {"profile.puuid": data["profile"]["puuid"]},
+            {"$addToSet": {"match_history": data}}
     )
 
 def get_images(profile_icon_id):
     return {
-        "icon": f"{DDRAGON_URL}{CDN_VERSION}/img/profileicon/{profile_icon_id}.png"
+        "icon": f"/img/profileicon/{profile_icon_id}.png"
     }
 
-def ddragon_get_runes_dict(version="14.2.1"):
-    url = f"http://ddragon.leagueoflegends.com/cdn/{version}/data/en_US/runesReforged.json"
+def ddragon_get_runes_dict():
+    url = f"{DDRAGON_URL}{CDN_VERSION}/data/en_US/runesReforged.json"
     try:
         response = requests.get(url, timeout=10)
         response.raise_for_status()  # Raise an error for bad status codes

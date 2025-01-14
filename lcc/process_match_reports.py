@@ -4,6 +4,9 @@ import requests
 from marshmallow import Schema, fields, EXCLUDE
 from .mongo_connection import MongoConnection
 
+DDRAGON_URL = "https://ddragon.leagueoflegends.com/cdn/"
+CDN_VERSION = "15.1.1"
+
 def process_match(user_data):
     
     match_url = f"https://americas.api.riotgames.com/lol/match/v5/matches/NA1_{user_data["matchId"]}"
@@ -42,6 +45,9 @@ def get_matchups(match_data, role):
     for team in match_data["info"]["teams"]:
         for player in team["players"]:
             if player["role"] == role:
+                player["matchId"] = match_data["metadata"]["matchId"]
+                player["gameStartTimestamp"] = match_data["info"]["gameStartTime"]
+                player["win"] = team["gameOutcome"]
                 player["team"] = {"name": team["name"], "image": f"{team["name"].lower()}.png"}
                 matchups.append(player)
                 break
@@ -50,138 +56,6 @@ def get_matchups(match_data, role):
         matchups[1]["vs"] = build_matchup(matchups[0])
     return matchups
     
-class Images(Schema):
-    icon = fields.String()
-    class Meta:
-        unknown = EXCLUDE
-
-class Profile(Schema):
-    puuid = fields.Str()
-    name = fields.Str()
-    tag = fields.Str()
-    level = fields.Int(data_key="summonerLevel")
-    email = fields.Str()
-    bio = fields.Str()
-    primary_role = fields.Str(data_key="primaryRole")
-    secondary_role = fields.Str(data_key="secondaryRole")
-    can_sub = fields.Bool(data_key="canSub")
-    images = fields.Nested(Images)
-    revision_date = fields.Int(data_key="revisionDate")
-
-class MatchMetadata(Schema):
-    match_id = fields.String(dataKey="matchId")
-    participants = fields.List(fields.String(), dataKey="participants")
-    match_name = fields.String(dataKey="matchName")
-    match_id_lcc = fields.String(dataKey="matchIdLcc")
-
-class Champion(Schema):
-    id = fields.Integer()
-    name = fields.String()
-    pick_turn = fields.Integer(dataKey="pickTurn")
-    title = fields.String()
-    image = fields.Nested(Images)
-    experience = fields.Integer()
-    level = fields.Integer()
-
-class Objective(Schema):
-    first = fields.Boolean()
-    kills = fields.Integer()
-    image = fields.String()
-
-class Objectives(Schema):
-    baron = fields.Nested(Objective)
-    dragon = fields.Integer()
-    herald = fields.Integer()
-    tower = fields.Integer()
-
-class Item(Schema):
-    id = fields.Integer()
-    name = fields.String()
-    image = fields.String()
-
-class Rune(Schema):
-    id = fields.Integer()
-    name = fields.String()
-    image = fields.String()
-
-class RuneTree(Schema):
-    name = fields.String()
-    image = fields.String()
-    keystones = fields.List(fields.Nested(Rune))
-
-class Runes(Schema):
-    primary = fields.Nested(RuneTree)
-    secondary = fields.Nested(RuneTree)
-
-class Spell(Schema):
-    id = fields.Integer()
-    name = fields.String()
-    image = fields.String()
-    casts = fields.Integer()
-
-class Player(Schema):
-    role = fields.String()
-    build = fields.List(fields.Nested(Item))
-    trinket = fields.Nested(Item)
-    champion = fields.Nested(Champion)
-    assists = fields.Integer()
-    deaths = fields.Integer()
-    kills = fields.Integer()
-    kda = fields.Float()
-    profile = fields.Nested(Profile)
-    runes = fields.Nested(Runes)
-    spells = fields.List(fields.Nested(Spell))
-    first_blood = fields.Boolean(dataKey="firstBlood")
-    mvp = fields.Boolean()
-    solo_kills = fields.Integer(dataKey="soloKills")
-    cs = fields.Integer()
-    csm = fields.Float()
-    csd14 = fields.Integer()
-    dmg = fields.Integer()
-    dpm = fields.Float()
-    team_dmg_percent = fields.Integer(dataKey="teamDmgPercent")
-    gold_earned = fields.Integer(dataKey="goldEarned")
-    gold_spent = fields.Integer(dataKey="goldSpent")
-    gpm = fields.Float()
-    kill_participation = fields.Float(dataKey="killParticipation")
-    effective_heal_and_shielding = fields.Integer(dataKey="effectiveHealAndShielding")
-    total_damage_taken = fields.Integer(dataKey="totalDamageTaken")
-    damage_taken_percent = fields.Integer(dataKey="damageTakenPercent")
-    vision_score = fields.Integer(dataKey="visionScore")
-    vspm = fields.Float()
-    vision_wards_bought = fields.Integer(dataKey="visionWardsBought")
-    wards_killed = fields.Integer(dataKey="wardsKilled")
-    wards_placed = fields.Integer(dataKey="wardsPlaced")
-
-class Team(Schema):
-    name = fields.String()
-    side = fields.String()
-    id = fields.Integer()
-    game_result = fields.String(dataKey="gameResult")
-    score = fields.Integer()
-    kills = fields.Integer()
-    gold = fields.Integer()
-    bans = fields.List(fields.Nested(Champion))
-    objectives = fields.Nested(Objectives)
-    players = fields.List(fields.Nested(Player))
-
-class MatchInfo(Schema):
-    game_creation = fields.Integer(dataKey="gameCreation")
-    game_duration = fields.Integer(dataKey="gameDuration")
-    game_id = fields.String(dataKey="gameId")
-    game_mode = fields.String(dataKey="gameMode")
-    game_name = fields.String(dataKey="gameName")
-    game_start_time = fields.Integer(dataKey="gameStartTimestamp")
-    game_end_time = fields.Integer(dataKey="gameEndTimestamp")
-    game_type = fields.String(dataKey="gameType")
-    game_version = fields.String(dataKey="gameVersion")
-    map_id = fields.Integer(dataKey="mapId")
-    vod_url = fields.String(dataKey="vod")
-    tournament_code = fields.String(dataKey="tournamentCode")
-    teams = fields.List(fields.Nested(Team), dataKey="teams")
-
-
-
 def get_position_data(participants):
     position_data = {
         'TOP': {100: None, 200: None},
@@ -334,7 +208,7 @@ def get_champion_mastery(puuid):
         print(f"An error occurred: {e}")
         return []
 
-def get_champion_by_id(champion_id, version="14.20.1"):
+def get_champion_by_id(champion_id):
     champion_data = fetch_champion_data()
     for champion in champion_data:
         if int(champion["key"]) == champion_id:
@@ -343,14 +217,13 @@ def get_champion_by_id(champion_id, version="14.20.1"):
             "name": champion["name"],
             "title": champion["title"],
             "image": {
-                "full": f"https://ddragon.leagueoflegends.com/cdn/{version}/img/champion/{champion['image']['full']}",
-                "loading": f"https://ddragon.leagueoflegends.com/cdn/img/champion/loading/{champion['id']}_0.jpg",
-                "square": f"https://ddragon.leagueoflegends.com/cdn/{version}/img/champion/{champion['image']['full']}"
+                "full": f"/img/champion/{champion['image']['full']}",
+                "square": f"/img/champion/{champion['image']['full']}"
             }
         }
 
-def fetch_champion_data(version="14.20.1"):
-    url = f"https://ddragon.leagueoflegends.com/cdn/{version}/data/en_US/champion.json"
+def fetch_champion_data():
+    url = f"{DDRAGON_URL}{CDN_VERSION}/data/en_US/champion.json"
     try:
         response = requests.get(url, timeout=10)
         response.raise_for_status()  # Raise an error for bad status codes
@@ -403,7 +276,7 @@ def process_timeline_data(timeline_data):
 
 
 def fetch_item_data():
-    url = "https://ddragon.leagueoflegends.com/cdn/14.22.1/data/en_US/item.json"
+    url = f"{DDRAGON_URL}{CDN_VERSION}/data/en_US/item.json"
     response = requests.get(url, timeout=10)
     if response.status_code == 200:
         return response.json()["data"]
@@ -425,7 +298,7 @@ def get_item(participant, item_number, item_data):
     item_id = participant.get(f"item{item_number}")
     if item_id:
         item_name = get_item_name(item_data, item_id)
-        return {"id": item_id, "name": item_name, "image": f"http://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/{item_id}.png"}
+        return {"id": item_id, "name": item_name, "image": f"/img/item/{item_id}.png"}
     return {"id": 0, "name": "Empty Slot", "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/items/icons2d/gp_ui_placeholder.png"}
 
 def get_champion(participant):
@@ -436,7 +309,7 @@ def get_champion(participant):
     # champion["title"] = participant["championTitle"]
     champion["level"] = participant["champLevel"]
     champion["experience"] = participant["champExperience"]
-    champion["image"] = {"square": f"https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/{champion['name']}.png"}
+    champion["image"] = {"square": f"/img/champion/{champion['name']}.png"}
     return champion
 
 def get_profile(participant):
@@ -444,7 +317,21 @@ def get_profile(participant):
     player_data = find_player(puuid)
     if player_data and 'profile' in player_data:
         return player_data['profile']
-    return  {"puuid": puuid, "name": "Unknown Summoner", "tag": "NA"}
+    else:
+        return get_riot_account(puuid)
+
+def get_riot_account(puuid):
+    account_url = f"https://americas.api.riotgames.com/riot/account/v1/accounts/by-puuid/{puuid}"
+    account = fetch_riot_data(account_url)
+    summoner_url = f"https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-puuid/{account['puuid']}"
+    summoner = fetch_riot_data(summoner_url)
+    return  {"puuid": account["puuid"],
+            "name": account["gameName"],
+            "tag": account["tagLine"],
+            "level": summoner["summonerLevel"],
+            "revision_date": summoner["revisionDate"],
+            "images": {"icon": f"/img/profileicon/{summoner["profileIconId"]}.png"}}
+
 
 def get_runes(participant):
     runes = {}
@@ -556,8 +443,8 @@ def get_rune_image(rune_key):
         }
     return rune_image_dict[rune_key]
 
-def ddragon_get_runes_dict(version="14.2.1"):
-    url = f"http://ddragon.leagueoflegends.com/cdn/{version}/data/en_US/runesReforged.json"
+def ddragon_get_runes_dict():
+    url = f"{DDRAGON_URL}{CDN_VERSION}/data/en_US/runesReforged.json"
     try:
         response = requests.get(url, timeout=10)
         response.raise_for_status()  # Raise an error for bad status codes
@@ -575,8 +462,8 @@ def ddragon_get_runes_dict(version="14.2.1"):
     rune_dict = {rune["id"]: rune["key"].lower() for item in html for slot in item["slots"] for rune in slot["runes"]}
     return {**perk_dict, **rune_dict}
 
-def fetch_summoner_spell_data(version="14.20.1"):
-    url = f"https://ddragon.leagueoflegends.com/cdn/{version}/data/en_US/summoner.json"
+def fetch_summoner_spell_data():
+    url = f"{DDRAGON_URL}{CDN_VERSION}/data/en_US/summoner.json"
     try:
         response = requests.get(url, timeout=10)
         response.raise_for_status()  # Raise an error for bad status codes
@@ -586,11 +473,11 @@ def fetch_summoner_spell_data(version="14.20.1"):
         print(f"An error occurred: {e}")
         return {}
 
-def get_spell_image(spell_key, version="14.20.1"):
-    return f"https://ddragon.leagueoflegends.com/cdn/{version}/img/spell/{spell_key}.png"
+def get_spell_image(spell_key):
+    return f"/img/spell/{spell_key}.png"
 
-def get_spells(participant, version="14.20.1"):
-    spell_data = fetch_summoner_spell_data(version)
+def get_spells(participant):
+    spell_data = fetch_summoner_spell_data()
     spells = []
 
     for i in range(2):  # There are 2 summoner spells
@@ -599,7 +486,7 @@ def get_spells(participant, version="14.20.1"):
         if spell_id:
             spell_key = spell_data.get(str(spell_id), {}).get("id", "Unknown Spell")
             spell_name = spell_data.get(str(spell_id), {}).get("name", "Unknown Spell")
-            spell_image = get_spell_image(spell_key, version)
+            spell_image = get_spell_image(spell_key)
             spells.append({
                 "casts": spell_casts,
                 "id": spell_id,
@@ -611,7 +498,7 @@ def get_spells(participant, version="14.20.1"):
 def get_player(participant, match_overview):
     item_data = fetch_item_data()
     player = {}
-    player["role"] = "SUPPORT" if participant["lane"] == "BOTTOM" and participant["role"] == "SUPPORT" else participant["lane"]
+    player["role"] = "SUPPORT" if participant["teamPosition"] == "UTILITY" else participant["teamPosition"]
     player["build"] = get_build(participant, item_data)
     player["trinket"] = get_item(participant, 6, item_data)
     player["champion"] = get_champion(participant)
