@@ -14,7 +14,6 @@ players = MongoConnection().get_player_collection()
 @bp.route('/add', methods=['POST'])
 def add_player():
     form_data = request.json
-    print(form_data)
     riot_data = get_riot_data(form_data["name"], form_data["tag"])
     discord_data = {"id": form_data["discord_id"], "username": form_data["discord_username"], "avatar_url": form_data["discord_avatar"]}
     
@@ -52,7 +51,6 @@ def get_player_by_puuid(puuid):
 @bp.route('/', methods=['GET'])
 def get_players():
     player_data = list(players.find({}, {'_id': 0}))
-    print(player_data)
     return jsonify(player_data)
 
 @bp.route('/spells', methods=['GET'])

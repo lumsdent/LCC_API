@@ -46,6 +46,7 @@ def get_matchups(match_data, role):
         for player in team["players"]:
             if player["role"] == role:
                 player["matchId"] = match_data["metadata"]["matchId"]
+                player["season"] = match_data["metadata"]["season"]
                 player["gameStartTimestamp"] = match_data["info"]["gameStartTime"]
                 player["win"] = team["gameOutcome"]
                 player["team"] = {"name": team["name"], "image": f"{team["name"].lower()}.png"}
@@ -131,6 +132,7 @@ def fetch_riot_data(url):
     return response.json()
         
 def process_match_data(match_data, user_data):
+    print("user_data", user_data)
     match_information = {}
     blue_team_players = []
     red_team_players = []
@@ -180,6 +182,7 @@ def process_match_data(match_data, user_data):
     
     metadata =  match_data["metadata"]
     metadata["matchName"] = user_data["blueTeam"] + " vs " + user_data["redTeam"]
+    metadata["season"] = user_data["season"]
     match_information = {"metadata": metadata, "info": match_overview}
     return match_information
 

@@ -15,6 +15,7 @@ def add_match():
     if(data["password"] != password):
         return jsonify({'message': 'Incorrect password'}), 401
     print('Adding match')
+    print(data)
     match_id = data["matchId"]
     if matches.find_one({"metadata.matchId": "NA1_" + match_id}) is None:
         processed_match = process_match(data)
