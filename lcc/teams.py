@@ -28,7 +28,7 @@ def add_team(season):
  
 @bp.route('/teams/<season>', methods=['GET'])
 def get_all_teams_by_season(season):
-    season = int(season)
+    season = season
     team_data = list(teams.find({f"rosters.{season}": {"$exists": True, "$ne": [], "$ne": None}}, {'_id': 0}))
     return jsonify(team_data)
 
