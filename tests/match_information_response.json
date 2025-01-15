@@ -1,1172 +1,1416 @@
 {
     "metadata": {
         "dataVersion": "2",
-        "matchId": "NA1_4953489346",
+        "matchId": "NA1_4982349322",
         "participants": [
-            "SElvizHed_Mo8mOfifIg4t-IY6S8G_ZDpWWNWXcKziPEujHm_IdIws9YsiQDrR9IemJUibUDCWPEGg"
-        ]
+            "l5wI2JfWIgYucm9-vB7sMzcKWZGxhlnbMedOPGH4YozKJ8EMT3alTxM0cYTUWbY2YiDke2vd67JfqA",
+            "h1F3QmjMT8BVvHVbq4dRdFVyKAB8tj1rgmu-AXI9w5ViWeyHX3D5HxF72UNkui9X82cRJDRhEJ-WJQ",
+            "OLojmaBUPPMqjbCCCMAahsssNRDMDgcFOWOaPAHljrRP-zzr02lHc5Qa9sqRsIo7pf4NY760BoV68w",
+            "ab4gQ5K2q9dFtLhWtZ7s8jTUa0MCQ_IdT9DteNLPsgujzYISxj7cPQ-1DpPZcg-iBv9rTn1t7i6xKg",
+            "xzdrsAzMMae3GTrUzEov6J_BTo7vceWI-MLu080uVo9rGydkcQ1wHqSDI_woNQDrTMjOxJuN4w4EnQ",
+            "c2xoTJ33QjBVjNX4U2IzxcvMwd9keVQE0M0AcoJfh9l_82XMZSo07zyjg87RmWV-KjnlXqMzqcFm-A",
+            "T4HurhpWNKtUt3jcnfRq6A5glRKQVSUoQgTbYCCaTaFZnchBLNRH9G9otHFzfDkiyfbR_t3yMd6GAQ",
+            "0sBIbeTHPFKBRaZ7l3uRr1Vcx4val3gNyMGFK_Gj3xoFbd-OODkMEOagMgoGE8RxCPdGSgJWUR49Iw",
+            "FuHW-s-Id8MDc3n4FCYDXERxvnsJS0HGKxD4j9bE2kVTteWEK4OTS3aXF0MxQkVhm8kAFB7FpEz-Rg",
+            "_SNthaZiRpWnwXiCppy5_mRf_wssHvfDkmQD6Uq93n-JBpwi_e-kagAwNge0gBBR3h9LDFjI-Kh7fg"
+        ],
+        "matchName": "Team Hospitalized vs Discord Kittens"
     },
     "info": {
-        "endOfGameResult": "GameComplete",
-        "gameCreation": 1711147969101,
-        "gameDuration": 668,
-        "gameEndTimestamp": 1711148645691,
-        "gameId": 4953489346,
+        "gameCreation": 1714000263535,
+        "gameDuration": 1725,
+        "gameStartTime": 1714000328737,
+        "gameEndTimestamp": 1714002286482,
+        "gameId": "NA1_4982349322",
         "gameMode": "CLASSIC",
-        "gameName": "0d6cbe82-515d-4dbe-9452-5e74fac6b52f",
-        "gameStartTimestamp": 1711147977562,
-        "gameType": "CUSTOM_GAME",
-        "gameVersion": "14.6.569.5139",
-        "mapId": 11,
-        "participants": [
-            {
-                "allInPings": 0,
-                "assistMePings": 5,
-                "assists": 0,
-                "baronKills": 0,
-                "basicPings": 0,
-                "bountyLevel": 0,
-                "challenges": {
-                    "12AssistStreakCount": 0,
-                    "abilityUses": 69,
-                    "acesBefore15Minutes": 0,
-                    "alliedJungleMonsterKills": 0,
-                    "baronTakedowns": 0,
-                    "blastConeOppositeOpponentCount": 0,
-                    "bountyGold": 0,
-                    "buffsStolen": 0,
-                    "completeSupportQuestInTime": 0,
-                    "controlWardsPlaced": 0,
-                    "damagePerMinute": 0,
-                    "damageTakenOnTeamPercentage": 0.6028535761369475,
-                    "dancedWithRiftHerald": 0,
-                    "deathsByEnemyChamps": 0,
-                    "dodgeSkillShotsSmallWindow": 0,
-                    "doubleAces": 0,
-                    "dragonTakedowns": 0,
-                    "effectiveHealAndShielding": 0,
-                    "elderDragonKillsWithOpposingSoul": 0,
-                    "elderDragonMultikills": 0,
-                    "enemyChampionImmobilizations": 0,
-                    "enemyJungleMonsterKills": 0,
-                    "epicMonsterKillsNearEnemyJungler": 0,
-                    "epicMonsterKillsWithin30SecondsOfSpawn": 0,
-                    "epicMonsterSteals": 0,
-                    "epicMonsterStolenWithoutSmite": 0,
-                    "firstTurretKilled": 1,
-                    "firstTurretKilledTime": 384.1693449,
-                    "flawlessAces": 0,
-                    "fullTeamTakedown": 0,
-                    "gameLength": 668.3013589,
-                    "getTakedownsInAllLanesEarlyJungleAsLaner": 0,
-                    "goldPerMinute": 499.65738440813305,
-                    "hadOpenNexus": 1,
-                    "immobilizeAndKillWithAlly": 0,
-                    "initialBuffCount": 0,
-                    "initialCrabCount": 0,
-                    "jungleCsBefore10Minutes": 0,
-                    "junglerTakedownsNearDamagedEpicMonster": 0,
-                    "kTurretsDestroyedBeforePlatesFall": 3,
-                    "kda": 0,
-                    "killAfterHiddenWithAlly": 0,
-                    "killedChampTookFullTeamDamageSurvived": 0,
-                    "killingSprees": 0,
-                    "killsNearEnemyTurret": 0,
-                    "killsOnOtherLanesEarlyJungleAsLaner": 0,
-                    "killsOnRecentlyHealedByAramPack": 0,
-                    "killsUnderOwnTurret": 0,
-                    "killsWithHelpFromEpicMonster": 0,
-                    "knockEnemyIntoTeamAndKill": 0,
-                    "landSkillShotsEarlyGame": 0,
-                    "laneMinionsFirst10Minutes": 89,
-                    "legendaryCount": 0,
-                    "legendaryItemUsed": [
-                        3181
-                    ],
-                    "lostAnInhibitor": 0,
-                    "maxKillDeficit": 0,
-                    "mejaisFullStackInTime": 0,
-                    "moreEnemyJungleThanOpponent": 0,
-                    "multiKillOneSpell": 0,
-                    "multiTurretRiftHeraldCount": 0,
-                    "multikills": 0,
-                    "multikillsAfterAggressiveFlash": 0,
-                    "outerTurretExecutesBefore10Minutes": 1,
-                    "outnumberedKills": 0,
-                    "outnumberedNexusKill": 0,
-                    "perfectDragonSoulsTaken": 0,
-                    "perfectGame": 1,
-                    "pickKillWithAlly": 0,
-                    "poroExplosions": 0,
-                    "quickCleanse": 0,
-                    "quickFirstTurret": 1,
-                    "quickSoloKills": 0,
-                    "riftHeraldTakedowns": 0,
-                    "saveAllyFromDeath": 0,
-                    "scuttleCrabKills": 0,
-                    "skillshotsDodged": 0,
-                    "skillshotsHit": 0,
-                    "snowballsHit": 0,
-                    "soloBaronKills": 0,
-                    "soloKills": 0,
-                    "stealthWardsPlaced": 0,
-                    "survivedSingleDigitHpCount": 0,
-                    "survivedThreeImmobilizesInFight": 0,
-                    "takedownOnFirstTurret": 1,
-                    "takedowns": 0,
-                    "takedownsAfterGainingLevelAdvantage": 0,
-                    "takedownsBeforeJungleMinionSpawn": 0,
-                    "takedownsFirstXMinutes": 0,
-                    "takedownsInAlcove": 0,
-                    "takedownsInEnemyFountain": 0,
-                    "teamBaronKills": 0,
-                    "teamElderDragonKills": 0,
-                    "teamRiftHeraldKills": 0,
-                    "tookLargeDamageSurvived": 0,
-                    "turretPlatesTaken": 5,
-                    "turretTakedowns": 3,
-                    "turretsTakenWithRiftHerald": 0,
-                    "twentyMinionsIn3SecondsCount": 0,
-                    "twoWardsOneSweeperCount": 0,
-                    "unseenRecalls": 0,
-                    "visionScorePerMinute": 0,
-                    "wardTakedowns": 0,
-                    "wardTakedownsBefore20M": 0,
-                    "wardsGuarded": 0
-                },
-                "champExperience": 6034,
-                "champLevel": 9,
-                "championId": 2,
-                "championName": "Olaf",
-                "championTransform": 0,
-                "commandPings": 0,
-                "consumablesPurchased": 1,
-                "damageDealtToBuildings": 11593,
-                "damageDealtToObjectives": 11593,
-                "damageDealtToTurrets": 11593,
-                "damageSelfMitigated": 3835,
-                "dangerPings": 0,
-                "deaths": 1,
-                "detectorWardsPlaced": 0,
-                "doubleKills": 0,
-                "dragonKills": 0,
-                "eligibleForProgression": true,
-                "enemyMissingPings": 0,
-                "enemyVisionPings": 0,
-                "firstBloodAssist": false,
-                "firstBloodKill": false,
-                "firstTowerAssist": false,
-                "firstTowerKill": true,
-                "gameEndedInEarlySurrender": false,
-                "gameEndedInSurrender": false,
-                "getBackPings": 0,
-                "goldEarned": 5565,
-                "goldSpent": 4800,
-                "holdPings": 0,
-                "individualPosition": "MIDDLE",
-                "inhibitorKills": 1,
-                "inhibitorTakedowns": 1,
-                "inhibitorsLost": 0,
-                "item0": 1055,
-                "item1": 3070,
-                "item2": 1042,
-                "item3": 1042,
-                "item4": 3181,
-                "item5": 1001,
-                "item6": 3340,
-                "itemsPurchased": 9,
-                "killingSprees": 0,
-                "kills": 0,
-                "lane": "NONE",
-                "largestCriticalStrike": 0,
-                "largestKillingSpree": 0,
-                "largestMultiKill": 0,
-                "longestTimeSpentLiving": 579,
-                "magicDamageDealt": 0,
-                "magicDamageDealtToChampions": 0,
-                "magicDamageTaken": 0,
-                "missions": {
-                    "PlayerScore0": 0,
-                    "PlayerScore1": 0,
-                    "PlayerScore10": 0,
-                    "PlayerScore11": 0,
-                    "PlayerScore2": 0,
-                    "PlayerScore3": 0,
-                    "PlayerScore4": 0,
-                    "PlayerScore5": 0,
-                    "PlayerScore6": 0,
-                    "PlayerScore7": 0,
-                    "PlayerScore8": 0,
-                    "PlayerScore9": 0
-                },
-                "needVisionPings": 0,
-                "neutralMinionsKilled": 0,
-                "nexusKills": 1,
-                "nexusLost": 0,
-                "nexusTakedowns": 1,
-                "objectivesStolen": 0,
-                "objectivesStolenAssists": 0,
-                "onMyWayPings": 0,
-                "participantId": 1,
-                "pentaKills": 0,
-                "perks": {
-                    "statPerks": {
-                        "defense": 5001,
-                        "flex": 5008,
-                        "offense": 5005
-                    },
-                    "styles": [
-                        {
-                            "description": "primaryStyle",
-                            "selections": [
-                                {
-                                    "perk": 8008,
-                                    "var1": 0,
-                                    "var2": 0,
-                                    "var3": 0
-                                },
-                                {
-                                    "perk": 9111,
-                                    "var1": 0,
-                                    "var2": 0,
-                                    "var3": 0
-                                },
-                                {
-                                    "perk": 9104,
-                                    "var1": 0,
-                                    "var2": 0,
-                                    "var3": 0
-                                },
-                                {
-                                    "perk": 8299,
-                                    "var1": 0,
-                                    "var2": 0,
-                                    "var3": 0
-                                }
-                            ],
-                            "style": 8000
-                        },
-                        {
-                            "description": "subStyle",
-                            "selections": [
-                                {
-                                    "perk": 8410,
-                                    "var1": 0,
-                                    "var2": 0,
-                                    "var3": 0
-                                },
-                                {
-                                    "perk": 8345,
-                                    "var1": 3,
-                                    "var2": 0,
-                                    "var3": 0
-                                }
-                            ],
-                            "style": 8300
-                        }
-                    ]
-                },
-                "physicalDamageDealt": 53612,
-                "physicalDamageDealtToChampions": 0,
-                "physicalDamageTaken": 5710,
-                "placement": 0,
-                "playerAugment1": 0,
-                "playerAugment2": 0,
-                "playerAugment3": 0,
-                "playerAugment4": 0,
-                "playerSubteamId": 0,
-                "profileIcon": 6503,
-                "pushPings": 0,
-                "puuid": "SElvizHed_Mo8mOfifIg4t-IY6S8G_ZDpWWNWXcKziPEujHm_IdIws9YsiQDrR9IemJUibUDCWPEGg",
-                "quadraKills": 0,
-                "riotIdGameName": "Oasis Cerelius",
-                "riotIdTagline": "True",
-                "role": "DUO",
-                "sightWardsBoughtInGame": 0,
-                "spell1Casts": 29,
-                "spell2Casts": 23,
-                "spell3Casts": 14,
-                "spell4Casts": 3,
-                "subteamPlacement": 0,
-                "summoner1Casts": 1,
-                "summoner1Id": 4,
-                "summoner2Casts": 2,
-                "summoner2Id": 6,
-                "summonerId": "jPZ5FGW6g6StBp5PYn0iFnA4cMLQ8tsiZWuAL1CfHDnFaHE",
-                "summonerLevel": 516,
-                "summonerName": "Cerelius",
-                "teamEarlySurrendered": false,
-                "teamId": 100,
-                "teamPosition": "MIDDLE",
-                "timeCCingOthers": 0,
-                "timePlayed": 668,
-                "totalAllyJungleMinionsKilled": 0,
-                "totalDamageDealt": 55242,
-                "totalDamageDealtToChampions": 0,
-                "totalDamageShieldedOnTeammates": 0,
-                "totalDamageTaken": 5710,
-                "totalEnemyJungleMinionsKilled": 0,
-                "totalHeal": 2536,
-                "totalHealsOnTeammates": 0,
-                "totalMinionsKilled": 90,
-                "totalTimeCCDealt": 195,
-                "totalTimeSpentDead": 26,
-                "totalUnitsHealed": 1,
-                "tripleKills": 0,
-                "trueDamageDealt": 1629,
-                "trueDamageDealtToChampions": 0,
-                "trueDamageTaken": 0,
-                "turretKills": 3,
-                "turretTakedowns": 3,
-                "turretsLost": 0,
-                "unrealKills": 0,
-                "visionClearedPings": 0,
-                "visionScore": 0,
-                "visionWardsBoughtInGame": 0,
-                "wardsKilled": 0,
-                "wardsPlaced": 0,
-                "win": true
-            },
-            {
-                "allInPings": 0,
-                "assistMePings": 0,
-                "assists": 0,
-                "baronKills": 0,
-                "basicPings": 0,
-                "bountyLevel": 0,
-                "champExperience": 3217,
-                "champLevel": 7,
-                "championId": 45,
-                "championName": "Veigar",
-                "championTransform": 0,
-                "commandPings": 0,
-                "consumablesPurchased": 2,
-                "damageDealtToBuildings": 1788,
-                "damageDealtToObjectives": 1788,
-                "damageDealtToTurrets": 1788,
-                "damageSelfMitigated": 59,
-                "dangerPings": 0,
-                "deaths": 0,
-                "detectorWardsPlaced": 0,
-                "doubleKills": 0,
-                "dragonKills": 0,
-                "eligibleForProgression": true,
-                "enemyMissingPings": 0,
-                "enemyVisionPings": 0,
-                "firstBloodAssist": false,
-                "firstBloodKill": false,
-                "firstTowerAssist": false,
-                "firstTowerKill": false,
-                "gameEndedInEarlySurrender": false,
-                "gameEndedInSurrender": false,
-                "getBackPings": 0,
-                "goldEarned": 3447,
-                "goldSpent": 500,
-                "holdPings": 0,
-                "individualPosition": "BOTTOM",
-                "inhibitorKills": 0,
-                "inhibitorTakedowns": 0,
-                "inhibitorsLost": 0,
-                "item0": 3070,
-                "item1": 2003,
-                "item2": 0,
-                "item3": 0,
-                "item4": 0,
-                "item5": 0,
-                "item6": 3340,
-                "itemsPurchased": 4,
-                "killingSprees": 0,
-                "kills": 0,
-                "lane": "NONE",
-                "largestCriticalStrike": 0,
-                "largestKillingSpree": 0,
-                "largestMultiKill": 0,
-                "longestTimeSpentLiving": 0,
-                "magicDamageDealt": 8450,
-                "magicDamageDealtToChampions": 0,
-                "magicDamageTaken": 0,
-                "missions": {
-                    "PlayerScore0": 0,
-                    "PlayerScore1": 0,
-                    "PlayerScore10": 0,
-                    "PlayerScore11": 0,
-                    "PlayerScore2": 0,
-                    "PlayerScore3": 0,
-                    "PlayerScore4": 0,
-                    "PlayerScore5": 0,
-                    "PlayerScore6": 0,
-                    "PlayerScore7": 0,
-                    "PlayerScore8": 0,
-                    "PlayerScore9": 0
-                },
-                "needVisionPings": 0,
-                "neutralMinionsKilled": 0,
-                "nexusKills": 0,
-                "nexusLost": 0,
-                "nexusTakedowns": 0,
-                "objectivesStolen": 0,
-                "objectivesStolenAssists": 0,
-                "onMyWayPings": 0,
-                "participantId": 2,
-                "pentaKills": 0,
-                "perks": {
-                    "statPerks": {
-                        "defense": 5001,
-                        "flex": 5008,
-                        "offense": 5008
-                    },
-                    "styles": [
-                        {
-                            "description": "primaryStyle",
-                            "selections": [
-                                {
-                                    "perk": 8229,
-                                    "var1": 0,
-                                    "var2": 0,
-                                    "var3": 0
-                                },
-                                {
-                                    "perk": 8226,
-                                    "var1": 0,
-                                    "var2": 0,
-                                    "var3": 0
-                                },
-                                {
-                                    "perk": 8210,
-                                    "var1": 0,
-                                    "var2": 0,
-                                    "var3": 0
-                                },
-                                {
-                                    "perk": 8236,
-                                    "var1": 8,
-                                    "var2": 0,
-                                    "var3": 0
-                                }
-                            ],
-                            "style": 8200
-                        },
-                        {
-                            "description": "subStyle",
-                            "selections": [
-                                {
-                                    "perk": 8138,
-                                    "var1": 0,
-                                    "var2": 0,
-                                    "var3": 0
-                                },
-                                {
-                                    "perk": 8105,
-                                    "var1": 1,
-                                    "var2": 0,
-                                    "var3": 0
-                                }
-                            ],
-                            "style": 8100
-                        }
-                    ]
-                },
-                "physicalDamageDealt": 8104,
-                "physicalDamageDealtToChampions": 0,
-                "physicalDamageTaken": 205,
-                "placement": 0,
-                "playerAugment1": 0,
-                "playerAugment2": 0,
-                "playerAugment3": 0,
-                "playerAugment4": 0,
-                "playerSubteamId": 0,
-                "profileIcon": 0,
-                "pushPings": 0,
-                "puuid": "BOT",
-                "quadraKills": 0,
-                "riotIdGameName": "Veigar",
-                "riotIdTagline": "BOT",
-                "role": "SUPPORT",
-                "sightWardsBoughtInGame": 0,
-                "spell1Casts": 3,
-                "spell2Casts": 25,
-                "spell3Casts": 0,
-                "spell4Casts": 0,
-                "subteamPlacement": 0,
-                "summoner1Casts": 0,
-                "summoner1Id": 0,
-                "summoner2Casts": 0,
-                "summoner2Id": 0,
-                "summonerId": "BOT",
-                "summonerLevel": 1,
-                "summonerName": "Veigar",
-                "teamEarlySurrendered": false,
-                "teamId": 100,
-                "teamPosition": "BOTTOM",
-                "timeCCingOthers": 0,
-                "timePlayed": 668,
-                "totalAllyJungleMinionsKilled": 0,
-                "totalDamageDealt": 18094,
-                "totalDamageDealtToChampions": 0,
-                "totalDamageShieldedOnTeammates": 0,
-                "totalDamageTaken": 205,
-                "totalEnemyJungleMinionsKilled": 0,
-                "totalHeal": 0,
-                "totalHealsOnTeammates": 0,
-                "totalMinionsKilled": 50,
-                "totalTimeCCDealt": 0,
-                "totalTimeSpentDead": 0,
-                "totalUnitsHealed": 0,
-                "tripleKills": 0,
-                "trueDamageDealt": 1540,
-                "trueDamageDealtToChampions": 0,
-                "trueDamageTaken": 0,
-                "turretKills": 1,
-                "turretTakedowns": 1,
-                "turretsLost": 0,
-                "unrealKills": 0,
-                "visionClearedPings": 0,
-                "visionScore": 0,
-                "visionWardsBoughtInGame": 0,
-                "wardsKilled": 0,
-                "wardsPlaced": 0,
-                "win": true
-            },
-            {
-                "allInPings": 0,
-                "assistMePings": 0,
-                "assists": 0,
-                "baronKills": 0,
-                "basicPings": 0,
-                "bountyLevel": 0,
-                "champExperience": 3348,
-                "champLevel": 7,
-                "championId": 3,
-                "championName": "Galio",
-                "championTransform": 0,
-                "commandPings": 0,
-                "consumablesPurchased": 4,
-                "damageDealtToBuildings": 2956,
-                "damageDealtToObjectives": 2956,
-                "damageDealtToTurrets": 2956,
-                "damageSelfMitigated": 706,
-                "dangerPings": 0,
-                "deaths": 0,
-                "detectorWardsPlaced": 0,
-                "doubleKills": 0,
-                "dragonKills": 0,
-                "eligibleForProgression": true,
-                "enemyMissingPings": 0,
-                "enemyVisionPings": 0,
-                "firstBloodAssist": false,
-                "firstBloodKill": false,
-                "firstTowerAssist": false,
-                "firstTowerKill": false,
-                "gameEndedInEarlySurrender": false,
-                "gameEndedInSurrender": false,
-                "getBackPings": 0,
-                "goldEarned": 3144,
-                "goldSpent": 2300,
-                "holdPings": 0,
-                "individualPosition": "TOP",
-                "inhibitorKills": 0,
-                "inhibitorTakedowns": 0,
-                "inhibitorsLost": 0,
-                "item0": 1054,
-                "item1": 3145,
-                "item2": 2003,
-                "item3": 1001,
-                "item4": 2022,
-                "item5": 0,
-                "item6": 3340,
-                "itemsPurchased": 9,
-                "killingSprees": 0,
-                "kills": 0,
-                "lane": "NONE",
-                "largestCriticalStrike": 0,
-                "largestKillingSpree": 0,
-                "largestMultiKill": 0,
-                "longestTimeSpentLiving": 0,
-                "magicDamageDealt": 12532,
-                "magicDamageDealtToChampions": 0,
-                "magicDamageTaken": 0,
-                "missions": {
-                    "PlayerScore0": 0,
-                    "PlayerScore1": 0,
-                    "PlayerScore10": 0,
-                    "PlayerScore11": 0,
-                    "PlayerScore2": 0,
-                    "PlayerScore3": 0,
-                    "PlayerScore4": 0,
-                    "PlayerScore5": 0,
-                    "PlayerScore6": 0,
-                    "PlayerScore7": 0,
-                    "PlayerScore8": 0,
-                    "PlayerScore9": 0
-                },
-                "needVisionPings": 0,
-                "neutralMinionsKilled": 0,
-                "nexusKills": 0,
-                "nexusLost": 0,
-                "nexusTakedowns": 0,
-                "objectivesStolen": 0,
-                "objectivesStolenAssists": 0,
-                "onMyWayPings": 0,
-                "participantId": 3,
-                "pentaKills": 0,
-                "perks": {
-                    "statPerks": {
-                        "defense": 5001,
-                        "flex": 5001,
-                        "offense": 5008
-                    },
-                    "styles": [
-                        {
-                            "description": "primaryStyle",
-                            "selections": [
-                                {
-                                    "perk": 8437,
-                                    "var1": 0,
-                                    "var2": 0,
-                                    "var3": 0
-                                },
-                                {
-                                    "perk": 8446,
-                                    "var1": 1665,
-                                    "var2": 0,
-                                    "var3": 0
-                                },
-                                {
-                                    "perk": 8444,
-                                    "var1": 0,
-                                    "var2": 0,
-                                    "var3": 0
-                                },
-                                {
-                                    "perk": 8451,
-                                    "var1": 42,
-                                    "var2": 0,
-                                    "var3": 0
-                                }
-                            ],
-                            "style": 8400
-                        },
-                        {
-                            "description": "subStyle",
-                            "selections": [
-                                {
-                                    "perk": 8224,
-                                    "var1": 0,
-                                    "var2": 0,
-                                    "var3": 0
-                                },
-                                {
-                                    "perk": 8237,
-                                    "var1": 0,
-                                    "var2": 0,
-                                    "var3": 0
-                                }
-                            ],
-                            "style": 8200
-                        }
-                    ]
-                },
-                "physicalDamageDealt": 5249,
-                "physicalDamageDealtToChampions": 0,
-                "physicalDamageTaken": 2332,
-                "placement": 0,
-                "playerAugment1": 0,
-                "playerAugment2": 0,
-                "playerAugment3": 0,
-                "playerAugment4": 0,
-                "playerSubteamId": 0,
-                "profileIcon": 0,
-                "pushPings": 0,
-                "puuid": "BOT",
-                "quadraKills": 0,
-                "riotIdGameName": "Galio",
-                "riotIdTagline": "BOT",
-                "role": "SUPPORT",
-                "sightWardsBoughtInGame": 0,
-                "spell1Casts": 0,
-                "spell2Casts": 0,
-                "spell3Casts": 12,
-                "spell4Casts": 0,
-                "subteamPlacement": 0,
-                "summoner1Casts": 0,
-                "summoner1Id": 0,
-                "summoner2Casts": 0,
-                "summoner2Id": 0,
-                "summonerId": "BOT",
-                "summonerLevel": 1,
-                "summonerName": "Galio",
-                "teamEarlySurrendered": false,
-                "teamId": 100,
-                "teamPosition": "TOP",
-                "timeCCingOthers": 0,
-                "timePlayed": 668,
-                "totalAllyJungleMinionsKilled": 0,
-                "totalDamageDealt": 19292,
-                "totalDamageDealtToChampions": 0,
-                "totalDamageShieldedOnTeammates": 0,
-                "totalDamageTaken": 2332,
-                "totalEnemyJungleMinionsKilled": 0,
-                "totalHeal": 0,
-                "totalHealsOnTeammates": 0,
-                "totalMinionsKilled": 35,
-                "totalTimeCCDealt": 21,
-                "totalTimeSpentDead": 0,
-                "totalUnitsHealed": 0,
-                "tripleKills": 0,
-                "trueDamageDealt": 1510,
-                "trueDamageDealtToChampions": 0,
-                "trueDamageTaken": 0,
-                "turretKills": 0,
-                "turretTakedowns": 0,
-                "turretsLost": 0,
-                "unrealKills": 0,
-                "visionClearedPings": 0,
-                "visionScore": 0,
-                "visionWardsBoughtInGame": 0,
-                "wardsKilled": 0,
-                "wardsPlaced": 0,
-                "win": true
-            },
-            {
-                "allInPings": 0,
-                "assistMePings": 0,
-                "assists": 0,
-                "baronKills": 0,
-                "basicPings": 0,
-                "bountyLevel": 0,
-                "champExperience": 3217,
-                "champLevel": 7,
-                "championId": 16,
-                "championName": "Soraka",
-                "championTransform": 0,
-                "commandPings": 0,
-                "consumablesPurchased": 2,
-                "damageDealtToBuildings": 1757,
-                "damageDealtToObjectives": 1757,
-                "damageDealtToTurrets": 1757,
-                "damageSelfMitigated": 215,
-                "dangerPings": 0,
-                "deaths": 0,
-                "detectorWardsPlaced": 0,
-                "doubleKills": 0,
-                "dragonKills": 0,
-                "eligibleForProgression": true,
-                "enemyMissingPings": 0,
-                "enemyVisionPings": 0,
-                "firstBloodAssist": false,
-                "firstBloodKill": false,
-                "firstTowerAssist": false,
-                "firstTowerKill": false,
-                "gameEndedInEarlySurrender": false,
-                "gameEndedInSurrender": false,
-                "getBackPings": 0,
-                "goldEarned": 3292,
-                "goldSpent": 500,
-                "holdPings": 0,
-                "individualPosition": "BOTTOM",
-                "inhibitorKills": 0,
-                "inhibitorTakedowns": 0,
-                "inhibitorsLost": 0,
-                "item0": 3866,
-                "item1": 2003,
-                "item2": 0,
-                "item3": 0,
-                "item4": 0,
-                "item5": 0,
-                "item6": 3340,
-                "itemsPurchased": 4,
-                "killingSprees": 0,
-                "kills": 0,
-                "lane": "NONE",
-                "largestCriticalStrike": 0,
-                "largestKillingSpree": 0,
-                "largestMultiKill": 0,
-                "longestTimeSpentLiving": 0,
-                "magicDamageDealt": 3309,
-                "magicDamageDealtToChampions": 0,
-                "magicDamageTaken": 0,
-                "missions": {
-                    "PlayerScore0": 0,
-                    "PlayerScore1": 0,
-                    "PlayerScore10": 0,
-                    "PlayerScore11": 0,
-                    "PlayerScore2": 0,
-                    "PlayerScore3": 0,
-                    "PlayerScore4": 0,
-                    "PlayerScore5": 0,
-                    "PlayerScore6": 0,
-                    "PlayerScore7": 0,
-                    "PlayerScore8": 0,
-                    "PlayerScore9": 0
-                },
-                "needVisionPings": 0,
-                "neutralMinionsKilled": 0,
-                "nexusKills": 0,
-                "nexusLost": 0,
-                "nexusTakedowns": 0,
-                "objectivesStolen": 0,
-                "objectivesStolenAssists": 0,
-                "onMyWayPings": 0,
-                "participantId": 4,
-                "pentaKills": 0,
-                "perks": {
-                    "statPerks": {
-                        "defense": 5001,
-                        "flex": 5008,
-                        "offense": 5008
-                    },
-                    "styles": [
-                        {
-                            "description": "primaryStyle",
-                            "selections": [
-                                {
-                                    "perk": 8229,
-                                    "var1": 0,
-                                    "var2": 0,
-                                    "var3": 0
-                                },
-                                {
-                                    "perk": 8226,
-                                    "var1": 0,
-                                    "var2": 0,
-                                    "var3": 0
-                                },
-                                {
-                                    "perk": 8210,
-                                    "var1": 0,
-                                    "var2": 0,
-                                    "var3": 0
-                                },
-                                {
-                                    "perk": 8236,
-                                    "var1": 8,
-                                    "var2": 0,
-                                    "var3": 0
-                                }
-                            ],
-                            "style": 8200
-                        },
-                        {
-                            "description": "subStyle",
-                            "selections": [
-                                {
-                                    "perk": 8138,
-                                    "var1": 0,
-                                    "var2": 0,
-                                    "var3": 0
-                                },
-                                {
-                                    "perk": 8105,
-                                    "var1": 1,
-                                    "var2": 0,
-                                    "var3": 0
-                                }
-                            ],
-                            "style": 8100
-                        }
-                    ]
-                },
-                "physicalDamageDealt": 2934,
-                "physicalDamageDealtToChampions": 0,
-                "physicalDamageTaken": 472,
-                "placement": 0,
-                "playerAugment1": 0,
-                "playerAugment2": 0,
-                "playerAugment3": 0,
-                "playerAugment4": 0,
-                "playerSubteamId": 0,
-                "profileIcon": 0,
-                "pushPings": 0,
-                "puuid": "BOT",
-                "quadraKills": 0,
-                "riotIdGameName": "Soraka",
-                "riotIdTagline": "BOT",
-                "role": "SUPPORT",
-                "sightWardsBoughtInGame": 0,
-                "spell1Casts": 5,
-                "spell2Casts": 0,
-                "spell3Casts": 0,
-                "spell4Casts": 1,
-                "subteamPlacement": 0,
-                "summoner1Casts": 0,
-                "summoner1Id": 0,
-                "summoner2Casts": 0,
-                "summoner2Id": 0,
-                "summonerId": "BOT",
-                "summonerLevel": 1,
-                "summonerName": "Soraka",
-                "teamEarlySurrendered": false,
-                "teamId": 100,
-                "teamPosition": "UTILITY",
-                "timeCCingOthers": 0,
-                "timePlayed": 668,
-                "totalAllyJungleMinionsKilled": 0,
-                "totalDamageDealt": 11719,
-                "totalDamageDealtToChampions": 0,
-                "totalDamageShieldedOnTeammates": 0,
-                "totalDamageTaken": 472,
-                "totalEnemyJungleMinionsKilled": 0,
-                "totalHeal": 512,
-                "totalHealsOnTeammates": 477,
-                "totalMinionsKilled": 33,
-                "totalTimeCCDealt": 25,
-                "totalTimeSpentDead": 0,
-                "totalUnitsHealed": 3,
-                "tripleKills": 0,
-                "trueDamageDealt": 5475,
-                "trueDamageDealtToChampions": 0,
-                "trueDamageTaken": 0,
-                "turretKills": 0,
-                "turretTakedowns": 2,
-                "turretsLost": 0,
-                "unrealKills": 0,
-                "visionClearedPings": 0,
-                "visionScore": 0,
-                "visionWardsBoughtInGame": 0,
-                "wardsKilled": 0,
-                "wardsPlaced": 0,
-                "win": true
-            },
-            {
-                "allInPings": 0,
-                "assistMePings": 0,
-                "assists": 0,
-                "baronKills": 0,
-                "basicPings": 0,
-                "bountyLevel": 0,
-                "champExperience": 3686,
-                "champLevel": 7,
-                "championId": 11,
-                "championName": "MasterYi",
-                "championTransform": 0,
-                "commandPings": 0,
-                "consumablesPurchased": 4,
-                "damageDealtToBuildings": 1401,
-                "damageDealtToObjectives": 1401,
-                "damageDealtToTurrets": 1401,
-                "damageSelfMitigated": 317,
-                "dangerPings": 0,
-                "deaths": 0,
-                "detectorWardsPlaced": 0,
-                "doubleKills": 0,
-                "dragonKills": 0,
-                "eligibleForProgression": true,
-                "enemyMissingPings": 0,
-                "enemyVisionPings": 0,
-                "firstBloodAssist": false,
-                "firstBloodKill": false,
-                "firstTowerAssist": false,
-                "firstTowerKill": false,
-                "gameEndedInEarlySurrender": false,
-                "gameEndedInSurrender": false,
-                "getBackPings": 0,
-                "goldEarned": 3097,
-                "goldSpent": 2950,
-                "holdPings": 0,
-                "individualPosition": "TOP",
-                "inhibitorKills": 0,
-                "inhibitorTakedowns": 0,
-                "inhibitorsLost": 0,
-                "item0": 1055,
-                "item1": 3006,
-                "item2": 1053,
-                "item3": 1042,
-                "item4": 2003,
-                "item5": 0,
-                "item6": 3340,
-                "itemsPurchased": 9,
-                "killingSprees": 0,
-                "kills": 0,
-                "lane": "NONE",
-                "largestCriticalStrike": 0,
-                "largestKillingSpree": 0,
-                "largestMultiKill": 0,
-                "longestTimeSpentLiving": 0,
-                "magicDamageDealt": 0,
-                "magicDamageDealtToChampions": 0,
-                "magicDamageTaken": 0,
-                "missions": {
-                    "PlayerScore0": 0,
-                    "PlayerScore1": 0,
-                    "PlayerScore10": 0,
-                    "PlayerScore11": 0,
-                    "PlayerScore2": 0,
-                    "PlayerScore3": 0,
-                    "PlayerScore4": 0,
-                    "PlayerScore5": 0,
-                    "PlayerScore6": 0,
-                    "PlayerScore7": 0,
-                    "PlayerScore8": 0,
-                    "PlayerScore9": 0
-                },
-                "needVisionPings": 0,
-                "neutralMinionsKilled": 0,
-                "nexusKills": 0,
-                "nexusLost": 0,
-                "nexusTakedowns": 0,
-                "objectivesStolen": 0,
-                "objectivesStolenAssists": 0,
-                "onMyWayPings": 0,
-                "participantId": 5,
-                "pentaKills": 0,
-                "perks": {
-                    "statPerks": {
-                        "defense": 5001,
-                        "flex": 5008,
-                        "offense": 5005
-                    },
-                    "styles": [
-                        {
-                            "description": "primaryStyle",
-                            "selections": [
-                                {
-                                    "perk": 8005,
-                                    "var1": 0,
-                                    "var2": 0,
-                                    "var3": 0
-                                },
-                                {
-                                    "perk": 9111,
-                                    "var1": 0,
-                                    "var2": 0,
-                                    "var3": 0
-                                },
-                                {
-                                    "perk": 9104,
-                                    "var1": 0,
-                                    "var2": 0,
-                                    "var3": 0
-                                },
-                                {
-                                    "perk": 8014,
-                                    "var1": 0,
-                                    "var2": 0,
-                                    "var3": 0
-                                }
-                            ],
-                            "style": 8000
-                        },
-                        {
-                            "description": "subStyle",
-                            "selections": [
-                                {
-                                    "perk": 8233,
-                                    "var1": 0,
-                                    "var2": 0,
-                                    "var3": 0
-                                },
-                                {
-                                    "perk": 8236,
-                                    "var1": 4,
-                                    "var2": 0,
-                                    "var3": 0
-                                }
-                            ],
-                            "style": 8200
-                        }
-                    ]
-                },
-                "physicalDamageDealt": 21053,
-                "physicalDamageDealtToChampions": 0,
-                "physicalDamageTaken": 750,
-                "placement": 0,
-                "playerAugment1": 0,
-                "playerAugment2": 0,
-                "playerAugment3": 0,
-                "playerAugment4": 0,
-                "playerSubteamId": 0,
-                "profileIcon": 0,
-                "pushPings": 0,
-                "puuid": "BOT",
-                "quadraKills": 0,
-                "riotIdGameName": "MasterYi",
-                "riotIdTagline": "BOT",
-                "role": "SUPPORT",
-                "sightWardsBoughtInGame": 0,
-                "spell1Casts": 21,
-                "spell2Casts": 0,
-                "spell3Casts": 0,
-                "spell4Casts": 0,
-                "subteamPlacement": 0,
-                "summoner1Casts": 0,
-                "summoner1Id": 0,
-                "summoner2Casts": 0,
-                "summoner2Id": 0,
-                "summonerId": "BOT",
-                "summonerLevel": 1,
-                "summonerName": "MasterYi",
-                "teamEarlySurrendered": false,
-                "teamId": 100,
-                "teamPosition": "JUNGLE",
-                "timeCCingOthers": 0,
-                "timePlayed": 668,
-                "totalAllyJungleMinionsKilled": 0,
-                "totalDamageDealt": 27638,
-                "totalDamageDealtToChampions": 0,
-                "totalDamageShieldedOnTeammates": 0,
-                "totalDamageTaken": 750,
-                "totalEnemyJungleMinionsKilled": 0,
-                "totalHeal": 142,
-                "totalHealsOnTeammates": 0,
-                "totalMinionsKilled": 37,
-                "totalTimeCCDealt": 0,
-                "totalTimeSpentDead": 0,
-                "totalUnitsHealed": 1,
-                "tripleKills": 0,
-                "trueDamageDealt": 6585,
-                "trueDamageDealtToChampions": 0,
-                "trueDamageTaken": 0,
-                "turretKills": 1,
-                "turretTakedowns": 1,
-                "turretsLost": 0,
-                "unrealKills": 0,
-                "visionClearedPings": 0,
-                "visionScore": 0,
-                "visionWardsBoughtInGame": 0,
-                "wardsKilled": 0,
-                "wardsPlaced": 0,
-                "win": true
-            }
-        ],
-        "platformId": "NA1",
-        "queueId": 0,
+        "gameVersion": "14.8.576.8838",
         "teams": [
             {
-                "bans": [],
+                "name": "Team Hospitalized",
+                "side": "Blue",
+                "teamId": 100,
+                "gameOutcome": False,
+                "kills": 15,
+                "gold": 45029,
+                "bans": [
+                    {
+                        "id": "Mordekaiser",
+                        "name": "Mordekaiser",
+                        "title": "the Iron Revenant",
+                        "image": {
+                            "full": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Mordekaiser.png",
+                            "loading": "https://ddragon.leagueoflegends.com/cdn/img/champion/loading/Mordekaiser_0.jpg",
+                            "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Mordekaiser.png"
+                        },
+                        "pickTurn": 1
+                    },
+                    {
+                        "id": "Sion",
+                        "name": "Sion",
+                        "title": "The Undead Juggernaut",
+                        "image": {
+                            "full": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Sion.png",
+                            "loading": "https://ddragon.leagueoflegends.com/cdn/img/champion/loading/Sion_0.jpg",
+                            "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Sion.png"
+                        },
+                        "pickTurn": 3
+                    },
+                    {
+                        "id": "Ahri",
+                        "name": "Ahri",
+                        "title": "the Nine-Tailed Fox",
+                        "image": {
+                            "full": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Ahri.png",
+                            "loading": "https://ddragon.leagueoflegends.com/cdn/img/champion/loading/Ahri_0.jpg",
+                            "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Ahri.png"
+                        },
+                        "pickTurn": 5
+                    },
+                    {
+                        "id": "Gwen",
+                        "name": "Gwen",
+                        "title": "The Hallowed Seamstress",
+                        "image": {
+                            "full": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Gwen.png",
+                            "loading": "https://ddragon.leagueoflegends.com/cdn/img/champion/loading/Gwen_0.jpg",
+                            "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Gwen.png"
+                        },
+                        "pickTurn": 2
+                    },
+                    {
+                        "id": "Shen",
+                        "name": "Shen",
+                        "title": "the Eye of Twilight",
+                        "image": {
+                            "full": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Shen.png",
+                            "loading": "https://ddragon.leagueoflegends.com/cdn/img/champion/loading/Shen_0.jpg",
+                            "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Shen.png"
+                        },
+                        "pickTurn": 4
+                    }
+                ],
                 "objectives": {
                     "baron": {
-                        "first": false,
-                        "kills": 0
+                        "first": False,
+                        "kills": 0,
+                        "image": "https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-match-history/global/default/baron-100.png"
                     },
                     "champion": {
-                        "first": false,
-                        "kills": 0
+                        "first": True,
+                        "kills": 15
                     },
                     "dragon": {
-                        "first": false,
-                        "kills": 0
+                        "first": False,
+                        "kills": 0,
+                        "image": "https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-match-history/global/default/dragon-100.png"
                     },
                     "horde": {
-                        "first": false,
-                        "kills": 0
+                        "first": True,
+                        "kills": 3,
+                        "image": "https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-match-history/global/default/horde.png"
                     },
                     "inhibitor": {
-                        "first": true,
-                        "kills": 1
+                        "first": False,
+                        "kills": 0,
+                        "image": "https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-match-history/global/default/inhibitor-100.png"
                     },
                     "riftHerald": {
-                        "first": false,
-                        "kills": 0
+                        "first": True,
+                        "kills": 1,
+                        "image": "https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-match-history/global/default/herald-100.png"
                     },
                     "tower": {
-                        "first": true,
-                        "kills": 7
+                        "first": False,
+                        "kills": 0,
+                        "image": "https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-match-history/global/default/tower-100.png"
                     }
                 },
-                "teamId": 100,
-                "win": true
+                "players": [
+                    {
+                        "role": "TOP",
+                        "build": [
+                            {
+                                "id": 1054,
+                                "name": "Doran's Shield",
+                                "image": "http://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/1054.png"
+                            },
+                            {
+                                "id": 6662,
+                                "name": "Iceborn Gauntlet",
+                                "image": "http://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/6662.png"
+                            },
+                            {
+                                "id": 3158,
+                                "name": "Ionian Boots of Lucidity",
+                                "image": "http://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3158.png"
+                            },
+                            {
+                                "id": 3110,
+                                "name": "Frozen Heart",
+                                "image": "http://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3110.png"
+                            },
+                            {
+                                "id": 3211,
+                                "name": "Spectre's Cowl",
+                                "image": "http://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3211.png"
+                            },
+                            {
+                                "id": 3067,
+                                "name": "Kindlegem",
+                                "image": "http://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3067.png"
+                            }
+                        ],
+                        "trinket": {
+                            "id": 3340,
+                            "name": "Stealth Ward",
+                            "image": "http://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3340.png"
+                        },
+                        "champion": {
+                            "id": 75,
+                            "name": "Nasus",
+                            "level": 15,
+                            "experience": 14186,
+                            "image": {
+                                "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Nasus.png"
+                            }
+                        },
+                        "assists": 2,
+                        "deaths": 5,
+                        "kills": 4,
+                        "kda": 1.2,
+                        "profile": {
+                            "puuid": "l5wI2JfWIgYucm9-vB7sMzcKWZGxhlnbMedOPGH4YozKJ8EMT3alTxM0cYTUWbY2YiDke2vd67JfqA",
+                            "name": "HPZ Tea Jay",
+                            "tag": "3665",
+                            "level": 188,
+                            "revision_date": 1736729742000,
+                            "images": {
+                                "icon": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/profileicon/3008.png"
+                            }
+                        },
+                        "runes": {
+                            "primary": {
+                                "name": {
+                                    "name": "Precision",
+                                    "key": "7201_precision"
+                                },
+                                "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7201_precision.png",
+                                "keystone": {
+                                    "id": 8021,
+                                    "name": "fleetfootwork",
+                                    "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/precision/fleetfootwork/fleetfootwork.png"
+                                }
+                            },
+                            "secondary": {
+                                "name": {
+                                    "name": "Resolve",
+                                    "key": "7204_resolve"
+                                },
+                                "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7204_resolve.png"
+                            }
+                        },
+                        "summonerSpells": [
+                            {
+                                "casts": 3,
+                                "id": 12,
+                                "name": "Teleport",
+                                "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/spell/SummonerTeleport.png"
+                            },
+                            {
+                                "casts": 4,
+                                "id": 6,
+                                "name": "Ghost",
+                                "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/spell/SummonerHaste.png"
+                            }
+                        ],
+                        "firstBlood": False,
+                        "cs": 171,
+                        "csm": 5.95,
+                        "cs14": 134,
+                        "dmg": 14506,
+                        "dpm": 504.56,
+                        "teamDmgPercent": 23.0,
+                        "goldEarned": 9620,
+                        "goldSpent": 8550,
+                        "gpm": 334.61,
+                        "killParticipation": 40.0,
+                        "effectiveHealAndShielding": 0,
+                        "totalDamageTaken": 34581,
+                        "damageTakenPercent": 36.0,
+                        "visionScore": 15,
+                        "vspm": 0.52,
+                        "visionWardsBought": 0,
+                        "wardsKilled": 1,
+                        "wardsPlaced": 8,
+                        "soloKills": 1
+                    },
+                    {
+                        "role": "JUNGLE",
+                        "build": [
+                            {
+                                "id": 2065,
+                                "name": "Shurelya's Battlesong",
+                                "image": "http://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/2065.png"
+                            },
+                            {
+                                "id": 3158,
+                                "name": "Ionian Boots of Lucidity",
+                                "image": "http://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3158.png"
+                            },
+                            {
+                                "id": 1082,
+                                "name": "Dark Seal",
+                                "image": "http://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/1082.png"
+                            },
+                            {
+                                "id": 3100,
+                                "name": "Lich Bane",
+                                "image": "http://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3100.png"
+                            },
+                            {
+                                "id": 3113,
+                                "name": "Aether Wisp",
+                                "image": "http://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3113.png"
+                            },
+                            {
+                                "id": 2022,
+                                "name": "Glowing Mote",
+                                "image": "http://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/2022.png"
+                            }
+                        ],
+                        "trinket": {
+                            "id": 3364,
+                            "name": "Oracle Lens",
+                            "image": "http://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3364.png"
+                        },
+                        "champion": {
+                            "id": 427,
+                            "name": "Ivern",
+                            "level": 13,
+                            "experience": 11070,
+                            "image": {
+                                "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Ivern.png"
+                            }
+                        },
+                        "assists": 12,
+                        "deaths": 5,
+                        "kills": 1,
+                        "kda": 2.6,
+                        "profile": {
+                            "puuid": "h1F3QmjMT8BVvHVbq4dRdFVyKAB8tj1rgmu-AXI9w5ViWeyHX3D5HxF72UNkui9X82cRJDRhEJ-WJQ",
+                            "name": "JustaWittleGuy",
+                            "tag": "NA1",
+                            "level": 291,
+                            "revision_date": 1736811421752,
+                            "images": {
+                                "icon": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/profileicon/506.png"
+                            }
+                        },
+                        "runes": {
+                            "primary": {
+                                "name": {
+                                    "name": "Sorcery",
+                                    "key": "7202_sorcery"
+                                },
+                                "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7202_sorcery.png",
+                                "keystone": {
+                                    "id": 8214,
+                                    "name": "summonaery",
+                                    "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/sorcery/summonaery/summonaery.png"
+                                }
+                            },
+                            "secondary": {
+                                "name": {
+                                    "name": "Inspiration",
+                                    "key": "7203_whimsy"
+                                },
+                                "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7203_whimsy.png"
+                            }
+                        },
+                        "summonerSpells": [
+                            {
+                                "casts": 16,
+                                "id": 11,
+                                "name": "Smite",
+                                "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/spell/SummonerSmite.png"
+                            },
+                            {
+                                "casts": 4,
+                                "id": 4,
+                                "name": "Flash",
+                                "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/spell/SummonerFlash.png"
+                            }
+                        ],
+                        "firstBlood": False,
+                        "cs": 148,
+                        "csm": 5.15,
+                        "cs14": 106,
+                        "dmg": 11442,
+                        "dpm": 397.98,
+                        "teamDmgPercent": 18.0,
+                        "goldEarned": 8744,
+                        "goldSpent": 8300,
+                        "gpm": 304.14,
+                        "killParticipation": 87.0,
+                        "effectiveHealAndShielding": 6868.0,
+                        "totalDamageTaken": 15961,
+                        "damageTakenPercent": 17.0,
+                        "visionScore": 22,
+                        "vspm": 0.77,
+                        "visionWardsBought": 2,
+                        "wardsKilled": 5,
+                        "wardsPlaced": 4,
+                        "soloKills": 0
+                    },
+                    {
+                        "role": "MIDDLE",
+                        "build": [
+                            {
+                                "id": 1056,
+                                "name": "Doran's Ring",
+                                "image": "http://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/1056.png"
+                            },
+                            {
+                                "id": 2031,
+                                "name": "Refillable Potion",
+                                "image": "http://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/2031.png"
+                            },
+                            {
+                                "id": 3020,
+                                "name": "Sorcerer's Shoes",
+                                "image": "http://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3020.png"
+                            },
+                            {
+                                "id": 6655,
+                                "name": "Luden's Companion",
+                                "image": "http://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/6655.png"
+                            },
+                            {
+                                "id": 4646,
+                                "name": "Stormsurge",
+                                "image": "http://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/4646.png"
+                            },
+                            {
+                                "id": 3145,
+                                "name": "Hextech Alternator",
+                                "image": "http://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3145.png"
+                            }
+                        ],
+                        "trinket": {
+                            "id": 3363,
+                            "name": "Farsight Alteration",
+                            "image": "http://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3363.png"
+                        },
+                        "champion": {
+                            "id": 711,
+                            "name": "Vex",
+                            "level": 14,
+                            "experience": 11549,
+                            "image": {
+                                "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Vex.png"
+                            }
+                        },
+                        "assists": 4,
+                        "deaths": 7,
+                        "kills": 4,
+                        "kda": 1.14,
+                        "profile": {
+                            "puuid": "OLojmaBUPPMqjbCCCMAahsssNRDMDgcFOWOaPAHljrRP-zzr02lHc5Qa9sqRsIo7pf4NY760BoV68w",
+                            "name": "CrimsonYoni",
+                            "tag": "CRMSN",
+                            "level": 350,
+                            "revision_date": 1736728285000,
+                            "images": {
+                                "icon": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/profileicon/3867.png"
+                            }
+                        },
+                        "runes": {
+                            "primary": {
+                                "name": {
+                                    "name": "Domination",
+                                    "key": "7200_domination"
+                                },
+                                "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7200_domination.png",
+                                "keystone": {
+                                    "id": 8112,
+                                    "name": "electrocute",
+                                    "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/domination/electrocute/electrocute.png"
+                                }
+                            },
+                            "secondary": {
+                                "name": {
+                                    "name": "Sorcery",
+                                    "key": "7202_sorcery"
+                                },
+                                "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7202_sorcery.png"
+                            }
+                        },
+                        "summonerSpells": [
+                            {
+                                "casts": 3,
+                                "id": 4,
+                                "name": "Flash",
+                                "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/spell/SummonerFlash.png"
+                            },
+                            {
+                                "casts": 3,
+                                "id": 12,
+                                "name": "Teleport",
+                                "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/spell/SummonerTeleport.png"
+                            }
+                        ],
+                        "firstBlood": True,
+                        "cs": 134,
+                        "csm": 4.66,
+                        "cs14": 117,
+                        "dmg": 16947,
+                        "dpm": 589.46,
+                        "teamDmgPercent": 27.0,
+                        "goldEarned": 9417,
+                        "goldSpent": 9500,
+                        "gpm": 327.55,
+                        "killParticipation": 53.0,
+                        "effectiveHealAndShielding": 0,
+                        "totalDamageTaken": 17512,
+                        "damageTakenPercent": 18.0,
+                        "visionScore": 13,
+                        "vspm": 0.45,
+                        "visionWardsBought": 0,
+                        "wardsKilled": 1,
+                        "wardsPlaced": 9,
+                        "soloKills": 0
+                    },
+                    {
+                        "role": "BOTTOM",
+                        "build": [
+                            {
+                                "id": 1055,
+                                "name": "Doran's Blade",
+                                "image": "http://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/1055.png"
+                            },
+                            {
+                                "id": 3153,
+                                "name": "Blade of The Ruined King",
+                                "image": "http://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3153.png"
+                            },
+                            {
+                                "id": 3006,
+                                "name": "Berserker's Greaves",
+                                "image": "http://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3006.png"
+                            },
+                            {
+                                "id": 3124,
+                                "name": "Guinsoo's Rageblade",
+                                "image": "http://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3124.png"
+                            },
+                            {
+                                "id": 1038,
+                                "name": "B. F. Sword",
+                                "image": "http://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/1038.png"
+                            },
+                            {
+                                "id": 1042,
+                                "name": "Dagger",
+                                "image": "http://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/1042.png"
+                            }
+                        ],
+                        "trinket": {
+                            "id": 3363,
+                            "name": "Farsight Alteration",
+                            "image": "http://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3363.png"
+                        },
+                        "champion": {
+                            "id": 67,
+                            "name": "Vayne",
+                            "level": 12,
+                            "experience": 9144,
+                            "image": {
+                                "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Vayne.png"
+                            }
+                        },
+                        "assists": 3,
+                        "deaths": 5,
+                        "kills": 6,
+                        "kda": 1.8,
+                        "profile": {
+                            "puuid": "ab4gQ5K2q9dFtLhWtZ7s8jTUa0MCQ_IdT9DteNLPsgujzYISxj7cPQ-1DpPZcg-iBv9rTn1t7i6xKg",
+                            "name": "agateo",
+                            "tag": "NA1",
+                            "level": 271,
+                            "revision_date": 1736557435000,
+                            "images": {
+                                "icon": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/profileicon/24.png"
+                            }
+                        },
+                        "runes": {
+                            "primary": {
+                                "name": {
+                                    "name": "Precision",
+                                    "key": "7201_precision"
+                                },
+                                "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7201_precision.png",
+                                "keystone": {
+                                    "id": 8008,
+                                    "name": "lethaltempo",
+                                    "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/precision/lethaltempo/lethaltempotemp.png"
+                                }
+                            },
+                            "secondary": {
+                                "name": {
+                                    "name": "Resolve",
+                                    "key": "7204_resolve"
+                                },
+                                "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7204_resolve.png"
+                            }
+                        },
+                        "summonerSpells": [
+                            {
+                                "casts": 4,
+                                "id": 4,
+                                "name": "Flash",
+                                "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/spell/SummonerFlash.png"
+                            },
+                            {
+                                "casts": 5,
+                                "id": 6,
+                                "name": "Ghost",
+                                "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/spell/SummonerHaste.png"
+                            }
+                        ],
+                        "firstBlood": False,
+                        "cs": 181,
+                        "csm": 6.3,
+                        "cs14": 134,
+                        "dmg": 14921,
+                        "dpm": 518.99,
+                        "teamDmgPercent": 23.0,
+                        "goldEarned": 11046,
+                        "goldSpent": 9675,
+                        "gpm": 384.21,
+                        "killParticipation": 60.0,
+                        "effectiveHealAndShielding": 0,
+                        "totalDamageTaken": 15361,
+                        "damageTakenPercent": 16.0,
+                        "visionScore": 23,
+                        "vspm": 0.8,
+                        "visionWardsBought": 3,
+                        "wardsKilled": 6,
+                        "wardsPlaced": 8,
+                        "soloKills": 0
+                    },
+                    {
+                        "role": "SUPPORT",
+                        "build": [
+                            {
+                                "id": 1031,
+                                "name": "Chain Vest",
+                                "image": "http://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/1031.png"
+                            },
+                            {
+                                "id": 3190,
+                                "name": "Locket of the Iron Solari",
+                                "image": "http://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3190.png"
+                            },
+                            {
+                                "id": 3869,
+                                "name": "Celestial Opposition",
+                                "image": "http://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3869.png"
+                            },
+                            {
+                                "id": 3067,
+                                "name": "Kindlegem",
+                                "image": "http://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3067.png"
+                            },
+                            {
+                                "id": 3047,
+                                "name": "Plated Steelcaps",
+                                "image": "http://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3047.png"
+                            },
+                            {
+                                "id": 0,
+                                "name": "Empty Slot",
+                                "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/items/icons2d/gp_ui_placeholder.png"
+                            }
+                        ],
+                        "trinket": {
+                            "id": 3364,
+                            "name": "Oracle Lens",
+                            "image": "http://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3364.png"
+                        },
+                        "champion": {
+                            "id": 111,
+                            "name": "Nautilus",
+                            "level": 11,
+                            "experience": 8428,
+                            "image": {
+                                "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Nautilus.png"
+                            }
+                        },
+                        "assists": 9,
+                        "deaths": 4,
+                        "kills": 0,
+                        "kda": 2.25,
+                        "profile": {
+                            "puuid": "xzdrsAzMMae3GTrUzEov6J_BTo7vceWI-MLu080uVo9rGydkcQ1wHqSDI_woNQDrTMjOxJuN4w4EnQ",
+                            "name": "Abraxo",
+                            "tag": "NA1",
+                            "level": 341,
+                            "revision_date": 1735615900000,
+                            "images": {
+                                "icon": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/profileicon/578.png"
+                            }
+                        },
+                        "runes": {
+                            "primary": {
+                                "name": {
+                                    "name": "Resolve",
+                                    "key": "7204_resolve"
+                                },
+                                "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7204_resolve.png",
+                                "keystone": {
+                                    "id": 8439,
+                                    "name": "aftershock",
+                                    "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/resolve/veteranaftershock/veteranaftershock.png"
+                                }
+                            },
+                            "secondary": {
+                                "name": {
+                                    "name": "Inspiration",
+                                    "key": "7203_whimsy"
+                                },
+                                "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7203_whimsy.png"
+                            }
+                        },
+                        "summonerSpells": [
+                            {
+                                "casts": 3,
+                                "id": 4,
+                                "name": "Flash",
+                                "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/spell/SummonerFlash.png"
+                            },
+                            {
+                                "casts": 5,
+                                "id": 14,
+                                "name": "Ignite",
+                                "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/spell/SummonerDot.png"
+                            }
+                        ],
+                        "firstBlood": False,
+                        "cs": 34,
+                        "csm": 1.18,
+                        "cs14": 97,
+                        "dmg": 5722,
+                        "dpm": 199.03,
+                        "teamDmgPercent": 9.0,
+                        "goldEarned": 6202,
+                        "goldSpent": 5700,
+                        "gpm": 215.72,
+                        "killParticipation": 60.0,
+                        "effectiveHealAndShielding": 936.0,
+                        "totalDamageTaken": 12853,
+                        "damageTakenPercent": 13.0,
+                        "visionScore": 63,
+                        "vspm": 2.19,
+                        "visionWardsBought": 4,
+                        "wardsKilled": 4,
+                        "wardsPlaced": 30,
+                        "soloKills": 0
+                    }
+                ]
+            },
+            {
+                "name": "Discord Kittens",
+                "side": "Red",
+                "teamId": 200,
+                "gameOutcome": True,
+                "kills": 26,
+                "gold": 56468,
+                "bans": [
+                    {
+                        "id": "AurelionSol",
+                        "name": "Aurelion Sol",
+                        "title": "The Star Forger",
+                        "image": {
+                            "full": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/AurelionSol.png",
+                            "loading": "https://ddragon.leagueoflegends.com/cdn/img/champion/loading/AurelionSol_0.jpg",
+                            "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/AurelionSol.png"
+                        },
+                        "pickTurn": 2
+                    },
+                    {
+                        "id": "Poppy",
+                        "name": "Poppy",
+                        "title": "Keeper of the Hammer",
+                        "image": {
+                            "full": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Poppy.png",
+                            "loading": "https://ddragon.leagueoflegends.com/cdn/img/champion/loading/Poppy_0.jpg",
+                            "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Poppy.png"
+                        },
+                        "pickTurn": 4
+                    },
+                    {
+                        "id": "Taric",
+                        "name": "Taric",
+                        "title": "the Shield of Valoran",
+                        "image": {
+                            "full": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Taric.png",
+                            "loading": "https://ddragon.leagueoflegends.com/cdn/img/champion/loading/Taric_0.jpg",
+                            "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Taric.png"
+                        },
+                        "pickTurn": 6
+                    },
+                    {
+                        "id": "Annie",
+                        "name": "Annie",
+                        "title": "the Dark Child",
+                        "image": {
+                            "full": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Annie.png",
+                            "loading": "https://ddragon.leagueoflegends.com/cdn/img/champion/loading/Annie_0.jpg",
+                            "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Annie.png"
+                        },
+                        "pickTurn": 1
+                    },
+                    {
+                        "id": "DrMundo",
+                        "name": "Dr. Mundo",
+                        "title": "the Madman of Zaun",
+                        "image": {
+                            "full": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/DrMundo.png",
+                            "loading": "https://ddragon.leagueoflegends.com/cdn/img/champion/loading/DrMundo_0.jpg",
+                            "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/DrMundo.png"
+                        },
+                        "pickTurn": 3
+                    }
+                ],
+                "objectives": {
+                    "baron": {
+                        "first": True,
+                        "kills": 1,
+                        "image": "https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-match-history/global/default/baron-200.png"
+                    },
+                    "champion": {
+                        "first": False,
+                        "kills": 26
+                    },
+                    "dragon": {
+                        "first": True,
+                        "kills": 4,
+                        "image": "https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-match-history/global/default/dragon-200.png"
+                    },
+                    "horde": {
+                        "first": False,
+                        "kills": 3,
+                        "image": "https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-match-history/global/default/horde.png"
+                    },
+                    "inhibitor": {
+                        "first": True,
+                        "kills": 1,
+                        "image": "https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-match-history/global/default/inhibitor-200.png"
+                    },
+                    "riftHerald": {
+                        "first": False,
+                        "kills": 0,
+                        "image": "https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-match-history/global/default/herald-200.png"
+                    },
+                    "tower": {
+                        "first": True,
+                        "kills": 9,
+                        "image": "https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-match-history/global/default/tower-200.png"
+                    }
+                },
+                "players": [
+                    {
+                        "role": "TOP",
+                        "build": [
+                            {
+                                "id": 1028,
+                                "name": "Ruby Crystal",
+                                "image": "http://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/1028.png"
+                            },
+                            {
+                                "id": 6631,
+                                "name": "Stridebreaker",
+                                "image": "http://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/6631.png"
+                            },
+                            {
+                                "id": 3006,
+                                "name": "Berserker's Greaves",
+                                "image": "http://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3006.png"
+                            },
+                            {
+                                "id": 3046,
+                                "name": "Phantom Dancer",
+                                "image": "http://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3046.png"
+                            },
+                            {
+                                "id": 3066,
+                                "name": "Winged Moonplate",
+                                "image": "http://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3066.png"
+                            },
+                            {
+                                "id": 1031,
+                                "name": "Chain Vest",
+                                "image": "http://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/1031.png"
+                            }
+                        ],
+                        "trinket": {
+                            "id": 3340,
+                            "name": "Stealth Ward",
+                            "image": "http://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3340.png"
+                        },
+                        "champion": {
+                            "id": 86,
+                            "name": "Garen",
+                            "level": 17,
+                            "experience": 16834,
+                            "image": {
+                                "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Garen.png"
+                            }
+                        },
+                        "assists": 5,
+                        "deaths": 1,
+                        "kills": 4,
+                        "kda": 9,
+                        "profile": {
+                            "puuid": "c2xoTJ33QjBVjNX4U2IzxcvMwd9keVQE0M0AcoJfh9l_82XMZSo07zyjg87RmWV-KjnlXqMzqcFm-A",
+                            "name": "Oasis psychotikk",
+                            "tag": "OAS",
+                            "level": 491,
+                            "revision_date": 1734231053000,
+                            "images": {
+                                "icon": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/profileicon/1109.png"
+                            }
+                        },
+                        "runes": {
+                            "primary": {
+                                "name": {
+                                    "name": "Precision",
+                                    "key": "7201_precision"
+                                },
+                                "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7201_precision.png",
+                                "keystone": {
+                                    "id": 8010,
+                                    "name": "conqueror",
+                                    "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/precision/conqueror/conqueror.png"
+                                }
+                            },
+                            "secondary": {
+                                "name": {
+                                    "name": "Resolve",
+                                    "key": "7204_resolve"
+                                },
+                                "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7204_resolve.png"
+                            }
+                        },
+                        "summonerSpells": [
+                            {
+                                "casts": 3,
+                                "id": 4,
+                                "name": "Flash",
+                                "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/spell/SummonerFlash.png"
+                            },
+                            {
+                                "casts": 6,
+                                "id": 14,
+                                "name": "Ignite",
+                                "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/spell/SummonerDot.png"
+                            }
+                        ],
+                        "firstBlood": False,
+                        "cs": 232,
+                        "csm": 8.07,
+                        "cs14": 138,
+                        "dmg": 23946,
+                        "dpm": 832.9,
+                        "teamDmgPercent": 28.0,
+                        "goldEarned": 12525,
+                        "goldSpent": 9700,
+                        "gpm": 435.65,
+                        "killParticipation": 35.0,
+                        "effectiveHealAndShielding": 0,
+                        "totalDamageTaken": 24758,
+                        "damageTakenPercent": 26.0,
+                        "visionScore": 17,
+                        "vspm": 0.59,
+                        "visionWardsBought": 0,
+                        "wardsKilled": 2,
+                        "wardsPlaced": 9,
+                        "soloKills": 1
+                    },
+                    {
+                        "role": "JUNGLE",
+                        "build": [
+                            {
+                                "id": 6610,
+                                "name": "Sundered Sky",
+                                "image": "http://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/6610.png"
+                            },
+                            {
+                                "id": 3078,
+                                "name": "Trinity Force",
+                                "image": "http://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3078.png"
+                            },
+                            {
+                                "id": 0,
+                                "name": "Empty Slot",
+                                "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/items/icons2d/gp_ui_placeholder.png"
+                            },
+                            {
+                                "id": 3111,
+                                "name": "Mercury's Treads",
+                                "image": "http://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3111.png"
+                            },
+                            {
+                                "id": 0,
+                                "name": "Empty Slot",
+                                "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/items/icons2d/gp_ui_placeholder.png"
+                            },
+                            {
+                                "id": 0,
+                                "name": "Empty Slot",
+                                "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/items/icons2d/gp_ui_placeholder.png"
+                            }
+                        ],
+                        "trinket": {
+                            "id": 3340,
+                            "name": "Stealth Ward",
+                            "image": "http://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3340.png"
+                        },
+                        "champion": {
+                            "id": 24,
+                            "name": "Jax",
+                            "level": 14,
+                            "experience": 12355,
+                            "image": {
+                                "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Jax.png"
+                            }
+                        },
+                        "assists": 7,
+                        "deaths": 3,
+                        "kills": 6,
+                        "kda": 4.33,
+                        "profile": {
+                            "puuid": "T4HurhpWNKtUt3jcnfRq6A5glRKQVSUoQgTbYCCaTaFZnchBLNRH9G9otHFzfDkiyfbR_t3yMd6GAQ",
+                            "name": "Bug",
+                            "tag": "Life",
+                            "level": 67,
+                            "revision_date": 1724534665000,
+                            "images": {
+                                "icon": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/profileicon/6631.png"
+                            }
+                        },
+                        "runes": {
+                            "primary": {
+                                "name": {
+                                    "name": "Precision",
+                                    "key": "7201_precision"
+                                },
+                                "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7201_precision.png",
+                                "keystone": {
+                                    "id": 8008,
+                                    "name": "lethaltempo",
+                                    "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/precision/lethaltempo/lethaltempotemp.png"
+                                }
+                            },
+                            "secondary": {
+                                "name": {
+                                    "name": "Inspiration",
+                                    "key": "7203_whimsy"
+                                },
+                                "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7203_whimsy.png"
+                            }
+                        },
+                        "summonerSpells": [
+                            {
+                                "casts": 14,
+                                "id": 11,
+                                "name": "Smite",
+                                "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/spell/SummonerSmite.png"
+                            },
+                            {
+                                "casts": 3,
+                                "id": 4,
+                                "name": "Flash",
+                                "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/spell/SummonerFlash.png"
+                            }
+                        ],
+                        "firstBlood": False,
+                        "cs": 142,
+                        "csm": 4.94,
+                        "cs14": 125,
+                        "dmg": 8105,
+                        "dpm": 281.91,
+                        "teamDmgPercent": 10.0,
+                        "goldEarned": 10412,
+                        "goldSpent": 8033,
+                        "gpm": 362.16,
+                        "killParticipation": 50.0,
+                        "effectiveHealAndShielding": 0,
+                        "totalDamageTaken": 26752,
+                        "damageTakenPercent": 29.0,
+                        "visionScore": 14,
+                        "vspm": 0.49,
+                        "visionWardsBought": 0,
+                        "wardsKilled": 3,
+                        "wardsPlaced": 2,
+                        "soloKills": 0
+                    },
+                    {
+                        "role": "MIDDLE",
+                        "build": [
+                            {
+                                "id": 6653,
+                                "name": "Liandry's Torment",
+                                "image": "http://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/6653.png"
+                            },
+                            {
+                                "id": 3040,
+                                "name": "Seraph's Embrace",
+                                "image": "http://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3040.png"
+                            },
+                            {
+                                "id": 4628,
+                                "name": "Horizon Focus",
+                                "image": "http://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/4628.png"
+                            },
+                            {
+                                "id": 1056,
+                                "name": "Doran's Ring",
+                                "image": "http://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/1056.png"
+                            },
+                            {
+                                "id": 0,
+                                "name": "Empty Slot",
+                                "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/items/icons2d/gp_ui_placeholder.png"
+                            },
+                            {
+                                "id": 3158,
+                                "name": "Ionian Boots of Lucidity",
+                                "image": "http://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3158.png"
+                            }
+                        ],
+                        "trinket": {
+                            "id": 3340,
+                            "name": "Stealth Ward",
+                            "image": "http://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3340.png"
+                        },
+                        "champion": {
+                            "id": 910,
+                            "name": "Hwei",
+                            "level": 14,
+                            "experience": 12999,
+                            "image": {
+                                "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Hwei.png"
+                            }
+                        },
+                        "assists": 12,
+                        "deaths": 3,
+                        "kills": 5,
+                        "kda": 5.67,
+                        "profile": {
+                            "puuid": "0sBIbeTHPFKBRaZ7l3uRr1Vcx4val3gNyMGFK_Gj3xoFbd-OODkMEOagMgoGE8RxCPdGSgJWUR49Iw",
+                            "name": "SimonLowell",
+                            "tag": "NA1",
+                            "level": 613,
+                            "revision_date": 1736832954115,
+                            "images": {
+                                "icon": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/profileicon/6759.png"
+                            }
+                        },
+                        "runes": {
+                            "primary": {
+                                "name": {
+                                    "name": "Inspiration",
+                                    "key": "7203_whimsy"
+                                },
+                                "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7203_whimsy.png",
+                                "keystone": {
+                                    "id": 8369,
+                                    "name": "firststrike",
+                                    "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/inspiration/firststrike/firststrike.png"
+                                }
+                            },
+                            "secondary": {
+                                "name": {
+                                    "name": "Sorcery",
+                                    "key": "7202_sorcery"
+                                },
+                                "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7202_sorcery.png"
+                            }
+                        },
+                        "summonerSpells": [
+                            {
+                                "casts": 5,
+                                "id": 12,
+                                "name": "Teleport",
+                                "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/spell/SummonerTeleport.png"
+                            },
+                            {
+                                "casts": 6,
+                                "id": 4,
+                                "name": "Flash",
+                                "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/spell/SummonerFlash.png"
+                            }
+                        ],
+                        "firstBlood": False,
+                        "cs": 157,
+                        "csm": 5.46,
+                        "cs14": 125,
+                        "dmg": 23285,
+                        "dpm": 809.91,
+                        "teamDmgPercent": 27.0,
+                        "goldEarned": 11112,
+                        "goldSpent": 9925,
+                        "gpm": 386.5,
+                        "killParticipation": 65.0,
+                        "effectiveHealAndShielding": 2762.0,
+                        "totalDamageTaken": 14979,
+                        "damageTakenPercent": 16.0,
+                        "visionScore": 34,
+                        "vspm": 1.18,
+                        "visionWardsBought": 3,
+                        "wardsKilled": 5,
+                        "wardsPlaced": 13,
+                        "soloKills": 1
+                    },
+                    {
+                        "role": "BOTTOM",
+                        "build": [
+                            {
+                                "id": 1055,
+                                "name": "Doran's Blade",
+                                "image": "http://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/1055.png"
+                            },
+                            {
+                                "id": 3085,
+                                "name": "Runaan's Hurricane",
+                                "image": "http://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3085.png"
+                            },
+                            {
+                                "id": 3006,
+                                "name": "Berserker's Greaves",
+                                "image": "http://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3006.png"
+                            },
+                            {
+                                "id": 6672,
+                                "name": "Kraken Slayer",
+                                "image": "http://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/6672.png"
+                            },
+                            {
+                                "id": 3031,
+                                "name": "Infinity Edge",
+                                "image": "http://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3031.png"
+                            },
+                            {
+                                "id": 1038,
+                                "name": "B. F. Sword",
+                                "image": "http://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/1038.png"
+                            }
+                        ],
+                        "trinket": {
+                            "id": 3340,
+                            "name": "Stealth Ward",
+                            "image": "http://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3340.png"
+                        },
+                        "champion": {
+                            "id": 222,
+                            "name": "Jinx",
+                            "level": 14,
+                            "experience": 12865,
+                            "image": {
+                                "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Jinx.png"
+                            }
+                        },
+                        "assists": 8,
+                        "deaths": 3,
+                        "kills": 11,
+                        "kda": 6.33,
+                        "profile": {
+                            "puuid": "FuHW-s-Id8MDc3n4FCYDXERxvnsJS0HGKxD4j9bE2kVTteWEK4OTS3aXF0MxQkVhm8kAFB7FpEz-Rg",
+                            "name": "bezzaboyo",
+                            "tag": "NA1",
+                            "level": 114,
+                            "revision_date": 1725247157000,
+                            "images": {
+                                "icon": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/profileicon/5765.png"
+                            }
+                        },
+                        "runes": {
+                            "primary": {
+                                "name": {
+                                    "name": "Precision",
+                                    "key": "7201_precision"
+                                },
+                                "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7201_precision.png",
+                                "keystone": {
+                                    "id": 8008,
+                                    "name": "lethaltempo",
+                                    "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/precision/lethaltempo/lethaltempotemp.png"
+                                }
+                            },
+                            "secondary": {
+                                "name": {
+                                    "name": "Sorcery",
+                                    "key": "7202_sorcery"
+                                },
+                                "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7202_sorcery.png"
+                            }
+                        },
+                        "summonerSpells": [
+                            {
+                                "casts": 3,
+                                "id": 6,
+                                "name": "Ghost",
+                                "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/spell/SummonerHaste.png"
+                            },
+                            {
+                                "casts": 1,
+                                "id": 4,
+                                "name": "Flash",
+                                "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/spell/SummonerFlash.png"
+                            }
+                        ],
+                        "firstBlood": False,
+                        "cs": 217,
+                        "csm": 7.55,
+                        "cs14": 139,
+                        "dmg": 24228,
+                        "dpm": 842.71,
+                        "teamDmgPercent": 29.0,
+                        "goldEarned": 14164,
+                        "goldSpent": 12000,
+                        "gpm": 492.66,
+                        "killParticipation": 73.0,
+                        "effectiveHealAndShielding": 0,
+                        "totalDamageTaken": 13436,
+                        "damageTakenPercent": 14.0,
+                        "visionScore": 14,
+                        "vspm": 0.49,
+                        "visionWardsBought": 0,
+                        "wardsKilled": 2,
+                        "wardsPlaced": 6,
+                        "soloKills": 0
+                    },
+                    {
+                        "role": "SUPPORT",
+                        "build": [
+                            {
+                                "id": 2055,
+                                "name": "Control Ward",
+                                "image": "http://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/2055.png"
+                            },
+                            {
+                                "id": 3876,
+                                "name": "Solstice Sleigh",
+                                "image": "http://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3876.png"
+                            },
+                            {
+                                "id": 3190,
+                                "name": "Locket of the Iron Solari",
+                                "image": "http://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3190.png"
+                            },
+                            {
+                                "id": 3109,
+                                "name": "Knight's Vow",
+                                "image": "http://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3109.png"
+                            },
+                            {
+                                "id": 3067,
+                                "name": "Kindlegem",
+                                "image": "http://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3067.png"
+                            },
+                            {
+                                "id": 3111,
+                                "name": "Mercury's Treads",
+                                "image": "http://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3111.png"
+                            }
+                        ],
+                        "trinket": {
+                            "id": 3364,
+                            "name": "Oracle Lens",
+                            "image": "http://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3364.png"
+                        },
+                        "champion": {
+                            "id": 412,
+                            "name": "Thresh",
+                            "level": 12,
+                            "experience": 9654,
+                            "image": {
+                                "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Thresh.png"
+                            }
+                        },
+                        "assists": 17,
+                        "deaths": 5,
+                        "kills": 0,
+                        "kda": 3.4,
+                        "profile": {
+                            "puuid": "_SNthaZiRpWnwXiCppy5_mRf_wssHvfDkmQD6Uq93n-JBpwi_e-kagAwNge0gBBR3h9LDFjI-Kh7fg",
+                            "name": "Oasis Jags",
+                            "tag": "OAS",
+                            "level": 337,
+                            "revision_date": 1736570812000,
+                            "images": {
+                                "icon": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/profileicon/711.png"
+                            }
+                        },
+                        "runes": {
+                            "primary": {
+                                "name": {
+                                    "name": "Resolve",
+                                    "key": "7204_resolve"
+                                },
+                                "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7204_resolve.png",
+                                "keystone": {
+                                    "id": 8439,
+                                    "name": "aftershock",
+                                    "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/resolve/veteranaftershock/veteranaftershock.png"
+                                }
+                            },
+                            "secondary": {
+                                "name": {
+                                    "name": "Inspiration",
+                                    "key": "7203_whimsy"
+                                },
+                                "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7203_whimsy.png"
+                            }
+                        },
+                        "summonerSpells": [
+                            {
+                                "casts": 6,
+                                "id": 3,
+                                "name": "Exhaust",
+                                "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/spell/SummonerExhaust.png"
+                            },
+                            {
+                                "casts": 4,
+                                "id": 4,
+                                "name": "Flash",
+                                "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/spell/SummonerFlash.png"
+                            }
+                        ],
+                        "firstBlood": false,
+                        "cs": 32,
+                        "csm": 1.11,
+                        "cs14": 93,
+                        "dmg": 5144,
+                        "dpm": 178.92,
+                        "teamDmgPercent": 6.0,
+                        "goldEarned": 8255,
+                        "goldSpent": 7625,
+                        "gpm": 287.13,
+                        "killParticipation": 65.0,
+                        "effectiveHealAndShielding": 1969.0,
+                        "totalDamageTaken": 13759,
+                        "damageTakenPercent": 15.0,
+                        "visionScore": 72,
+                        "vspm": 2.5,
+                        "visionWardsBought": 11,
+                        "wardsKilled": 8,
+                        "wardsPlaced": 35,
+                        "soloKills": 0
+                    }
+                ]
             }
-        ],
-        "tournamentCode": "NA04d5c-43ffd6a2-39d8-41df-a50b-ea96356311f7"
+        ]
     }
 }

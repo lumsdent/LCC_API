@@ -1,18 +1,21 @@
-from flask import Flask, jsonify, redirect, url_for, request, make_response
+import os
+import secrets
+from flask import Flask, redirect, url_for, make_response, session, g, request
 from dotenv import load_dotenv
 
 from flask_cors import CORS
-from routes import routes
-import os 
 from flask_discord import DiscordOAuth2Session, Unauthorized
-import secrets
-from datetime import datetime, timedelta, timezone
-import jwt
+
+from . import players
+from . import teams
+from . import matches
 
 app = Flask(__name__)
 CORS(app, supports_credentials=True)
 
-app.register_blueprint(routes)
+app.register_blueprint(players.bp)
+app.register_blueprint(teams.bp)
+app.register_blueprint(matches.bp)
 
 app.secret_key = secrets.token_urlsafe(16)
 os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "true"
@@ -35,16 +38,13 @@ def login():
 def callback():
     discord.callback()
     user = discord.fetch_user()
-    user_info = {
-        "id": user.id,
-        "username": user.username,
-        "discriminator": user.discriminator,
-        "avatar_url": str(user.avatar_url)
-    }
-    
-    token = generate_jwt(user_info)
+    player = players.get_player_by_discord_id(user.id)
+    if player is None:
+        player = players.create_player_login(user)
+    else:
+        players.update_player_login(user)
     response = make_response(redirect(os.getenv("FRONTEND_URL")))
-    response.set_cookie("token1", token, httponly=True, secure=False, samesite='Lax')
+    response.set_cookie("token", str(user.id), httponly=True, secure=False, samesite='Lax')
     return response
 
 
@@ -55,38 +55,19 @@ def redirect_unauthorized(e):
 	
 @app.route("/me/")
 def me():
-    user = discord.fetch_user()
-    user_info = {
-        "id": user.id,
-        "username": user.username,
-        "discriminator": user.discriminator,
-        "avatar_url": str(user.avatar_url)
-    }
-    return user_info
+    user_id = request.cookies.get('token')
+    player = players.get_player_by_discord_id(user_id)
+    # TODO: player.discord.id AttributeError: 'dict' object has no attribute 'discord'
+    return player
 
-def generate_jwt(user_info):
-    payload = {
-        "user": user_info,
-        "exp": datetime.now(timezone.utc) + timedelta(hours=1)  # Token expiration time
-        }
-    token = jwt.encode(payload, app.secret_key, algorithm="HS256")
-    return token
-
-def verify_jwt(token):
-    try:
-        payload = jwt.decode(token, app.secret_key, algorithms=["HS256"])
-        return payload
-    except jwt.ExpiredSignatureError:
-        return None
-    except jwt.InvalidTokenError:
-        return None
 
 @app.route("/logout/")
 def logout():
     discord.revoke()
+    session.clear()
     response = make_response(redirect(os.getenv('FRONTEND_URL')))
-    response.set_cookie("token1", "", expires=0)
     return response
+
 if __name__ == '__main__':
     load_dotenv(dotenv_path=".env", verbose=True, override=True)
     app.run(debug='true', host='0.0.0.0')

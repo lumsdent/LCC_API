@@ -45,7 +45,7 @@
                 "image": {
                   "full": "TahmKench.png",
                   "loading": "TahmKench_0.jpg",
-                  "square": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/Aurora.png"
+                  "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Aurora.png"
                 },
                 "title": "the River King",
                 "pickTurn": 1
@@ -56,7 +56,7 @@
                 "image": {
                   "full": "TahmKench.png",
                   "loading": "TahmKench_0.jpg",
-                  "square": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/Sejuani.png"
+                  "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Sejuani.png"
                 },
                 "title": "the River King",
                 "pickTurn": 3
@@ -67,7 +67,7 @@
                 "image": {
                   "full": "TahmKench.png",
                   "loading": "TahmKench_0.jpg",
-                  "square": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/Jinx.png"
+                  "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Jinx.png"
                 },
                 "title": "the River King",
                 "pickTurn": 2
@@ -78,7 +78,7 @@
                 "image": {
                   "full": "TahmKench.png",
                   "loading": "TahmKench_0.jpg",
-                  "square": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/Rumble.png"
+                  "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Rumble.png"
                 },
                 "title": "the River King",
                 "pickTurn": 5
@@ -89,7 +89,7 @@
                 "image": {
                   "full": "TahmKench.png",
                   "loading": "TahmKench_0.jpg",
-                  "square": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/Annie.png"
+                  "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Annie.png"
                 },
                 "title": "the River King",
                 "pickTurn": 4
@@ -138,38 +138,38 @@
                   {
                     "id": 1054,
                     "name": "Doran's Shield",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/1054.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/1054.png"
                   },
                   {
                     "id": 3084,
                     "name": "Overlord's Bloodmail",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3084.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3084.png"
                   },
                   {
                     "id": 2031,
                     "name": "Refillable Potion",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/2031.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/2031.png"
                   },
                   {
                     "id": 3009,
                     "name": "Immortal Shieldbow",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3009.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3009.png"
                   },
                   {
                     "id": 4633,
                     "name": "Goredrinker",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/4633.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/4633.png"
                   },
                   {
                     "id": 3067,
                     "name": "Kindlegem",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3067.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3067.png"
                   }
                 ],
                 "trinket": {
                   "id": 3340,
                   "name": "Stealth Ward",
-                  "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3340.png"
+                  "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3340.png"
                 },
                 "champion": {
                   "id": 223,
@@ -177,7 +177,7 @@
                   "image": {
                     "full": "TahmKench.png",
                     "loading": "TahmKench_0.jpg",
-                    "square": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/TahmKench.png"
+                    "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/TahmKench.png"
                   },
                   "title": "the River King",
                   "level": 15,
@@ -195,7 +195,7 @@
                   "bio": "I'm a top laner who loves to play tanks and bruisers.",
                   "icon": 505,
                   "images": {
-                    "icon": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/profileicon/505.png",
+                    "icon": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/profileicon/505.png",
                     "banner": "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/TahmKench_0.jpg"
                   }
                 },
@@ -219,13 +219,13 @@
                     "casts": 3,
                     "id": 4,
                     "name": "Flash",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/spell/SummonerFlash.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/spell/SummonerFlash.png"
                   },
                   {
                     "casts": 4,
                     "id": 12,
                     "name": "Teleport",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/spell/SummonerTeleport.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/spell/SummonerTeleport.png"
                   }
                 ],
                 "firstBlood": false,
@@ -257,38 +257,38 @@
                   {
                     "id": 1054,
                     "name": "Doran's Shield",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/1054.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/1054.png"
                   },
                   {
                     "id": 3084,
                     "name": "Overlord's Bloodmail",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3084.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3084.png"
                   },
                   {
                     "id": 2031,
                     "name": "Refillable Potion",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/2031.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/2031.png"
                   },
                   {
                     "id": 3009,
                     "name": "Immortal Shieldbow",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3009.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3009.png"
                   },
                   {
                     "id": 4633,
                     "name": "Goredrinker",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/4633.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/4633.png"
                   },
                   {
                     "id": 3067,
                     "name": "Kindlegem",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3067.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3067.png"
                   }
                 ],
                 "trinket": {
                   "id": 3340,
                   "name": "Stealth Ward",
-                  "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3340.png"
+                  "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3340.png"
                 },
                 "champion": {
                   "id": 223,
@@ -296,7 +296,7 @@
                   "image": {
                     "full": "Lillia.png",
                     "loading": "Lillia.jpg",
-                    "square": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/Lillia.png"
+                    "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Lillia.png"
                   },
                   "title": "the River King",
                   "level": 15,
@@ -314,7 +314,7 @@
                   "bio": "I'm a top laner who loves to play tanks and bruisers.",
                   "icon": 505,
                   "images": {
-                    "icon": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/profileicon/505.png",
+                    "icon": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/profileicon/505.png",
                     "banner": "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/TahmKench_0.jpg"
                   }
                 },
@@ -341,13 +341,13 @@
                     "casts": 3,
                     "id": 4,
                     "name": "Flash",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/spell/SummonerFlash.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/spell/SummonerFlash.png"
                   },
                   {
                     "casts": 4,
                     "id": 12,
                     "name": "Teleport",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/spell/SummonerTeleport.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/spell/SummonerTeleport.png"
                   }
                 ],
                 "firstBlood": false,
@@ -381,38 +381,38 @@
                   {
                     "id": 1054,
                     "name": "Doran's Shield",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/1054.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/1054.png"
                   },
                   {
                     "id": 3084,
                     "name": "Overlord's Bloodmail",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3084.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3084.png"
                   },
                   {
                     "id": 2031,
                     "name": "Refillable Potion",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/2031.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/2031.png"
                   },
                   {
                     "id": 3009,
                     "name": "Immortal Shieldbow",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3009.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3009.png"
                   },
                   {
                     "id": 4633,
                     "name": "Goredrinker",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/4633.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/4633.png"
                   },
                   {
                     "id": 3067,
                     "name": "Kindlegem",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3067.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3067.png"
                   }
                 ],
                 "trinket": {
                   "id": 3340,
                   "name": "Stealth Ward",
-                  "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3340.png"
+                  "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3340.png"
                 },
                 "champion": {
                   "id": 223,
@@ -420,7 +420,7 @@
                   "image": {
                     "full": "TahmKench.png",
                     "loading": "TahmKench_0.jpg",
-                    "square": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/Syndra.png"
+                    "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Syndra.png"
                   },
                   "title": "the River King",
                   "level": 15,
@@ -438,7 +438,7 @@
                   "bio": "I'm a top laner who loves to play tanks and bruisers.",
                   "icon": 505,
                   "images": {
-                    "icon": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/profileicon/505.png",
+                    "icon": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/profileicon/505.png",
                     "banner": "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/TahmKench_0.jpg"
                   }
                 },
@@ -465,13 +465,13 @@
                     "casts": 3,
                     "id": 4,
                     "name": "Flash",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/spell/SummonerFlash.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/spell/SummonerFlash.png"
                   },
                   {
                     "casts": 4,
                     "id": 12,
                     "name": "Teleport",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/spell/SummonerTeleport.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/spell/SummonerTeleport.png"
                   }
                 ],
                 "firstBlood": false,
@@ -505,38 +505,38 @@
                   {
                     "id": 1054,
                     "name": "Doran's Shield",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/1054.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/1054.png"
                   },
                   {
                     "id": 3084,
                     "name": "Overlord's Bloodmail",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3084.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3084.png"
                   },
                   {
                     "id": 2031,
                     "name": "Refillable Potion",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/2031.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/2031.png"
                   },
                   {
                     "id": 3009,
                     "name": "Immortal Shieldbow",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3009.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3009.png"
                   },
                   {
                     "id": 4633,
                     "name": "Goredrinker",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/4633.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/4633.png"
                   },
                   {
                     "id": 3067,
                     "name": "Kindlegem",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3067.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3067.png"
                   }
                 ],
                 "trinket": {
                   "id": 3340,
                   "name": "Stealth Ward",
-                  "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3340.png"
+                  "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3340.png"
                 },
                 "champion": {
                   "id": 223,
@@ -544,7 +544,7 @@
                   "image": {
                     "full": "TahmKench.png",
                     "loading": "TahmKench_0.jpg",
-                    "square": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/Varus.png"
+                    "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Varus.png"
                   },
                   "title": "the River King",
                   "level": 15,
@@ -562,7 +562,7 @@
                   "bio": "I'm a top laner who loves to play tanks and bruisers.",
                   "icon": 505,
                   "images": {
-                    "icon": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/profileicon/505.png",
+                    "icon": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/profileicon/505.png",
                     "banner": "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/TahmKench_0.jpg"
                   }
                 },
@@ -589,13 +589,13 @@
                     "casts": 3,
                     "id": 4,
                     "name": "Flash",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/spell/SummonerFlash.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/spell/SummonerFlash.png"
                   },
                   {
                     "casts": 4,
                     "id": 12,
                     "name": "Teleport",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/spell/SummonerTeleport.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/spell/SummonerTeleport.png"
                   }
                 ],
                 "firstBlood": false,
@@ -629,38 +629,38 @@
                   {
                     "id": 1054,
                     "name": "Doran's Shield",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/1054.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/1054.png"
                   },
                   {
                     "id": 3084,
                     "name": "Overlord's Bloodmail",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3084.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3084.png"
                   },
                   {
                     "id": 2031,
                     "name": "Refillable Potion",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/2031.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/2031.png"
                   },
                   {
                     "id": 3009,
                     "name": "Immortal Shieldbow",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3009.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3009.png"
                   },
                   {
                     "id": 4633,
                     "name": "Goredrinker",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/4633.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/4633.png"
                   },
                   {
                     "id": 3067,
                     "name": "Kindlegem",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3067.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3067.png"
                   }
                 ],
                 "trinket": {
                   "id": 3340,
                   "name": "Stealth Ward",
-                  "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3340.png"
+                  "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3340.png"
                 },
                 "champion": {
                   "id": 223,
@@ -668,7 +668,7 @@
                   "image": {
                     "full": "TahmKench.png",
                     "loading": "TahmKench_0.jpg",
-                    "square": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/Seraphine.png"
+                    "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Seraphine.png"
                   },
                   "title": "the River King",
                   "level": 15,
@@ -686,7 +686,7 @@
                   "bio": "I'm a top laner who loves to play tanks and bruisers.",
                   "icon": 505,
                   "images": {
-                    "icon": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/profileicon/505.png",
+                    "icon": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/profileicon/505.png",
                     "banner": "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/TahmKench_0.jpg"
                   }
                 },
@@ -713,13 +713,13 @@
                     "casts": 3,
                     "id": 4,
                     "name": "Flash",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/spell/SummonerFlash.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/spell/SummonerFlash.png"
                   },
                   {
                     "casts": 4,
                     "id": 12,
                     "name": "Teleport",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/spell/SummonerTeleport.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/spell/SummonerTeleport.png"
                   }
                 ],
                 "firstBlood": false,
@@ -764,7 +764,7 @@
                 "image": {
                   "full": "TahmKench.png",
                   "loading": "TahmKench_0.jpg",
-                  "square": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/Caitlyn.png"
+                  "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Caitlyn.png"
                 },
                 "title": "the River King",
                 "pickTurn": 5
@@ -775,7 +775,7 @@
                 "image": {
                   "full": "TahmKench.png",
                   "loading": "TahmKench_0.jpg",
-                  "square": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/Lucian.png"
+                  "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Lucian.png"
                 },
                 "title": "the River King",
                 "pickTurn": 3
@@ -786,7 +786,7 @@
                 "image": {
                   "full": "TahmKench.png",
                   "loading": "TahmKench_0.jpg",
-                  "square": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/Renata.png"
+                  "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Renata.png"
                 },
                 "title": "the River King",
                 "pickTurn": 2
@@ -797,7 +797,7 @@
                 "image": {
                   "full": "TahmKench.png",
                   "loading": "TahmKench_0.jpg",
-                  "square": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/Hwei.png"
+                  "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Hwei.png"
                 },
                 "title": "the River King",
                 "pickTurn": 1
@@ -808,7 +808,7 @@
                 "image": {
                   "full": "TahmKench.png",
                   "loading": "TahmKench_0.jpg",
-                  "square": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/Blitzcrank.png"
+                  "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Blitzcrank.png"
                 },
                 "title": "the River King",
                 "pickTurn": 4
@@ -853,38 +853,38 @@
                   {
                     "id": 1054,
                     "name": "Doran's Shield",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/1054.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/1054.png"
                   },
                   {
                     "id": 3084,
                     "name": "Overlord's Bloodmail",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3084.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3084.png"
                   },
                   {
                     "id": 2031,
                     "name": "Refillable Potion",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/2031.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/2031.png"
                   },
                   {
                     "id": 3009,
                     "name": "Immortal Shieldbow",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3009.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3009.png"
                   },
                   {
                     "id": 4633,
                     "name": "Goredrinker",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/4633.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/4633.png"
                   },
                   {
                     "id": 3067,
                     "name": "Kindlegem",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3067.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3067.png"
                   }
                 ],
                 "trinket": {
                   "id": 3340,
                   "name": "Stealth Ward",
-                  "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3340.png"
+                  "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3340.png"
                 },
                 "champion": {
                   "id": 223,
@@ -892,7 +892,7 @@
                   "image": {
                     "full": "TahmKench.png",
                     "loading": "TahmKench_0.jpg",
-                    "square": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/Garen.png"
+                    "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Garen.png"
                   },
                   "title": "the River King",
                   "level": 15,
@@ -929,13 +929,13 @@
                     "casts": 3,
                     "id": 4,
                     "name": "Flash",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/spell/SummonerFlash.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/spell/SummonerFlash.png"
                   },
                   {
                     "casts": 4,
                     "id": 12,
                     "name": "Teleport",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/spell/SummonerTeleport.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/spell/SummonerTeleport.png"
                   }
                 ],
                 "firstBlood": true,
@@ -969,38 +969,38 @@
                   {
                     "id": 1054,
                     "name": "Doran's Shield",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/1054.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/1054.png"
                   },
                   {
                     "id": 3084,
                     "name": "Overlord's Bloodmail",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3084.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3084.png"
                   },
                   {
                     "id": 2031,
                     "name": "Refillable Potion",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/2031.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/2031.png"
                   },
                   {
                     "id": 3009,
                     "name": "Immortal Shieldbow",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3009.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3009.png"
                   },
                   {
                     "id": 4633,
                     "name": "Goredrinker",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/4633.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/4633.png"
                   },
                   {
                     "id": 3067,
                     "name": "Kindlegem",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3067.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3067.png"
                   }
                 ],
                 "trinket": {
                   "id": 3340,
                   "name": "Stealth Ward",
-                  "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3340.png"
+                  "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3340.png"
                 },
                 "champion": {
                   "id": 223,
@@ -1008,7 +1008,7 @@
                   "image": {
                     "full": "Lillia.png",
                     "loading": "Lillia.jpg",
-                    "square": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/Vi.png"
+                    "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Vi.png"
                   },
                   "title": "the River King",
                   "level": 15,
@@ -1026,7 +1026,7 @@
                   "bio": "I'm a top laner who loves to play tanks and bruisers.",
                   "icon": 505,
                   "images": {
-                    "icon": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/profileicon/505.png",
+                    "icon": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/profileicon/505.png",
                     "banner": "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/TahmKench_0.jpg"
                   }
                 },
@@ -1053,13 +1053,13 @@
                     "casts": 3,
                     "id": 4,
                     "name": "Flash",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/spell/SummonerFlash.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/spell/SummonerFlash.png"
                   },
                   {
                     "casts": 4,
                     "id": 12,
                     "name": "Teleport",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/spell/SummonerTeleport.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/spell/SummonerTeleport.png"
                   }
                 ],
                 "firstBlood": false,
@@ -1093,38 +1093,38 @@
                   {
                     "id": 1054,
                     "name": "Doran's Shield",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/1054.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/1054.png"
                   },
                   {
                     "id": 3084,
                     "name": "Overlord's Bloodmail",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3084.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3084.png"
                   },
                   {
                     "id": 2031,
                     "name": "Refillable Potion",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/2031.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/2031.png"
                   },
                   {
                     "id": 3009,
                     "name": "Immortal Shieldbow",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3009.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3009.png"
                   },
                   {
                     "id": 4633,
                     "name": "Goredrinker",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/4633.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/4633.png"
                   },
                   {
                     "id": 3067,
                     "name": "Kindlegem",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3067.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3067.png"
                   }
                 ],
                 "trinket": {
                   "id": 3340,
                   "name": "Stealth Ward",
-                  "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3340.png"
+                  "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3340.png"
                 },
                 "champion": {
                   "id": 223,
@@ -1132,7 +1132,7 @@
                   "image": {
                     "full": "TahmKench.png",
                     "loading": "TahmKench_0.jpg",
-                    "square": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/Orianna.png"
+                    "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Orianna.png"
                   },
                   "title": "the River King",
                   "level": 15,
@@ -1150,7 +1150,7 @@
                   "bio": "I'm a top laner who loves to play tanks and bruisers.",
                   "icon": 505,
                   "images": {
-                    "icon": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/profileicon/505.png",
+                    "icon": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/profileicon/505.png",
                     "banner": "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/TahmKench_0.jpg"
                   }
                 },
@@ -1177,13 +1177,13 @@
                     "casts": 3,
                     "id": 4,
                     "name": "Flash",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/spell/SummonerFlash.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/spell/SummonerFlash.png"
                   },
                   {
                     "casts": 4,
                     "id": 12,
                     "name": "Teleport",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/spell/SummonerTeleport.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/spell/SummonerTeleport.png"
                   }
                 ],
                 "firstBlood": false,
@@ -1217,38 +1217,38 @@
                   {
                     "id": 1054,
                     "name": "Doran's Shield",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/1054.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/1054.png"
                   },
                   {
                     "id": 3084,
                     "name": "Overlord's Bloodmail",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3084.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3084.png"
                   },
                   {
                     "id": 2031,
                     "name": "Refillable Potion",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/2031.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/2031.png"
                   },
                   {
                     "id": 3009,
                     "name": "Immortal Shieldbow",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3009.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3009.png"
                   },
                   {
                     "id": 4633,
                     "name": "Goredrinker",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/4633.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/4633.png"
                   },
                   {
                     "id": 3067,
                     "name": "Kindlegem",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3067.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3067.png"
                   }
                 ],
                 "trinket": {
                   "id": 3340,
                   "name": "Stealth Ward",
-                  "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3340.png"
+                  "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3340.png"
                 },
                 "champion": {
                   "id": 223,
@@ -1256,7 +1256,7 @@
                   "image": {
                     "full": "TahmKench.png",
                     "loading": "TahmKench_0.jpg",
-                    "square": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/MissFortune.png"
+                    "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/MissFortune.png"
                   },
                   "title": "the River King",
                   "level": 15,
@@ -1274,7 +1274,7 @@
                   "bio": "I'm a top laner who loves to play tanks and bruisers.",
                   "icon": 505,
                   "images": {
-                    "icon": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/profileicon/505.png",
+                    "icon": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/profileicon/505.png",
                     "banner": "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/TahmKench_0.jpg"
                   }
                 },
@@ -1301,13 +1301,13 @@
                     "casts": 3,
                     "id": 4,
                     "name": "Flash",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/spell/SummonerFlash.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/spell/SummonerFlash.png"
                   },
                   {
                     "casts": 4,
                     "id": 12,
                     "name": "Teleport",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/spell/SummonerTeleport.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/spell/SummonerTeleport.png"
                   }
                 ],
                 "firstBlood": false,
@@ -1341,38 +1341,38 @@
                   {
                     "id": 1054,
                     "name": "Doran's Shield",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/1054.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/1054.png"
                   },
                   {
                     "id": 3084,
                     "name": "Overlord's Bloodmail",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3084.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3084.png"
                   },
                   {
                     "id": 2031,
                     "name": "Refillable Potion",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/2031.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/2031.png"
                   },
                   {
                     "id": 3009,
                     "name": "Immortal Shieldbow",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3009.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3009.png"
                   },
                   {
                     "id": 4633,
                     "name": "Goredrinker",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/4633.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/4633.png"
                   },
                   {
                     "id": 3067,
                     "name": "Kindlegem",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3067.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3067.png"
                   }
                 ],
                 "trinket": {
                   "id": 3340,
                   "name": "Stealth Ward",
-                  "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3340.png"
+                  "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3340.png"
                 },
                 "champion": {
                   "id": 223,
@@ -1380,7 +1380,7 @@
                   "image": {
                     "full": "TahmKench.png",
                     "loading": "TahmKench_0.jpg",
-                    "square": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/Leona.png"
+                    "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Leona.png"
                   },
                   "title": "the River King",
                   "level": 15,
@@ -1398,7 +1398,7 @@
                   "bio": "I'm a top laner who loves to play tanks and bruisers.",
                   "icon": 505,
                   "images": {
-                    "icon": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/profileicon/505.png",
+                    "icon": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/profileicon/505.png",
                     "banner": "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/TahmKench_0.jpg"
                   }
                 },
@@ -1425,13 +1425,13 @@
                     "casts": 3,
                     "id": 4,
                     "name": "Flash",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/spell/SummonerFlash.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/spell/SummonerFlash.png"
                   },
                   {
                     "casts": 4,
                     "id": 12,
                     "name": "Teleport",
-                    "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/spell/SummonerTeleport.png"
+                    "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/spell/SummonerTeleport.png"
                   }
                 ],
                 "firstBlood": false,

@@ -6,7 +6,7 @@
         "canSub": true,
         "email": "topdiff@gmail.com",
         "images": {
-          "icon": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/profileicon/505.png"
+          "icon": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/profileicon/505.png"
           // "banner": "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/TahmKench_0.jpg"
         },
         "level": 30,
@@ -28,37 +28,37 @@
             {
               "id": 1054,
               "name": "Doran's Shield",
-              "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/1054.png"
+              "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/1054.png"
             },
             {
               "id": 3084,
               "name": "Overlord's Bloodmail",
-              "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3084.png"
+              "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3084.png"
             },
             {
               "id": 2031,
               "name": "Refillable Potion",
-              "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/2031.png"
+              "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/2031.png"
             },
             {
               "id": 3009,
               "name": "Immortal Shieldbow",
-              "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3009.png"
+              "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3009.png"
             },
             {
               "id": 4633,
               "name": "Goredrinker",
-              "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/4633.png"
+              "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/4633.png"
             },
             {
               "id": 3067,
               "name": "Kindlegem",
-              "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3067.png"
+              "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3067.png"
             },
             {
               "id": 3340,
               "name": "Stealth Ward",
-              "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3340.png"
+              "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3340.png"
             }
           ],
           "champion": {
@@ -67,7 +67,7 @@
             "image": {
               "full": "TahmKench.png",
               "loading": "TahmKench_0.jpg",
-              "square": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/TahmKench.png"
+              "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/TahmKench.png"
             },
             "title": "the River King",
             "level": 15,
@@ -103,13 +103,13 @@
               "casts": 3,
               "id": 4,
               "name": "Flash",
-              "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/spell/SummonerFlash.png"
+              "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/spell/SummonerFlash.png"
             },
             {
               "casts": 4,
               "id": 12,
               "name": "Teleport",
-              "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/spell/SummonerTeleport.png"
+              "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/spell/SummonerTeleport.png"
             }
           ],
           "team": {
@@ -127,37 +127,37 @@
               {
                 "id": 1054,
                 "name": "Doran's Shield",
-                "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/1054.png"
+                "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/1054.png"
               },
               {
                 "id": 3084,
                 "name": "Overlord's Bloodmail",
-                "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3084.png"
+                "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3084.png"
               },
               {
                 "id": 2031,
                 "name": "Refillable Potion",
-                "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/2031.png"
+                "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/2031.png"
               },
               {
                 "id": 3009,
                 "name": "Immortal Shieldbow",
-                "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3009.png"
+                "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3009.png"
               },
               {
                 "id": 4633,
                 "name": "Goredrinker",
-                "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/4633.png"
+                "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/4633.png"
               },
               {
                 "id": 3067,
                 "name": "Kindlegem",
-                "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3067.png"
+                "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3067.png"
               },
               {
                 "id": 3340,
                 "name": "Stealth Ward",
-                "image": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/item/3340.png"
+                "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3340.png"
               }
             ],
             "champion": {
@@ -166,7 +166,7 @@
               "image": {
                 "full": "Garen.png",
                 "loading": "Garen.jpg",
-                "square": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/Garen.png"
+                "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Garen.png"
               },
               "title": "the River King",
               "level": 14,
@@ -230,7 +230,7 @@
               "image": {
                 "full": "Aatrox.png",
                 "loading": "Aatrox.jpg",
-                "square": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/Aatrox.png"
+                "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Aatrox.png"
               },
               "title": "the River King",
               "level": 15,
@@ -261,7 +261,7 @@
               "image": {
                 "full": "Darius.png",
                 "loading": "Darius.jpg",
-                "square": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/Darius.png"
+                "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Darius.png"
               },
               "title": "the River King",
               "level": 15,
@@ -292,7 +292,7 @@
               "image": {
                 "full": "Garen.png",
                 "loading": "Garen.jpg",
-                "square": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/Garen.png"
+                "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Garen.png"
               },
               "title": "the River King",
               "level": 15,
@@ -323,7 +323,7 @@
               "image": {
                 "full": "TahmKench.png",
                 "loading": "TahmKench.jpg",
-                "square": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/TahmKench.png"
+                "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/TahmKench.png"
               },
               "title": "the River King",
               "level": 15,
@@ -354,7 +354,7 @@
               "image": {
                 "full": "Mordekaiser.png",
                 "loading": "Mordekaiser.jpg",
-                "square": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/Mordekaiser.png"
+                "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Mordekaiser.png"
               },
               "title": "the River King",
               "level": 15,
@@ -385,7 +385,7 @@
               "image": {
                 "full": "Aatrox.png",
                 "loading": "Aatrox.jpg",
-                "square": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/Aatrox.png"
+                "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Aatrox.png"
               },
               "title": "the River King",
               "level": 15,
@@ -416,7 +416,7 @@
               "image": {
                 "full": "Darius.png",
                 "loading": "Darius.jpg",
-                "square": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/Darius.png"
+                "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Darius.png"
               },
               "title": "the River King",
               "level": 15,
@@ -447,7 +447,7 @@
               "image": {
                 "full": "Garen.png",
                 "loading": "Garen.jpg",
-                "square": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/Garen.png"
+                "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Garen.png"
               },
               "title": "the River King",
               "level": 15,
@@ -478,7 +478,7 @@
               "image": {
                 "full": "TahmKench.png",
                 "loading": "TahmKench.jpg",
-                "square": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/TahmKench.png"
+                "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/TahmKench.png"
               },
               "title": "the River King",
               "level": 15,
@@ -509,7 +509,7 @@
               "image": {
                 "full": "Mordekaiser.png",
                 "loading": "Mordekaiser.jpg",
-                "square": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/Mordekaiser.png"
+                "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Mordekaiser.png"
               },
               "title": "the River King",
               "level": 15,
@@ -540,7 +540,7 @@
               "image": {
                 "full": "Aatrox.png",
                 "loading": "Aatrox.jpg",
-                "square": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/Aatrox.png"
+                "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Aatrox.png"
               },
               "title": "the River King",
               "level": 15,
@@ -571,7 +571,7 @@
               "image": {
                 "full": "Darius.png",
                 "loading": "Darius.jpg",
-                "square": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/Darius.png"
+                "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Darius.png"
               },
               "title": "the River King",
               "level": 15,
@@ -602,7 +602,7 @@
               "image": {
                 "full": "Garen.png",
                 "loading": "Garen.jpg",
-                "square": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/Garen.png"
+                "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Garen.png"
               },
               "title": "the River King",
               "level": 15,
@@ -633,7 +633,7 @@
               "image": {
                 "full": "TahmKench.png",
                 "loading": "TahmKench.jpg",
-                "square": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/TahmKench.png"
+                "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/TahmKench.png"
               },
               "title": "the River King",
               "level": 15,
@@ -664,7 +664,7 @@
               "image": {
                 "full": "Mordekaiser.png",
                 "loading": "Mordekaiser.jpg",
-                "square": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/Mordekaiser.png"
+                "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Mordekaiser.png"
               },
               "title": "the River King",
               "level": 15,
@@ -697,7 +697,7 @@
               "image": {
                 "full": "Aatrox.png",
                 "loading": "Aatrox.jpg",
-                "square": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/Aatrox.png"
+                "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Aatrox.png"
               },
               "title": "the River King",
               "level": 15,
@@ -728,7 +728,7 @@
               "image": {
                 "full": "Darius.png",
                 "loading": "Darius.jpg",
-                "square": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/Darius.png"
+                "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Darius.png"
               },
               "title": "the River King",
               "level": 15,
@@ -759,7 +759,7 @@
               "image": {
                 "full": "Garen.png",
                 "loading": "Garen.jpg",
-                "square": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/Garen.png"
+                "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Garen.png"
               },
               "title": "the River King",
               "level": 15,
@@ -792,7 +792,7 @@
               "image": {
                 "full": "Aatrox.png",
                 "loading": "Aatrox.jpg",
-                "square": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/Aatrox.png"
+                "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Aatrox.png"
               },
               "title": "the River King",
               "level": 15,
@@ -823,7 +823,7 @@
               "image": {
                 "full": "Darius.png",
                 "loading": "Darius.jpg",
-                "square": "https://ddragon.leagueoflegends.com/cdn/14.20.1/img/champion/Darius.png"
+                "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Darius.png"
               },
               "title": "the River King",
               "level": 15,

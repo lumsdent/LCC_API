@@ -1,16 +1,18 @@
+import os
 from bson import ObjectId
-from flask import request, jsonify
-from pymongo import MongoClient
-from pymongo.errors import PyMongoError
-from mongo_connection import MongoConnection
-from . import routes
+from flask import request, jsonify, Blueprint
+from .mongo_connection import MongoConnection
 from .players import add_team_to_player
 
+bp = Blueprint('teams', __name__)
 teams = MongoConnection().get_teams_collection()
 
-@routes.route('/teams/<season>/add', methods=['POST'])
+@bp.route('/teams/<season>/add', methods=['POST'])
 def add_team(season):
     data = request.json
+    password = os.getenv("ADMIN_PW")
+    if(data["password"] != password):
+        return jsonify({'message': 'Incorrect password'}), 401
     roster = data.get("roster", [])
     if teams.find_one({"team_name": data["teamName"]}) is None:
         teams.insert_one({"team_name": data["teamName"], "rosters": {season: roster}})
@@ -24,18 +26,18 @@ def add_team(season):
     else:
         return jsonify({'message': 'Team already exists'})
  
-@routes.route('/teams/<season>', methods=['GET'])
+@bp.route('/teams/<season>', methods=['GET'])
 def get_all_teams_by_season(season):
     season = int(season)
     team_data = list(teams.find({f"rosters.{season}": {"$exists": True, "$ne": [], "$ne": None}}, {'_id': 0}))
     return jsonify(team_data)
 
-@routes.route('/teams/all', methods=['GET'])
+@bp.route('/teams/all', methods=['GET'])
 def get_all_teams():
     team_data = list(teams.find({}, {'_id': 0}))
     return jsonify(team_data)
 
-@routes.route('/roster/<team_name>/<season>', methods=['GET'])
+@bp.route('/roster/<team_name>/<season>', methods=['GET'])
 def get_team_roster_by_season(team_name, season):
     team_data = teams.find_one({"team_name": team_name}, {'_id': 0})
     if team_data and "rosters" in team_data and team_data["rosters"][int(season)]:
@@ -43,18 +45,20 @@ def get_team_roster_by_season(team_name, season):
     else:
         return jsonify({'message': 'No roster found'})
 
-@routes.route('/roster/<team_name>', methods=['GET'])
+@bp.route('/roster/<team_name>', methods=['GET'])
 def get_team_roster(team_name):
     team_data = teams.find_one({"team_name": team_name}, {'_id': 0})
     return jsonify(team_data)
 
-@routes.route('/roster/<team_name>/<season>/add', methods=['POST'])
+@bp.route('/roster/<team_name>/<season>/add', methods=['POST'])
 def add_player_to_team(team_name, season):
     data = request.json
-
-    if teams.find_one({"team_name": team_name}) is not None:
+    password = os.getenv("ADMIN_PW")
+    if(data["password"] != password):
+        return jsonify({'message': 'Incorrect password'}), 401
+    if teams.find_one({"team_name": data["team_name"]}) is not None:
         updated_team = teams.find_one_and_update(
-            {"team_name": team_name },
+            {"team_name": data["team_name"] },
             {"$addToSet": {f"rosters.{season}": data}},
             return_document=True
         )
