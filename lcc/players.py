@@ -58,7 +58,6 @@ def get_runes():
     runes = ddragon_get_runes_dict()
     return jsonify(runes)
 
-    
 def get_riot_data(summoner_name, summoner_tag):
     account_url = f"https://americas.api.riotgames.com/riot/account/v1/accounts/by-riot-id/{summoner_name}/{summoner_tag}"
     account = fetch_riot_data(account_url)
@@ -75,7 +74,7 @@ def update_player_matches(puuid, match_id):
 def add_team_to_player(data, team_name, season):
     result = players.update_one(
         {"profile.puuid": data["player"]["puuid"]},
-        {"$addToSet": {"teams": {season: {"role":data["role"],"name": data["team_name"]}}}}
+        {"$addToSet": {"teams": {season: {"role":data["role"],"name": team_name}}}}
     )
     return result
 

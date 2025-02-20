@@ -3,6 +3,7 @@ from bson import ObjectId
 from flask import request, jsonify, Blueprint
 from .mongo_connection import MongoConnection
 from .players import add_team_to_player
+from datetime import datetime
 
 bp = Blueprint('teams', __name__)
 teams = MongoConnection().get_teams_collection()
@@ -15,12 +16,12 @@ def add_team(season):
         return jsonify({'message': 'Incorrect password'}), 401
     roster = data.get("roster", [])
     if teams.find_one({"team_name": data["teamName"]}) is None:
-        teams.insert_one({"team_name": data["teamName"], "rosters": {season: roster}})
+        teams.insert_one({"team_name": data["teamName"], "rosters": {season: roster}, "image": data["image"]})
         return jsonify({'message': 'Team added successfully'})
     elif teams.find_one({"team_name": data["teamName"], f"rosters.{season}": {"$exists": False}}):
         teams.update_one(
             {"team_name": data["teamName"]},
-            {"$set": {f"rosters.{season}": roster}}
+            {"$set": {f"rosters.{season}": roster, "image": data["image"]}}
         )
         return jsonify({'message': 'Team roster updated'})
     else:
@@ -70,7 +71,25 @@ def add_player_to_team(team_name, season):
     else:
         return jsonify({'message': 'Team not found'})
 
+@bp.route('/roster/assign', methods=['POST'])
+def assign_player_to_team():
+    data = request.json
+    password = os.getenv("ADMIN_PW")
+    if(data["password"] != password):
+        return jsonify({'message': 'Incorrect password'}), 401
+    if teams.find_one({"team_name": data["teamName"]}) is not None:
+        updated_team = teams.find_one_and_update(
+            {"team_name": data["teamName"] },
+            {"$push": {f"rosters.{data["season"]}": {"name": data["player"]["name"], "role": data["role"], "puuid": data["player"]["puuid"], "date_joined": datetime.now()}}},
+            return_document=True
+        )
+        add_team_to_player(data, data["teamName"], data["season"])
 
+        updated_team = convert_object_ids(updated_team)
+        print(updated_team)
+        return jsonify({'message': 'Player added to team roster', 'updatedTeam': updated_team})
+    else:
+        return jsonify({'message': 'Team not found'})
 
 def convert_object_ids(document):
     if isinstance(document, list):
