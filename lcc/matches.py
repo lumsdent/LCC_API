@@ -87,7 +87,7 @@ def get_player_season_stats(season_id):
             "roles": {"$addToSet": "$info.teams.players.role"},
             "soloKills": {"$sum": "$info.teams.players.soloKills"},
             "effectiveHealAndShielding": {"$sum": {"$ifNull": ["$info.teams.players.effectiveHealAndShielding", 0]}},
-            "firstBloods": {"$sum": {"$cond": [{"$eq": ["$info.teams.players.firstBloodKill", True]}, 1, 0]}},
+            "firstBloods": {"$sum": {"$cond": [{"$eq": ["$info.teams.players.firstBlood", True]}, 1, 0]}},
             "killParticipationSum": {"$sum": "$info.teams.players.killParticipation"},
         }},
         
