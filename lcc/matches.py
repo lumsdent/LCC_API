@@ -14,24 +14,37 @@ def add_match():
     data = request.json
     if(data["password"] != password):
         return jsonify({'message': 'Incorrect password'}), 401
-    print('Adding match')
-    print(data)
+    
+    print('Processing match')
     match_id = data["matchId"]
-    if matches.find_one({"metadata.matchId": "NA1_" + match_id}) is None:
-        processed_match = process_match(data)
+    processed_match = process_match(data)
+    match_query = {"metadata.matchId": "NA1_" + match_id}
+    
+    # Check if match exists
+    existing_match = matches.find_one(match_query)
+    is_new_match = existing_match is None
+    
+    if is_new_match:
+        # Insert new match
         save_match(processed_match)
-
-        # SAVE MATCH TO PLAYER HISTORY
-        roles = ["TOP", "JUNGLE", "MIDDLE", "BOTTOM", "SUPPORT"]
-        matchups_data = []
-        for role in roles:
-            matchups = get_matchups(processed_match, role)
-            matchups_data.extend(matchups)
-        for matchup in matchups_data:
-            save_matchup(matchup)
-        return jsonify({'message': 'Match added successfully'}), 201
+        action = "added"
     else:
-        return jsonify({'message': 'Match already exists'}), 409
+        # Update existing match
+        update_match(match_query, processed_match)
+        action = "updated"
+    
+    # Process matchups regardless if new or updated
+    roles = ["TOP", "JUNGLE", "MIDDLE", "BOTTOM", "SUPPORT"]
+    matchups_data = []
+    for role in roles:
+        matchups = get_matchups(processed_match, role)
+        matchups_data.extend(matchups)
+    
+    for matchup in matchups_data:
+        save_matchup(matchup)
+    
+    status_code = 201 if is_new_match else 200
+    return jsonify({'message': f'Match {action} successfully'}), status_code
 
 @bp.route('/', methods=['GET'])
 def get_all_matches():
@@ -45,6 +58,9 @@ def get_match(match_id):
 
 def save_match(data):
     matches.insert_one(data)
+
+def update_match(query, data):
+    matches.replace_one(query, data)
     
 def save_matchup(matchup):
     save_match_history(matchup)
