@@ -8,7 +8,7 @@ from .process_match_reports import get_champion_mastery, find_player
 bp = Blueprint('players', __name__, url_prefix='/players')
 
 DDRAGON_URL = "https://ddragon.leagueoflegends.com/cdn/"
-CDN_VERSION = "15.1.1"
+CDN_VERSION = "16.3.1"
 players = MongoConnection().get_player_collection()
 
 @bp.route('/add', methods=['POST'])
@@ -161,7 +161,6 @@ def delete_player_match_history_endpoint(puuid):
     
     Returns:
     - 200 Success message if deleted
-    - 401 Unauthorized if password is incorrect
     - 404 Not found if player or match doesn't exist
     """
 

@@ -5,7 +5,7 @@ from marshmallow import Schema, fields, EXCLUDE
 from .mongo_connection import MongoConnection
 
 DDRAGON_URL = "https://ddragon.leagueoflegends.com/cdn/"
-CDN_VERSION = "15.1.1"
+CDN_VERSION = "16.3.1"
 
 def process_match(user_data):
     
