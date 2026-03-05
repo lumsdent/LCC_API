@@ -7,7 +7,7 @@ class MongoConnection:
     def __init__(self):
         load_dotenv()
         self.client = MongoClient(os.getenv("MONGO_URI"), server_api=ServerApi('1'))
-        self.db = self.client['lcc_lol']
+        self.db = self.client[os.getenv("MONGO_COLLECTION")]
 
     def get_matches_collection(self):
         return self.db['matches']

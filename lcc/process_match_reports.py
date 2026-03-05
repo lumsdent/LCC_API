@@ -5,27 +5,18 @@ from marshmallow import Schema, fields, EXCLUDE
 from .mongo_connection import MongoConnection
 
 DDRAGON_URL = "https://ddragon.leagueoflegends.com/cdn/"
-CDN_VERSION = "15.1.1"
+CDN_VERSION = "16.3.1"
 
 def process_match(user_data):
     
     match_url = f"https://americas.api.riotgames.com/lol/match/v5/matches/NA1_{user_data["matchId"]}"
     riot_match_data = fetch_riot_data(match_url)
 
-    processed_match = process_match_data(riot_match_data, user_data)
     # Fetch and process timeline data
-    # timeline_url = match_url + "/timeline"
-    # riot_timeline_data = fetch_riot_data(timeline_url)
-    # processed_timeline_data = process_timeline_data(riot_timeline_data)
-    # position_data = get_position_data(riot_match_data["info"]["participants"])
-    # for position, teams in position_data.items():
-    #     processed_timeline_data[teams[100]]["csd14"] = processed_timeline_data[teams[100]]["cs14"] - processed_timeline_data[teams[200]]["cs14"]
-    #     processed_timeline_data[teams[200]]["csd14"] = processed_timeline_data[teams[200]]["cs14"] - processed_timeline_data[teams[100]]["cs14"]
-    # # Merge the timeline data with the match data
-    # processed_match["participants"] = [dict(participant, **processed_timeline_data[participant["puuid"]]) for participant in processed_match["participants"]]
-    
-    # ordered_keys = ["puuid", "player", "champion", "role", "win", "gameLength", "champLevel", "kills", "deaths", "assists", "kda", "kp", "cs", "csm", "cs14", "csd14", "gold", "gpm", "dmg", "dpm", "teamDmg%", "dmgTakenTeam%", "firstBlood", "soloBolos", "tripleKills", "quadraKills", "pentaKills", "multikills", "visionScore", "vspm", "ccTime", "effectiveHealShield", "objectivesStolen"]
-    # processed_match["participants"] = [{key: participant[key] for key in ordered_keys} for participant in processed_match["participants"]]
+    timeline_url = match_url + "/timeline"
+    riot_timeline_data = fetch_riot_data(timeline_url)
+    timeline_data = process_timeline_data(riot_timeline_data)
+    processed_match = process_match_data(riot_match_data, timeline_data, user_data)
     
     return processed_match
     
@@ -73,55 +64,7 @@ def get_position_data(participants):
         if position in position_data and team in position_data[position]:
             position_data[position][team] = puuid
     return position_data
-
-# def aggregate_player_season_data(match):
-#     for participant in match["participants"]:
-#         puuid = participant['puuid']
-#         #get player season data from db
-#         db = MongoConnection().get_player_stats_collection()
-#         player = db.find_one({"puuid": puuid})
-        
-#         if not player:
-#             player = {
-#                 'puuid': puuid,
-#                 'riotIdGameName': participant['player'],
-#                 'matches': 0,
-#                 'game_minutes': 0,
-#                 'kills': 0,
-#                 'deaths': 0,
-#                 'assists': 0,
-#                 'kda': 0,
-#                 'dmg': 0,
-#                 'dpm': 0,
-#                 'cs': 0,
-#                 'csm': 0,
-#                 'totalCsd14': 0,
-#                 'avgCsd14': 0,
-#                 'first_blood': 0,
-#                 'solo_kills': 0
-#             }
-#         player['matches'] += 1
-#         player['game_minutes'] += round(participant['gameLength'], 2)
-#         player['kills'] += participant['kills']
-#         player['deaths'] += participant['deaths']
-#         player['assists'] += participant['assists']
-#         if player['deaths'] == 0:
-#             player['kda'] = player['kills'] + player['assists']
-#         else:
-#             player['kda'] = round((player['kills'] + player['assists']) / player['deaths'], 2)
-#         player['dmg'] += participant['dmg']
-#         player['dpm'] = round(player['dmg'] / player['game_minutes'], 2)
-#         player['cs'] += participant['cs']
-#         player['csm'] = round(player['cs'] / player['game_minutes'], 2)
-#         player['totalCsd14'] += participant['csd14']
-#         player['first_blood'] += participant['firstBlood']
-#         player['solo_kills'] += participant['soloBolos']
-        
-#     # for player in players:
-#     #     for puuid, pdata in player.items():
-#     #         pdata['avgCsd14'] = round(pdata['totalCsd14']/pdata["matches"], 1)
-#         db.update_one({"puuid": puuid}, {"$set": player}, upsert=True)
-    
+   
 
 def fetch_riot_data(url):
     api_key = os.getenv("RIOT_API_KEY")
@@ -131,7 +74,7 @@ def fetch_riot_data(url):
         raise requests.exceptions.HTTPError(f"Failed to fetch match data: {response.text}")
     return response.json()
         
-def process_match_data(match_data, user_data):
+def process_match_data(match_data, timeline_data, user_data):
     print("user_data", user_data)
     match_information = {}
     blue_team_players = []
@@ -146,9 +89,27 @@ def process_match_data(match_data, user_data):
         "gameVersion": match_data["info"]["gameVersion"],
         }
     
+    csd14_data = calculate_csd14(match_data, timeline_data)
     
     for participant in match_data["info"]["participants"]:
         player = get_player(participant, match_overview)
+        # Add CS@14 from timeline data
+        puuid = participant["puuid"]
+        if puuid in timeline_data:
+            player["cs14"] = timeline_data[puuid]["cs14"]
+        else:
+            # Fallback if timeline data is missing
+            print ("Timeline data not found for puuid:", puuid, match_data["metadata"]["matchId"])
+            player["cs14"] = round(player["csm"] * 14)
+        
+        # Add CSD@14 data
+        if puuid in csd14_data:
+            player["csd"] = csd14_data[puuid]
+        else:
+            # Fallback if CSD@14 data is missing
+            print ("CSD@14 data not found for puuid:", puuid, match_data["metadata"]["matchId"])
+            player["csd"] = 0
+
         if participant["teamId"] == 100:
             blue_game_result = participant["win"]
             blue_team_players.append(player)
@@ -276,6 +237,36 @@ def process_timeline_data(timeline_data):
         participant_data_14["cs14"] = pdata["minionsKilled"] + pdata["jungleMinionsKilled"]
         participants[puuid] = participant_data_14
     return participants
+
+def calculate_csd14(match_data, timeline_data):
+    """Calculate CS difference at 14 minutes for each player compared to their lane opponent"""
+    
+    # Get position data to identify lane matchups
+    position_data = get_position_data(match_data["info"]["participants"])
+    
+    # Create a dictionary to store CSD@14 values
+    csd14_data = {}
+    
+    # Process each role to find matchups
+    for role in ["TOP", "JUNGLE", "MIDDLE", "BOTTOM", "UTILITY"]:
+        # Skip if either team doesn't have this role
+        if position_data[role][100] is None or position_data[role][200] is None:
+            continue
+            
+        # Get puuids for both players in this role
+        blue_player_puuid = position_data[role][100]
+        red_player_puuid = position_data[role][200]
+        
+        # Get CS@14 for both players
+        if blue_player_puuid in timeline_data and red_player_puuid in timeline_data:
+            blue_cs14 = timeline_data[blue_player_puuid]["cs14"]
+            red_cs14 = timeline_data[red_player_puuid]["cs14"]
+            
+            # Calculate and store CS difference (positive means ahead, negative means behind)
+            csd14_data[blue_player_puuid] = blue_cs14 - red_cs14
+            csd14_data[red_player_puuid] = red_cs14 - blue_cs14
+    
+    return csd14_data
 
 
 def fetch_item_data():
@@ -516,7 +507,6 @@ def get_player(participant, match_overview):
     # player["mvp"] = isMVP(participant)
     player["cs"] = participant["totalMinionsKilled"] + participant["neutralMinionsKilled"]
     player["csm"] = round(player["cs"]/(match_overview["gameDuration"]/60), 2)
-    player["cs14"] = random.randint(90, 140)
     player["dmg"] = participant["totalDamageDealtToChampions"]
     player["dpm"] = round(player["dmg"]/(match_overview["gameDuration"]/60), 2)
     player["teamDmgPercent"] = round(participant["challenges"]["teamDamagePercentage"]*100, 0)

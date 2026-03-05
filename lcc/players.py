@@ -8,7 +8,7 @@ from .process_match_reports import get_champion_mastery, find_player
 bp = Blueprint('players', __name__, url_prefix='/players')
 
 DDRAGON_URL = "https://ddragon.leagueoflegends.com/cdn/"
-CDN_VERSION = "15.1.1"
+CDN_VERSION = "16.3.1"
 players = MongoConnection().get_player_collection()
 
 @bp.route('/add', methods=['POST'])
@@ -58,7 +58,6 @@ def get_runes():
     runes = ddragon_get_runes_dict()
     return jsonify(runes)
 
-    
 def get_riot_data(summoner_name, summoner_tag):
     account_url = f"https://americas.api.riotgames.com/riot/account/v1/accounts/by-riot-id/{summoner_name}/{summoner_tag}"
     account = fetch_riot_data(account_url)
@@ -66,27 +65,65 @@ def get_riot_data(summoner_name, summoner_tag):
     summoner = fetch_riot_data(summoner_url)
     return {**summoner, **account}
 
-def update_player_matches(puuid, match_id):
-    players.update_one(
-        {"puuid": puuid},
-        {"$addToSet": {"matches": match_id}}
-    )
+def get_riot_data_by_puuid(puuid):
+    account_url = f"https://americas.api.riotgames.com/riot/account/v1/accounts/by-puuid/{puuid}"
+    account = fetch_riot_data(account_url)
+    summoner_url = f"https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-puuid/{puuid}"
+    summoner = fetch_riot_data(summoner_url)
+    return {**summoner, **account}
 
 def add_team_to_player(data, team_name, season):
     result = players.update_one(
         {"profile.puuid": data["player"]["puuid"]},
-        {"$addToSet": {"teams": {season: {"role":data["role"],"name": data["team_name"]}}}}
+        {"$addToSet": {"teams": {season: {"role":data["role"],"name": team_name}}}}
     )
     return result
 
 def save_match_history(data):
-    if players.find_one({"profile.puuid": data["profile"]["puuid"]}) is None:
-        players.insert_one({"profile": data["profile"], "match_history": [data], "champion_mastery": get_champion_mastery(data["profile"]["puuid"])})
+    """Save or update match history entry for a player
+    
+    If the player doesn't exist, creates a new player document.
+    If the match already exists in the player's history, updates it.
+    Otherwise, adds a new match to the player's history.
+    
+    Args:
+        data (dict): Match data containing profile and match information
+    """
+    match_id = data["matchId"]  # Assuming match_id is in the data object
+    player_puuid = data["profile"]["puuid"]
+    
+    # Check if player exists
+    player = players.find_one({"profile.puuid": player_puuid})
+    
+    if player is None:
+        # Player doesn't exist, create new player with this match
+        players.insert_one({
+            "profile": data["profile"], 
+            "match_history": [data], 
+            "champion_mastery": get_champion_mastery(player_puuid)
+        })
     else:
-        players.find_one_and_update(
-            {"profile.puuid": data["profile"]["puuid"]},
-            {"$addToSet": {"match_history": data}}
-    )
+        # Player exists, check if this match already exists
+        existing_match = players.find_one({
+            "profile.puuid": player_puuid,
+            "match_history.matchId": match_id
+        })
+        
+        if existing_match:
+            # Match exists, update it
+            players.update_one(
+                {
+                    "profile.puuid": player_puuid,
+                    "match_history.matchId": match_id
+                },
+                {"$set": {"match_history.$": data}}
+            )
+        else:
+            # Match doesn't exist, add it
+            players.update_one(
+                {"profile.puuid": player_puuid},
+                {"$push": {"match_history": data}}
+            )
 
 def get_images(profile_icon_id):
     return {
@@ -119,3 +156,115 @@ def fetch_riot_data(url):
     if response.status_code != 200:
         raise requests.exceptions.HTTPError(f"Failed to fetch match data: {response.text}")
     return response.json()
+
+
+@bp.route('/<puuid>/refresh', methods=['POST'])
+def refresh_player_riot_data(puuid):
+    """Refresh a player's Riot data using their PUUID (name, tag, level, profile icon, champion mastery)."""
+    player = players.find_one({"profile.puuid": puuid})
+    if player is None:
+        return jsonify({'message': 'Player not found'}), 404
+
+    try:
+        riot_data = get_riot_data_by_puuid(puuid)
+        last_refreshed = player['profile'].get('last_refreshed')
+        if last_refreshed:
+            last_updated = datetime.fromtimestamp(last_refreshed / 1000)
+            if datetime.now() - last_updated < timedelta(hours=24):
+                return jsonify({'message': 'Profile was updated within the last 24 hours. Please try again later.'}), 429
+        now_ms = int(datetime.now().timestamp() * 1000)
+        updated_fields = {
+            "profile.name": riot_data["gameName"],
+            "profile.tag": riot_data["tagLine"],
+            "profile.level": riot_data["summonerLevel"],
+            "profile.revision_date": riot_data["revisionDate"],
+            "profile.last_refreshed": now_ms,
+            "profile.images": get_images(riot_data["profileIconId"]),
+            "champion_mastery": get_champion_mastery(puuid)
+        }
+        players.update_one({"profile.puuid": puuid}, {"$set": updated_fields})
+        updated_player = players.find_one({"profile.puuid": puuid}, {'_id': 0})
+        return jsonify({'message': 'Player refreshed successfully', 'player': updated_player})
+    except Exception as e:
+        return jsonify({'message': f'Error refreshing player: {str(e)}'}), 500
+
+
+@bp.route('/<puuid>/delete', methods=['DELETE'])
+def delete_player_match_history_endpoint(puuid):
+    """API endpoint to delete a match from a player's history by index
+    
+    Required parameters in JSON body:
+    - password: Admin password for authentication
+    - index: The array index to delete
+    
+    Returns:
+    - 200 Success message if deleted
+    - 404 Not found if player or match doesn't exist
+    """
+
+    data = request.json
+
+        
+    # Validate index parameter
+    if "index" not in data:
+        return jsonify({'message': 'Missing required parameter: index'}), 400
+    
+    try:
+        index = int(data["index"])
+        if index < 0:
+            raise ValueError("Index must be non-negative")
+    except ValueError:
+        return jsonify({'message': 'Invalid index value, must be a non-negative integer'}), 400
+    
+    # Delete the match history entry
+    result = delete_match_history_by_index(puuid, index)
+    
+    if result["success"]:
+        return jsonify({'message': result["message"]}), 200
+    else:
+        return jsonify({'message': result["message"]}), 404
+    
+def delete_match_history_by_index(player_puuid, index):
+    """Delete a match history entry by its index in the array
+    
+    Args:
+        player_puuid (str): The PUUID of the player
+        index (int): The zero-based index of the match to delete
+        
+    Returns:
+        dict: Status of the operation with success flag and message
+
+    TEMPORARY!!
+    """
+    # Find the player to confirm they exist and get match_history length
+    player = players.find_one({"profile.puuid": player_puuid})
+    
+    if not player:
+        return {"success": False, "message": "Player not found"}
+    
+    # Check if match_history exists and has sufficient elements
+    if not player.get("match_history") or len(player["match_history"]) <= index:
+        return {"success": False, "message": f"Match at index {index} does not exist"}
+    
+    # Get the match_id for logging purposes
+    match_id = player["match_history"][index].get("match_id", "unknown")
+    
+    # Remove the element at the specified index
+    # In MongoDB, we first mark the element as null, then pull all null values
+    result = players.update_one(
+        {"profile.puuid": player_puuid},
+        {"$unset": {f"match_history.{index}": 1}}
+    )
+    
+    if result.modified_count > 0:
+        # Now pull all null values to clean up the array
+        players.update_one(
+            {"profile.puuid": player_puuid},
+            {"$pull": {"match_history": None}}
+        )
+        return {
+            "success": True, 
+            "message": f"Match history entry at index {index} (match_id: {match_id}) deleted"
+        }
+    else:
+        return {"success": False, "message": "Failed to delete match history entry"}
