@@ -65,6 +65,13 @@ def get_riot_data(summoner_name, summoner_tag):
     summoner = fetch_riot_data(summoner_url)
     return {**summoner, **account}
 
+def get_riot_data_by_puuid(puuid):
+    account_url = f"https://americas.api.riotgames.com/riot/account/v1/accounts/by-puuid/{puuid}"
+    account = fetch_riot_data(account_url)
+    summoner_url = f"https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-puuid/{puuid}"
+    summoner = fetch_riot_data(summoner_url)
+    return {**summoner, **account}
+
 def add_team_to_player(data, team_name, season):
     result = players.update_one(
         {"profile.puuid": data["player"]["puuid"]},
@@ -149,6 +156,37 @@ def fetch_riot_data(url):
     if response.status_code != 200:
         raise requests.exceptions.HTTPError(f"Failed to fetch match data: {response.text}")
     return response.json()
+
+
+@bp.route('/<puuid>/refresh', methods=['POST'])
+def refresh_player_riot_data(puuid):
+    """Refresh a player's Riot data using their PUUID (name, tag, level, profile icon, champion mastery)."""
+    player = players.find_one({"profile.puuid": puuid})
+    if player is None:
+        return jsonify({'message': 'Player not found'}), 404
+
+    try:
+        riot_data = get_riot_data_by_puuid(puuid)
+        last_refreshed = player['profile'].get('last_refreshed')
+        if last_refreshed:
+            last_updated = datetime.fromtimestamp(last_refreshed / 1000)
+            if datetime.now() - last_updated < timedelta(hours=24):
+                return jsonify({'message': 'Profile was updated within the last 24 hours. Please try again later.'}), 429
+        now_ms = int(datetime.now().timestamp() * 1000)
+        updated_fields = {
+            "profile.name": riot_data["gameName"],
+            "profile.tag": riot_data["tagLine"],
+            "profile.level": riot_data["summonerLevel"],
+            "profile.revision_date": riot_data["revisionDate"],
+            "profile.last_refreshed": now_ms,
+            "profile.images": get_images(riot_data["profileIconId"]),
+            "champion_mastery": get_champion_mastery(puuid)
+        }
+        players.update_one({"profile.puuid": puuid}, {"$set": updated_fields})
+        updated_player = players.find_one({"profile.puuid": puuid}, {'_id': 0})
+        return jsonify({'message': 'Player refreshed successfully', 'player': updated_player})
+    except Exception as e:
+        return jsonify({'message': f'Error refreshing player: {str(e)}'}), 500
 
 
 @bp.route('/<puuid>/delete', methods=['DELETE'])

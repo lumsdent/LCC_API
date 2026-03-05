@@ -61,6 +61,23 @@ def save_match(data):
 
 def update_match(query, data):
     matches.replace_one(query, data)
+
+@bp.route('/<match_id>/vod', methods=['PATCH'])
+def update_vod(match_id):
+    password = os.getenv("ADMIN_PW")
+    data = request.json
+    if data.get("password") != password:
+        return jsonify({'message': 'Incorrect password'}), 401
+    vod_url = data.get("vod")
+    if not vod_url:
+        return jsonify({'message': 'No VOD URL provided'}), 400
+    result = matches.update_one(
+        {"metadata.matchId": "NA1_" + match_id},
+        {"$set": {"info.vod": vod_url}}
+    )
+    if result.matched_count == 0:
+        return jsonify({'message': 'Match not found'}), 404
+    return jsonify({'message': 'VOD updated successfully'}), 200
     
 def save_matchup(matchup):
     save_match_history(matchup)
