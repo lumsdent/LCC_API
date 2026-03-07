@@ -28,12 +28,6 @@ def add_team(season):
     else:
         return jsonify({'message': 'Team already exists'})
  
-@bp.route('/teams/<season>', methods=['GET'])
-def get_all_teams_by_season(season):
-    season = season
-    team_data = list(teams.find({f"rosters.{season}": {"$exists": True, "$ne": [], "$ne": None}}, {'_id': 0}))
-    return jsonify(team_data)
-
 @bp.route('/teams/all', methods=['GET'])
 def get_all_teams():
     team_data = list(teams.find({}, {'_id': 0}))
@@ -41,33 +35,19 @@ def get_all_teams():
 
 @bp.route('/teams/records', methods=['GET'])
 def get_team_records():
-    """Return wins/losses per season and totals for teams by team_ids, including rosters."""
-    # Get team_ids from query parameter (comma-separated)
+    """Aggregate wins/losses/rosters across all provided team_ids into a single combined record."""
     team_ids_param = request.args.get('team_ids', '')
     if not team_ids_param:
         return jsonify({'message': 'team_ids parameter is required'}), 400
-    team_ids = [tid.strip() for tid in team_ids_param.split(',')]
-    
-    # Get all team documents for the requested team_ids
-    team_docs = list(teams.find({"team_name": {"$in": team_ids}}, {'_id': 0, 'team_id': 1, 'team_name': 1, 'former_name': 1, 'rosters': 1}))
+    team_ids = [tid.strip() for tid in team_ids_param.split(',') if tid.strip()]
+
+    # Fetch a doc for each team_id — each is a separate team name in MongoDB
+    team_docs = list(teams.find({"team_name": {"$in": team_ids}}, {'_id': 0, 'team_name': 1, 'rosters': 1}))
     if not team_docs:
         return jsonify({'message': 'No teams found'}), 404
-    
-    # Build mapping of team_name -> team_doc and collect all names (current and former)
-    team_name_to_doc = {}
-    all_team_names = []
-    
-    for team_doc in team_docs:
-        team_name = team_doc.get("team_name")
-        former_name = team_doc.get("former_name")
-        
-        team_name_to_doc[team_name] = team_doc
-        all_team_names.append(team_name)
-        
-        if former_name:
-            team_name_to_doc[former_name] = team_doc
-            all_team_names.append(former_name)
-    
+
+    all_team_names = [doc["team_name"] for doc in team_docs]
+
     pipeline = [
         {"$unwind": "$info.teams"},
         {"$match": {"info.teams.name": {"$in": all_team_names}}},
@@ -84,10 +64,7 @@ def get_team_records():
             "deaths": {"$sum": {"$ifNull": ["$info.teams.players.deaths", 0]}}
         }},
         {"$group": {
-            "_id": {
-                "team": "$_id.team",
-                "season": "$_id.season"
-            },
+            "_id": {"season": "$_id.season"},
             "wins": {"$sum": {"$cond": [{"$eq": ["$gameOutcome", True]}, 1, 0]}},
             "losses": {"$sum": {"$cond": [{"$eq": ["$gameOutcome", False]}, 1, 0]}},
             "kills": {"$sum": {"$ifNull": ["$teamKills", 0]}},
@@ -98,31 +75,20 @@ def get_team_records():
 
     results = list(matches.aggregate(pipeline))
 
-    # Group results by team (using current team name)
-    records_by_team = {}
-    for team_doc in team_docs:
-        current_team_name = team_doc.get("team_name")
-        if current_team_name and current_team_name not in records_by_team:
-            records_by_team[current_team_name] = {
-                "teamName": current_team_name,
-                "seasons": [],
-                "totalWins": 0,
-                "totalLosses": 0,
-                "totalKills": 0,
-                "totalAssists": 0,
-                "totalDeaths": 0
-            }
-    
+    # Build a single combined record for all team_ids
+    combined = {
+        "teamName": team_ids[0],
+        "formerNames": team_ids[1:],
+        "seasons": [],
+        "totalWins": 0,
+        "totalLosses": 0,
+        "totalKills": 0,
+        "totalAssists": 0,
+        "totalDeaths": 0
+    }
+
+    seasons_map = {}
     for item in results:
-        matched_team_name = item["_id"]["team"]
-        team_doc = team_name_to_doc.get(matched_team_name)
-        
-        if not team_doc:
-            continue
-            
-        # Use the current team name as the key
-        current_team_name = team_doc.get("team_name")
-        
         season = item["_id"]["season"]
         wins = item.get("wins", 0)
         losses = item.get("losses", 0)
@@ -130,54 +96,52 @@ def get_team_records():
         assists = item.get("assists", 0)
         deaths = item.get("deaths", 0)
 
-        records_by_team[current_team_name]["seasons"].append({
+        seasons_map[str(season)] = {
             "season": season,
             "wins": wins,
             "losses": losses,
             "kills": kills,
             "assists": assists,
             "deaths": deaths,
-            "roster": []  # Will be populated below
-        })
-        records_by_team[current_team_name]["totalWins"] += wins
-        records_by_team[current_team_name]["totalLosses"] += losses
-        records_by_team[current_team_name]["totalKills"] += kills
-        records_by_team[current_team_name]["totalAssists"] += assists
-        records_by_team[current_team_name]["totalDeaths"] += deaths
+            "roster": []
+        }
+        combined["totalWins"] += wins
+        combined["totalLosses"] += losses
+        combined["totalKills"] += kills
+        combined["totalAssists"] += assists
+        combined["totalDeaths"] += deaths
 
-    # Fetch roster data for each team, ensuring seasons exist even without matches
+    # Merge rosters from all team docs
     for team_doc in team_docs:
-        team_name = team_doc.get("team_name")
-        if team_name not in records_by_team:
-            continue
+        for season_key, roster in (team_doc.get("rosters") or {}).items():
+            if season_key not in seasons_map:
+                seasons_map[season_key] = {
+                    "season": season_key,
+                    "wins": 0,
+                    "losses": 0,
+                    "kills": 0,
+                    "assists": 0,
+                    "deaths": 0,
+                    "roster": roster
+                }
+            else:
+                seasons_map[season_key]["roster"] = roster
 
-        rosters = team_doc.get("rosters", {})
-        if rosters:
-            existing_seasons = {str(s["season"]) for s in records_by_team[team_name]["seasons"]}
-            for season_key, roster in rosters.items():
-                if season_key not in existing_seasons:
-                    records_by_team[team_name]["seasons"].append({
-                        "season": season_key,
-                        "wins": 0,
-                        "losses": 0,
-                        "kills": 0,
-                        "assists": 0,
-                        "deaths": 0,
-                        "roster": roster
-                    })
-                else:
-                    for season_record in records_by_team[team_name]["seasons"]:
-                        if str(season_record["season"]) == season_key:
-                            season_record["roster"] = roster
-                            break
+    def season_sort_key(s):
+        season_str = str(s["season"])
+        digits = ''.join(filter(str.isdigit, season_str))
+        suffix = ''.join(c for c in season_str if not c.isdigit())
+        return (int(digits) if digits else 0, suffix)
 
-    # Sort seasons for each team
-    for record in records_by_team.values():
-        record["seasons"].sort(
-            key=lambda s: int(s["season"]) if str(s["season"]).isdigit() else str(s["season"])
-        )
+    combined["seasons"] = sorted(seasons_map.values(), key=season_sort_key)
 
-    return jsonify(list(records_by_team.values()))
+    return jsonify([combined])
+
+@bp.route('/teams/<season>', methods=['GET'])
+def get_all_teams_by_season(season):
+    # Include teams registered for the season even if their roster is empty
+    team_data = list(teams.find({f"rosters.{season}": {"$exists": True}}, {'_id': 0}))
+    return jsonify(team_data)
 
 @bp.route('/roster/<team_name>/<season>', methods=['GET'])
 def get_team_roster_by_season(team_name, season):
