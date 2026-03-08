@@ -3,7 +3,7 @@ import os
 import requests
 from flask import request, jsonify, Blueprint
 from .mongo_connection import MongoConnection
-from .process_match_reports import get_champion_mastery, find_player
+from .process_match_reports import get_champion_mastery
 
 bp = Blueprint('players', __name__, url_prefix='/players')
 
@@ -45,8 +45,91 @@ def add_player():
 
 @bp.route('/<puuid>', methods=['GET'])
 def get_player_by_puuid(puuid):
-    player_data = find_player(puuid)
+    player_data = players.find_one({"profile.puuid": puuid}, {'_id': 0, 'match_history': 0})
+    if player_data is None:
+        return jsonify({'message': 'Player not found'}), 404
     return jsonify(player_data)
+
+@bp.route('/<puuid>/matches', methods=['GET'])
+def get_player_matches(puuid):
+    page = max(1, int(request.args.get('page', 1)))
+    per_page = min(50, max(1, int(request.args.get('per_page', 10))))
+    champion = request.args.get('champion', None)
+
+    match_filter = {"profile.puuid": puuid}
+    unwind_filter = {}
+    if champion:
+        unwind_filter = {"$match": {"match_history.champion.name": champion}}
+
+    count_pipeline = [
+        {"$match": match_filter},
+        {"$unwind": "$match_history"},
+    ]
+    if champion:
+        count_pipeline.append({"$match": {"match_history.champion.name": champion}})
+    count_pipeline.append({"$count": "count"})
+
+    count_result = players.aggregate(count_pipeline)
+    count_doc = next(count_result, None)
+    total = count_doc["count"] if count_doc else 0
+
+    pipeline = [
+        {"$match": match_filter},
+        {"$project": {"match_history": 1, "_id": 0}},
+        {"$unwind": "$match_history"},
+    ]
+    if champion:
+        pipeline.append({"$match": {"match_history.champion.name": champion}})
+    pipeline += [
+        {"$sort": {"match_history.gameStartTimestamp": -1}},
+        {"$skip": (page - 1) * per_page},
+        {"$limit": per_page},
+        {"$replaceRoot": {"newRoot": "$match_history"}}
+    ]
+    matches = list(players.aggregate(pipeline))
+
+    return jsonify({
+        "matches": matches,
+        "total": total,
+        "page": page,
+        "per_page": per_page,
+        "pages": max(1, (total + per_page - 1) // per_page)
+    })
+
+@bp.route('/<puuid>/champion-stats', methods=['GET'])
+def get_player_champion_stats(puuid):
+    pipeline = [
+        {"$match": {"profile.puuid": puuid}},
+        {"$unwind": "$match_history"},
+        {"$group": {
+            "_id": "$match_history.champion.name",
+            "champion": {"$first": "$match_history.champion"},
+            "gamesPlayed": {"$sum": 1},
+            "wins": {"$sum": {"$cond": ["$match_history.win", 1, 0]}},
+            "losses": {"$sum": {"$cond": ["$match_history.win", 0, 1]}},
+            "kills": {"$sum": "$match_history.kills"},
+            "deaths": {"$sum": "$match_history.deaths"},
+            "assists": {"$sum": "$match_history.assists"},
+            "killParticipation": {"$avg": "$match_history.killParticipation"},
+            "dpm": {"$avg": "$match_history.dpm"},
+            "cs14": {"$avg": "$match_history.cs14"},
+            "csm": {"$avg": "$match_history.csm"},
+            "gpm": {"$avg": "$match_history.gpm"},
+            "vspm": {"$avg": "$match_history.vspm"},
+        }},
+        {"$addFields": {
+            "kda": {
+                "$divide": [
+                    {"$add": ["$kills", "$assists"]},
+                    {"$max": [1, "$deaths"]}
+                ]
+            }
+        }},
+        {"$sort": {"gamesPlayed": -1}},
+        {"$project": {"_id": 0}}
+    ]
+    stats = list(players.aggregate(pipeline))
+    return jsonify(stats)
 
 @bp.route('/', methods=['GET'])
 def get_players():

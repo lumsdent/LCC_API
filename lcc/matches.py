@@ -82,20 +82,19 @@ def update_vod(match_id):
 def save_matchup(matchup):
     save_match_history(matchup)
 
-@bp.route('/stats/season/<season_id>', methods=['GET'])
-def get_player_season_stats(season_id):
-    """Get aggregate stats for all players in a specific season"""
-    pipeline = [
-        # Match only documents from the current season
-        {"$match": {"metadata.season": str(season_id)}},
-        
-        # Unwind teams to process each team separately
+@bp.route('/seasons', methods=['GET'])
+def get_seasons():
+    seasons = matches.distinct("metadata.season")
+    seasons.sort(key=lambda s: (int(''.join(filter(str.isdigit, str(s))) or 0), ''.join(c for c in str(s) if not c.isdigit())))
+    return jsonify(seasons)
+
+def _player_stats_pipeline(season_match=None):
+    pipeline = []
+    if season_match:
+        pipeline.append({"$match": season_match})
+    pipeline += [
         {"$unwind": "$info.teams"},
-        
-        # Unwind players to process each player separately
         {"$unwind": "$info.teams.players"},
-        
-        # Group by player
         {"$group": {
             "_id": "$info.teams.players.profile.puuid",
             "playerName": {"$first": "$info.teams.players.profile.name"},
@@ -123,81 +122,63 @@ def get_player_season_stats(season_id):
             "firstBloods": {"$sum": {"$cond": [{"$eq": ["$info.teams.players.firstBlood", True]}, 1, 0]}},
             "killParticipationSum": {"$sum": "$info.teams.players.killParticipation"},
         }},
-        
-        # Calculate additional stats
         {"$project": {
             "_id": 0,
             "puuid": "$_id",
             "playerName": 1,
             "team": 1,
             "rolesPlayed": "$roles",
-            # Game Info
             "games": 1,
             "minutesPlayed": 1,
             "avgGameTime": {"$divide": ["$minutesPlayed", "$games"]},
             "wins": 1,
             "losses": {"$subtract": ["$games", "$wins"]},
             "winRate": {"$multiply": [{"$divide": ["$wins", "$games"]}, 100]},
-            # KDA
             "kills": 1,
             "deaths": 1,
             "assists": 1,
-            "kda": {"$cond": [
-                {"$eq": ["$deaths", 0]},
-                {"$add": ["$kills", "$assists"]},
-                {"$divide": [{"$add": ["$kills", "$assists"]}, "$deaths"]}
-            ]},
-            "avgKills": {"$divide": ["$kills", "$games"]},
-            "avgDeaths": {"$divide": ["$deaths", "$games"]},
-            "avgAssists": {"$divide": ["$assists", "$games"]},
+            "kda": {"$cond": [{"$eq": ["$deaths", 0]}, {"$add": ["$kills", "$assists"]}, {"$divide": [{"$add": ["$kills", "$assists"]}, "$deaths"]}]},
             "killParticipationPercentage": {"$divide": ["$killParticipationSum", "$games"]},
-            # Damage
             "totalDamage": 1,
-            "avgDamagePerGame": {"$divide": ["$totalDamage", "$games"]},
             "dpm": {"$divide": ["$totalDamage", "$minutesPlayed"]},
             "damagePerGold": {"$divide": ["$totalDamage", "$totalGold"]},
-            
             "totalDamageTaken": 1,
             "avgDamageTaken": {"$divide": ["$totalDamageTaken", "$games"]},
-
-            # Gold
             "totalGold": 1,
             "gpm": {"$divide": ["$totalGold", "$minutesPlayed"]},
             "unspentGold": {"$subtract": ["$totalGold", "$goldSpent"]},
-
-            #CS
             "totalCs": 1,
             "avgCs14": {"$divide": ["$totalCs14", "$games"]},
             "totalCsd14": 1,
             "avgCsd14": {"$divide": ["$totalCsd14", "$games"]},
             "avgCS": {"$divide": ["$totalCs", "$games"]},
             "csm": {"$divide": ["$totalCs", "$minutesPlayed"]},
-            
-            #Vision
             "wardsPlaced": 1,
             "wardsKilled": 1,
             "visionScore": 1,
             "vspm": {"$divide": ["$visionScore", "$minutesPlayed"]},
-            "wardsPerMinute": {"$divide": ["$wardsPlaced", "$minutesPlayed"]},
             "avgVisionScore": {"$divide": ["$visionScore", "$games"]},
-            
-            # Champions
             "championsPlayed": 1,
             "uniqueChampionsCount": {"$size": "$championsPlayed"},
-            
-            # Etc
             "firstBloods": 1,
             "soloKills": 1,
             "avgSoloKills": {"$divide": ["$soloKills", "$games"]},
-            
             "effectiveHealAndShielding": 1,
             "avgHealShield": {"$divide": ["$effectiveHealAndShielding", "$games"]},
-            
         }},
-        
-        # Sort by win rate descending
         {"$sort": {"winRate": -1}}
     ]
-    
+    return pipeline
+
+@bp.route('/stats/season/<season_id>', methods=['GET'])
+def get_player_season_stats(season_id):
+    pipeline = _player_stats_pipeline({"metadata.season": str(season_id)})
     results = list(matches.aggregate(pipeline))
     return jsonify(results)
+
+@bp.route('/stats/alltime', methods=['GET'])
+def get_player_alltime_stats():
+    pipeline = _player_stats_pipeline()
+    results = list(matches.aggregate(pipeline))
+    return jsonify(results)
+
