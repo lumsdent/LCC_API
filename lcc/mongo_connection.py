@@ -9,6 +9,9 @@ class MongoConnection:
         self.client = MongoClient(os.getenv("MONGO_URI"), server_api=ServerApi('1'))
         self.db = self.client[os.getenv("MONGO_COLLECTION")]
 
+    def get_match_index_collection(self):
+        return self.db['matches_index']
+
     def get_matches_collection(self):
         return self.db['matches']
     
