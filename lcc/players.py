@@ -1,3 +1,11 @@
+"""
+players.py
+----------
+Flask Blueprint providing all player-related API endpoints for the LCC API.
+
+Includes routes for adding, retrieving, and refreshing players, paginated match
+history, per-champion stats, and helpers for Riot API and DDragon data access.
+"""
 from datetime import timedelta, datetime
 import os
 import requests
@@ -7,266 +15,438 @@ from .process_match_reports import get_champion_mastery
 
 bp = Blueprint('players', __name__, url_prefix='/players')
 
-DDRAGON_URL = "https://ddragon.leagueoflegends.com/cdn/"
-CDN_VERSION = "16.3.1"
-players = MongoConnection().get_player_collection()
+DDRAGON_BASE_URL = 'https://ddragon.leagueoflegends.com/cdn/latest'
+
+# Two accounts belonging to the same person — merge the old one into the canonical one.
+_MERGE_OLD_PUUID = 'OMb9S_LJfcHcmNf2EeoK6oKVZPN_ilQ_atdZLBHcS-1cNv38UZObF9COSP54dJn9eD4-mP23xpHUug'
+_MERGE_NEW_PUUID = '2_h_CpcRsZypWQHR66PnB_DU1rHiQYz8AmRETV54QFVuZuwX9Ly_ys7R3SOh7fFo9U1CZ9VlPv50Aw'
+
+
+def _merge_duplicate_players(player_list):
+    """
+    Merge match history and teams from the old duplicate PUUID into the canonical
+    player record, then remove the duplicate from the list.
+    """
+    old = next((p for p in player_list if p.get('profile', {}).get('puuid') == _MERGE_OLD_PUUID), None)
+    new = next((p for p in player_list if p.get('profile', {}).get('puuid') == _MERGE_NEW_PUUID), None)
+    if not old or not new:
+        return player_list
+
+    # Merge match_history — deduplicate by matchId
+    existing_ids = {m['matchId'] for m in new.get('match_history', []) if 'matchId' in m}
+    for match in old.get('match_history', []):
+        if match.get('matchId') not in existing_ids:
+            new.setdefault('match_history', []).append(match)
+            existing_ids.add(match.get('matchId'))
+
+    # Merge teams — old entries fill in seasons not already present on new
+    existing_seasons = {list(t.keys())[0] for t in new.get('teams', []) if t}
+    for team_entry in old.get('teams', []):
+        season_key = list(team_entry.keys())[0] if team_entry else None
+        if season_key and season_key not in existing_seasons:
+            new.setdefault('teams', []).append(team_entry)
+            existing_seasons.add(season_key)
+
+    return [p for p in player_list if p.get('profile', {}).get('puuid') != _MERGE_OLD_PUUID]
+
+_db = MongoConnection()
+players = _db.get_player_collection()
+
+def get_player_by_discord_id(discord_id):
+    """Return a player document matching the given Discord user ID, or None."""
+    return players.find_one({'discord.id': str(discord_id)}, {'_id': 0})
+
+
+def get_player_me_by_discord_id(discord_id):
+    """Return a lightweight player document for /me: excludes match_history."""
+    return players.find_one(
+        {'discord.id': str(discord_id)},
+        {'_id': 0, 'match_history': 0, 'champion_mastery': 0}
+    )
+
+
+def check_admin_auth(data=None, cookie_user_id=None):
+    """
+    Return True if the request is authorized as an admin.
+    Accepts either:
+      - A JSON body with {"password": ADMIN_PW}
+      - A session cookie whose Discord ID maps to a player with is_admin=True
+    """
+    if data and data.get('password') == os.getenv('ADMIN_PW'):
+        return True
+    if cookie_user_id:
+        doc = players.find_one({'discord.id': str(cookie_user_id)}, {'is_admin': 1})
+        return bool(doc and doc.get('is_admin'))
+    return False
+
+
+def set_admin_status(discord_id, is_admin: bool):
+    """Grant or revoke admin status for a player by Discord ID."""
+    result = players.update_one(
+        {'discord.id': str(discord_id)},
+        {'$set': {'is_admin': is_admin}}
+    )
+    return result.matched_count > 0
+
+
+def create_player_login(user):
+    """Create a minimal player document from a Discord user on first login."""
+    player_data = {
+        'profile': {'name': user.name, 'is_active': True},
+        'discord': {
+            'id':         str(user.id),
+            'username':   user.name,
+            'avatar_url': user.avatar_url or '',
+        },
+    }
+    players.insert_one(player_data)
+    return player_data
+
+
+def update_player_login(user):
+    """Update Discord metadata for a returning player."""
+    players.update_one(
+        {'discord.id': str(user.id)},
+        {'$set': {
+            'discord.username':   user.name,
+            'discord.avatar_url': user.avatar_url or '',
+        }}
+    )
+
+
+def link_discord_to_player(puuid, user):
+    """Link a Discord account to an existing player identified by PUUID."""
+    result = players.update_one(
+        {'profile.puuid': puuid},
+        {'$set': {
+            'discord.id':         str(user['id']),
+            'discord.username':   user['username'],
+            'discord.avatar_url': user.get('avatar_url', ''),
+        }}
+    )
+    return result.matched_count > 0
+
+
+def get_linked_players_summary():
+    """Return all players for the admin dropdown, sorted by name."""
+    return list(players.find(
+        {},
+        {'_id': 0, 'profile.name': 1, 'discord.id': 1, 'is_admin': 1}
+    ))
+
+
+def get_unclaimed_players():
+    """Return players that have no Discord account linked yet (missing, null, or empty discord.id)."""
+    return list(players.find(
+        {'$or': [
+            {'discord.id': {'$exists': False}},
+            {'discord.id': None},
+            {'discord.id': ''},
+        ]},
+        {'_id': 0, 'match_history': 0, 'champion_mastery': 0}
+    ))
+
+
+@bp.route('/unclaimed', methods=['GET'])
+def unclaimed_players():
+    """Return players with no Discord account linked. Used for the claim-profile flow."""
+    return jsonify(get_unclaimed_players())
+
+
+@bp.route('/<puuid>/link-discord', methods=['POST'])
+def link_discord(puuid):
+    """
+    Admin endpoint to manually link a Discord account to an existing player by PUUID.
+    Body: { discord_id, discord_username, discord_avatar (optional), password (optional) }
+    """
+    data = request.get_json(force=True, silent=True) or {}
+    cookie_user_id = request.cookies.get('token')
+    if not check_admin_auth(data=data, cookie_user_id=cookie_user_id):
+        return jsonify({'message': 'Unauthorized'}), 401
+    discord_id = str(data.get('discord_id', '')).strip()
+    if not discord_id:
+        return jsonify({'message': 'discord_id is required'}), 400
+    if players.find_one({'discord.id': discord_id}):
+        return jsonify({'message': 'That Discord account is already linked to a player'}), 409
+    user = {
+        'id':         discord_id,
+        'username':   data.get('discord_username', ''),
+        'avatar_url': data.get('discord_avatar', ''),
+    }
+    if not link_discord_to_player(puuid, user):
+        return jsonify({'message': 'Player not found'}), 404
+    return jsonify({'message': 'Discord account linked successfully'})
+
 
 @bp.route('/add', methods=['POST'])
 def add_player():
+    """Add a new player or update an existing one by PUUID. Requires admin password."""
     form_data = request.json
-    riot_data = get_riot_data(form_data["name"], form_data["tag"])
-    discord_data = {"id": form_data["discord_id"], "username": form_data["discord_username"], "avatar_url": form_data["discord_avatar"]}
-    
-    profile_data = {"puuid": riot_data["puuid"],
-                                "name": riot_data["gameName"],
-                                "tag": riot_data["tagLine"],
-                                "level": riot_data["summonerLevel"],
-                                "email": form_data["email"],
-                                "bio": form_data["bio"],
-                                "primary_role": form_data["primaryRole"],
-                                "secondary_role": form_data["secondaryRole"],
-                                "can_sub": form_data["canSub"],
-                                "revision_date": riot_data["revisionDate"],
-                                "images": get_images(riot_data["profileIconId"]),
-                                "availability": form_data["availability"],
-                                "is_active": True}
-    
-    player_data = {"profile": profile_data, "discord": discord_data, "champion_mastery": get_champion_mastery(profile_data["puuid"])}
-    
-    if players.find_one({"profile.puuid": profile_data["puuid"]}) is None:
+    riot_data = get_riot_data(form_data['name'], form_data['tag'])
+    discord_data = {
+        'id':         form_data['discord_id'],
+        'username':   form_data['discord_username'],
+        'avatar_url': form_data['discord_avatar'],
+    }
+    profile_data = {
+        'puuid':          riot_data['puuid'],
+        'name':           riot_data['gameName'],
+        'tag':            riot_data['tagLine'],
+        'level':          riot_data['summonerLevel'],
+        'email':          form_data['email'],
+        'bio':            form_data['bio'],
+        'primary_role':   form_data['primaryRole'],
+        'secondary_role': form_data['secondaryRole'],
+        'can_sub':        form_data['canSub'],
+        'revision_date':  riot_data['revisionDate'],
+        'images':         get_images(riot_data['profileIconId']),
+        'availability':   form_data['availability'],
+        'is_active':      True,
+    }
+    player_data = {
+        'profile':          profile_data,
+        'discord':          discord_data,
+        'champion_mastery': get_champion_mastery(profile_data['puuid']),
+    }
+    if players.find_one({'profile.puuid': profile_data['puuid']}) is None:
         result = players.insert_one(player_data)
-        return jsonify({'message': 'Player added successfully'}, {'_id': str(result.inserted_id)})
-    else:
-        players.update_one(
-            {"profile.puuid": profile_data["puuid"]},
-            {"$set": player_data}
-        )
-        return jsonify({'message': 'Player already exists. Updated with provided data'})
+        return jsonify({'message': 'Player added successfully', '_id': str(result.inserted_id)}), 201
+    players.update_one({'profile.puuid': profile_data['puuid']}, {'$set': player_data})
+    return jsonify({'message': 'Player already exists. Updated with provided data'})
 
 @bp.route('/<puuid>', methods=['GET'])
 def get_player_by_puuid(puuid):
-    player_data = players.find_one({"profile.puuid": puuid}, {'_id': 0, 'match_history': 0})
+    """Return a single player document by PUUID, excluding match history."""
+    player_data = players.find_one({'profile.puuid': puuid}, {'_id': 0, 'match_history': 0})
     if player_data is None:
         return jsonify({'message': 'Player not found'}), 404
     return jsonify(player_data)
 
 @bp.route('/<puuid>/matches', methods=['GET'])
 def get_player_matches(puuid):
+    """
+    Return paginated match history for a player.
+
+    Query params:
+        page (int):       Page number, default 1.
+        per_page (int):   Results per page, 1-50, default 10.
+        champion (str):   Optional champion name filter.
+    """
     page = max(1, int(request.args.get('page', 1)))
     per_page = min(50, max(1, int(request.args.get('per_page', 10))))
     champion = request.args.get('champion', None)
 
-    match_filter = {"profile.puuid": puuid}
-    unwind_filter = {}
-    if champion:
-        unwind_filter = {"$match": {"match_history.champion.name": champion}}
+    # If looking up the canonical account, also include the old duplicate account's history.
+    puuids = [puuid]
+    if puuid == _MERGE_NEW_PUUID:
+        puuids.append(_MERGE_OLD_PUUID)
+    match_filter = {'profile.puuid': {'$in': puuids}} if len(puuids) > 1 else {'profile.puuid': puuid}
 
     count_pipeline = [
-        {"$match": match_filter},
-        {"$unwind": "$match_history"},
+        {'$match': match_filter},
+        {'$unwind': '$match_history'},
     ]
     if champion:
-        count_pipeline.append({"$match": {"match_history.champion.name": champion}})
-    count_pipeline.append({"$count": "count"})
+        count_pipeline.append({'$match': {'match_history.champion.name': champion}})
+    count_pipeline.append({'$count': 'count'})
 
     count_result = players.aggregate(count_pipeline)
-    count_doc = next(count_result, None)
-    total = count_doc["count"] if count_doc else 0
+    count_doc    = next(count_result, None)
+    total        = count_doc['count'] if count_doc else 0
 
     pipeline = [
-        {"$match": match_filter},
-        {"$project": {"match_history": 1, "_id": 0}},
-        {"$unwind": "$match_history"},
+        {'$match': match_filter},
+        {'$project': {'match_history': 1, '_id': 0}},
+        {'$unwind': '$match_history'},
     ]
     if champion:
-        pipeline.append({"$match": {"match_history.champion.name": champion}})
+        pipeline.append({'$match': {'match_history.champion.name': champion}})
     pipeline += [
-        {"$sort": {"match_history.gameStartTimestamp": -1}},
-        {"$skip": (page - 1) * per_page},
-        {"$limit": per_page},
-        {"$replaceRoot": {"newRoot": "$match_history"}}
+        {'$sort': {'match_history.gameStartTimestamp': -1}},
+        {'$skip': (page - 1) * per_page},
+        {'$limit': per_page},
+        {'$replaceRoot': {'newRoot': '$match_history'}},
     ]
-    matches = list(players.aggregate(pipeline))
+    match_results = list(players.aggregate(pipeline))
 
     return jsonify({
-        "matches": matches,
-        "total": total,
-        "page": page,
-        "per_page": per_page,
-        "pages": max(1, (total + per_page - 1) // per_page)
+        'matches':  match_results,
+        'total':    total,
+        'page':     page,
+        'per_page': per_page,
+        'pages':    max(1, (total + per_page - 1) // per_page),
     })
 
 @bp.route('/<puuid>/champion-stats', methods=['GET'])
 def get_player_champion_stats(puuid):
+    """Return aggregated per-champion statistics for a player."""
+    puuids = [puuid]
+    if puuid == _MERGE_NEW_PUUID:
+        puuids.append(_MERGE_OLD_PUUID)
+    profile_match = {'profile.puuid': {'$in': puuids}} if len(puuids) > 1 else {'profile.puuid': puuid}
     pipeline = [
-        {"$match": {"profile.puuid": puuid}},
-        {"$unwind": "$match_history"},
-        {"$group": {
-            "_id": "$match_history.champion.name",
-            "champion": {"$first": "$match_history.champion"},
-            "gamesPlayed": {"$sum": 1},
-            "wins": {"$sum": {"$cond": ["$match_history.win", 1, 0]}},
-            "losses": {"$sum": {"$cond": ["$match_history.win", 0, 1]}},
-            "kills": {"$sum": "$match_history.kills"},
-            "deaths": {"$sum": "$match_history.deaths"},
-            "assists": {"$sum": "$match_history.assists"},
-            "killParticipation": {"$avg": "$match_history.killParticipation"},
-            "dpm": {"$avg": "$match_history.dpm"},
-            "cs14": {"$avg": "$match_history.cs14"},
-            "csm": {"$avg": "$match_history.csm"},
-            "gpm": {"$avg": "$match_history.gpm"},
-            "vspm": {"$avg": "$match_history.vspm"},
+        {'$match': profile_match},
+        {'$unwind': '$match_history'},
+        {'$group': {
+            '_id':               '$match_history.champion.name',
+            'champion':          {'$first': '$match_history.champion'},
+            'gamesPlayed':       {'$sum': 1},
+            'wins':              {'$sum': {'$cond': ['$match_history.win', 1, 0]}},
+            'losses':            {'$sum': {'$cond': ['$match_history.win', 0, 1]}},
+            'kills':             {'$sum': '$match_history.kills'},
+            'deaths':            {'$sum': '$match_history.deaths'},
+            'assists':           {'$sum': '$match_history.assists'},
+            'killParticipation': {'$avg': '$match_history.killParticipation'},
+            'dpm':               {'$avg': '$match_history.dpm'},
+            'cs14':              {'$avg': '$match_history.cs14'},
+            'csm':               {'$avg': '$match_history.csm'},
+            'gpm':               {'$avg': '$match_history.gpm'},
+            'vspm':              {'$avg': '$match_history.vspm'},
         }},
-        {"$addFields": {
-            "kda": {
-                "$divide": [
-                    {"$add": ["$kills", "$assists"]},
-                    {"$max": [1, "$deaths"]}
+        {'$addFields': {
+            'kda': {
+                '$divide': [
+                    {'$add': ['$kills', '$assists']},
+                    {'$max': [1, '$deaths']},
                 ]
             }
         }},
-        {"$sort": {"gamesPlayed": -1}},
-        {"$project": {"_id": 0}}
+        {'$sort': {'gamesPlayed': -1}},
+        {'$project': {'_id': 0}},
     ]
     stats = list(players.aggregate(pipeline))
     return jsonify(stats)
 
-@bp.route('/', methods=['GET'])
+@bp.route('', methods=['GET'], strict_slashes=False)
 def get_players():
+    """Return all player documents, with duplicate accounts merged."""
     player_data = list(players.find({}, {'_id': 0}))
+    player_data = _merge_duplicate_players(player_data)
     return jsonify(player_data)
 
 @bp.route('/spells', methods=['GET'])
 def get_runes():
+    """Return a flattened DDragon rune/perk ID-to-key dictionary."""
     runes = ddragon_get_runes_dict()
     return jsonify(runes)
 
 def get_riot_data(summoner_name, summoner_tag):
-    account_url = f"https://americas.api.riotgames.com/riot/account/v1/accounts/by-riot-id/{summoner_name}/{summoner_tag}"
+    """Fetch combined Riot account and summoner data by in-game name and tag."""
+    account_url = f'https://americas.api.riotgames.com/riot/account/v1/accounts/by-riot-id/{summoner_name}/{summoner_tag}'
     account = fetch_riot_data(account_url)
     summoner_url = f"https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-puuid/{account['puuid']}"
     summoner = fetch_riot_data(summoner_url)
     return {**summoner, **account}
 
 def get_riot_data_by_puuid(puuid):
-    account_url = f"https://americas.api.riotgames.com/riot/account/v1/accounts/by-puuid/{puuid}"
+    """Fetch combined Riot account and summoner data by PUUID."""
+    account_url = f'https://americas.api.riotgames.com/riot/account/v1/accounts/by-puuid/{puuid}'
     account = fetch_riot_data(account_url)
-    summoner_url = f"https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-puuid/{puuid}"
+    summoner_url = f'https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-puuid/{puuid}'
     summoner = fetch_riot_data(summoner_url)
     return {**summoner, **account}
 
 def add_team_to_player(data, team_name, season):
+    """Associate a player with a team for a given season."""
     result = players.update_one(
-        {"profile.puuid": data["player"]["puuid"]},
-        {"$addToSet": {"teams": {season: {"role":data["role"],"name": team_name}}}}
+        {'profile.puuid': data['player']['puuid']},
+        {'$addToSet': {'teams': {season: {'role': data['role'], 'name': team_name}}}}
     )
     return result
 
 def save_match_history(data):
-    """Save or update match history entry for a player
-    
-    If the player doesn't exist, creates a new player document.
-    If the match already exists in the player's history, updates it.
-    Otherwise, adds a new match to the player's history.
-    
-    Args:
-        data (dict): Match data containing profile and match information
     """
-    match_id = data["matchId"]  # Assuming match_id is in the data object
-    player_puuid = data["profile"]["puuid"]
-    
-    # Check if player exists
-    player = players.find_one({"profile.puuid": player_puuid})
-    
+    Save or update a match history entry for a player.
+
+    If the player does not exist, creates a new player document. If the match
+    already exists in the player's history, replaces it. Otherwise appends it.
+
+    Args:
+        data (dict): Match data containing ``profile`` and ``matchId`` fields.
+    """
+    match_id     = data['matchId']
+    player_puuid = data['profile']['puuid']
+
+    player = players.find_one({'profile.puuid': player_puuid})
     if player is None:
-        # Player doesn't exist, create new player with this match
         players.insert_one({
-            "profile": data["profile"], 
-            "match_history": [data], 
-            "champion_mastery": get_champion_mastery(player_puuid)
+            'profile':          data['profile'],
+            'match_history':    [data],
+            'champion_mastery': get_champion_mastery(player_puuid),
         })
+        return
+
+    if players.find_one({'profile.puuid': player_puuid, 'match_history.matchId': match_id}):
+        players.update_one(
+            {'profile.puuid': player_puuid, 'match_history.matchId': match_id},
+            {'$set': {'match_history.$': data}}
+        )
     else:
-        # Player exists, check if this match already exists
-        existing_match = players.find_one({
-            "profile.puuid": player_puuid,
-            "match_history.matchId": match_id
-        })
-        
-        if existing_match:
-            # Match exists, update it
-            players.update_one(
-                {
-                    "profile.puuid": player_puuid,
-                    "match_history.matchId": match_id
-                },
-                {"$set": {"match_history.$": data}}
-            )
-        else:
-            # Match doesn't exist, add it
-            players.update_one(
-                {"profile.puuid": player_puuid},
-                {"$push": {"match_history": data}}
-            )
+        players.update_one(
+            {'profile.puuid': player_puuid},
+            {'$push': {'match_history': data}}
+        )
 
 def get_images(profile_icon_id):
-    return {
-        "icon": f"/img/profileicon/{profile_icon_id}.png"
-    }
+    """Return a dict of image URLs for a given profile icon ID."""
+    return {'icon': f'/img/profileicon/{profile_icon_id}.png'}
 
 def ddragon_get_runes_dict():
-    url = f"{DDRAGON_URL}{CDN_VERSION}/data/en_US/runesReforged.json"
+    """
+    Fetch and return a flattened rune ID-to-key mapping from DDragon.
+
+    Returns a dict combining top-level perk tree IDs (e.g. Domination, Precision)
+    and individual rune IDs, all mapped to their lowercase key names.
+    Returns an empty dict if the request fails.
+    """
+    url = f'{DDRAGON_BASE_URL}/data/en_US/runesReforged.json'
     try:
         response = requests.get(url, timeout=10)
-        response.raise_for_status()  # Raise an error for bad status codes
-        html = response.json()
-    except requests.exceptions.RequestException as e:
-        print(f"An error occurred: {e}")
+        response.raise_for_status()
+        data = response.json()
+    except requests.exceptions.RequestException:
         return {}
-    perk_dict = {}
-    for item in html:
-        # Split the URL by '/' and get the last part
-        filename = item["icon"].split('/')[-1]
-        # Remove the file extension and convert to lowercase
-        rune_key = filename.split('.')[0].lower()
-        perk_dict[item["id"]] = rune_key # Domination (8100), Inspiration (8300), Precision (8000), Resolve (8400), Sorcery (8200)
-    rune_dict = {rune["id"]: rune["key"].lower() for item in html for slot in item["slots"] for rune in slot["runes"]}
+    perk_dict = {item['id']: item['icon'].split('/')[-1].split('.')[0].lower() for item in data}
+    rune_dict = {rune['id']: rune['key'].lower() for item in data for slot in item['slots'] for rune in slot['runes']}
     return {**perk_dict, **rune_dict}
 
 def fetch_riot_data(url):
-    api_key = os.getenv("RIOT_API_KEY")
-    headers = {"X-Riot-Token": api_key}
+    """Make an authenticated GET request to the Riot API and return parsed JSON."""
+    headers = {'X-Riot-Token': os.getenv('RIOT_API_KEY')}
     response = requests.get(url, headers=headers, timeout=10)
     if response.status_code != 200:
-        raise requests.exceptions.HTTPError(f"Failed to fetch match data: {response.text}")
+        raise requests.exceptions.HTTPError(f'Failed to fetch Riot data: {response.text}')
     return response.json()
 
 
 @bp.route('/<puuid>/refresh', methods=['POST'])
 def refresh_player_riot_data(puuid):
     """Refresh a player's Riot data using their PUUID (name, tag, level, profile icon, champion mastery)."""
-    player = players.find_one({"profile.puuid": puuid})
+    player = players.find_one({'profile.puuid': puuid})
     if player is None:
         return jsonify({'message': 'Player not found'}), 404
 
+    # Check the 24-hour cooldown BEFORE hitting the Riot API to avoid wasting quota.
+    last_refreshed = player['profile'].get('last_refreshed')
+    if last_refreshed:
+        last_updated = datetime.fromtimestamp(last_refreshed / 1000)
+        if datetime.now() - last_updated < timedelta(hours=24):
+            return jsonify({'message': 'Profile was updated within the last 24 hours. Please try again later.'}), 429
+
     try:
         riot_data = get_riot_data_by_puuid(puuid)
-        last_refreshed = player['profile'].get('last_refreshed')
-        if last_refreshed:
-            last_updated = datetime.fromtimestamp(last_refreshed / 1000)
-            if datetime.now() - last_updated < timedelta(hours=24):
-                return jsonify({'message': 'Profile was updated within the last 24 hours. Please try again later.'}), 429
         now_ms = int(datetime.now().timestamp() * 1000)
         updated_fields = {
-            "profile.name": riot_data["gameName"],
-            "profile.tag": riot_data["tagLine"],
-            "profile.level": riot_data["summonerLevel"],
-            "profile.revision_date": riot_data["revisionDate"],
-            "profile.last_refreshed": now_ms,
-            "profile.images": get_images(riot_data["profileIconId"]),
-            "champion_mastery": get_champion_mastery(puuid)
+            'profile.name':           riot_data['gameName'],
+            'profile.tag':            riot_data['tagLine'],
+            'profile.level':          riot_data.get('summonerLevel'),
+            'profile.revision_date':  riot_data.get('revisionDate'),
+            'profile.last_refreshed': now_ms,
+            'profile.images':         get_images(riot_data['profileIconId']),
+            'champion_mastery':       get_champion_mastery(puuid),
         }
-        players.update_one({"profile.puuid": puuid}, {"$set": updated_fields})
-        updated_player = players.find_one({"profile.puuid": puuid}, {'_id': 0})
+        players.update_one({'profile.puuid': puuid}, {'$set': updated_fields})
+        updated_player = players.find_one({'profile.puuid': puuid}, {'_id': 0, 'match_history': 0})
         return jsonify({'message': 'Player refreshed successfully', 'player': updated_player})
     except Exception as e:
         return jsonify({'message': f'Error refreshing player: {str(e)}'}), 500
@@ -274,80 +454,58 @@ def refresh_player_riot_data(puuid):
 
 @bp.route('/<puuid>/delete', methods=['DELETE'])
 def delete_player_match_history_endpoint(puuid):
-    """API endpoint to delete a match from a player's history by index
-    
-    Required parameters in JSON body:
-    - password: Admin password for authentication
-    - index: The array index to delete
-    
-    Returns:
-    - 200 Success message if deleted
-    - 404 Not found if player or match doesn't exist
     """
+    Delete a match from a player's history by array index. Requires admin password.
 
+    JSON body params:
+        password (str): Admin password.
+        index (int):    Zero-based index of the match to remove.
+    """
     data = request.json
+    if data.get('password') != os.getenv('ADMIN_PW'):
+        return jsonify({'message': 'Incorrect password'}), 401
 
-        
-    # Validate index parameter
-    if "index" not in data:
+    if 'index' not in data:
         return jsonify({'message': 'Missing required parameter: index'}), 400
-    
     try:
-        index = int(data["index"])
+        index = int(data['index'])
         if index < 0:
-            raise ValueError("Index must be non-negative")
-    except ValueError:
+            raise ValueError
+    except (ValueError, TypeError):
         return jsonify({'message': 'Invalid index value, must be a non-negative integer'}), 400
-    
-    # Delete the match history entry
-    result = delete_match_history_by_index(puuid, index)
-    
-    if result["success"]:
-        return jsonify({'message': result["message"]}), 200
-    else:
-        return jsonify({'message': result["message"]}), 404
-    
-def delete_match_history_by_index(player_puuid, index):
-    """Delete a match history entry by its index in the array
-    
-    Args:
-        player_puuid (str): The PUUID of the player
-        index (int): The zero-based index of the match to delete
-        
-    Returns:
-        dict: Status of the operation with success flag and message
 
-    TEMPORARY!!
+    result = delete_match_history_by_index(puuid, index)
+    status = 200 if result['success'] else 404
+    return jsonify({'message': result['message']}), status
+
+def delete_match_history_by_index(player_puuid, index):
     """
-    # Find the player to confirm they exist and get match_history length
-    player = players.find_one({"profile.puuid": player_puuid})
-    
+    Delete a match history entry by its zero-based array index.
+
+    Uses the MongoDB ``$unset`` + ``$pull None`` pattern to remove a single
+    element without shifting indexes mid-operation.
+
+    Args:
+        player_puuid (str): PUUID of the player.
+        index (int):        Zero-based index of the match to delete.
+
+    Returns:
+        dict: ``{'success': bool, 'message': str}``
+    """
+    player = players.find_one({'profile.puuid': player_puuid})
     if not player:
-        return {"success": False, "message": "Player not found"}
-    
-    # Check if match_history exists and has sufficient elements
-    if not player.get("match_history") or len(player["match_history"]) <= index:
-        return {"success": False, "message": f"Match at index {index} does not exist"}
-    
-    # Get the match_id for logging purposes
-    match_id = player["match_history"][index].get("match_id", "unknown")
-    
-    # Remove the element at the specified index
-    # In MongoDB, we first mark the element as null, then pull all null values
+        return {'success': False, 'message': 'Player not found'}
+
+    history = player.get('match_history', [])
+    if len(history) <= index:
+        return {'success': False, 'message': f'Match at index {index} does not exist'}
+
+    match_id = history[index].get('matchId', 'unknown')
     result = players.update_one(
-        {"profile.puuid": player_puuid},
-        {"$unset": {f"match_history.{index}": 1}}
+        {'profile.puuid': player_puuid},
+        {'$unset': {f'match_history.{index}': 1}}
     )
-    
     if result.modified_count > 0:
-        # Now pull all null values to clean up the array
-        players.update_one(
-            {"profile.puuid": player_puuid},
-            {"$pull": {"match_history": None}}
-        )
-        return {
-            "success": True, 
-            "message": f"Match history entry at index {index} (match_id: {match_id}) deleted"
-        }
-    else:
-        return {"success": False, "message": "Failed to delete match history entry"}
+        players.update_one({'profile.puuid': player_puuid}, {'$pull': {'match_history': None}})
+        return {'success': True, 'message': f'Match {match_id} at index {index} deleted'}
+    return {'success': False, 'message': 'Failed to delete match history entry'}
