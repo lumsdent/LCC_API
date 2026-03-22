@@ -20,7 +20,13 @@ from . import practice
 from . import tournament
 
 app = Flask(__name__)
-CORS(app, supports_credentials=True)
+
+# In production (HTTPS) cookies must be SameSite=None; Secure so the browser
+# will send them on cross-origin fetch requests from the frontend domain.
+_frontend_url = os.getenv('FRONTEND_URL', 'http://localhost:5173')
+_is_prod = _frontend_url.startswith('https')
+
+CORS(app, supports_credentials=True, origins=[_frontend_url])
 
 app.register_blueprint(players.bp)
 app.register_blueprint(teams.bp)
@@ -72,7 +78,7 @@ def callback():
     else:
         players.update_player_login(user)
     response = make_response(redirect(os.getenv('FRONTEND_URL')))
-    response.set_cookie('token', str(user.id), httponly=True, secure=False, samesite='Lax')
+    response.set_cookie('token', str(user.id), httponly=True, secure=_is_prod, samesite='None' if _is_prod else 'Lax')
     return response
 
 
@@ -99,7 +105,7 @@ def claim_profile(puuid):
     if not players.link_discord_to_player(puuid, pending):
         return jsonify({'message': 'Player not found'}), 404
     response = make_response(jsonify({'message': 'ok'}))
-    response.set_cookie('token', pending['id'], httponly=True, secure=False, samesite='Lax')
+    response.set_cookie('token', pending['id'], httponly=True, secure=_is_prod, samesite='None' if _is_prod else 'Lax')
     return response
 
 
@@ -169,7 +175,7 @@ def logout():
     discord.revoke()
     session.clear()
     response = make_response(redirect(os.getenv('FRONTEND_URL')))
-    response.delete_cookie('token')
+    response.delete_cookie('token', samesite='None' if _is_prod else 'Lax', secure=_is_prod)
     return response
 
 
