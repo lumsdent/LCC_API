@@ -10,8 +10,8 @@ aggregating player/champion statistics by season or all-time.
 import os
 from flask import request, jsonify, Blueprint
 from .mongo_connection import MongoConnection
-from .process_match_reports import process_match, get_matchups
-from .players import save_match_history, check_admin_auth
+from .process_match_reports import process_match, save_match_performances
+from .players import check_admin_auth
 
 def _cookie_admin_check():
     """Return a 401 response tuple if the cookie token is not an admin, else None."""
@@ -21,25 +21,13 @@ def _cookie_admin_check():
 
 bp = Blueprint('matches', __name__, url_prefix='/matches')
 
-ROLES = ['TOP', 'JUNGLE', 'MIDDLE', 'BOTTOM', 'SUPPORT']
-
-# Duplicate accounts belonging to the same player — remap old → canonical in stats.
-_MERGE_OLD_PUUID = 'OMb9S_LJfcHcmNf2EeoK6oKVZPN_ilQ_atdZLBHcS-1cNv38UZObF9COSP54dJn9eD4-mP23xpHUug'
-_MERGE_NEW_PUUID = '2_h_CpcRsZypWQHR66PnB_DU1rHiQYz8AmRETV54QFVuZuwX9Ly_ys7R3SOh7fFo9U1CZ9VlPv50Aw'
-
 _db = MongoConnection()
 matches = _db.get_matches_collection()
 matches_index = _db.get_match_index_collection()
+match_performances = _db.get_match_performances_collection()
 
 
 # ── Helpers ───────────────────────────────────────────────────────────────────
-
-def _check_password(data):
-    """Return a 401 response tuple if the password is wrong, else None."""
-    if data.get('password') != os.getenv('ADMIN_PW'):
-        return jsonify({'message': 'Incorrect password'}), 401
-    return None
-
 
 def save_match(data):
     """Insert a new match document into the matches collection."""
@@ -51,16 +39,9 @@ def update_match(query, data):
     matches.replace_one(query, data)
 
 
-def save_matchup(matchup):
-    """Persist a single matchup record to match history."""
-    save_match_history(matchup)
-
-
 def _process_matchups(processed_match):
-    """Extract and save per-role matchup records from a processed match."""
-    for role in ROLES:
-        for matchup in get_matchups(processed_match, role):
-            save_matchup(matchup)
+    """Upsert per-player performance records for a processed match into match_performances."""
+    save_match_performances(processed_match)
 
 
 def _build_player(p, mins):
@@ -301,60 +282,49 @@ def get_seasons():
     seasons.sort(key=lambda s: (int(''.join(filter(str.isdigit, str(s))) or 0), ''.join(c for c in str(s) if not c.isdigit())))
     return jsonify(seasons)
 
-def _player_stats_pipeline(season_match=None):
+def _player_stats_pipeline(season=None):
     """
-    Build a MongoDB aggregation pipeline for player statistics.
+    Build a MongoDB aggregation pipeline for player statistics against
+    the ``match_performances`` collection.
 
     Args:
-        season_match (dict | None): Optional ``$match`` stage filter, e.g.
-            ``{"metadata.season": "S1"}``. Pass ``None`` for all-time stats.
+        season (str | None): Season identifier to filter by, e.g. ``"S1"``.
+            Pass ``None`` for all-time stats.
 
     Returns:
         list: Aggregation pipeline stages ready for ``collection.aggregate()``.
     """
     pipeline = []
-    if season_match:
-        pipeline.append({'$match': season_match})
+    if season:
+        pipeline.append({'$match': {'season': season}})
     pipeline += [
-        {'$sort': {'info.gameCreation': 1}},
-        {'$unwind': '$info.teams'},
-        {'$unwind': '$info.teams.players'},
-        # Remap duplicate PUUID to the canonical account before grouping
-        {'$set': {
-            'info.teams.players.profile.puuid': {
-                '$cond': {
-                    'if':   {'$eq': ['$info.teams.players.profile.puuid', _MERGE_OLD_PUUID]},
-                    'then': _MERGE_NEW_PUUID,
-                    'else': '$info.teams.players.profile.puuid',
-                }
-            }
-        }},
+        {'$sort': {'gameStartTimestamp': 1}},
         {'$group': {
-            '_id':                        '$info.teams.players.profile.puuid',
-            'playerName':                 {'$last': '$info.teams.players.profile.name'},
-            'team':                       {'$last': '$info.teams.name'},
+            '_id':                        '$puuid',
+            'playerName':                 {'$last': '$playerName'},
+            'team':                       {'$last': '$teamName'},
             'games':                      {'$sum': 1},
-            'minutesPlayed':              {'$sum': {'$divide': ['$info.gameDuration', 60]}},
-            'wins':                       {'$sum': {'$cond': [{'$eq': ['$info.teams.gameOutcome', True]}, 1, 0]}},
-            'kills':                      {'$sum': '$info.teams.players.kills'},
-            'deaths':                     {'$sum': '$info.teams.players.deaths'},
-            'assists':                    {'$sum': '$info.teams.players.assists'},
-            'totalDamage':                {'$sum': '$info.teams.players.dmg'},
-            'totalDamageTaken':           {'$sum': '$info.teams.players.totalDamageTaken'},
-            'totalGold':                  {'$sum': '$info.teams.players.goldEarned'},
-            'goldSpent':                  {'$sum': '$info.teams.players.goldSpent'},
-            'visionScore':                {'$sum': '$info.teams.players.visionScore'},
-            'wardsPlaced':                {'$sum': '$info.teams.players.wardsPlaced'},
-            'wardsKilled':                {'$sum': '$info.teams.players.wardsKilled'},
-            'totalCs':                    {'$sum': '$info.teams.players.cs'},
-            'totalCs14':                  {'$sum': '$info.teams.players.cs14'},
-            'totalCsd14':                 {'$sum': '$info.teams.players.csd'},
-            'championsPlayed':            {'$addToSet': '$info.teams.players.champion.name'},
-            'roles':                      {'$addToSet': '$info.teams.players.role'},
-            'soloKills':                  {'$sum': '$info.teams.players.soloKills'},
-            'effectiveHealAndShielding':  {'$sum': {'$ifNull': ['$info.teams.players.effectiveHealAndShielding', 0]}},
-            'firstBloods':                {'$sum': {'$cond': [{'$eq': ['$info.teams.players.firstBlood', True]}, 1, 0]}},
-            'killParticipationSum':        {'$sum': '$info.teams.players.killParticipation'},
+            'minutesPlayed':              {'$sum': {'$divide': ['$gameDuration', 60]}},
+            'wins':                       {'$sum': {'$cond': ['$win', 1, 0]}},
+            'kills':                      {'$sum': '$kills'},
+            'deaths':                     {'$sum': '$deaths'},
+            'assists':                    {'$sum': '$assists'},
+            'totalDamage':                {'$sum': '$dmg'},
+            'totalDamageTaken':           {'$sum': '$totalDamageTaken'},
+            'totalGold':                  {'$sum': '$goldEarned'},
+            'goldSpent':                  {'$sum': '$goldSpent'},
+            'visionScore':                {'$sum': '$visionScore'},
+            'wardsPlaced':                {'$sum': '$wardsPlaced'},
+            'wardsKilled':                {'$sum': '$wardsKilled'},
+            'totalCs':                    {'$sum': '$cs'},
+            'totalCs14':                  {'$sum': '$cs14'},
+            'totalCsd14':                 {'$sum': '$csd'},
+            'championsPlayed':            {'$addToSet': '$champion.name'},
+            'roles':                      {'$addToSet': '$role'},
+            'soloKills':                  {'$sum': '$soloKills'},
+            'effectiveHealAndShielding':  {'$sum': {'$ifNull': ['$effectiveHealAndShielding', 0]}},
+            'firstBloods':                {'$sum': {'$cond': ['$firstBlood', 1, 0]}},
+            'killParticipationSum':        {'$sum': '$killParticipation'},
         }},
         {'$project': {
             '_id':                          0,
@@ -407,53 +377,52 @@ def _player_stats_pipeline(season_match=None):
 @bp.route('/stats/season/<season_id>', methods=['GET'])
 def get_player_season_stats(season_id):
     """Return aggregated player statistics for the specified season."""
-    pipeline = _player_stats_pipeline({"metadata.season": str(season_id)})
-    results = list(matches.aggregate(pipeline))
+    pipeline = _player_stats_pipeline(str(season_id))
+    results = list(match_performances.aggregate(pipeline))
     return jsonify(results)
 
 @bp.route('/stats/alltime', methods=['GET'])
 def get_player_alltime_stats():
     """Return aggregated player statistics across all seasons."""
     pipeline = _player_stats_pipeline()
-    results = list(matches.aggregate(pipeline))
+    results = list(match_performances.aggregate(pipeline))
     return jsonify(results)
 
-def _champion_stats_pipeline(season_match=None):
+def _champion_stats_pipeline(season=None):
     """
-    Build a MongoDB aggregation pipeline for champion statistics.
+    Build a MongoDB aggregation pipeline for champion statistics against
+    the ``match_performances`` collection.
 
     Args:
-        season_match (dict | None): Optional ``$match`` stage filter, e.g.
-            ``{"metadata.season": "S1"}``. Pass ``None`` for all-time stats.
+        season (str | None): Season identifier to filter by, e.g. ``"S1"``.
+            Pass ``None`` for all-time stats.
 
     Returns:
         list: Aggregation pipeline stages ready for ``collection.aggregate()``.
     """
     pipeline = []
-    if season_match:
-        pipeline.append({'$match': season_match})
+    if season:
+        pipeline.append({'$match': {'season': season}})
     pipeline += [
-        {'$unwind': '$info.teams'},
-        {'$unwind': '$info.teams.players'},
         {'$group': {
-            '_id':                  '$info.teams.players.champion.name',
-            'championImage':        {'$first': '$info.teams.players.champion.image.square'},
+            '_id':                  '$champion.name',
+            'championImage':        {'$first': '$champion.image.square'},
             'games':                {'$sum': 1},
-            'minutesPlayed':        {'$sum': {'$divide': ['$info.gameDuration', 60]}},
-            'wins':                 {'$sum': {'$cond': [{'$eq': ['$info.teams.gameOutcome', True]}, 1, 0]}},
-            'kills':                {'$sum': '$info.teams.players.kills'},
-            'deaths':               {'$sum': '$info.teams.players.deaths'},
-            'assists':              {'$sum': '$info.teams.players.assists'},
-            'totalDamage':          {'$sum': '$info.teams.players.dmg'},
-            'totalGold':            {'$sum': '$info.teams.players.goldEarned'},
-            'totalCs':              {'$sum': '$info.teams.players.cs'},
-            'totalCs14':            {'$sum': '$info.teams.players.cs14'},
-            'totalCsd14':           {'$sum': '$info.teams.players.csd'},
-            'visionScore':          {'$sum': '$info.teams.players.visionScore'},
-            'killParticipationSum': {'$sum': '$info.teams.players.killParticipation'},
-            'firstBloods':          {'$sum': {'$cond': [{'$eq': ['$info.teams.players.firstBlood', True]}, 1, 0]}},
-            'soloKills':            {'$sum': '$info.teams.players.soloKills'},
-            'uniquePlayers':        {'$addToSet': '$info.teams.players.profile.puuid'},
+            'minutesPlayed':        {'$sum': {'$divide': ['$gameDuration', 60]}},
+            'wins':                 {'$sum': {'$cond': ['$win', 1, 0]}},
+            'kills':                {'$sum': '$kills'},
+            'deaths':               {'$sum': '$deaths'},
+            'assists':              {'$sum': '$assists'},
+            'totalDamage':          {'$sum': '$dmg'},
+            'totalGold':            {'$sum': '$goldEarned'},
+            'totalCs':              {'$sum': '$cs'},
+            'totalCs14':            {'$sum': '$cs14'},
+            'totalCsd14':           {'$sum': '$csd'},
+            'visionScore':          {'$sum': '$visionScore'},
+            'killParticipationSum': {'$sum': '$killParticipation'},
+            'firstBloods':          {'$sum': {'$cond': ['$firstBlood', 1, 0]}},
+            'soloKills':            {'$sum': '$soloKills'},
+            'uniquePlayers':        {'$addToSet': '$puuid'},
         }},
         {'$project': {
             '_id':                   0,
@@ -493,15 +462,15 @@ def _champion_stats_pipeline(season_match=None):
 @bp.route('/champion-stats/season/<season_id>', methods=['GET'])
 def get_champion_season_stats(season_id):
     """Return aggregated champion statistics for the specified season."""
-    pipeline = _champion_stats_pipeline({"metadata.season": str(season_id)})
-    results = list(matches.aggregate(pipeline))
+    pipeline = _champion_stats_pipeline(str(season_id))
+    results = list(match_performances.aggregate(pipeline))
     return jsonify(results)
 
 @bp.route('/champion-stats/alltime', methods=['GET'])
 def get_champion_alltime_stats():
     """Return aggregated champion statistics across all seasons."""
     pipeline = _champion_stats_pipeline()
-    results = list(matches.aggregate(pipeline))
+    results = list(match_performances.aggregate(pipeline))
     return jsonify(results)
 
 @bp.route('/champion/<champion_name>/matches', methods=['GET'])
@@ -513,39 +482,17 @@ def get_matches_by_champion(champion_name):
     Results are sorted by game creation timestamp descending.
     """
     season = request.args.get('season', None)
-    pipeline = []
+    query = {'champion.name': champion_name}
     if season:
-        pipeline.append({'$match': {'metadata.season': str(season)}})
-    pipeline += [
-        {'$unwind': '$info.teams'},
-        {'$unwind': '$info.teams.players'},
-        {'$match': {'info.teams.players.champion.name': champion_name}},
-        {'$project': {
-            '_id':              0,
-            'matchId':          '$metadata.matchId',
-            'season':           '$metadata.season',
-            'gameCreation':     '$info.gameCreation',
-            'gameDuration':     '$info.gameDuration',
-            'gameVersion':      '$info.gameVersion',
-            'teamName':         '$info.teams.name',
-            'win':              '$info.teams.gameOutcome',
-            'playerName':       '$info.teams.players.profile.name',
-            'puuid':            '$info.teams.players.profile.puuid',
-            'kills':            '$info.teams.players.kills',
-            'deaths':           '$info.teams.players.deaths',
-            'assists':          '$info.teams.players.assists',
-            'kda':              '$info.teams.players.kda',
-            'cs':               '$info.teams.players.cs',
-            'cs14':             '$info.teams.players.cs14',
-            'csd':              '$info.teams.players.csd',
-            'dmg':              '$info.teams.players.dmg',
-            'dpm':              '$info.teams.players.dpm',
-            'goldEarned':       '$info.teams.players.goldEarned',
-            'killParticipation':'$info.teams.players.killParticipation',
-            'visionScore':      '$info.teams.players.visionScore',
-        }},
-        {'$sort': {'gameCreation': -1}},
-    ]
-    results = list(matches.aggregate(pipeline))
+        query['season'] = str(season)
+    projection = {
+        '_id': 0,
+        'matchId': 1, 'season': 1, 'gameCreation': 1, 'gameDuration': 1,
+        'gameVersion': 1, 'teamName': 1, 'win': 1, 'playerName': 1, 'puuid': 1,
+        'kills': 1, 'deaths': 1, 'assists': 1, 'kda': 1,
+        'cs': 1, 'cs14': 1, 'csd': 1, 'dmg': 1, 'dpm': 1,
+        'goldEarned': 1, 'killParticipation': 1, 'visionScore': 1,
+    }
+    results = list(match_performances.find(query, projection).sort('gameCreation', -1))
     return jsonify(results)
 

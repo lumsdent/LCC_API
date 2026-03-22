@@ -24,20 +24,13 @@ _MERGE_NEW_PUUID = '2_h_CpcRsZypWQHR66PnB_DU1rHiQYz8AmRETV54QFVuZuwX9Ly_ys7R3SOh
 
 def _merge_duplicate_players(player_list):
     """
-    Merge match history and teams from the old duplicate PUUID into the canonical
-    player record, then remove the duplicate from the list.
+    Merge teams from the old duplicate PUUID into the canonical player record,
+    then remove the duplicate from the list.
     """
     old = next((p for p in player_list if p.get('profile', {}).get('puuid') == _MERGE_OLD_PUUID), None)
     new = next((p for p in player_list if p.get('profile', {}).get('puuid') == _MERGE_NEW_PUUID), None)
     if not old or not new:
         return player_list
-
-    # Merge match_history — deduplicate by matchId
-    existing_ids = {m['matchId'] for m in new.get('match_history', []) if 'matchId' in m}
-    for match in old.get('match_history', []):
-        if match.get('matchId') not in existing_ids:
-            new.setdefault('match_history', []).append(match)
-            existing_ids.add(match.get('matchId'))
 
     # Merge teams — old entries fill in seasons not already present on new
     existing_seasons = {list(t.keys())[0] for t in new.get('teams', []) if t}
@@ -51,6 +44,7 @@ def _merge_duplicate_players(player_list):
 
 _db = MongoConnection()
 players = _db.get_player_collection()
+match_performances = _db.get_match_performances_collection()
 
 def get_player_by_discord_id(discord_id):
     """Return a player document matching the given Discord user ID, or None."""
@@ -58,10 +52,10 @@ def get_player_by_discord_id(discord_id):
 
 
 def get_player_me_by_discord_id(discord_id):
-    """Return a lightweight player document for /me: excludes match_history."""
+    """Return a lightweight player document for /me: excludes champion_mastery."""
     return players.find_one(
         {'discord.id': str(discord_id)},
-        {'_id': 0, 'match_history': 0, 'champion_mastery': 0}
+        {'_id': 0, 'champion_mastery': 0}
     )
 
 
@@ -143,7 +137,7 @@ def get_unclaimed_players():
             {'discord.id': None},
             {'discord.id': ''},
         ]},
-        {'_id': 0, 'match_history': 0, 'champion_mastery': 0}
+        {'_id': 0, 'champion_mastery': 0}
     ))
 
 
@@ -217,7 +211,7 @@ def add_player():
 @bp.route('/<puuid>', methods=['GET'])
 def get_player_by_puuid(puuid):
     """Return a single player document by PUUID, excluding match history."""
-    player_data = players.find_one({'profile.puuid': puuid}, {'_id': 0, 'match_history': 0})
+    player_data = players.find_one({'profile.puuid': puuid}, {'_id': 0})
     if player_data is None:
         return jsonify({'message': 'Player not found'}), 404
     return jsonify(player_data)
@@ -232,7 +226,7 @@ def get_player_matches(puuid):
         per_page (int):   Results per page, 1-50, default 10.
         champion (str):   Optional champion name filter.
     """
-    page = max(1, int(request.args.get('page', 1)))
+    page     = max(1, int(request.args.get('page', 1)))
     per_page = min(50, max(1, int(request.args.get('per_page', 10))))
     champion = request.args.get('champion', None)
 
@@ -240,34 +234,47 @@ def get_player_matches(puuid):
     puuids = [puuid]
     if puuid == _MERGE_NEW_PUUID:
         puuids.append(_MERGE_OLD_PUUID)
-    match_filter = {'profile.puuid': {'$in': puuids}} if len(puuids) > 1 else {'profile.puuid': puuid}
-
-    count_pipeline = [
-        {'$match': match_filter},
-        {'$unwind': '$match_history'},
-    ]
+    query: dict = {'puuid': {'$in': puuids}} if len(puuids) > 1 else {'puuid': puuid}
     if champion:
-        count_pipeline.append({'$match': {'match_history.champion.name': champion}})
-    count_pipeline.append({'$count': 'count'})
+        query['champion.name'] = champion
 
-    count_result = players.aggregate(count_pipeline)
-    count_doc    = next(count_result, None)
-    total        = count_doc['count'] if count_doc else 0
-
+    total = match_performances.count_documents(query)
     pipeline = [
-        {'$match': match_filter},
-        {'$project': {'match_history': 1, '_id': 0}},
-        {'$unwind': '$match_history'},
-    ]
-    if champion:
-        pipeline.append({'$match': {'match_history.champion.name': champion}})
-    pipeline += [
-        {'$sort': {'match_history.gameStartTimestamp': -1}},
+        {'$match': query},
+        {'$sort': {'gameStartTimestamp': -1}},
         {'$skip': (page - 1) * per_page},
         {'$limit': per_page},
-        {'$replaceRoot': {'newRoot': '$match_history'}},
+        # Enrich with opponent champion/team using the pre-resolved opponentPuuid
+        {'$lookup': {
+            'from': 'match_performances',
+            'let': {'mid': '$matchId', 'opp': '$opponentPuuid'},
+            'pipeline': [
+                {'$match': {'$expr': {'$and': [
+                    {'$eq': ['$matchId', '$$mid']},
+                    {'$eq': ['$puuid',   '$$opp']},
+                ]}}},
+                {'$project': {'_id': 0, 'champion': 1, 'teamName': 1}},
+            ],
+            'as': 'opponentDoc',
+        }},
+        # Enrich with VOD URL from the matches collection
+        {'$lookup': {
+            'from': 'matches',
+            'let': {'mid': '$matchId'},
+            'pipeline': [
+                {'$match': {'$expr': {'$eq': ['$metadata.matchId', '$$mid']}}},
+                {'$project': {'_id': 0, 'vod': '$info.vod'}},
+            ],
+            'as': 'matchDoc',
+        }},
+        {'$addFields': {
+            'opponentTeamName': {'$arrayElemAt': ['$opponentDoc.teamName', 0]},
+            'opponentChampion': {'$arrayElemAt': ['$opponentDoc.champion', 0]},
+            'vod': {'$arrayElemAt': ['$matchDoc.vod', 0]},
+        }},
+        {'$project': {'_id': 0, 'opponentDoc': 0, 'matchDoc': 0}},
     ]
-    match_results = list(players.aggregate(pipeline))
+    match_results = list(match_performances.aggregate(pipeline))
 
     return jsonify({
         'matches':  match_results,
@@ -283,25 +290,24 @@ def get_player_champion_stats(puuid):
     puuids = [puuid]
     if puuid == _MERGE_NEW_PUUID:
         puuids.append(_MERGE_OLD_PUUID)
-    profile_match = {'profile.puuid': {'$in': puuids}} if len(puuids) > 1 else {'profile.puuid': puuid}
+    query = {'puuid': {'$in': puuids}} if len(puuids) > 1 else {'puuid': puuid}
     pipeline = [
-        {'$match': profile_match},
-        {'$unwind': '$match_history'},
+        {'$match': query},
         {'$group': {
-            '_id':               '$match_history.champion.name',
-            'champion':          {'$first': '$match_history.champion'},
+            '_id':               '$champion.name',
+            'champion':          {'$first': '$champion'},
             'gamesPlayed':       {'$sum': 1},
-            'wins':              {'$sum': {'$cond': ['$match_history.win', 1, 0]}},
-            'losses':            {'$sum': {'$cond': ['$match_history.win', 0, 1]}},
-            'kills':             {'$sum': '$match_history.kills'},
-            'deaths':            {'$sum': '$match_history.deaths'},
-            'assists':           {'$sum': '$match_history.assists'},
-            'killParticipation': {'$avg': '$match_history.killParticipation'},
-            'dpm':               {'$avg': '$match_history.dpm'},
-            'cs14':              {'$avg': '$match_history.cs14'},
-            'csm':               {'$avg': '$match_history.csm'},
-            'gpm':               {'$avg': '$match_history.gpm'},
-            'vspm':              {'$avg': '$match_history.vspm'},
+            'wins':              {'$sum': {'$cond': ['$win', 1, 0]}},
+            'losses':            {'$sum': {'$cond': ['$win', 0, 1]}},
+            'kills':             {'$sum': '$kills'},
+            'deaths':            {'$sum': '$deaths'},
+            'assists':           {'$sum': '$assists'},
+            'killParticipation': {'$avg': '$killParticipation'},
+            'dpm':               {'$avg': '$dpm'},
+            'cs14':              {'$avg': '$cs14'},
+            'csm':               {'$avg': '$csm'},
+            'gpm':               {'$avg': '$gpm'},
+            'vspm':              {'$avg': '$vspm'},
         }},
         {'$addFields': {
             'kda': {
@@ -314,7 +320,7 @@ def get_player_champion_stats(puuid):
         {'$sort': {'gamesPlayed': -1}},
         {'$project': {'_id': 0}},
     ]
-    stats = list(players.aggregate(pipeline))
+    stats = list(match_performances.aggregate(pipeline))
     return jsonify(stats)
 
 @bp.route('', methods=['GET'], strict_slashes=False)
@@ -353,39 +359,6 @@ def add_team_to_player(data, team_name, season):
         {'$addToSet': {'teams': {season: {'role': data['role'], 'name': team_name}}}}
     )
     return result
-
-def save_match_history(data):
-    """
-    Save or update a match history entry for a player.
-
-    If the player does not exist, creates a new player document. If the match
-    already exists in the player's history, replaces it. Otherwise appends it.
-
-    Args:
-        data (dict): Match data containing ``profile`` and ``matchId`` fields.
-    """
-    match_id     = data['matchId']
-    player_puuid = data['profile']['puuid']
-
-    player = players.find_one({'profile.puuid': player_puuid})
-    if player is None:
-        players.insert_one({
-            'profile':          data['profile'],
-            'match_history':    [data],
-            'champion_mastery': get_champion_mastery(player_puuid),
-        })
-        return
-
-    if players.find_one({'profile.puuid': player_puuid, 'match_history.matchId': match_id}):
-        players.update_one(
-            {'profile.puuid': player_puuid, 'match_history.matchId': match_id},
-            {'$set': {'match_history.$': data}}
-        )
-    else:
-        players.update_one(
-            {'profile.puuid': player_puuid},
-            {'$push': {'match_history': data}}
-        )
 
 def get_images(profile_icon_id):
     """Return a dict of image URLs for a given profile icon ID."""
@@ -446,66 +419,7 @@ def refresh_player_riot_data(puuid):
             'champion_mastery':       get_champion_mastery(puuid),
         }
         players.update_one({'profile.puuid': puuid}, {'$set': updated_fields})
-        updated_player = players.find_one({'profile.puuid': puuid}, {'_id': 0, 'match_history': 0})
+        updated_player = players.find_one({'profile.puuid': puuid}, {'_id': 0})
         return jsonify({'message': 'Player refreshed successfully', 'player': updated_player})
     except Exception as e:
         return jsonify({'message': f'Error refreshing player: {str(e)}'}), 500
-
-
-@bp.route('/<puuid>/delete', methods=['DELETE'])
-def delete_player_match_history_endpoint(puuid):
-    """
-    Delete a match from a player's history by array index. Requires admin password.
-
-    JSON body params:
-        password (str): Admin password.
-        index (int):    Zero-based index of the match to remove.
-    """
-    data = request.json
-    if data.get('password') != os.getenv('ADMIN_PW'):
-        return jsonify({'message': 'Incorrect password'}), 401
-
-    if 'index' not in data:
-        return jsonify({'message': 'Missing required parameter: index'}), 400
-    try:
-        index = int(data['index'])
-        if index < 0:
-            raise ValueError
-    except (ValueError, TypeError):
-        return jsonify({'message': 'Invalid index value, must be a non-negative integer'}), 400
-
-    result = delete_match_history_by_index(puuid, index)
-    status = 200 if result['success'] else 404
-    return jsonify({'message': result['message']}), status
-
-def delete_match_history_by_index(player_puuid, index):
-    """
-    Delete a match history entry by its zero-based array index.
-
-    Uses the MongoDB ``$unset`` + ``$pull None`` pattern to remove a single
-    element without shifting indexes mid-operation.
-
-    Args:
-        player_puuid (str): PUUID of the player.
-        index (int):        Zero-based index of the match to delete.
-
-    Returns:
-        dict: ``{'success': bool, 'message': str}``
-    """
-    player = players.find_one({'profile.puuid': player_puuid})
-    if not player:
-        return {'success': False, 'message': 'Player not found'}
-
-    history = player.get('match_history', [])
-    if len(history) <= index:
-        return {'success': False, 'message': f'Match at index {index} does not exist'}
-
-    match_id = history[index].get('matchId', 'unknown')
-    result = players.update_one(
-        {'profile.puuid': player_puuid},
-        {'$unset': {f'match_history.{index}': 1}}
-    )
-    if result.modified_count > 0:
-        players.update_one({'profile.puuid': player_puuid}, {'$pull': {'match_history': None}})
-        return {'success': True, 'message': f'Match {match_id} at index {index} deleted'}
-    return {'success': False, 'message': 'Failed to delete match history entry'}

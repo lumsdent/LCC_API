@@ -45,3 +45,7 @@ class MongoConnection:
     def get_tournament_codes_collection(self):
         """Return the ``tournament_codes`` collection."""
         return self.db['tournament_codes']
+
+    def get_match_performances_collection(self):
+        """Return the ``match_performances`` collection (one doc per player per match)."""
+        return self.db['match_performances']

@@ -13,6 +13,10 @@ from .mongo_connection import MongoConnection
 
 DDRAGON_CDN = 'https://ddragon.leagueoflegends.com/cdn/latest'
 
+# Duplicate accounts belonging to the same player — remap old → canonical.
+_MERGE_OLD_PUUID = 'OMb9S_LJfcHcmNf2EeoK6oKVZPN_ilQ_atdZLBHcS-1cNv38UZObF9COSP54dJn9eD4-mP23xpHUug'
+_MERGE_NEW_PUUID = '2_h_CpcRsZypWQHR66PnB_DU1rHiQYz8AmRETV54QFVuZuwX9Ly_ys7R3SOh7fFo9U1CZ9VlPv50Aw'
+
 def process_match(user_data):
     """Fetch a match and its timeline from the Riot API and return a processed match document."""
     match_url = f"https://americas.api.riotgames.com/lol/match/v5/matches/NA1_{user_data['matchId']}"
@@ -52,8 +56,102 @@ def get_matchups(match_data, role):
         matchups[0]['vs'] = build_matchup(matchups[1])
         matchups[1]['vs'] = build_matchup(matchups[0])
     return matchups
-    
-def get_position_data(participants):
+
+
+def save_match_performances(match_data):
+    """
+    Extract per-player performance records from a processed match document and
+    upsert them into the ``match_performances`` collection.
+
+    Resolves ``opponentPuuid`` for each player via role-matching across teams, and
+    normalises the legacy duplicate account PUUID to the canonical value before writing.
+    """
+    _performances = _db.get_match_performances_collection()
+
+    match_id      = match_data['metadata']['matchId']
+    season        = match_data['metadata']['season']
+    game_start    = match_data['info'].get('gameStartTime', 0)
+    game_creation = match_data['info'].get('gameCreation', 0)
+    game_duration = match_data['info'].get('gameDuration', 0)
+    game_version  = match_data['info'].get('gameVersion', '')
+
+    # Build role → {teamId: normalized_puuid} so we can resolve lane opponents.
+    role_teams: dict = {}
+    for team in match_data['info']['teams']:
+        for player in team['players']:
+            puuid = player['profile']['puuid']
+            if puuid == _MERGE_OLD_PUUID:
+                puuid = _MERGE_NEW_PUUID
+            role_teams.setdefault(player['role'], {})[team['teamId']] = puuid
+
+    # Flatten to puuid → opponent_puuid.
+    opponent_map: dict = {}
+    for team_map in role_teams.values():
+        puuids = list(team_map.values())
+        if len(puuids) == 2:
+            opponent_map[puuids[0]] = puuids[1]
+            opponent_map[puuids[1]] = puuids[0]
+
+    for team in match_data['info']['teams']:
+        for player in team['players']:
+            puuid = player['profile']['puuid']
+            if puuid == _MERGE_OLD_PUUID:
+                puuid = _MERGE_NEW_PUUID
+
+            doc = {
+                'matchId':                   match_id,
+                'season':                    season,
+                'gameStartTimestamp':        game_start,
+                'gameCreation':              game_creation,
+                'gameDuration':              game_duration,
+                'gameVersion':               game_version,
+                'win':                       team['gameOutcome'],
+                'teamSide':                  team.get('side', ''),
+                'teamName':                  team['name'],
+                'teamImage':                 f"{team['name'].replace(' ', '_').lower()}.png",
+                'puuid':                     puuid,
+                'playerName':                player['profile']['name'],
+                'playerIcon':                player['profile'].get('images', {}).get('icon', ''),
+                'role':                      player['role'],
+                'champion':                  player['champion'],
+                'build':                     player.get('build', []),
+                'trinket':                   player.get('trinket', {}),
+                'runes':                     player.get('runes', {}),
+                'summonerSpells':            player.get('summonerSpells', []),
+                'kills':                     player['kills'],
+                'deaths':                    player['deaths'],
+                'assists':                   player['assists'],
+                'kda':                       player['kda'],
+                'cs':                        player['cs'],
+                'csm':                       player['csm'],
+                'cs14':                      player['cs14'],
+                'csd':                       player['csd'],
+                'dmg':                       player['dmg'],
+                'dpm':                       player['dpm'],
+                'goldEarned':                player['goldEarned'],
+                'goldSpent':                 player.get('goldSpent', 0),
+                'gpm':                       player['gpm'],
+                'visionScore':               player['visionScore'],
+                'vspm':                      player['vspm'],
+                'visionWardsBought':         player.get('visionWardsBought', 0),
+                'wardsPlaced':               player.get('wardsPlaced', 0),
+                'wardsKilled':               player.get('wardsKilled', 0),
+                'killParticipation':         player.get('killParticipation', 0),
+                'soloKills':                 player.get('soloKills', 0),
+                'firstBlood':                player.get('firstBlood', False),
+                'effectiveHealAndShielding': player.get('effectiveHealAndShielding', 0),
+                'totalDamageTaken':          player.get('totalDamageTaken', 0),
+                'damageTakenPercent':        player.get('damageTakenPercent', 0),
+                'teamDmgPercent':            player.get('teamDmgPercent', 0),
+                'opponentPuuid':             opponent_map.get(puuid, ''),
+            }
+            _performances.replace_one(
+                {'matchId': match_id, 'puuid': puuid},
+                doc,
+                upsert=True,
+            )
+
+
     """
     Build a role → team ID → PUUID mapping from a list of Riot participant dicts.
 
