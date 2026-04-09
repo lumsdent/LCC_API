@@ -1,364 +1,462 @@
+"""
+process_match_reports.py
+------------------------
+Contains helpers for fetching and transforming Riot API match data into the
+normalised document format stored in MongoDB.
+
+Provides ``process_match``, ``get_matchups``, player/champion helpers, and
+all DDragon data-fetching utilities.
+"""
 import os
-import random
 import requests
-from marshmallow import Schema, fields, EXCLUDE
 from .mongo_connection import MongoConnection
 
-DDRAGON_URL = "https://ddragon.leagueoflegends.com/cdn/"
-CDN_VERSION = "16.3.1"
+DDRAGON_CDN = 'https://ddragon.leagueoflegends.com/cdn/latest'
+
+# Duplicate accounts belonging to the same player — remap old → canonical.
+_MERGE_OLD_PUUID = 'OMb9S_LJfcHcmNf2EeoK6oKVZPN_ilQ_atdZLBHcS-1cNv38UZObF9COSP54dJn9eD4-mP23xpHUug'
+_MERGE_NEW_PUUID = '2_h_CpcRsZypWQHR66PnB_DU1rHiQYz8AmRETV54QFVuZuwX9Ly_ys7R3SOh7fFo9U1CZ9VlPv50Aw'
 
 def process_match(user_data):
-    
-    match_url = f"https://americas.api.riotgames.com/lol/match/v5/matches/NA1_{user_data["matchId"]}"
+    """Fetch a match and its timeline from the Riot API and return a processed match document."""
+    match_url = f"https://americas.api.riotgames.com/lol/match/v5/matches/NA1_{user_data['matchId']}"
     riot_match_data = fetch_riot_data(match_url)
-
-    # Fetch and process timeline data
-    timeline_url = match_url + "/timeline"
-    riot_timeline_data = fetch_riot_data(timeline_url)
+    riot_timeline_data = fetch_riot_data(match_url + '/timeline')
     timeline_data = process_timeline_data(riot_timeline_data)
-    processed_match = process_match_data(riot_match_data, timeline_data, user_data)
-    
-    return processed_match
-    
+    return process_match_data(riot_match_data, timeline_data, user_data)
 
-def build_matchup( player):
+def build_matchup(player):
+    """Build a compact matchup reference dict from a player sub-document."""
     return {
-        "puuid": player["profile"]["puuid"],
-        "teamImage": player["team"]["image"],
-        "teamName": player["team"]["name"],
-        "player": player["profile"]["name"],
-        "championName": player["champion"]["name"],
-        "championImage": player["champion"]["image"]
+        'puuid':         player['profile']['puuid'],
+        'teamImage':     player['team']['image'],
+        'teamName':      player['team']['name'],
+        'player':        player['profile']['name'],
+        'championName':  player['champion']['name'],
+        'championImage': player['champion']['image'],
     }
 
 def get_matchups(match_data, role):
+    """
+    Return a list of 0–2 player sub-documents for the given role, each augmented
+    with match context and a ``vs`` reference to the lane opponent.
+    """
     matchups = []
-    for team in match_data["info"]["teams"]:
-        for player in team["players"]:
-            if player["role"] == role:
-                player["matchId"] = match_data["metadata"]["matchId"]
-                player["season"] = match_data["metadata"]["season"]
-                player["gameStartTimestamp"] = match_data["info"]["gameStartTime"]
-                player["win"] = team["gameOutcome"]
-                player["team"] = {"name": team["name"], "image": f"{team["name"].lower()}.png"}
+    for team in match_data['info']['teams']:
+        for player in team['players']:
+            if player['role'] == role:
+                player['matchId']            = match_data['metadata']['matchId']
+                player['season']             = match_data['metadata']['season']
+                player['gameStartTimestamp'] = match_data['info']['gameStartTime']
+                player['win']                = team['gameOutcome']
+                player['team']               = {'name': team['name'], 'image': f"{team['name'].lower()}.png"}
                 matchups.append(player)
                 break
     if len(matchups) == 2:
-        matchups[0]["vs"] = build_matchup(matchups[1])
-        matchups[1]["vs"] = build_matchup(matchups[0])
+        matchups[0]['vs'] = build_matchup(matchups[1])
+        matchups[1]['vs'] = build_matchup(matchups[0])
     return matchups
-    
-def get_position_data(participants):
+
+
+def save_match_performances(match_data):
+    """
+    Extract per-player performance records from a processed match document and
+    upsert them into the ``match_performances`` collection.
+
+    Resolves ``opponentPuuid`` for each player via role-matching across teams, and
+    normalises the legacy duplicate account PUUID to the canonical value before writing.
+    """
+    _performances = _db.get_match_performances_collection()
+
+    match_id      = match_data['metadata']['matchId']
+    season        = match_data['metadata']['season']
+    game_start    = match_data['info'].get('gameStartTime', 0)
+    game_creation = match_data['info'].get('gameCreation', 0)
+    game_duration = match_data['info'].get('gameDuration', 0)
+    game_version  = match_data['info'].get('gameVersion', '')
+
+    # Build role → {teamId: normalized_puuid} so we can resolve lane opponents.
+    role_teams: dict = {}
+    for team in match_data['info']['teams']:
+        for player in team['players']:
+            puuid = player['profile']['puuid']
+            if puuid == _MERGE_OLD_PUUID:
+                puuid = _MERGE_NEW_PUUID
+            role_teams.setdefault(player['role'], {})[team['teamId']] = puuid
+
+    # Flatten to puuid → opponent_puuid.
+    opponent_map: dict = {}
+    for team_map in role_teams.values():
+        puuids = list(team_map.values())
+        if len(puuids) == 2:
+            opponent_map[puuids[0]] = puuids[1]
+            opponent_map[puuids[1]] = puuids[0]
+
+    for team in match_data['info']['teams']:
+        for player in team['players']:
+            puuid = player['profile']['puuid']
+            if puuid == _MERGE_OLD_PUUID:
+                puuid = _MERGE_NEW_PUUID
+
+            doc = {
+                'matchId':                   match_id,
+                'season':                    season,
+                'gameStartTimestamp':        game_start,
+                'gameCreation':              game_creation,
+                'gameDuration':              game_duration,
+                'gameVersion':               game_version,
+                'win':                       team['gameOutcome'],
+                'teamSide':                  team.get('side', ''),
+                'teamName':                  team['name'],
+                'teamImage':                 f"{team['name'].replace(' ', '_').lower()}.png",
+                'puuid':                     puuid,
+                'playerName':                player['profile']['name'],
+                'playerIcon':                player['profile'].get('images', {}).get('icon', ''),
+                'role':                      player['role'],
+                'champion':                  player['champion'],
+                'build':                     player.get('build', []),
+                'trinket':                   player.get('trinket', {}),
+                'runes':                     player.get('runes', {}),
+                'summonerSpells':            player.get('summonerSpells', []),
+                'kills':                     player['kills'],
+                'deaths':                    player['deaths'],
+                'assists':                   player['assists'],
+                'kda':                       player['kda'],
+                'cs':                        player['cs'],
+                'csm':                       player['csm'],
+                'cs14':                      player['cs14'],
+                'csd':                       player['csd'],
+                'dmg':                       player['dmg'],
+                'dpm':                       player['dpm'],
+                'goldEarned':                player['goldEarned'],
+                'goldSpent':                 player.get('goldSpent', 0),
+                'gpm':                       player['gpm'],
+                'visionScore':               player['visionScore'],
+                'vspm':                      player['vspm'],
+                'visionWardsBought':         player.get('visionWardsBought', 0),
+                'wardsPlaced':               player.get('wardsPlaced', 0),
+                'wardsKilled':               player.get('wardsKilled', 0),
+                'killParticipation':         player.get('killParticipation', 0),
+                'soloKills':                 player.get('soloKills', 0),
+                'firstBlood':                player.get('firstBlood', False),
+                'effectiveHealAndShielding': player.get('effectiveHealAndShielding', 0),
+                'totalDamageTaken':          player.get('totalDamageTaken', 0),
+                'damageTakenPercent':        player.get('damageTakenPercent', 0),
+                'teamDmgPercent':            player.get('teamDmgPercent', 0),
+                'opponentPuuid':             opponent_map.get(puuid, ''),
+            }
+            _performances.replace_one(
+                {'matchId': match_id, 'puuid': puuid},
+                doc,
+                upsert=True,
+            )
+
+
+    """
+    Build a role → team ID → PUUID mapping from a list of Riot participant dicts.
+
+    Returns a dict keyed by position name (TOP, JUNGLE, etc.) where each value
+    maps team ID 100/200 to the occupying player's PUUID.
+    """
     position_data = {
-        'TOP': {100: None, 200: None},
-        'JUNGLE': {100: None, 200: None},
-        'MIDDLE': {100: None, 200: None},
-        'BOTTOM': {100: None, 200: None},
+        'TOP':     {100: None, 200: None},
+        'JUNGLE':  {100: None, 200: None},
+        'MIDDLE':  {100: None, 200: None},
+        'BOTTOM':  {100: None, 200: None},
         'UTILITY': {100: None, 200: None},
     }
-
     for participant in participants:
         position = participant['teamPosition']
-        team = participant['teamId']
-        puuid = participant['puuid']
+        team     = participant['teamId']
         if position in position_data and team in position_data[position]:
-            position_data[position][team] = puuid
+            position_data[position][team] = participant['puuid']
     return position_data
-   
 
 def fetch_riot_data(url):
-    api_key = os.getenv("RIOT_API_KEY")
-    headers = {"X-Riot-Token": api_key}
-    response = requests.get(url, headers=headers)
+    """Make an authenticated GET request to the Riot API and return parsed JSON."""
+    headers = {'X-Riot-Token': os.getenv('RIOT_API_KEY')}
+    response = requests.get(url, headers=headers, timeout=10)
     if response.status_code != 200:
-        raise requests.exceptions.HTTPError(f"Failed to fetch match data: {response.text}")
+        raise requests.exceptions.HTTPError(f'Failed to fetch Riot data: {response.text}')
     return response.json()
         
 def process_match_data(match_data, timeline_data, user_data):
-    print("user_data", user_data)
-    match_information = {}
+    """
+    Transform raw Riot match/timeline data and user-supplied metadata into the
+    normalised match document stored in MongoDB.
+    """
     blue_team_players = []
     red_team_players = []
     match_overview = {
-        "gameCreation": match_data["info"]["gameCreation"], 
-        "gameDuration": match_data["info"]["gameDuration"],
-        "gameStartTime": match_data["info"]["gameStartTimestamp"],
-        "gameEndTimestamp": match_data["info"]["gameEndTimestamp"],
-        "gameId": match_data["metadata"]["matchId"],
-        "gameMode": match_data["info"]["gameMode"],
-        "gameVersion": match_data["info"]["gameVersion"],
-        }
-    
+        'gameCreation':    match_data['info']['gameCreation'],
+        'gameDuration':    match_data['info']['gameDuration'],
+        'gameStartTime':   match_data['info']['gameStartTimestamp'],
+        'gameEndTimestamp': match_data['info']['gameEndTimestamp'],
+        'gameId':          match_data['metadata']['matchId'],
+        'gameMode':        match_data['info']['gameMode'],
+        'gameVersion':     match_data['info']['gameVersion'],
+    }
     csd14_data = calculate_csd14(match_data, timeline_data)
-    
-    for participant in match_data["info"]["participants"]:
+    for participant in match_data['info']['participants']:
         player = get_player(participant, match_overview)
-        # Add CS@14 from timeline data
-        puuid = participant["puuid"]
-        if puuid in timeline_data:
-            player["cs14"] = timeline_data[puuid]["cs14"]
-        else:
-            # Fallback if timeline data is missing
-            print ("Timeline data not found for puuid:", puuid, match_data["metadata"]["matchId"])
-            player["cs14"] = round(player["csm"] * 14)
-        
-        # Add CSD@14 data
-        if puuid in csd14_data:
-            player["csd"] = csd14_data[puuid]
-        else:
-            # Fallback if CSD@14 data is missing
-            print ("CSD@14 data not found for puuid:", puuid, match_data["metadata"]["matchId"])
-            player["csd"] = 0
-
-        if participant["teamId"] == 100:
-            blue_game_result = participant["win"]
+        puuid  = participant['puuid']
+        player['cs14'] = timeline_data[puuid]['cs14'] if puuid in timeline_data else round(player['csm'] * 14)
+        player['csd']  = csd14_data.get(puuid, 0)
+        if participant['teamId'] == 100:
+            blue_game_result = participant['win']
             blue_team_players.append(player)
         else:
-            red_game_result = participant["win"]
+            red_game_result = participant['win']
             red_team_players.append(player)
-    for team in match_data["info"]["teams"]:
-        if team["teamId"] == 100:
-            blue_team = {"name": user_data["blueTeam"],
-                "side": "Blue",
-                "teamId": 100,
-                "gameOutcome": blue_game_result,
-                "kills": sum([player["kills"] for player in blue_team_players]),
-                "gold": sum([player["goldEarned"] for player in blue_team_players]),
-                "bans": get_bans(team),
-                "objectives": get_objectives(team),
-                "players": blue_team_players
-                }
+    for team in match_data['info']['teams']:
+        if team['teamId'] == 100:
+            blue_team = {
+                'name':        user_data['blueTeam'],
+                'side':        'Blue',
+                'teamId':      100,
+                'gameOutcome': blue_game_result,
+                'kills':       sum(p['kills'] for p in blue_team_players),
+                'gold':        sum(p['goldEarned'] for p in blue_team_players),
+                'bans':        get_bans(team),
+                'objectives':  get_objectives(team),
+                'players':     blue_team_players,
+            }
         else:
-            red_team = {"name": user_data["redTeam"],
-                "side": "Red",
-                "teamId": 200,
-                "gameOutcome": red_game_result,
-                "kills": sum([player["kills"] for player in red_team_players]),
-                "gold": sum([player["goldEarned"] for player in red_team_players]),
-                "bans": get_bans(team),
-                "objectives": get_objectives(team),
-                "players": red_team_players
-                }
-    match_overview["teams"] = [blue_team, red_team]
-    
-    metadata =  match_data["metadata"]
-    metadata["matchName"] = user_data["blueTeam"] + " vs " + user_data["redTeam"]
-    metadata["season"] = user_data["season"]
-    match_information = {"metadata": metadata, "info": match_overview}
-    return match_information
+            red_team = {
+                'name':        user_data['redTeam'],
+                'side':        'Red',
+                'teamId':      200,
+                'gameOutcome': red_game_result,
+                'kills':       sum(p['kills'] for p in red_team_players),
+                'gold':        sum(p['goldEarned'] for p in red_team_players),
+                'bans':        get_bans(team),
+                'objectives':  get_objectives(team),
+                'players':     red_team_players,
+            }
+    match_overview['teams'] = [blue_team, red_team]
+    metadata = match_data['metadata']
+    metadata['matchName'] = f"{user_data['blueTeam']} vs {user_data['redTeam']}"
+    metadata['season']    = user_data['season']
+    return {'metadata': metadata, 'info': match_overview}
 
 def get_bans(team):
+    """Return a list of banned champion dicts (with pick turn) for a team."""
     bans = []
-    for ban in team["bans"]:
-        banned_champ = get_champion_by_id(ban["championId"])
-        banned_champ["pickTurn"] = ban["pickTurn"]
+    for ban in team['bans']:
+        banned_champ = get_champion_by_id(ban['championId'])
+        banned_champ['pickTurn'] = ban['pickTurn']
         bans.append(banned_champ)
     return bans
 
 def get_champion_mastery(puuid):
-    url = f"https://na1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-puuid/{puuid}"
+    """Return the top 3 champion mastery entries for a player, or [] on failure."""
+    url = f'https://na1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-puuid/{puuid}'
     try:
         response = fetch_riot_data(url)
         top_champions = []
-        for mastery in response[:3]: 
-            champion = get_champion_by_id(mastery["championId"])
-
-            champion["championMastery"]= mastery["championLevel"]
-            champion["championPoints"]= mastery["championPoints"]
-            champion["lastPlayTime"]= mastery["lastPlayTime"]
+        for mastery in response[:3]:
+            champion = get_champion_by_id(mastery['championId'])
+            if champion is None:
+                continue
+            champion['championMastery'] = mastery['championLevel']
+            champion['championPoints']  = mastery['championPoints']
+            champion['lastPlayTime']    = mastery['lastPlayTime']
             top_champions.append(champion)
         return top_champions
-    except requests.exceptions.RequestException as e:
-        print(f"An error occurred: {e}")
+    except requests.exceptions.RequestException:
         return []
 
 def get_champion_by_id(champion_id):
-    champion_data = fetch_champion_data()
-    for champion in champion_data:
-        if int(champion["key"]) == champion_id:
+    """Look up a champion by its numeric Riot ID and return a normalised champion dict, or None if not found."""
+    for champion in fetch_champion_data():
+        if int(champion['key']) == champion_id:
             return {
-            "id": champion["id"],
-            "name": champion["name"],
-            "title": champion["title"],
-            "image": {
-                "full": f"/img/champion/{champion['image']['full']}",
-                "square": f"/img/champion/{champion['image']['full']}"
+                'id':    champion['id'],
+                'name':  champion['name'],
+                'title': champion['title'],
+                'image': {
+                    'full':   f"/img/champion/{champion['image']['full']}",
+                    'square': f"/img/champion/{champion['image']['full']}",
+                },
             }
-        }
+    return None
 
 def fetch_champion_data():
-    url = f"{DDRAGON_URL}{CDN_VERSION}/data/en_US/champion.json"
+    """Fetch and return an iterable of champion data dicts from DDragon."""
+    url = f'{DDRAGON_CDN}/data/en_US/champion.json'
     try:
         response = requests.get(url, timeout=10)
-        response.raise_for_status()  # Raise an error for bad status codes
-        return response.json()["data"].values()
-    except requests.exceptions.RequestException as e:
-        print(f"An error occurred: {e}")
+        response.raise_for_status()
+        return response.json()['data'].values()
+    except requests.exceptions.RequestException:
         return {}
     
-# TODO handle better
-players = MongoConnection().get_player_collection()
+_db = MongoConnection()
+_players = _db.get_player_collection()
+
 
 def find_player(puuid):
-    return players.find_one({"profile.puuid": puuid}, {'_id': 0})
+    """Return a player document by PUUID, or None if not found."""
+    return _players.find_one({'profile.puuid': puuid}, {'_id': 0})
     
 def get_objectives(team):
-    team_objectives = team["objectives"]
-    team_objectives["baron"]["image"] = f"https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-match-history/global/default/baron-{team["teamId"]}.png"
-    team_objectives["dragon"]["image"] = f"https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-match-history/global/default/dragon-{team["teamId"]}.png"
-    team_objectives["riftHerald"]["image"] = f"https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-match-history/global/default/herald-{team["teamId"]}.png"
-    team_objectives["tower"]["image"] = f"https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-match-history/global/default/tower-{team["teamId"]}.png"
-    team_objectives["inhibitor"]["image"] = f"https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-match-history/global/default/inhibitor-{team["teamId"]}.png"
-    team_objectives["horde"]["image"] = "https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-match-history/global/default/horde.png"
-    return team_objectives
+    """Augment a team's objectives dict with CDragon image URLs and return it."""
+    cdn = 'https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-match-history/global/default'
+    tid = team['teamId']
+    obj = team['objectives']
+    obj['baron']['image']      = f'{cdn}/baron-{tid}.png'
+    obj['dragon']['image']     = f'{cdn}/dragon-{tid}.png'
+    obj['riftHerald']['image'] = f'{cdn}/herald-{tid}.png'
+    obj['tower']['image']      = f'{cdn}/tower-{tid}.png'
+    obj['inhibitor']['image']  = f'{cdn}/inhibitor-{tid}.png'
+    obj['horde']['image']      = f'{cdn}/horde.png'
+    return obj
     
     
 def process_timeline_data(timeline_data):
-     #Find 14 minute
-    for frame in timeline_data["info"]["frames"]:
-        #840000 is the millisecond timestamp for 14 minutes. Timestamps are not exact, so we need to check a range of timestamps
-        if frame["timestamp"] > 840000 and frame["timestamp"] < 850000:
-            minute_14 = frame["participantFrames"]
+    """
+    Extract CS@14 for every participant from raw Riot timeline data.
+
+    Scans frames for the 14-minute timestamp window (840–850 s) and returns
+    a ``{puuid: {'cs14': int}}`` dict.
+    """
+    minute_14 = None
+    for frame in timeline_data['info']['frames']:
+        if 840000 < frame['timestamp'] < 850000:
+            minute_14 = frame['participantFrames']
             break
-    #Find Game participants
-    participant_data_dict = {}
-    for participant in timeline_data["info"]["participants"]:
-        puuid = participant["puuid"]
-        participant_id = participant["participantId"]
-        #Match participant data with 14 minute data
-        for pid, pdata in minute_14.items():
-            if str(pid) == str(participant_id):
-                participant_data_dict[puuid] = pdata
-    
-    #Pull and aggregate data from timeline per participant
+    if minute_14 is None:
+        return {}
+    participant_map = {
+        participant['puuid']: participant['participantId']
+        for participant in timeline_data['info']['participants']
+    }
     participants = {}
-    for puuid, pdata in participant_data_dict.items():
-        participant_data_14 = {}
-        participant_data_14["cs14"] = pdata["minionsKilled"] + pdata["jungleMinionsKilled"]
-        participants[puuid] = participant_data_14
+    for puuid, pid in participant_map.items():
+        pdata = minute_14.get(str(pid))
+        if pdata:
+            participants[puuid] = {
+                'cs14': pdata['minionsKilled'] + pdata['jungleMinionsKilled']
+            }
     return participants
 
 def calculate_csd14(match_data, timeline_data):
-    """Calculate CS difference at 14 minutes for each player compared to their lane opponent"""
-    
-    # Get position data to identify lane matchups
-    position_data = get_position_data(match_data["info"]["participants"])
-    
-    # Create a dictionary to store CSD@14 values
+    """Calculate CS difference at 14 minutes for each player versus their lane opponent."""
+    position_data = get_position_data(match_data['info']['participants'])
     csd14_data = {}
-    
-    # Process each role to find matchups
-    for role in ["TOP", "JUNGLE", "MIDDLE", "BOTTOM", "UTILITY"]:
-        # Skip if either team doesn't have this role
-        if position_data[role][100] is None or position_data[role][200] is None:
+    for role in ['TOP', 'JUNGLE', 'MIDDLE', 'BOTTOM', 'UTILITY']:
+        blue = position_data[role][100]
+        red  = position_data[role][200]
+        if blue is None or red is None:
             continue
-            
-        # Get puuids for both players in this role
-        blue_player_puuid = position_data[role][100]
-        red_player_puuid = position_data[role][200]
-        
-        # Get CS@14 for both players
-        if blue_player_puuid in timeline_data and red_player_puuid in timeline_data:
-            blue_cs14 = timeline_data[blue_player_puuid]["cs14"]
-            red_cs14 = timeline_data[red_player_puuid]["cs14"]
-            
-            # Calculate and store CS difference (positive means ahead, negative means behind)
-            csd14_data[blue_player_puuid] = blue_cs14 - red_cs14
-            csd14_data[red_player_puuid] = red_cs14 - blue_cs14
-    
+        if blue in timeline_data and red in timeline_data:
+            blue_cs = timeline_data[blue]['cs14']
+            red_cs  = timeline_data[red]['cs14']
+            csd14_data[blue] = blue_cs - red_cs
+            csd14_data[red]  = red_cs  - blue_cs
     return csd14_data
 
 
 def fetch_item_data():
-    url = f"{DDRAGON_URL}{CDN_VERSION}/data/en_US/item.json"
+    """Fetch and return the DDragon item data dict keyed by item ID string."""
+    url = f'{DDRAGON_CDN}/data/en_US/item.json'
     response = requests.get(url, timeout=10)
     if response.status_code == 200:
-        return response.json()["data"]
-    else:
-        raise Exception("Failed to fetch item data")
+        return response.json()['data']
+    raise RuntimeError('Failed to fetch item data')
 
-# Get the item name using the participant's item ID
+
 def get_item_name(item_data, item_id):
-    return item_data.get(str(item_id), {}).get("name", "Unknown Item")
+    """Return the name of an item by ID, or 'Unknown Item' if not found."""
+    return item_data.get(str(item_id), {}).get('name', 'Unknown Item')
 
-# Get the build for a participant
-def get_build(participant, item_data):  
-    build = []
-    for i in range(6):  # There are 6 item slots
-       build.append(get_item(participant, i, item_data))
-    return build
+
+def get_build(participant, item_data):
+    """Return a list of 6 item dicts representing a participant's build."""
+    return [get_item(participant, i, item_data) for i in range(6)]
+
 
 def get_item(participant, item_number, item_data):
-    item_id = participant.get(f"item{item_number}")
+    """Return a single item dict for the given slot, or an empty-slot placeholder."""
+    item_id = participant.get(f'item{item_number}')
     if item_id:
-        item_name = get_item_name(item_data, item_id)
-        return {"id": item_id, "name": item_name, "image": f"/img/item/{item_id}.png"}
-    return {"id": 0, "name": "Empty Slot", "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/items/icons2d/gp_ui_placeholder.png"}
+        return {
+            'id':    item_id,
+            'name':  get_item_name(item_data, item_id),
+            'image': f'/img/item/{item_id}.png',
+        }
+    return {
+        'id':    0,
+        'name':  'Empty Slot',
+        'image': 'https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/items/icons2d/gp_ui_placeholder.png',
+    }
 
 def get_champion(participant):
-    champion = {}
-    champion["id"] = participant["championId"]
-    champion["name"] = participant["championName"]
-    # champion["pick_turn"] = participant["pickTurn"]
-    # champion["title"] = participant["championTitle"]
-    champion["level"] = participant["champLevel"]
-    champion["experience"] = participant["champExperience"]
-    champion["image"] = {"square": f"/img/champion/{champion['name']}.png"}
-    return champion
+    """Build a champion sub-document from a Riot participant dict."""
+    return {
+        'id':         participant['championId'],
+        'name':       participant['championName'],
+        'level':      participant['champLevel'],
+        'experience': participant['champExperience'],
+        'image':      {'square': f"/img/champion/{participant['championName']}.png"},
+    }
 
 def get_profile(participant):
-    puuid = participant["puuid"]
+    """Return the player's profile from MongoDB, falling back to a live Riot API lookup."""
+    puuid       = participant['puuid']
     player_data = find_player(puuid)
     if player_data and 'profile' in player_data:
         return player_data['profile']
-    else:
-        return get_riot_account(puuid)
+    return get_riot_account(puuid)
 
 def get_riot_account(puuid):
-    account_url = f"https://americas.api.riotgames.com/riot/account/v1/accounts/by-puuid/{puuid}"
-    account = fetch_riot_data(account_url)
-    summoner_url = f"https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-puuid/{account['puuid']}"
-    summoner = fetch_riot_data(summoner_url)
-    return  {"puuid": account["puuid"],
-            "name": account["gameName"],
-            "tag": account["tagLine"],
-            "level": summoner["summonerLevel"],
-            "revision_date": summoner["revisionDate"],
-            "images": {"icon": f"/img/profileicon/{summoner["profileIconId"]}.png"}}
+    """Fetch basic account and summoner info for a PUUID from the Riot API."""
+    account  = fetch_riot_data(f'https://americas.api.riotgames.com/riot/account/v1/accounts/by-puuid/{puuid}')
+    summoner = fetch_riot_data(f"https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-puuid/{account['puuid']}")
+    return {
+        'puuid':         account['puuid'],
+        'name':          account['gameName'],
+        'tag':           account['tagLine'],
+        'level':         summoner['summonerLevel'],
+        'revision_date': summoner['revisionDate'],
+        'images':        {'icon': f"/img/profileicon/{summoner['profileIconId']}.png"},
+    }
 
 
 def get_runes(participant):
-    runes = {}
-    participant_runes = participant["perks"]
-    participant_rune_style = participant_runes["styles"]
-    primary_runes = participant_rune_style[0]
-    secondary_runes = participant_rune_style[1]
-    primary_tree_id = primary_runes["style"]
-    primary_tree = primary_runes["selections"]
-    primary_perk_ids = [selection["perk"] for selection in primary_tree]
-    secondary_tree_id = secondary_runes["style"]
-    secondary_tree = secondary_runes["selections"]
-    secondary_perk_ids = [selection["perk"] for selection in secondary_tree]
-    # TODO update API contract to include all runes
-    rune_data = ddragon_get_runes_dict()
-    primary = {}
-    primary["name"] = rune_data[primary_tree_id]
+    """
+    Build a runes sub-document with primary and secondary tree info.
 
-    primary['image'] = get_rune_image(rune_data[primary_tree_id]["key"])
-    primary["keystone"] = {
-        "id": primary_perk_ids[0],
-        "name": rune_data[primary_perk_ids[0]],
-        "image": get_rune_image(rune_data[primary_perk_ids[0]])
+    Returns a dict with ``primary`` (name, image, keystone) and
+    ``secondary`` (name, image) keys.
+    """
+    styles           = participant['perks']['styles']
+    primary_raw      = styles[0]
+    secondary_raw    = styles[1]
+    rune_data        = ddragon_get_runes_dict()
+
+    primary_tree_id  = primary_raw['style']
+    primary_perk_ids = [s['perk'] for s in primary_raw['selections']]
+    secondary_tree_id = secondary_raw['style']
+
+    primary = {
+        'name':     rune_data[primary_tree_id],
+        'image':    get_rune_image(rune_data[primary_tree_id]['key']),
+        'keystone': {
+            'id':    primary_perk_ids[0],
+            'name':  rune_data[primary_perk_ids[0]],
+            'image': get_rune_image(rune_data[primary_perk_ids[0]]),
+        },
     }
-    secondary = {}
-    secondary["name"] = rune_data[secondary_tree_id]
-    secondary['image'] = get_rune_image(rune_data[secondary_tree_id]["key"])
-    runes["primary"] = primary
-    runes["secondary"] = secondary
-    return runes
+    secondary = {
+        'name':  rune_data[secondary_tree_id],
+        'image': get_rune_image(rune_data[secondary_tree_id]['key']),
+    }
+    return {'primary': primary, 'secondary': secondary}
 
 def get_rune_image(rune_key):
-    rune_image_dict =  {
+    """Return the CDragon image URL for a rune identified by its lowercase key."""
+    rune_image_dict = {
         #precision
         "7201_precision": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7201_precision.png",
         "lethaltempo": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/precision/lethaltempo/lethaltempotemp.png",
@@ -438,89 +536,102 @@ def get_rune_image(rune_key):
     return rune_image_dict[rune_key]
 
 def ddragon_get_runes_dict():
-    url = f"{DDRAGON_URL}{CDN_VERSION}/data/en_US/runesReforged.json"
+    """
+    Fetch and return a rune ID mapping from DDragon.
+
+    Tree IDs map to ``{'name': str, 'key': str}`` dicts; individual rune IDs
+    map to their lowercase key string. Returns ``{}`` on failure.
+    """
+    url = f'{DDRAGON_CDN}/data/en_US/runesReforged.json'
     try:
         response = requests.get(url, timeout=10)
-        response.raise_for_status()  # Raise an error for bad status codes
-        html = response.json()
-    except requests.exceptions.RequestException as e:
-        print(f"An error occurred: {e}")
+        response.raise_for_status()
+        data = response.json()
+    except requests.exceptions.RequestException:
         return {}
-    perk_dict = {}
-    for item in html:
-        # Split the URL by '/' and get the last part
-        filename = item["icon"].split('/')[-1]
-        # Remove the file extension and convert to lowercase
-        rune_key = filename.split('.')[0].lower()
-        perk_dict[item["id"]] = {"name": item["key"], "key":rune_key} # Domination (8100), Inspiration (8300), Precision (8000), Resolve (8400), Sorcery (8200)
-    rune_dict = {rune["id"]: rune["key"].lower() for item in html for slot in item["slots"] for rune in slot["runes"]}
+    perk_dict = {
+        item['id']: {'name': item['key'], 'key': item['icon'].split('/')[-1].split('.')[0].lower()}
+        for item in data
+    }
+    rune_dict = {rune['id']: rune['key'].lower() for item in data for slot in item['slots'] for rune in slot['runes']}
     return {**perk_dict, **rune_dict}
 
 def fetch_summoner_spell_data():
-    url = f"{DDRAGON_URL}{CDN_VERSION}/data/en_US/summoner.json"
+    """Fetch summoner spell data from DDragon, keyed by numeric spell ID string."""
+    url = f'{DDRAGON_CDN}/data/en_US/summoner.json'
     try:
         response = requests.get(url, timeout=10)
-        response.raise_for_status()  # Raise an error for bad status codes
-        data =  response.json()["data"]
-        return {spell["key"]: spell for spell in data.values()}
-    except requests.exceptions.RequestException as e:
-        print(f"An error occurred: {e}")
+        response.raise_for_status()
+        data = response.json()['data']
+        return {spell['key']: spell for spell in data.values()}
+    except requests.exceptions.RequestException:
         return {}
 
 def get_spell_image(spell_key):
-    return f"/img/spell/{spell_key}.png"
+    """Return the local image path for a summoner spell."""
+    return f'/img/spell/{spell_key}.png'
+
 
 def get_spells(participant):
+    """Return a list of 2 summoner spell dicts for a participant."""
     spell_data = fetch_summoner_spell_data()
     spells = []
-
-    for i in range(2):  # There are 2 summoner spells
-        spell_id = participant.get(f"summoner{i+1}Id")
-        spell_casts = participant.get(f"summoner{i+1}Casts")
+    for i in range(2):
+        spell_id    = participant.get(f'summoner{i + 1}Id')
+        spell_casts = participant.get(f'summoner{i + 1}Casts')
         if spell_id:
-            spell_key = spell_data.get(str(spell_id), {}).get("id", "Unknown Spell")
-            spell_name = spell_data.get(str(spell_id), {}).get("name", "Unknown Spell")
-            spell_image = get_spell_image(spell_key)
+            spell_key  = spell_data.get(str(spell_id), {}).get('id', 'Unknown Spell')
+            spell_name = spell_data.get(str(spell_id), {}).get('name', 'Unknown Spell')
             spells.append({
-                "casts": spell_casts,
-                "id": spell_id,
-                "name": spell_name,
-                "image": spell_image
+                'casts': spell_casts,
+                'id':    spell_id,
+                'name':  spell_name,
+                'image': get_spell_image(spell_key),
             })
     return spells
 
 def get_player(participant, match_overview):
+    """
+    Build a full player sub-document from a Riot participant dict.
+
+    Computes per-minute stats (CSM, DPM, GPM, VSPM) using ``gameDuration``
+    from ``match_overview``. CS@14 and CSD@14 are injected by the caller.
+    """
     item_data = fetch_item_data()
-    player = {}
-    player["role"] = "SUPPORT" if participant["teamPosition"] == "UTILITY" else participant["teamPosition"]
-    player["build"] = get_build(participant, item_data)
-    player["trinket"] = get_item(participant, 6, item_data)
-    player["champion"] = get_champion(participant)
-    player["assists"] = participant["assists"]
-    player["deaths"] = participant["deaths"]
-    player["kills"] = participant["kills"]
-    player["kda"] = round(participant["challenges"]["kda"], 2)
-    player["profile"] = get_profile(participant)
-    player["runes"] = get_runes(participant)
-    player["summonerSpells"] = get_spells(participant)
-    player["firstBlood"] = participant["firstBloodKill"]
-    # player["mvp"] = isMVP(participant)
-    player["cs"] = participant["totalMinionsKilled"] + participant["neutralMinionsKilled"]
-    player["csm"] = round(player["cs"]/(match_overview["gameDuration"]/60), 2)
-    player["dmg"] = participant["totalDamageDealtToChampions"]
-    player["dpm"] = round(player["dmg"]/(match_overview["gameDuration"]/60), 2)
-    player["teamDmgPercent"] = round(participant["challenges"]["teamDamagePercentage"]*100, 0)
-    player["goldEarned"] = participant["goldEarned"]
-    player["goldSpent"] = participant["goldSpent"]
-    player["gpm"] = round(player["goldEarned"]/(match_overview["gameDuration"]/60), 2)
-    player["killParticipation"] = round(participant["challenges"]["killParticipation"]*100, 0)
-    player["effectiveHealAndShielding"] = round(participant["challenges"]["effectiveHealAndShielding"], 0)
-    player["totalDamageTaken"] = participant["totalDamageTaken"]
-    player["damageTakenPercent"] = round(participant["challenges"]["damageTakenOnTeamPercentage"]*100, 0)
-    player["visionScore"] = participant["visionScore"]
-    player["vspm"] = round(player["visionScore"]/(match_overview["gameDuration"]/60), 2)
-    player["visionWardsBought"] = participant["visionWardsBoughtInGame"]
-    player["wardsKilled"] = participant["wardsKilled"]
-    player["wardsPlaced"] = participant["wardsPlaced"]
-    player["soloKills"] = participant["challenges"]["soloKills"]
-    return player
+    mins      = match_overview['gameDuration'] / 60
+    cs        = participant['totalMinionsKilled'] + participant['neutralMinionsKilled']
+    dmg       = participant['totalDamageDealtToChampions']
+    gold      = participant['goldEarned']
+    vs        = participant['visionScore']
+    return {
+        'role':                       'SUPPORT' if participant['teamPosition'] == 'UTILITY' else participant['teamPosition'],
+        'build':                      get_build(participant, item_data),
+        'trinket':                    get_item(participant, 6, item_data),
+        'champion':                   get_champion(participant),
+        'assists':                    participant['assists'],
+        'deaths':                     participant['deaths'],
+        'kills':                      participant['kills'],
+        'kda':                        round(participant['challenges']['kda'], 2),
+        'profile':                    get_profile(participant),
+        'runes':                      get_runes(participant),
+        'summonerSpells':             get_spells(participant),
+        'firstBlood':                 participant['firstBloodKill'],
+        'cs':                         cs,
+        'csm':                        round(cs / mins, 2),
+        'dmg':                        dmg,
+        'dpm':                        round(dmg / mins, 2),
+        'teamDmgPercent':             round(participant['challenges']['teamDamagePercentage'] * 100, 0),
+        'goldEarned':                 gold,
+        'goldSpent':                  participant['goldSpent'],
+        'gpm':                        round(gold / mins, 2),
+        'killParticipation':          round(participant['challenges']['killParticipation'] * 100, 0),
+        'effectiveHealAndShielding':  round(participant['challenges']['effectiveHealAndShielding'], 0),
+        'totalDamageTaken':           participant['totalDamageTaken'],
+        'damageTakenPercent':         round(participant['challenges']['damageTakenOnTeamPercentage'] * 100, 0),
+        'visionScore':                vs,
+        'vspm':                       round(vs / mins, 2),
+        'visionWardsBought':          participant['visionWardsBoughtInGame'],
+        'wardsKilled':                participant['wardsKilled'],
+        'wardsPlaced':                participant['wardsPlaced'],
+        'soloKills':                  participant['challenges']['soloKills'],
+    }

@@ -1,170 +1,101 @@
 {
-  "team": {
-    "_id": { "$oid": "66ef3ce4b35c8269fae088be" },
-    "team_name": "LCC_Champs",
-    "rosters": {
-      "2": [
-        {
-          "role": "TOP",
-          "player": {
-            "puuid": "c2xoTJ33QjBVjNX4U2IzxcvMwd9keVQE0M0AcoJfh9l_82XMZSo07zyjg87RmWV-KjnlXqMzqcFm-A",
-            "userName": "Oasis psychotikk"
-          }
-        },
-        {
-          "role": "SUPPORT",
-          "player": {
-            "puuid": "_SNthaZiRpWnwXiCppy5_mRf_wssHvfDkmQD6Uq93n-JBpwi_e-kagAwNge0gBBR3h9LDFjI-Kh7fg",
-            "userName": "Oasis Jags"
-          }
-        }
-      ]
-    }
+  "_id": {
+    "$oid": "67b7b8bc26e85547f588b0cd"
   },
-
-  "roles": [
-    "TOP",
-    "JUNGLE",
-    "MID",
-    "ADC",
-    "SUPPORT",
-    "TOP_SUB",
-    "JUNGLE_SUB",
-    "MID_SUB",
-    "ADC_SUB",
-    "SUPPORT_SUB",
-    "FLEX",
-    "FLEX_SUB"
-  ],
-
-  "player": {
-    "_id": { "$oid": "66ef3ce4b35c8269fae088be" },
-    "puuid": "123",
-    "player_name": "TopDiff",
-    "profile_img": "189",
-    "teams": [{ "1": "LCC_Champs" }, { "2": "LCC_Chumps" }],
-    "matches": ["45679284863", "45679284864"],
-    "champ_stats": [
+  "team_name": "Bandle City Buckaroos",
+  "rosters": {
+    "3": [
       {
-          "champion": "Aatrox",
-          "games_played": "10",
-          "kills": "45",
-          "deaths": "42",
-          "assists": "63"
-        },
-        {
-          "champion": "Darius",
-          "games_played": "5",
-          "kills": "23",
-          "deaths": "12",
-          "assists": "34"
-        },
-        {
-          "champion": "Garen",
-          "games_played": "5",
-          "kills": "23",
-          "deaths": "12",
-          "assists": "34"
+        "name": "MattAP3X",
+        "role": "TOP",
+        "puuid": "2_h_CpcRsZypWQHR66PnB_DU1rHiQYz8AmRETV54QFVuZuwX9Ly_ys7R3SOh7fFo9U1CZ9VlPv50Aw",
+        "date_joined": {
+          "$date": "2025-02-21T00:08:51.593Z"
         }
-      ],
-     
-      "aggregate_stats": {
-          "games_played": "15",
-          "kills": "68",
-          "deaths": "54",
-          "assists": "97"
+      },
+      {
+        "name": "Gemziii",
+        "role": "JUNGLE",
+        "puuid": "I8OL7CN-fMpFwAsxTPgp49aWTJq2m4h1gl1r5RCCgNQugVC0AFlLDYtPXxYuBCt19KLC7Y9_73G3og",
+        "date_joined": {
+          "$date": "2025-02-21T00:09:01.171Z"
         }
+      },
+      {
+        "name": "Oasis Cerelius",
+        "role": "MID",
+        "puuid": "GycxzAVDbvi6AienUst229SpyZs3VXwzOhcz03IzE8Rt6ETILnRC4yVuemaJ8v7Wi7NKKKAPjbXrpA",
+        "date_joined": {
+          "$date": "2025-02-21T00:09:11.775Z"
+        }
+      },
+      {
+        "name": "Dan",
+        "role": "SUPPORT",
+        "puuid": "5RBAO-WrobaecIyfOmoYIFzIK-IAd1RMJoqakBevSyz1B8WJ8_bAfPt8R7PgiR_1rnU3Z4Y4MNObnw",
+        "date_joined": {
+          "$date": "2025-02-21T00:13:21.434Z"
+        }
+      },
+      {
+        "name": "misojade",
+        "role": "BOT",
+        "puuid": "ODL8f7l2Ls_ycC9daqDpzI9Mculxpq4NVVK2zChO364uE5RdKmvkvSNg_t3beLvZT4hzwIzWdOL5tw",
+        "date_joined": {
+          "$date": "2025-02-21T00:16:25.725Z"
+        }
+      }
+    ],
+    "4": [
+      {
+        "name": "ComeGetYerMilk",
+        "role": "TOP",
+        "puuid": "jMH4ypxPM-rV5JJLEQrcjG9qx9ywtLdeIXYFxQXTXL9o79MAMXLWsRIyw49q7UAyuWupB-t-SKypRw",
+        "date_joined": {
+          "$date": "2026-02-20T13:53:18.700Z"
+        }
+      },
+      {
+        "name": "RSexy",
+        "role": "JUNGLE",
+        "puuid": "5U0sb_NKk_baARqrpvFnYHSDA1D9qW8dk05Ptx6DA-TKzAlv0rbpGgeSyp9J-1ZrplJ_Vbo3N9WLoA",
+        "date_joined": {
+          "$date": "2026-02-20T13:53:27.492Z"
+        }
+      },
+      {
+        "name": "Hope",
+        "role": "BOT",
+        "puuid": "_-BpcF4ja-CAlct-3x-tMzuW7EGaBofNhxTDUBXt4ubMhote0dNsN37xa1RPsYSvyqLp2BN31DzPcg",
+        "date_joined": {
+          "$date": "2026-02-20T13:53:46.482Z"
+        }
+      },
+      {
+        "name": "Chestnut",
+        "role": "SUPPORT",
+        "puuid": "RoWax77PxPKMtatEaCB_I8hPxAaRm-oEr5q7jWDW6kpVae-Jwv88wOzFs_UXyo-mTUWq-Qj0RhuTwQ",
+        "date_joined": {
+          "$date": "2026-02-20T13:53:51.814Z"
+        }
+      },
+      {
+        "name": "volibear",
+        "role": "MID",
+        "puuid": "PdshOhsXDZm0Nke2d4j2C-BEeyuhaIClezhU0td6pFrxqfD7p9BQmRrRUQZ_h6RmenagU7LlB7QTZA",
+        "date_joined": {
+          "$date": "2026-02-20T13:56:05.071Z"
+        }
+      },
+      {
+        "name": "Starling",
+        "role": "MID",
+        "puuid": "e7n3opXiSDcLak-l_XiJmxcgDKgSdwyj3tPvn03nv3FXAUlTyidLY0C6ssSWHzCNwRtb5K0QqnmDUw",
+        "date_joined": {
+          "$date": "2026-02-20T13:56:16.818Z"
+        }
+      }
+    ]
   },
-
-
-  "matches": {
-    "season": "2",
-    "match_id": "45679284863",
-    "blue_team": {
-      "team_name": "LCC_Champs",
-      "participants": [
-        {
-          "TOP": {
-            "player_id": "123",
-            "champion": "Aatrox",
-            "kills": "5",
-            "deaths": "2",
-            "assists": "3"
-          }
-        },
-        {
-          "JUNGLE": {
-            "id": "123",
-            "name": "TopDiff",
-            "profile_img": "icon.png"
-          }
-        },
-        {
-          "MID": {
-            "id": "123",
-            "name": "TopDiff",
-            "profile_img": "icon.png"
-          }
-        },
-        {
-          "ADC": {
-            "id": "123",
-            "name": "TopDiff",
-            "profile_img": "icon.png"
-          }
-        },
-        {
-          "SUPPORT": {
-            "id": "123",
-            "name": "TopDiff",
-            "profile_img": "icon.png"
-          }
-        }
-      ]
-    },
-    "red_team": {
-      "team_name": "LCC_Chumps",
-      "participants": [
-        {
-          "TOP": {
-            "player_id": "123",
-            "champion": "Aatrox",
-            "kills": "5",
-            "deaths": "2",
-            "assists": "3",
-            "build": ["item1", "item2", "item3"],
-            "vod": "https://www.youtube.com/watch?v=123"
-          }
-        },
-        {
-          "JUNGLE": {
-            "id": "123",
-            "name": "TopDiff",
-            "profile_img": "icon.png"
-          }
-        },
-        {
-          "MID": {
-            "id": "123",
-            "name": "TopDiff",
-            "profile_img": "icon.png"
-          }
-        },
-        {
-          "ADC": {
-            "id": "123",
-            "name": "TopDiff",
-            "profile_img": "icon.png"
-          }
-        },
-        {
-          "SUPPORT": {
-            "id": "123",
-            "name": "TopDiff",
-            "profile_img": "icon.png"
-          }
-        }
-      ]
-    }
-  }
+  "image": "Bandle_City_Buckaroos.png"
 }

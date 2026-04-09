@@ -1,923 +1,4733 @@
 {
-    "data": {
-      "_id": { "$oid": "66ef3ce4b35c8269fae088be" },
-      "profile": {
-        "bio": "I'm a top laner who loves to play tanks and bruisers.",
-        "canSub": true,
-        "email": "topdiff@gmail.com",
-        "images": {
-          "icon": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/profileicon/505.png"
-          // "banner": "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/TahmKench_0.jpg"
-        },
-        "level": 30,
-        "name": "TopDiff",
-        "primaryRole": "Top",
-        "puuid": "c2xoTJ33QjBVjNX4U2IzxcvMwd9keVQE0M0AcoJfh9l_82XMZSo07zyjg87RmWV-KjnlXqMzqcFm-A",
-        "revision_date": 1729813892413,
-        "secondaryRole": "Jungle",
-        "tag": "NA"
+  "_id": {
+    "$oid": "67884dc12915b6f818d15ad1"
+  },
+  "profile": {
+    "puuid": "ViL-fqc_05wIgsqrNTZm4GTXv24-oNM0A4p41gcFdq9ltxyATnijVFkdBdE9EEQnErx4q81yTGZT1A",
+    "name": "Chaffles",
+    "tag": "NA1",
+    "level": 314,
+    "email": "blaylock.vb@gmail.com",
+    "bio": "My name is Eric and I'm officially a too-old league player who started back in season 1. I primarily play top & when I am not 5 banned enjoy aggressive duelists or heavy teamfight impact champs. Any deaths I have in the LCC are either limit testing or \"good deaths\" for the macro.",
+    "primary_role": "TOP",
+    "secondary_role": "MID",
+    "can_sub": false,
+    "revision_date": {
+      "$numberLong": "1772738152442"
+    },
+    "images": {
+      "icon": "/img/profileicon/19.png"
+    },
+    "availability": {
+      "Monday": {
+        "morning": false,
+        "evening": false
       },
-      "teams": [{ "1": {"name":"LCC_Champs", "role": "JUNGLE"} }, { "2": {"name":"LCC_Chumps", "role": "JUNGLE"} }],
-      "seasons":["2", "3"],
-      "matches": [
+      "Tuesday": {
+        "morning": false,
+        "evening": true
+      },
+      "Wednesday": {
+        "morning": false,
+        "evening": true
+      },
+      "Thursday": {
+        "morning": false,
+        "evening": false
+      },
+      "Friday": {
+        "morning": false,
+        "evening": false
+      },
+      "Saturday": {
+        "morning": true,
+        "evening": false
+      },
+      "Sunday": {
+        "morning": false,
+        "evening": true
+      }
+    },
+    "is_active": false,
+    "last_refreshed": {
+      "$numberLong": "1772755799311"
+    }
+  },
+  "match_history": [
+    {
+      "role": "TOP",
+      "build": [
         {
-          "matchId": "45679284863",
-          "gameStartTimestamp": 1728690874545,
-          "assists": 12,
-          "build": [
-            {
-              "id": 1054,
-              "name": "Doran's Shield",
-              "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/1054.png"
-            },
-            {
-              "id": 3084,
-              "name": "Overlord's Bloodmail",
-              "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3084.png"
-            },
-            {
-              "id": 2031,
-              "name": "Refillable Potion",
-              "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/2031.png"
-            },
-            {
-              "id": 3009,
-              "name": "Immortal Shieldbow",
-              "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3009.png"
-            },
-            {
-              "id": 4633,
-              "name": "Goredrinker",
-              "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/4633.png"
-            },
-            {
-              "id": 3067,
-              "name": "Kindlegem",
-              "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3067.png"
-            },
-            {
-              "id": 3340,
-              "name": "Stealth Ward",
-              "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3340.png"
-            }
-          ],
-          "champion": {
-            "id": 223,
-            "name": "TahmKench",
-            "image": {
-              "full": "TahmKench.png",
-              "loading": "TahmKench_0.jpg",
-              "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/TahmKench.png"
-            },
-            "title": "the River King",
-            "level": 15,
-            "experience": 14069
-          },
-          "deaths": 5,
-          "firstBloodKill": false,
-          "mvp": false,
-          "goldEarned": 10347,
-          "goldSpent": 8250,
-          "kills": 6,
-          "cs": 122,
-          "runes": {
-            "primary": {
-              "name": "Precision",
-              "image": "perk-images/Styles/Precision/Precision.png",
-              "keystone": {
-                "name": "Lethal Tempo",
-                "id": 8008,
-                "image": "https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Precision/PressTheAttack/PressTheAttack.png",
-                "shortDesc": "1.5s after damaging a champion gain a large amount of Attack Speed. Lethal Tempo allows you to temporarily exceed the attack speed limit.",
-                "longDesc": "1.5s after damaging a champion gain 40 - 110% Attack Speed (based on level) for 3s. Attacking a champion extends the effect to 6s.",
-                "key": "8008"
-              }
-            },
-            "secondary": {
-              "name": "Domination",
-              "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7200_domination.png"
-            }
-          },
-          "summonerSpells": [
-            {
-              "casts": 3,
-              "id": 4,
-              "name": "Flash",
-              "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/spell/SummonerFlash.png"
-            },
-            {
-              "casts": 4,
-              "id": 12,
-              "name": "Teleport",
-              "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/spell/SummonerTeleport.png"
-            }
-          ],
-          "team": {
-            "name": "Ixtali Iguanas",
-            "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/-1.png",
-            "id": 100,
-            "side": "Blue"
-          },
-          "teamPosition": "TOP",
-          "vod": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-          "win": true,
-          "vs": {
-            "assists": 12,
-            "build": [
-              {
-                "id": 1054,
-                "name": "Doran's Shield",
-                "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/1054.png"
-              },
-              {
-                "id": 3084,
-                "name": "Overlord's Bloodmail",
-                "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3084.png"
-              },
-              {
-                "id": 2031,
-                "name": "Refillable Potion",
-                "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/2031.png"
-              },
-              {
-                "id": 3009,
-                "name": "Immortal Shieldbow",
-                "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3009.png"
-              },
-              {
-                "id": 4633,
-                "name": "Goredrinker",
-                "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/4633.png"
-              },
-              {
-                "id": 3067,
-                "name": "Kindlegem",
-                "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3067.png"
-              },
-              {
-                "id": 3340,
-                "name": "Stealth Ward",
-                "image": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/item/3340.png"
-              }
-            ],
-            "champion": {
-              "id": 223,
-              "name": "Garen",
-              "image": {
-                "full": "Garen.png",
-                "loading": "Garen.jpg",
-                "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Garen.png"
-              },
-              "title": "the River King",
-              "level": 14,
-              "experience": 14069
-            },
-            "deaths": 5,
-            "firstBloodKill": false,
-            "goldEarned": 10347,
-            "goldSpent": 8250,
-            "kills": 6,
-            "cs": 0,
-            "runes": {
-              "primary": {
-                "name": "Precision",
-                "image": "perk-images/Styles/Precision/Precision.png",
-                "keystone": {
-                  "name": "Lethal Tempo",
-                  "id": 8008,
-                  "image": "perk-images/Styles/Precision/PressTheAttack/PressTheAttack.png",
-                  "shortDesc": "1.5s after damaging a champion gain a large amount of Attack Speed. Lethal Tempo allows you to temporarily exceed the attack speed limit.",
-                  "longDesc": "1.5s after damaging a champion gain 40 - 110% Attack Speed (based on level) for 3s. Attacking a champion extends the effect to 6s.",
-                  "key": "8008"
-                }
-              },
-              "secondary": {
-                "name": "Domination",
-                "image": "perk-images/Styles/Domination/Domination.png"
-              }
-            },
-            "summonerSpells": {
-              "summoner1": {
-                "casts": 3,
-                "id": 4,
-                "name": "Flash",
-                "image": "SummonerFlash.png"
-              },
-              "summoner2": {
-                "casts": 4,
-                "id": 12,
-                "name": "Teleport",
-                "image": "SummonerTeleport.png"
-              }
-            },
-            "team": {
-              "name": "Chump Changers",
-              "image": "https://cdn.communitydragon.org/latest/honor/emblem/generic",
-              "id": 200,
-              "side": "Red"
-            },
-            "teamPosition": "TOP",
-            "win": false
-          }
+          "id": 3020,
+          "name": "Sorcerer's Shoes",
+          "image": "/img/item/3020.png"
+        },
+        {
+          "id": 3152,
+          "name": "Hextech Rocketbelt",
+          "image": "/img/item/3152.png"
+        },
+        {
+          "id": 1058,
+          "name": "Needlessly Large Rod",
+          "image": "/img/item/1058.png"
+        },
+        {
+          "id": 1055,
+          "name": "Doran's Blade",
+          "image": "/img/item/1055.png"
+        },
+        {
+          "id": 1052,
+          "name": "Amplifying Tome",
+          "image": "/img/item/1052.png"
+        },
+        {
+          "id": 1052,
+          "name": "Amplifying Tome",
+          "image": "/img/item/1052.png"
         }
       ],
-      "championStats": {
-        "allTime": [
-          {
-            "champion": {
-              "id": 223,
-              "name": "Aatrox",
-              "image": {
-                "full": "Aatrox.png",
-                "loading": "Aatrox.jpg",
-                "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Aatrox.png"
-              },
-              "title": "the River King",
-              "level": 15,
-              "experience": 14069
-            },
-            "gamesPlayed": "10",
-            "wins": 5,
-            "losses": 5,
-            "kills": "45",
-            "deaths": "42",
-            "assists": "63",
-            "killParticipation": "0.75",
-            "kda": "2.45",
-            "goldEarned": "10347",
-            "goldPerMinute": "351.47007584514756",
-            "totalDamageDealtToChampions": "123456",
-            "damagePerMinute": "637.0295947770143",
-            "cs": "322",
-            "csm": "8.5",
-            "cs14": "108",
-            "visionScore": "43",
-            "visionScorePerMinute": "1.9092156280807766"
-          },
-          {
-            "champion": {
-              "id": 223,
-              "name": "Darius",
-              "image": {
-                "full": "Darius.png",
-                "loading": "Darius.jpg",
-                "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Darius.png"
-              },
-              "title": "the River King",
-              "level": 15,
-              "experience": 14069
-            },
-            "gamesPlayed": "10",
-            "wins": 5,
-            "losses": 5,
-            "kills": "45",
-            "deaths": "42",
-            "assists": "63",
-            "killParticipation": "0.75",
-            "kda": "2.45",
-            "goldEarned": "10347",
-            "goldPerMinute": "351.47007584514756",
-            "totalDamageDealtToChampions": "123456",
-            "damagePerMinute": "637.0295947770143",
-            "cs": "322",
-            "csm": "8.5",
-            "cs14": "108",
-            "visionScore": "43",
-            "visionScorePerMinute": "1.9092156280807766"
-          },
-          {
-            "champion": {
-              "id": 223,
-              "name": "Garen",
-              "image": {
-                "full": "Garen.png",
-                "loading": "Garen.jpg",
-                "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Garen.png"
-              },
-              "title": "the River King",
-              "level": 15,
-              "experience": 14069
-            },
-            "gamesPlayed": "10",
-            "wins": 5,
-            "losses": 5,
-            "kills": "45",
-            "deaths": "42",
-            "assists": "63",
-            "killParticipation": "0.75",
-            "kda": "2.45",
-            "goldEarned": "10347",
-            "goldPerMinute": "351.47007584514756",
-            "totalDamageDealtToChampions": "123456",
-            "damagePerMinute": "637.0295947770143",
-            "cs": "322",
-            "csm": "8.5",
-            "cs14": "108",
-            "visionScore": "43",
-            "visionScorePerMinute": "1.9092156280807766"
-          },
-          {
-            "champion": {
-              "id": 223,
-              "name": "TahmKench",
-              "image": {
-                "full": "TahmKench.png",
-                "loading": "TahmKench.jpg",
-                "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/TahmKench.png"
-              },
-              "title": "the River King",
-              "level": 15,
-              "experience": 14069
-            },
-            "gamesPlayed": "10",
-            "wins": 5,
-            "losses": 5,
-            "kills": "45",
-            "deaths": "42",
-            "assists": "63",
-            "killParticipation": "0.75",
-            "kda": "2.45",
-            "goldEarned": "10347",
-            "goldPerMinute": "351.47007584514756",
-            "totalDamageDealtToChampions": "123456",
-            "damagePerMinute": "637.0295947770143",
-            "cs": "322",
-            "csm": "8.5",
-            "cs14": "108",
-            "visionScore": "43",
-            "visionScorePerMinute": "1.9092156280807766"
-          },
-          {
-            "champion": {
-              "id": 223,
-              "name": "Mordekaiser",
-              "image": {
-                "full": "Mordekaiser.png",
-                "loading": "Mordekaiser.jpg",
-                "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Mordekaiser.png"
-              },
-              "title": "the River King",
-              "level": 15,
-              "experience": 14069
-            },
-            "gamesPlayed": "10",
-            "wins": 5,
-            "losses": 5,
-            "kills": "45",
-            "deaths": "42",
-            "assists": "63",
-            "killParticipation": "0.75",
-            "kda": "2.45",
-            "goldEarned": "10347",
-            "goldPerMinute": "351.47007584514756",
-            "totalDamageDealtToChampions": "123456",
-            "damagePerMinute": "637.0295947770143",
-            "cs": "322",
-            "csm": "8.5",
-            "cs14": "108",
-            "visionScore": "43",
-            "visionScorePerMinute": "1.9092156280807766"
-          },
-          {
-            "champion": {
-              "id": 223,
-              "name": "Aatrox",
-              "image": {
-                "full": "Aatrox.png",
-                "loading": "Aatrox.jpg",
-                "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Aatrox.png"
-              },
-              "title": "the River King",
-              "level": 15,
-              "experience": 14069
-            },
-            "gamesPlayed": "10",
-            "wins": 5,
-            "losses": 5,
-            "kills": "45",
-            "deaths": "42",
-            "assists": "63",
-            "killParticipation": "0.75",
-            "kda": "2.45",
-            "goldEarned": "10347",
-            "goldPerMinute": "351.47007584514756",
-            "totalDamageDealtToChampions": "123456",
-            "damagePerMinute": "637.0295947770143",
-            "cs": "322",
-            "csm": "8.5",
-            "cs14": "108",
-            "visionScore": "43",
-            "visionScorePerMinute": "1.9092156280807766"
-          },
-          {
-            "champion": {
-              "id": 223,
-              "name": "Darius",
-              "image": {
-                "full": "Darius.png",
-                "loading": "Darius.jpg",
-                "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Darius.png"
-              },
-              "title": "the River King",
-              "level": 15,
-              "experience": 14069
-            },
-            "gamesPlayed": "10",
-            "wins": 5,
-            "losses": 5,
-            "kills": "45",
-            "deaths": "42",
-            "assists": "63",
-            "killParticipation": "0.75",
-            "kda": "2.45",
-            "goldEarned": "10347",
-            "goldPerMinute": "351.47007584514756",
-            "totalDamageDealtToChampions": "123456",
-            "damagePerMinute": "637.0295947770143",
-            "cs": "322",
-            "csm": "8.5",
-            "cs14": "108",
-            "visionScore": "43",
-            "visionScorePerMinute": "1.9092156280807766"
-          },
-          {
-            "champion": {
-              "id": 223,
-              "name": "Garen",
-              "image": {
-                "full": "Garen.png",
-                "loading": "Garen.jpg",
-                "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Garen.png"
-              },
-              "title": "the River King",
-              "level": 15,
-              "experience": 14069
-            },
-            "gamesPlayed": "10",
-            "wins": 5,
-            "losses": 5,
-            "kills": "45",
-            "deaths": "42",
-            "assists": "63",
-            "killParticipation": "0.75",
-            "kda": "2.45",
-            "goldEarned": "10347",
-            "goldPerMinute": "351.47007584514756",
-            "totalDamageDealtToChampions": "123456",
-            "damagePerMinute": "637.0295947770143",
-            "cs": "322",
-            "csm": "8.5",
-            "cs14": "108",
-            "visionScore": "43",
-            "visionScorePerMinute": "1.9092156280807766"
-          },
-          {
-            "champion": {
-              "id": 223,
-              "name": "TahmKench",
-              "image": {
-                "full": "TahmKench.png",
-                "loading": "TahmKench.jpg",
-                "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/TahmKench.png"
-              },
-              "title": "the River King",
-              "level": 15,
-              "experience": 14069
-            },
-            "gamesPlayed": "10",
-            "wins": 5,
-            "losses": 5,
-            "kills": "45",
-            "deaths": "42",
-            "assists": "63",
-            "killParticipation": "0.75",
-            "kda": "2.45",
-            "goldEarned": "10347",
-            "goldPerMinute": "351.47007584514756",
-            "totalDamageDealtToChampions": "123456",
-            "damagePerMinute": "637.0295947770143",
-            "cs": "322",
-            "csm": "8.5",
-            "cs14": "108",
-            "visionScore": "43",
-            "visionScorePerMinute": "1.9092156280807766"
-          },
-          {
-            "champion": {
-              "id": 223,
-              "name": "Mordekaiser",
-              "image": {
-                "full": "Mordekaiser.png",
-                "loading": "Mordekaiser.jpg",
-                "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Mordekaiser.png"
-              },
-              "title": "the River King",
-              "level": 15,
-              "experience": 14069
-            },
-            "gamesPlayed": "10",
-            "wins": 5,
-            "losses": 5,
-            "kills": "45",
-            "deaths": "42",
-            "assists": "63",
-            "killParticipation": "0.75",
-            "kda": "2.45",
-            "goldEarned": "10347",
-            "goldPerMinute": "351.47007584514756",
-            "totalDamageDealtToChampions": "123456",
-            "damagePerMinute": "637.0295947770143",
-            "cs": "322",
-            "csm": "8.5",
-            "cs14": "108",
-            "visionScore": "43",
-            "visionScorePerMinute": "1.9092156280807766"
-          },
-          {
-            "champion": {
-              "id": 223,
-              "name": "Aatrox",
-              "image": {
-                "full": "Aatrox.png",
-                "loading": "Aatrox.jpg",
-                "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Aatrox.png"
-              },
-              "title": "the River King",
-              "level": 15,
-              "experience": 14069
-            },
-            "gamesPlayed": "10",
-            "wins": 5,
-            "losses": 5,
-            "kills": "45",
-            "deaths": "42",
-            "assists": "63",
-            "killParticipation": "0.75",
-            "kda": "2.45",
-            "goldEarned": "10347",
-            "goldPerMinute": "351.47007584514756",
-            "totalDamageDealtToChampions": "123456",
-            "damagePerMinute": "637.0295947770143",
-            "cs": "322",
-            "csm": "8.5",
-            "cs14": "108",
-            "visionScore": "43",
-            "visionScorePerMinute": "1.9092156280807766"
-          },
-          {
-            "champion": {
-              "id": 223,
-              "name": "Darius",
-              "image": {
-                "full": "Darius.png",
-                "loading": "Darius.jpg",
-                "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Darius.png"
-              },
-              "title": "the River King",
-              "level": 15,
-              "experience": 14069
-            },
-            "gamesPlayed": "10",
-            "wins": 5,
-            "losses": 5,
-            "kills": "45",
-            "deaths": "42",
-            "assists": "63",
-            "killParticipation": "0.75",
-            "kda": "2.45",
-            "goldEarned": "10347",
-            "goldPerMinute": "351.47007584514756",
-            "totalDamageDealtToChampions": "123456",
-            "damagePerMinute": "637.0295947770143",
-            "cs": "322",
-            "csm": "8.5",
-            "cs14": "108",
-            "visionScore": "43",
-            "visionScorePerMinute": "1.9092156280807766"
-          },
-          {
-            "champion": {
-              "id": 223,
-              "name": "Garen",
-              "image": {
-                "full": "Garen.png",
-                "loading": "Garen.jpg",
-                "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Garen.png"
-              },
-              "title": "the River King",
-              "level": 15,
-              "experience": 14069
-            },
-            "gamesPlayed": "10",
-            "wins": 5,
-            "losses": 5,
-            "kills": "45",
-            "deaths": "42",
-            "assists": "63",
-            "killParticipation": "0.75",
-            "kda": "2.45",
-            "goldEarned": "10347",
-            "goldPerMinute": "351.47007584514756",
-            "totalDamageDealtToChampions": "123456",
-            "damagePerMinute": "637.0295947770143",
-            "cs": "322",
-            "csm": "8.5",
-            "cs14": "108",
-            "visionScore": "43",
-            "visionScorePerMinute": "1.9092156280807766"
-          },
-          {
-            "champion": {
-              "id": 223,
-              "name": "TahmKench",
-              "image": {
-                "full": "TahmKench.png",
-                "loading": "TahmKench.jpg",
-                "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/TahmKench.png"
-              },
-              "title": "the River King",
-              "level": 15,
-              "experience": 14069
-            },
-            "gamesPlayed": "10",
-            "wins": 5,
-            "losses": 5,
-            "kills": "45",
-            "deaths": "42",
-            "assists": "63",
-            "killParticipation": "0.75",
-            "kda": "2.45",
-            "goldEarned": "10347",
-            "goldPerMinute": "351.47007584514756",
-            "totalDamageDealtToChampions": "123456",
-            "damagePerMinute": "637.0295947770143",
-            "cs": "322",
-            "csm": "8.5",
-            "cs14": "108",
-            "visionScore": "43",
-            "visionScorePerMinute": "1.9092156280807766"
-          },
-          {
-            "champion": {
-              "id": 223,
-              "name": "Mordekaiser",
-              "image": {
-                "full": "Mordekaiser.png",
-                "loading": "Mordekaiser.jpg",
-                "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Mordekaiser.png"
-              },
-              "title": "the River King",
-              "level": 15,
-              "experience": 14069
-            },
-            "gamesPlayed": "10",
-            "wins": 5,
-            "losses": 5,
-            "kills": "45",
-            "deaths": "42",
-            "assists": "63",
-            "killParticipation": "0.75",
-            "kda": "2.45",
-            "goldEarned": "10347",
-            "goldPerMinute": "351.47007584514756",
-            "totalDamageDealtToChampions": "123456",
-            "damagePerMinute": "637.0295947770143",
-            "cs": "322",
-            "csm": "8.5",
-            "cs14": "108",
-            "visionScore": "43",
-            "visionScorePerMinute": "1.9092156280807766"
-          }
-        ],
-        "2":[
-          {
-            "champion": {
-              "id": 223,
-              "name": "Aatrox",
-              "image": {
-                "full": "Aatrox.png",
-                "loading": "Aatrox.jpg",
-                "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Aatrox.png"
-              },
-              "title": "the River King",
-              "level": 15,
-              "experience": 14069
-            },
-            "gamesPlayed": "10",
-            "wins": 5,
-            "losses": 5,
-            "kills": "45",
-            "deaths": "42",
-            "assists": "63",
-            "killParticipation": "0.75",
-            "kda": "2.45",
-            "goldEarned": "10347",
-            "goldPerMinute": "351.47007584514756",
-            "totalDamageDealtToChampions": "123456",
-            "damagePerMinute": "637.0295947770143",
-            "cs": "322",
-            "csm": "8.5",
-            "cs14": "108",
-            "visionScore": "43",
-            "visionScorePerMinute": "1.9092156280807766"
-          },
-          {
-            "champion": {
-              "id": 223,
-              "name": "Darius",
-              "image": {
-                "full": "Darius.png",
-                "loading": "Darius.jpg",
-                "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Darius.png"
-              },
-              "title": "the River King",
-              "level": 15,
-              "experience": 14069
-            },
-            "gamesPlayed": "10",
-            "wins": 5,
-            "losses": 5,
-            "kills": "45",
-            "deaths": "42",
-            "assists": "63",
-            "killParticipation": "0.75",
-            "kda": "2.45",
-            "goldEarned": "10347",
-            "goldPerMinute": "351.47007584514756",
-            "totalDamageDealtToChampions": "123456",
-            "damagePerMinute": "637.0295947770143",
-            "cs": "322",
-            "csm": "8.5",
-            "cs14": "108",
-            "visionScore": "43",
-            "visionScorePerMinute": "1.9092156280807766"
-          },
-          {
-            "champion": {
-              "id": 223,
-              "name": "Garen",
-              "image": {
-                "full": "Garen.png",
-                "loading": "Garen.jpg",
-                "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Garen.png"
-              },
-              "title": "the River King",
-              "level": 15,
-              "experience": 14069
-            },
-            "gamesPlayed": "10",
-            "wins": 5,
-            "losses": 5,
-            "kills": "45",
-            "deaths": "42",
-            "assists": "63",
-            "killParticipation": "0.75",
-            "kda": "2.45",
-            "goldEarned": "10347",
-            "goldPerMinute": "351.47007584514756",
-            "totalDamageDealtToChampions": "123456",
-            "damagePerMinute": "637.0295947770143",
-            "cs": "322",
-            "csm": "8.5",
-            "cs14": "108",
-            "visionScore": "43",
-            "visionScorePerMinute": "1.9092156280807766"
-          }
-        ],
-        "3":[
-          {
-            "champion": {
-              "id": 223,
-              "name": "Aatrox",
-              "image": {
-                "full": "Aatrox.png",
-                "loading": "Aatrox.jpg",
-                "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Aatrox.png"
-              },
-              "title": "the River King",
-              "level": 15,
-              "experience": 14069
-            },
-            "gamesPlayed": "10",
-            "wins": 5,
-            "losses": 5,
-            "kills": "45",
-            "deaths": "42",
-            "assists": "63",
-            "killParticipation": "0.75",
-            "kda": "2.45",
-            "goldEarned": "10347",
-            "goldPerMinute": "351.47007584514756",
-            "totalDamageDealtToChampions": "123456",
-            "damagePerMinute": "637.0295947770143",
-            "cs": "322",
-            "csm": "8.5",
-            "cs14": "108",
-            "visionScore": "43",
-            "visionScorePerMinute": "1.9092156280807766"
-          },
-          {
-            "champion": {
-              "id": 223,
-              "name": "Darius",
-              "image": {
-                "full": "Darius.png",
-                "loading": "Darius.jpg",
-                "square": "https://ddragon.leagueoflegends.com/cdn/15.1.1/img/champion/Darius.png"
-              },
-              "title": "the River King",
-              "level": 15,
-              "experience": 14069
-            },
-            "gamesPlayed": "10",
-            "wins": 5,
-            "losses": 5,
-            "kills": "45",
-            "deaths": "42",
-            "assists": "63",
-            "killParticipation": "0.75",
-            "kda": "2.45",
-            "goldEarned": "10347",
-            "goldPerMinute": "351.47007584514756",
-            "totalDamageDealtToChampions": "123456",
-            "damagePerMinute": "637.0295947770143",
-            "cs": "322",
-            "csm": "8.5",
-            "cs14": "108",
-            "visionScore": "43",
-            "visionScorePerMinute": "1.9092156280807766"
-          }
-        ]
+      "trinket": {
+        "id": 3340,
+        "name": "Stealth Ward",
+        "image": "/img/item/3340.png"
       },
-      "aggregateStats": {
-        "allTime" : {
-        "gamesPlayed": "10",
-        "wins": 5,
-        "losses": 5,
-        "kills": "45",
-        "deaths": "42",
-        "assists": "63",
-        "killParticipationTotal": "3.75",
-        "killParticipation": "0.75",
-        "kda": "2.45",
-        "goldEarned": "10347",
-        "goldPerMinute": "351.47007584514756",
-        "totalDamageDealtToChampions": "123456",
-        "damagePerMinute": "637.0295947770143",
-        "cs": "322",
-        "csm": "8.5",
-        "cs14": "108",
-        "visionScore": "43",
-        "visionScorePerMinute": "1.9092156280807766",
-        "minutesPlayed": "306",
-        "firstBloods": "3",
-        "soloKills": "2"
-  
+      "champion": {
+        "id": 85,
+        "name": "Kennen",
+        "level": 12,
+        "experience": 9097,
+        "image": {
+          "square": "/img/champion/Kennen.png"
+        }
       },
-      "2":{
-        "gamesPlayed": "7",
-        "wins": 5,
-        "losses": 5,
-        "kills": "45",
-        "deaths": "42",
-        "assists": "63",
-        "killParticipation": "0.75",
-        "kda": "2.45",
-        "goldEarned": "10347",
-        "goldPerMinute": "351.47007584514756",
-        "totalDamageDealtToChampions": "123456",
-        "damagePerMinute": "637.0295947770143",
-        "cs": "322",
-        "csm": "8.5",
-        "cs14": "108",
-        "visionScore": "43",
-        "visionScorePerMinute": "1.9092156280807766",
-        "minutesPlayed": "306",
-        "firstBloods": "3",
-        "soloKills": "2"
+      "assists": 0,
+      "deaths": 2,
+      "kills": 2,
+      "kda": 1,
+      "profile": {
+        "puuid": "ViL-fqc_05wIgsqrNTZm4GTXv24-oNM0A4p41gcFdq9ltxyATnijVFkdBdE9EEQnErx4q81yTGZT1A",
+        "name": "Chaffles",
+        "tag": "NA1",
+        "level": 314,
+        "email": "blaylock.vb@gmail.com",
+        "bio": "My name is Eric and I'm officially a too-old league player who started back in season 1. I primarily play top & when I am not 5 banned enjoy aggressive duelists or heavy teamfight impact champs. Any deaths I have in the LCC are either limit testing or \"good deaths\" for the macro.",
+        "primary_role": "TOP",
+        "secondary_role": "MID",
+        "can_sub": false,
+        "revision_date": {
+          "$numberLong": "1772738152442"
+        },
+        "images": {
+          "icon": "/img/profileicon/19.png"
+        },
+        "availability": {
+          "Monday": {
+            "morning": false,
+            "evening": false
+          },
+          "Tuesday": {
+            "morning": false,
+            "evening": true
+          },
+          "Wednesday": {
+            "morning": false,
+            "evening": true
+          },
+          "Thursday": {
+            "morning": false,
+            "evening": false
+          },
+          "Friday": {
+            "morning": false,
+            "evening": false
+          },
+          "Saturday": {
+            "morning": true,
+            "evening": false
+          },
+          "Sunday": {
+            "morning": false,
+            "evening": true
+          }
+        },
+        "is_active": false,
+        "last_refreshed": {
+          "$numberLong": "1772755799311"
+        }
       },
-      "3":{
-        "gamesPlayed": "3",
-        "wins": 5,
-        "losses": 5,
-        "kills": "45",
-        "deaths": "42",
-        "assists": "63",
-        "killParticipation": "0.75",
-        "kda": "2.45",
-        "goldEarned": "10347",
-        "goldPerMinute": "351.47007584514756",
-        "totalDamageDealtToChampions": "123456",
-        "damagePerMinute": "637.0295947770143",
-        "cs": "322",
-        "csm": "8.5",
-        "cs14": "108",
-        "visionScore": "43",
-        "visionScorePerMinute": "1.9092156280807766",
-        "minutesPlayed": "306",
-        "firstBloods": "3",
-        "soloKills": "2"
-      }}
+      "runes": {
+        "primary": {
+          "name": {
+            "name": "Sorcery",
+            "key": "7202_sorcery"
+          },
+          "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7202_sorcery.png",
+          "keystone": {
+            "id": 8214,
+            "name": "summonaery",
+            "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/sorcery/summonaery/summonaery.png"
+          }
+        },
+        "secondary": {
+          "name": {
+            "name": "Domination",
+            "key": "7200_domination"
+          },
+          "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7200_domination.png"
+        }
+      },
+      "summonerSpells": [
+        {
+          "casts": 1,
+          "id": 12,
+          "name": "Teleport",
+          "image": "/img/spell/SummonerTeleport.png"
+        },
+        {
+          "casts": 3,
+          "id": 4,
+          "name": "Flash",
+          "image": "/img/spell/SummonerFlash.png"
+        }
+      ],
+      "firstBlood": false,
+      "cs": 126,
+      "csm": 5.49,
+      "dmg": 10470,
+      "dpm": 456.54,
+      "teamDmgPercent": 35,
+      "goldEarned": 6785,
+      "goldSpent": 6425,
+      "gpm": 295.86,
+      "killParticipation": 67,
+      "effectiveHealAndShielding": 0,
+      "totalDamageTaken": 12394,
+      "damageTakenPercent": 17,
+      "visionScore": 19,
+      "vspm": 0.83,
+      "visionWardsBought": 1,
+      "wardsKilled": 0,
+      "wardsPlaced": 9,
+      "soloKills": 1,
+      "cs14": 87,
+      "csd": -5,
+      "matchId": "NA1_4980010890",
+      "season": "2",
+      "gameStartTimestamp": {
+        "$numberLong": "1713749817854"
+      },
+      "win": false,
+      "team": {
+        "name": "Gets On Base",
+        "image": "gets on base.png"
+      },
+      "vs": {
+        "puuid": "NXI8oLuiHEaEYiE9mc1mUC1CgbdUNuoIB4Iz3__jPjTBSUZ3XkVeg4pjc4TgxMSV63hMxT2DDSRqtQ",
+        "teamImage": "matt's alt accounts.png",
+        "teamName": "Matt's Alt Accounts",
+        "player": "DuckJugs",
+        "championName": "Ornn",
+        "championImage": {
+          "square": "/img/champion/Ornn.png"
+        }
+      }
+    },
+    {
+      "role": "TOP",
+      "build": [
+        {
+          "id": 3020,
+          "name": "Sorcerer's Shoes",
+          "image": "/img/item/3020.png"
+        },
+        {
+          "id": 3152,
+          "name": "Hextech Rocketbelt",
+          "image": "/img/item/3152.png"
+        },
+        {
+          "id": 2421,
+          "name": "Shattered Armguard",
+          "image": "/img/item/2421.png"
+        },
+        {
+          "id": 1055,
+          "name": "Doran's Blade",
+          "image": "/img/item/1055.png"
+        },
+        {
+          "id": 1058,
+          "name": "Needlessly Large Rod",
+          "image": "/img/item/1058.png"
+        },
+        {
+          "id": 0,
+          "name": "Empty Slot",
+          "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/items/icons2d/gp_ui_placeholder.png"
+        }
+      ],
+      "trinket": {
+        "id": 3340,
+        "name": "Stealth Ward",
+        "image": "/img/item/3340.png"
+      },
+      "champion": {
+        "id": 85,
+        "name": "Kennen",
+        "level": 13,
+        "experience": 10561,
+        "image": {
+          "square": "/img/champion/Kennen.png"
+        }
+      },
+      "assists": 2,
+      "deaths": 6,
+      "kills": 2,
+      "kda": 0.67,
+      "profile": {
+        "puuid": "ViL-fqc_05wIgsqrNTZm4GTXv24-oNM0A4p41gcFdq9ltxyATnijVFkdBdE9EEQnErx4q81yTGZT1A",
+        "name": "Chaffles",
+        "tag": "NA1",
+        "level": 314,
+        "email": "blaylock.vb@gmail.com",
+        "bio": "My name is Eric and I'm officially a too-old league player who started back in season 1. I primarily play top & when I am not 5 banned enjoy aggressive duelists or heavy teamfight impact champs. Any deaths I have in the LCC are either limit testing or \"good deaths\" for the macro.",
+        "primary_role": "TOP",
+        "secondary_role": "MID",
+        "can_sub": false,
+        "revision_date": {
+          "$numberLong": "1772738152442"
+        },
+        "images": {
+          "icon": "/img/profileicon/19.png"
+        },
+        "availability": {
+          "Monday": {
+            "morning": false,
+            "evening": false
+          },
+          "Tuesday": {
+            "morning": false,
+            "evening": true
+          },
+          "Wednesday": {
+            "morning": false,
+            "evening": true
+          },
+          "Thursday": {
+            "morning": false,
+            "evening": false
+          },
+          "Friday": {
+            "morning": false,
+            "evening": false
+          },
+          "Saturday": {
+            "morning": true,
+            "evening": false
+          },
+          "Sunday": {
+            "morning": false,
+            "evening": true
+          }
+        },
+        "is_active": false,
+        "last_refreshed": {
+          "$numberLong": "1772755799311"
+        }
+      },
+      "runes": {
+        "primary": {
+          "name": {
+            "name": "Sorcery",
+            "key": "7202_sorcery"
+          },
+          "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7202_sorcery.png",
+          "keystone": {
+            "id": 8214,
+            "name": "summonaery",
+            "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/sorcery/summonaery/summonaery.png"
+          }
+        },
+        "secondary": {
+          "name": {
+            "name": "Domination",
+            "key": "7200_domination"
+          },
+          "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7200_domination.png"
+        }
+      },
+      "summonerSpells": [
+        {
+          "casts": 1,
+          "id": 12,
+          "name": "Teleport",
+          "image": "/img/spell/SummonerTeleport.png"
+        },
+        {
+          "casts": 3,
+          "id": 4,
+          "name": "Flash",
+          "image": "/img/spell/SummonerFlash.png"
+        }
+      ],
+      "firstBlood": false,
+      "cs": 125,
+      "csm": 4.41,
+      "dmg": 18908,
+      "dpm": 667.34,
+      "teamDmgPercent": 29,
+      "goldEarned": 7615,
+      "goldSpent": 7425,
+      "gpm": 268.76,
+      "killParticipation": 29,
+      "effectiveHealAndShielding": 0,
+      "totalDamageTaken": 20090,
+      "damageTakenPercent": 19,
+      "visionScore": 19,
+      "vspm": 0.67,
+      "visionWardsBought": 3,
+      "wardsKilled": 2,
+      "wardsPlaced": 12,
+      "soloKills": 1,
+      "cs14": 88,
+      "csd": 19,
+      "matchId": "NA1_4980057355",
+      "season": "2",
+      "gameStartTimestamp": {
+        "$numberLong": "1713752239510"
+      },
+      "win": false,
+      "team": {
+        "name": "Gets On Base",
+        "image": "gets on base.png"
+      },
+      "vs": {
+        "puuid": "NXI8oLuiHEaEYiE9mc1mUC1CgbdUNuoIB4Iz3__jPjTBSUZ3XkVeg4pjc4TgxMSV63hMxT2DDSRqtQ",
+        "teamImage": "matt's alt accounts.png",
+        "teamName": "Matt's Alt Accounts",
+        "player": "DuckJugs",
+        "championName": "Ornn",
+        "championImage": {
+          "square": "/img/champion/Ornn.png"
+        }
+      }
+    },
+    {
+      "role": "TOP",
+      "build": [
+        {
+          "id": 6673,
+          "name": "Immortal Shieldbow",
+          "image": "/img/item/6673.png"
+        },
+        {
+          "id": 3153,
+          "name": "Blade of The Ruined King",
+          "image": "/img/item/3153.png"
+        },
+        {
+          "id": 3047,
+          "name": "Plated Steelcaps",
+          "image": "/img/item/3047.png"
+        },
+        {
+          "id": 6610,
+          "name": "Sundered Sky",
+          "image": "/img/item/6610.png"
+        },
+        {
+          "id": 3091,
+          "name": "Wit's End",
+          "image": "/img/item/3091.png"
+        },
+        {
+          "id": 2019,
+          "name": "Steel Sigil",
+          "image": "/img/item/2019.png"
+        }
+      ],
+      "trinket": {
+        "id": 3340,
+        "name": "Stealth Ward",
+        "image": "/img/item/3340.png"
+      },
+      "champion": {
+        "id": 39,
+        "name": "Irelia",
+        "level": 18,
+        "experience": 19482,
+        "image": {
+          "square": "/img/champion/Irelia.png"
+        }
+      },
+      "assists": 6,
+      "deaths": 4,
+      "kills": 4,
+      "kda": 2.5,
+      "profile": {
+        "puuid": "ViL-fqc_05wIgsqrNTZm4GTXv24-oNM0A4p41gcFdq9ltxyATnijVFkdBdE9EEQnErx4q81yTGZT1A",
+        "name": "Chaffles",
+        "tag": "NA1",
+        "level": 269,
+        "revision_date": {
+          "$numberLong": "1736560266000"
+        },
+        "images": {
+          "icon": "/img/profileicon/19.png"
+        }
+      },
+      "runes": {
+        "primary": {
+          "name": {
+            "name": "Precision",
+            "key": "7201_precision"
+          },
+          "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7201_precision.png",
+          "keystone": {
+            "id": 8010,
+            "name": "conqueror",
+            "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/precision/conqueror/conqueror.png"
+          }
+        },
+        "secondary": {
+          "name": {
+            "name": "Resolve",
+            "key": "7204_resolve"
+          },
+          "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7204_resolve.png"
+        }
+      },
+      "summonerSpells": [
+        {
+          "casts": 4,
+          "id": 14,
+          "name": "Ignite",
+          "image": "/img/spell/SummonerDot.png"
+        },
+        {
+          "casts": 2,
+          "id": 4,
+          "name": "Flash",
+          "image": "/img/spell/SummonerFlash.png"
+        }
+      ],
+      "firstBlood": false,
+      "cs": 291,
+      "csm": 8.22,
+      "cs14": 93,
+      "dmg": 27178,
+      "dpm": 767.38,
+      "teamDmgPercent": 28,
+      "goldEarned": 16096,
+      "goldSpent": 14775,
+      "gpm": 454.48,
+      "killParticipation": 42,
+      "effectiveHealAndShielding": 0,
+      "totalDamageTaken": 33660,
+      "damageTakenPercent": 31,
+      "visionScore": 27,
+      "vspm": 0.76,
+      "visionWardsBought": 1,
+      "wardsKilled": 1,
+      "wardsPlaced": 13,
+      "soloKills": 1,
+      "matchId": "NA1_4998496609",
+      "season": "2",
+      "gameStartTimestamp": {
+        "$numberLong": "1715819798338"
+      },
+      "win": true,
+      "team": {
+        "name": "Gets On Base",
+        "image": "gets on base.png"
+      },
+      "vs": {
+        "puuid": "l5wI2JfWIgYucm9-vB7sMzcKWZGxhlnbMedOPGH4YozKJ8EMT3alTxM0cYTUWbY2YiDke2vd67JfqA",
+        "teamImage": "team hospitalized.png",
+        "teamName": "Team Hospitalized",
+        "player": "HPZ Tea Jay",
+        "championName": "Nasus",
+        "championImage": {
+          "square": "/img/champion/Nasus.png"
+        }
+      }
+    },
+    {
+      "role": "TOP",
+      "build": [
+        {
+          "id": 3075,
+          "name": "Thornmail",
+          "image": "/img/item/3075.png"
+        },
+        {
+          "id": 1029,
+          "name": "Cloth Armor",
+          "image": "/img/item/1029.png"
+        },
+        {
+          "id": 3084,
+          "name": "Heartsteel",
+          "image": "/img/item/3084.png"
+        },
+        {
+          "id": 3047,
+          "name": "Plated Steelcaps",
+          "image": "/img/item/3047.png"
+        },
+        {
+          "id": 3068,
+          "name": "Sunfire Aegis",
+          "image": "/img/item/3068.png"
+        },
+        {
+          "id": 1029,
+          "name": "Cloth Armor",
+          "image": "/img/item/1029.png"
+        }
+      ],
+      "trinket": {
+        "id": 3340,
+        "name": "Stealth Ward",
+        "image": "/img/item/3340.png"
+      },
+      "champion": {
+        "id": 31,
+        "name": "Chogath",
+        "level": 15,
+        "experience": 14167,
+        "image": {
+          "square": "/img/champion/Chogath.png"
+        }
+      },
+      "assists": 1,
+      "deaths": 2,
+      "kills": 1,
+      "kda": 1,
+      "profile": {
+        "puuid": "ViL-fqc_05wIgsqrNTZm4GTXv24-oNM0A4p41gcFdq9ltxyATnijVFkdBdE9EEQnErx4q81yTGZT1A",
+        "name": "Chaffles",
+        "tag": "NA1",
+        "level": 269,
+        "revision_date": {
+          "$numberLong": "1736560266000"
+        },
+        "images": {
+          "icon": "/img/profileicon/19.png"
+        }
+      },
+      "runes": {
+        "primary": {
+          "name": {
+            "name": "Resolve",
+            "key": "7204_resolve"
+          },
+          "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7204_resolve.png",
+          "keystone": {
+            "id": 8437,
+            "name": "graspoftheundying",
+            "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/resolve/graspoftheundying/graspoftheundying.png"
+          }
+        },
+        "secondary": {
+          "name": {
+            "name": "Inspiration",
+            "key": "7203_whimsy"
+          },
+          "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7203_whimsy.png"
+        }
+      },
+      "summonerSpells": [
+        {
+          "casts": 3,
+          "id": 12,
+          "name": "Teleport",
+          "image": "/img/spell/SummonerTeleport.png"
+        },
+        {
+          "casts": 2,
+          "id": 4,
+          "name": "Flash",
+          "image": "/img/spell/SummonerFlash.png"
+        }
+      ],
+      "firstBlood": false,
+      "cs": 229,
+      "csm": 7.62,
+      "cs14": 113,
+      "dmg": 15468,
+      "dpm": 514.74,
+      "teamDmgPercent": 21,
+      "goldEarned": 10392,
+      "goldSpent": 10275,
+      "gpm": 345.82,
+      "killParticipation": 25,
+      "effectiveHealAndShielding": 0,
+      "totalDamageTaken": 30109,
+      "damageTakenPercent": 23,
+      "visionScore": 21,
+      "vspm": 0.7,
+      "visionWardsBought": 1,
+      "wardsKilled": 1,
+      "wardsPlaced": 10,
+      "soloKills": 0,
+      "matchId": "NA1_4998564212",
+      "season": "2",
+      "gameStartTimestamp": {
+        "$numberLong": "1715823231553"
+      },
+      "win": false,
+      "team": {
+        "name": "Gets On Base",
+        "image": "gets on base.png"
+      },
+      "vs": {
+        "puuid": "l5wI2JfWIgYucm9-vB7sMzcKWZGxhlnbMedOPGH4YozKJ8EMT3alTxM0cYTUWbY2YiDke2vd67JfqA",
+        "teamImage": "team hospitalized.png",
+        "teamName": "Team Hospitalized",
+        "player": "HPZ Tea Jay",
+        "championName": "Malphite",
+        "championImage": {
+          "square": "/img/champion/Malphite.png"
+        }
+      }
+    },
+    {
+      "role": "TOP",
+      "build": [
+        {
+          "id": 3133,
+          "name": "Caulfield's Warhammer",
+          "image": "/img/item/3133.png"
+        },
+        {
+          "id": 3074,
+          "name": "Ravenous Hydra",
+          "image": "/img/item/3074.png"
+        },
+        {
+          "id": 1037,
+          "name": "Pickaxe",
+          "image": "/img/item/1037.png"
+        },
+        {
+          "id": 3111,
+          "name": "Mercury's Treads",
+          "image": "/img/item/3111.png"
+        },
+        {
+          "id": 1055,
+          "name": "Doran's Blade",
+          "image": "/img/item/1055.png"
+        },
+        {
+          "id": 1036,
+          "name": "Long Sword",
+          "image": "/img/item/1036.png"
+        }
+      ],
+      "trinket": {
+        "id": 3340,
+        "name": "Stealth Ward",
+        "image": "/img/item/3340.png"
+      },
+      "champion": {
+        "id": 114,
+        "name": "Fiora",
+        "level": 13,
+        "experience": 11368,
+        "image": {
+          "square": "/img/champion/Fiora.png"
+        }
+      },
+      "assists": 3,
+      "deaths": 5,
+      "kills": 2,
+      "kda": 1,
+      "profile": {
+        "puuid": "ViL-fqc_05wIgsqrNTZm4GTXv24-oNM0A4p41gcFdq9ltxyATnijVFkdBdE9EEQnErx4q81yTGZT1A",
+        "name": "Chaffles",
+        "tag": "NA1",
+        "level": 269,
+        "revision_date": {
+          "$numberLong": "1736560266000"
+        },
+        "images": {
+          "icon": "/img/profileicon/19.png"
+        }
+      },
+      "runes": {
+        "primary": {
+          "name": {
+            "name": "Precision",
+            "key": "7201_precision"
+          },
+          "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7201_precision.png",
+          "keystone": {
+            "id": 8010,
+            "name": "conqueror",
+            "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/precision/conqueror/conqueror.png"
+          }
+        },
+        "secondary": {
+          "name": {
+            "name": "Resolve",
+            "key": "7204_resolve"
+          },
+          "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7204_resolve.png"
+        }
+      },
+      "summonerSpells": [
+        {
+          "casts": 2,
+          "id": 12,
+          "name": "Teleport",
+          "image": "/img/spell/SummonerTeleport.png"
+        },
+        {
+          "casts": 3,
+          "id": 4,
+          "name": "Flash",
+          "image": "/img/spell/SummonerFlash.png"
+        }
+      ],
+      "firstBlood": false,
+      "cs": 141,
+      "csm": 5.04,
+      "cs14": 118,
+      "dmg": 18608,
+      "dpm": 664.97,
+      "teamDmgPercent": 28,
+      "goldEarned": 7900,
+      "goldSpent": 7400,
+      "gpm": 282.31,
+      "killParticipation": 38,
+      "effectiveHealAndShielding": 1542,
+      "totalDamageTaken": 24100,
+      "damageTakenPercent": 22,
+      "visionScore": 26,
+      "vspm": 0.93,
+      "visionWardsBought": 1,
+      "wardsKilled": 4,
+      "wardsPlaced": 10,
+      "soloKills": 1,
+      "matchId": "NA1_5018470923",
+      "season": "2",
+      "gameStartTimestamp": {
+        "$numberLong": "1718238125903"
+      },
+      "win": false,
+      "team": {
+        "name": "Gets On Base",
+        "image": "gets on base.png"
+      },
+      "vs": {
+        "puuid": "c2xoTJ33QjBVjNX4U2IzxcvMwd9keVQE0M0AcoJfh9l_82XMZSo07zyjg87RmWV-KjnlXqMzqcFm-A",
+        "teamImage": "discord kittens.png",
+        "teamName": "Discord Kittens",
+        "player": "Oasis psychotikk",
+        "championName": "TahmKench",
+        "championImage": {
+          "square": "/img/champion/TahmKench.png"
+        }
+      }
+    },
+    {
+      "role": "TOP",
+      "build": [
+        {
+          "id": 3084,
+          "name": "Heartsteel",
+          "image": "/img/item/3084.png"
+        },
+        {
+          "id": 3111,
+          "name": "Mercury's Treads",
+          "image": "/img/item/3111.png"
+        },
+        {
+          "id": 6664,
+          "name": "Hollow Radiance",
+          "image": "/img/item/6664.png"
+        },
+        {
+          "id": 3067,
+          "name": "Kindlegem",
+          "image": "/img/item/3067.png"
+        },
+        {
+          "id": 0,
+          "name": "Empty Slot",
+          "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/items/icons2d/gp_ui_placeholder.png"
+        },
+        {
+          "id": 0,
+          "name": "Empty Slot",
+          "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/items/icons2d/gp_ui_placeholder.png"
+        }
+      ],
+      "trinket": {
+        "id": 3340,
+        "name": "Stealth Ward",
+        "image": "/img/item/3340.png"
+      },
+      "champion": {
+        "id": 31,
+        "name": "Chogath",
+        "level": 14,
+        "experience": 12606,
+        "image": {
+          "square": "/img/champion/Chogath.png"
+        }
+      },
+      "assists": 1,
+      "deaths": 5,
+      "kills": 2,
+      "kda": 0.6,
+      "profile": {
+        "puuid": "ViL-fqc_05wIgsqrNTZm4GTXv24-oNM0A4p41gcFdq9ltxyATnijVFkdBdE9EEQnErx4q81yTGZT1A",
+        "name": "Chaffles",
+        "tag": "NA1",
+        "level": 269,
+        "revision_date": {
+          "$numberLong": "1736560266000"
+        },
+        "images": {
+          "icon": "/img/profileicon/19.png"
+        }
+      },
+      "runes": {
+        "primary": {
+          "name": {
+            "name": "Resolve",
+            "key": "7204_resolve"
+          },
+          "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7204_resolve.png",
+          "keystone": {
+            "id": 8437,
+            "name": "graspoftheundying",
+            "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/resolve/graspoftheundying/graspoftheundying.png"
+          }
+        },
+        "secondary": {
+          "name": {
+            "name": "Inspiration",
+            "key": "7203_whimsy"
+          },
+          "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7203_whimsy.png"
+        }
+      },
+      "summonerSpells": [
+        {
+          "casts": 3,
+          "id": 12,
+          "name": "Teleport",
+          "image": "/img/spell/SummonerTeleport.png"
+        },
+        {
+          "casts": 3,
+          "id": 4,
+          "name": "Flash",
+          "image": "/img/spell/SummonerFlash.png"
+        }
+      ],
+      "firstBlood": false,
+      "cs": 153,
+      "csm": 5.35,
+      "cs14": 97,
+      "dmg": 15426,
+      "dpm": 539.06,
+      "teamDmgPercent": 31,
+      "goldEarned": 8107,
+      "goldSpent": 8075,
+      "gpm": 283.3,
+      "killParticipation": 60,
+      "effectiveHealAndShielding": 0,
+      "totalDamageTaken": 40928,
+      "damageTakenPercent": 30,
+      "visionScore": 17,
+      "vspm": 0.59,
+      "visionWardsBought": 1,
+      "wardsKilled": 1,
+      "wardsPlaced": 9,
+      "soloKills": 1,
+      "matchId": "NA1_5018508569",
+      "season": "2",
+      "gameStartTimestamp": {
+        "$numberLong": "1718241130134"
+      },
+      "win": false,
+      "team": {
+        "name": "Gets On Base",
+        "image": "gets on base.png"
+      },
+      "vs": {
+        "puuid": "c2xoTJ33QjBVjNX4U2IzxcvMwd9keVQE0M0AcoJfh9l_82XMZSo07zyjg87RmWV-KjnlXqMzqcFm-A",
+        "teamImage": "discord kittens.png",
+        "teamName": "Discord Kittens",
+        "player": "Oasis psychotikk",
+        "championName": "Sion",
+        "championImage": {
+          "square": "/img/champion/Sion.png"
+        }
+      }
+    },
+    {
+      "role": "TOP",
+      "build": [
+        {
+          "id": 3020,
+          "name": "Sorcerer's Shoes",
+          "image": "/img/item/3020.png"
+        },
+        {
+          "id": 3152,
+          "name": "Hextech Rocketbelt",
+          "image": "/img/item/3152.png"
+        },
+        {
+          "id": 3157,
+          "name": "Zhonya's Hourglass",
+          "image": "/img/item/3157.png"
+        },
+        {
+          "id": 4645,
+          "name": "Shadowflame",
+          "image": "/img/item/4645.png"
+        },
+        {
+          "id": 3089,
+          "name": "Rabadon's Deathcap",
+          "image": "/img/item/3089.png"
+        },
+        {
+          "id": 0,
+          "name": "Empty Slot",
+          "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/items/icons2d/gp_ui_placeholder.png"
+        }
+      ],
+      "trinket": {
+        "id": 3340,
+        "name": "Stealth Ward",
+        "image": "/img/item/3340.png"
+      },
+      "champion": {
+        "id": 85,
+        "name": "Kennen",
+        "level": 18,
+        "experience": 20020,
+        "image": {
+          "square": "/img/champion/Kennen.png"
+        }
+      },
+      "assists": 13,
+      "deaths": 4,
+      "kills": 8,
+      "kda": 5.25,
+      "profile": {
+        "puuid": "ViL-fqc_05wIgsqrNTZm4GTXv24-oNM0A4p41gcFdq9ltxyATnijVFkdBdE9EEQnErx4q81yTGZT1A",
+        "name": "Chaffles",
+        "tag": "NA1",
+        "level": 269,
+        "revision_date": {
+          "$numberLong": "1736560266000"
+        },
+        "images": {
+          "icon": "/img/profileicon/19.png"
+        }
+      },
+      "runes": {
+        "primary": {
+          "name": {
+            "name": "Inspiration",
+            "key": "7203_whimsy"
+          },
+          "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7203_whimsy.png",
+          "keystone": {
+            "id": 8369,
+            "name": "firststrike",
+            "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/inspiration/firststrike/firststrike.png"
+          }
+        },
+        "secondary": {
+          "name": {
+            "name": "Domination",
+            "key": "7200_domination"
+          },
+          "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7200_domination.png"
+        }
+      },
+      "summonerSpells": [
+        {
+          "casts": 3,
+          "id": 12,
+          "name": "Teleport",
+          "image": "/img/spell/SummonerTeleport.png"
+        },
+        {
+          "casts": 6,
+          "id": 4,
+          "name": "Flash",
+          "image": "/img/spell/SummonerFlash.png"
+        }
+      ],
+      "firstBlood": false,
+      "cs": 213,
+      "csm": 5.17,
+      "cs14": 139,
+      "dmg": 30614,
+      "dpm": 742.46,
+      "teamDmgPercent": 22,
+      "goldEarned": 15681,
+      "goldSpent": 14075,
+      "gpm": 380.3,
+      "killParticipation": 72,
+      "effectiveHealAndShielding": 0,
+      "totalDamageTaken": 27920,
+      "damageTakenPercent": 22,
+      "visionScore": 38,
+      "vspm": 0.92,
+      "visionWardsBought": 2,
+      "wardsKilled": 3,
+      "wardsPlaced": 18,
+      "soloKills": 2,
+      "matchId": "NA1_5037367462",
+      "season": "2",
+      "gameStartTimestamp": {
+        "$numberLong": "1720749405382"
+      },
+      "win": true,
+      "team": {
+        "name": "Gets On Base",
+        "image": "gets on base.png"
+      },
+      "vs": {
+        "puuid": "elizZiDfWhmnAzOPJkA9b81khbGSrPTgAAf1aIATpkcQcx9iwlE9H6VCIvcIaUlANlXHunPBnJrung",
+        "teamImage": "team bell.png",
+        "teamName": "Team Bell",
+        "player": "Bellistic97",
+        "championName": "Malphite",
+        "championImage": {
+          "square": "/img/champion/Malphite.png"
+        }
+      }
+    },
+    {
+      "role": "TOP",
+      "build": [
+        {
+          "id": 2504,
+          "name": "Kaenic Rookern",
+          "image": "/img/item/2504.png"
+        },
+        {
+          "id": 3748,
+          "name": "Titanic Hydra",
+          "image": "/img/item/3748.png"
+        },
+        {
+          "id": 6664,
+          "name": "Hollow Radiance",
+          "image": "/img/item/6664.png"
+        },
+        {
+          "id": 3111,
+          "name": "Mercury's Treads",
+          "image": "/img/item/3111.png"
+        },
+        {
+          "id": 3075,
+          "name": "Thornmail",
+          "image": "/img/item/3075.png"
+        },
+        {
+          "id": 2055,
+          "name": "Control Ward",
+          "image": "/img/item/2055.png"
+        }
+      ],
+      "trinket": {
+        "id": 3364,
+        "name": "Oracle Lens",
+        "image": "/img/item/3364.png"
+      },
+      "champion": {
+        "id": 98,
+        "name": "Shen",
+        "level": 17,
+        "experience": 18350,
+        "image": {
+          "square": "/img/champion/Shen.png"
+        }
+      },
+      "assists": 11,
+      "deaths": 3,
+      "kills": 3,
+      "kda": 4.67,
+      "profile": {
+        "puuid": "ViL-fqc_05wIgsqrNTZm4GTXv24-oNM0A4p41gcFdq9ltxyATnijVFkdBdE9EEQnErx4q81yTGZT1A",
+        "name": "Chaffles",
+        "tag": "NA1",
+        "level": 269,
+        "revision_date": {
+          "$numberLong": "1736560266000"
+        },
+        "images": {
+          "icon": "/img/profileicon/19.png"
+        }
+      },
+      "runes": {
+        "primary": {
+          "name": {
+            "name": "Resolve",
+            "key": "7204_resolve"
+          },
+          "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7204_resolve.png",
+          "keystone": {
+            "id": 8437,
+            "name": "graspoftheundying",
+            "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/resolve/graspoftheundying/graspoftheundying.png"
+          }
+        },
+        "secondary": {
+          "name": {
+            "name": "Domination",
+            "key": "7200_domination"
+          },
+          "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7200_domination.png"
+        }
+      },
+      "summonerSpells": [
+        {
+          "casts": 4,
+          "id": 12,
+          "name": "Teleport",
+          "image": "/img/spell/SummonerTeleport.png"
+        },
+        {
+          "casts": 5,
+          "id": 4,
+          "name": "Flash",
+          "image": "/img/spell/SummonerFlash.png"
+        }
+      ],
+      "firstBlood": false,
+      "cs": 219,
+      "csm": 5.74,
+      "cs14": 99,
+      "dmg": 15060,
+      "dpm": 394.76,
+      "teamDmgPercent": 15,
+      "goldEarned": 14187,
+      "goldSpent": 13600,
+      "gpm": 371.87,
+      "killParticipation": 50,
+      "effectiveHealAndShielding": 1957,
+      "totalDamageTaken": 33420,
+      "damageTakenPercent": 21,
+      "visionScore": 26,
+      "vspm": 0.68,
+      "visionWardsBought": 2,
+      "wardsKilled": 6,
+      "wardsPlaced": 9,
+      "soloKills": 1,
+      "matchId": "NA1_5037416221",
+      "season": "2",
+      "gameStartTimestamp": {
+        "$numberLong": "1720753489699"
+      },
+      "win": true,
+      "team": {
+        "name": "Gets On Base",
+        "image": "gets on base.png"
+      },
+      "vs": {
+        "puuid": "elizZiDfWhmnAzOPJkA9b81khbGSrPTgAAf1aIATpkcQcx9iwlE9H6VCIvcIaUlANlXHunPBnJrung",
+        "teamImage": "team bell.png",
+        "teamName": "Team Bell",
+        "player": "Bellistic97",
+        "championName": "Mordekaiser",
+        "championImage": {
+          "square": "/img/champion/Mordekaiser.png"
+        }
+      }
+    },
+    {
+      "role": "TOP",
+      "build": [
+        {
+          "id": 1037,
+          "name": "Pickaxe",
+          "image": "/img/item/1037.png"
+        },
+        {
+          "id": 3153,
+          "name": "Blade of The Ruined King",
+          "image": "/img/item/3153.png"
+        },
+        {
+          "id": 6610,
+          "name": "Sundered Sky",
+          "image": "/img/item/6610.png"
+        },
+        {
+          "id": 3091,
+          "name": "Wit's End",
+          "image": "/img/item/3091.png"
+        },
+        {
+          "id": 3047,
+          "name": "Plated Steelcaps",
+          "image": "/img/item/3047.png"
+        },
+        {
+          "id": 3110,
+          "name": "Frozen Heart",
+          "image": "/img/item/3110.png"
+        }
+      ],
+      "trinket": {
+        "id": 3340,
+        "name": "Stealth Ward",
+        "image": "/img/item/3340.png"
+      },
+      "champion": {
+        "id": 39,
+        "name": "Irelia",
+        "level": 18,
+        "experience": 20102,
+        "image": {
+          "square": "/img/champion/Irelia.png"
+        }
+      },
+      "assists": 4,
+      "deaths": 6,
+      "kills": 4,
+      "kda": 1.33,
+      "profile": {
+        "puuid": "ViL-fqc_05wIgsqrNTZm4GTXv24-oNM0A4p41gcFdq9ltxyATnijVFkdBdE9EEQnErx4q81yTGZT1A",
+        "name": "Chaffles",
+        "tag": "NA1",
+        "level": 269,
+        "revision_date": {
+          "$numberLong": "1736560266000"
+        },
+        "images": {
+          "icon": "/img/profileicon/19.png"
+        }
+      },
+      "runes": {
+        "primary": {
+          "name": {
+            "name": "Precision",
+            "key": "7201_precision"
+          },
+          "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7201_precision.png",
+          "keystone": {
+            "id": 8010,
+            "name": "conqueror",
+            "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/precision/conqueror/conqueror.png"
+          }
+        },
+        "secondary": {
+          "name": {
+            "name": "Resolve",
+            "key": "7204_resolve"
+          },
+          "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7204_resolve.png"
+        }
+      },
+      "summonerSpells": [
+        {
+          "casts": 4,
+          "id": 12,
+          "name": "Teleport",
+          "image": "/img/spell/SummonerTeleport.png"
+        },
+        {
+          "casts": 3,
+          "id": 4,
+          "name": "Flash",
+          "image": "/img/spell/SummonerFlash.png"
+        }
+      ],
+      "firstBlood": false,
+      "cs": 296,
+      "csm": 8.54,
+      "cs14": 109,
+      "dmg": 21627,
+      "dpm": 624.16,
+      "teamDmgPercent": 18,
+      "goldEarned": 15318,
+      "goldSpent": 14175,
+      "gpm": 442.08,
+      "killParticipation": 32,
+      "effectiveHealAndShielding": 0,
+      "totalDamageTaken": 31350,
+      "damageTakenPercent": 24,
+      "visionScore": 25,
+      "vspm": 0.72,
+      "visionWardsBought": 2,
+      "wardsKilled": 1,
+      "wardsPlaced": 14,
+      "soloKills": 1,
+      "matchId": "NA1_5039084762",
+      "season": "2",
+      "gameStartTimestamp": {
+        "$numberLong": "1720987785317"
+      },
+      "win": true,
+      "team": {
+        "name": "Gets On Base",
+        "image": "gets on base.png"
+      },
+      "vs": {
+        "puuid": "I8OL7CN-fMpFwAsxTPgp49aWTJq2m4h1gl1r5RCCgNQugVC0AFlLDYtPXxYuBCt19KLC7Y9_73G3og",
+        "teamImage": "some genuine idiots.png",
+        "teamName": "Some Genuine Idiots",
+        "player": "Gemziii",
+        "championName": "Renekton",
+        "championImage": {
+          "square": "/img/champion/Renekton.png"
+        }
+      }
+    },
+    {
+      "role": "TOP",
+      "build": [
+        {
+          "id": 0,
+          "name": "Empty Slot",
+          "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/items/icons2d/gp_ui_placeholder.png"
+        },
+        {
+          "id": 3152,
+          "name": "Hextech Rocketbelt",
+          "image": "/img/item/3152.png"
+        },
+        {
+          "id": 3157,
+          "name": "Zhonya's Hourglass",
+          "image": "/img/item/3157.png"
+        },
+        {
+          "id": 1055,
+          "name": "Doran's Blade",
+          "image": "/img/item/1055.png"
+        },
+        {
+          "id": 4645,
+          "name": "Shadowflame",
+          "image": "/img/item/4645.png"
+        },
+        {
+          "id": 3020,
+          "name": "Sorcerer's Shoes",
+          "image": "/img/item/3020.png"
+        }
+      ],
+      "trinket": {
+        "id": 3340,
+        "name": "Stealth Ward",
+        "image": "/img/item/3340.png"
+      },
+      "champion": {
+        "id": 85,
+        "name": "Kennen",
+        "level": 15,
+        "experience": 13180,
+        "image": {
+          "square": "/img/champion/Kennen.png"
+        }
+      },
+      "assists": 11,
+      "deaths": 1,
+      "kills": 6,
+      "kda": 17,
+      "profile": {
+        "puuid": "ViL-fqc_05wIgsqrNTZm4GTXv24-oNM0A4p41gcFdq9ltxyATnijVFkdBdE9EEQnErx4q81yTGZT1A",
+        "name": "Chaffles",
+        "tag": "NA1",
+        "level": 269,
+        "revision_date": {
+          "$numberLong": "1736560266000"
+        },
+        "images": {
+          "icon": "/img/profileicon/19.png"
+        }
+      },
+      "runes": {
+        "primary": {
+          "name": {
+            "name": "Inspiration",
+            "key": "7203_whimsy"
+          },
+          "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7203_whimsy.png",
+          "keystone": {
+            "id": 8369,
+            "name": "firststrike",
+            "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/inspiration/firststrike/firststrike.png"
+          }
+        },
+        "secondary": {
+          "name": {
+            "name": "Domination",
+            "key": "7200_domination"
+          },
+          "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7200_domination.png"
+        }
+      },
+      "summonerSpells": [
+        {
+          "casts": 3,
+          "id": 12,
+          "name": "Teleport",
+          "image": "/img/spell/SummonerTeleport.png"
+        },
+        {
+          "casts": 3,
+          "id": 4,
+          "name": "Flash",
+          "image": "/img/spell/SummonerFlash.png"
+        }
+      ],
+      "firstBlood": false,
+      "cs": 155,
+      "csm": 6.24,
+      "cs14": 133,
+      "dmg": 25176,
+      "dpm": 1013.12,
+      "teamDmgPercent": 34,
+      "goldEarned": 11953,
+      "goldSpent": 10600,
+      "gpm": 481.01,
+      "killParticipation": 61,
+      "effectiveHealAndShielding": 0,
+      "totalDamageTaken": 13322,
+      "damageTakenPercent": 16,
+      "visionScore": 30,
+      "vspm": 1.21,
+      "visionWardsBought": 2,
+      "wardsKilled": 1,
+      "wardsPlaced": 11,
+      "soloKills": 3,
+      "matchId": "NA1_5039108416",
+      "season": "2",
+      "gameStartTimestamp": {
+        "$numberLong": "1720991048577"
+      },
+      "win": true,
+      "team": {
+        "name": "Gets On Base",
+        "image": "gets on base.png"
+      },
+      "vs": {
+        "puuid": "I8OL7CN-fMpFwAsxTPgp49aWTJq2m4h1gl1r5RCCgNQugVC0AFlLDYtPXxYuBCt19KLC7Y9_73G3og",
+        "teamImage": "some genuine idiots.png",
+        "teamName": "Some Genuine Idiots",
+        "player": "Gemziii",
+        "championName": "Garen",
+        "championImage": {
+          "square": "/img/champion/Garen.png"
+        }
+      }
+    },
+    {
+      "role": "TOP",
+      "build": [
+        {
+          "id": 6665,
+          "name": "Jak'Sho, The Protean",
+          "image": "/img/item/6665.png"
+        },
+        {
+          "id": 3067,
+          "name": "Kindlegem",
+          "image": "/img/item/3067.png"
+        },
+        {
+          "id": 3113,
+          "name": "Aether Wisp",
+          "image": "/img/item/3113.png"
+        },
+        {
+          "id": 3115,
+          "name": "Nashor's Tooth",
+          "image": "/img/item/3115.png"
+        },
+        {
+          "id": 3006,
+          "name": "Berserker's Greaves",
+          "image": "/img/item/3006.png"
+        },
+        {
+          "id": 4633,
+          "name": "Riftmaker",
+          "image": "/img/item/4633.png"
+        }
+      ],
+      "trinket": {
+        "id": 3340,
+        "name": "Stealth Ward",
+        "image": "/img/item/3340.png"
+      },
+      "champion": {
+        "id": 106,
+        "name": "Volibear",
+        "level": 16,
+        "experience": 15620,
+        "image": {
+          "square": "/img/champion/Volibear.png"
+        }
+      },
+      "assists": 9,
+      "deaths": 7,
+      "kills": 6,
+      "kda": 2.14,
+      "profile": {
+        "puuid": "ViL-fqc_05wIgsqrNTZm4GTXv24-oNM0A4p41gcFdq9ltxyATnijVFkdBdE9EEQnErx4q81yTGZT1A",
+        "name": "Chaffles",
+        "tag": "NA1",
+        "level": 269,
+        "revision_date": {
+          "$numberLong": "1736560266000"
+        },
+        "images": {
+          "icon": "/img/profileicon/19.png"
+        }
+      },
+      "runes": {
+        "primary": {
+          "name": {
+            "name": "Precision",
+            "key": "7201_precision"
+          },
+          "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7201_precision.png",
+          "keystone": {
+            "id": 8005,
+            "name": "presstheattack",
+            "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/precision/presstheattack/presstheattack.png"
+          }
+        },
+        "secondary": {
+          "name": {
+            "name": "Resolve",
+            "key": "7204_resolve"
+          },
+          "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7204_resolve.png"
+        }
+      },
+      "summonerSpells": [
+        {
+          "casts": 7,
+          "id": 14,
+          "name": "Ignite",
+          "image": "/img/spell/SummonerDot.png"
+        },
+        {
+          "casts": 4,
+          "id": 4,
+          "name": "Flash",
+          "image": "/img/spell/SummonerFlash.png"
+        }
+      ],
+      "firstBlood": false,
+      "cs": 211,
+      "csm": 5.15,
+      "cs14": 93,
+      "dmg": 22443,
+      "dpm": 547.84,
+      "teamDmgPercent": 19,
+      "goldEarned": 13771,
+      "goldSpent": 13050,
+      "gpm": 336.15,
+      "killParticipation": 68,
+      "effectiveHealAndShielding": 0,
+      "totalDamageTaken": 39706,
+      "damageTakenPercent": 24,
+      "visionScore": 47,
+      "vspm": 1.15,
+      "visionWardsBought": 6,
+      "wardsKilled": 5,
+      "wardsPlaced": 19,
+      "soloKills": 0,
+      "matchId": "NA1_5088591681",
+      "season": "2P",
+      "gameStartTimestamp": {
+        "$numberLong": "1723932334152"
+      },
+      "win": false,
+      "team": {
+        "name": "Gets on Base",
+        "image": "gets on base.png"
+      },
+      "vs": {
+        "puuid": "c2xoTJ33QjBVjNX4U2IzxcvMwd9keVQE0M0AcoJfh9l_82XMZSo07zyjg87RmWV-KjnlXqMzqcFm-A",
+        "teamImage": "discord kittens.png",
+        "teamName": "Discord Kittens",
+        "player": "Oasis psychotikk",
+        "championName": "Mordekaiser",
+        "championImage": {
+          "square": "/img/champion/Mordekaiser.png"
+        }
+      }
+    },
+    {
+      "role": "TOP",
+      "build": [
+        {
+          "id": 2031,
+          "name": "Refillable Potion",
+          "image": "/img/item/2031.png"
+        },
+        {
+          "id": 3748,
+          "name": "Titanic Hydra",
+          "image": "/img/item/3748.png"
+        },
+        {
+          "id": 3068,
+          "name": "Sunfire Aegis",
+          "image": "/img/item/3068.png"
+        },
+        {
+          "id": 0,
+          "name": "Empty Slot",
+          "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/items/icons2d/gp_ui_placeholder.png"
+        },
+        {
+          "id": 0,
+          "name": "Empty Slot",
+          "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/items/icons2d/gp_ui_placeholder.png"
+        },
+        {
+          "id": 3047,
+          "name": "Plated Steelcaps",
+          "image": "/img/item/3047.png"
+        }
+      ],
+      "trinket": {
+        "id": 3340,
+        "name": "Stealth Ward",
+        "image": "/img/item/3340.png"
+      },
+      "champion": {
+        "id": 98,
+        "name": "Shen",
+        "level": 14,
+        "experience": 12204,
+        "image": {
+          "square": "/img/champion/Shen.png"
+        }
+      },
+      "assists": 19,
+      "deaths": 2,
+      "kills": 1,
+      "kda": 10,
+      "profile": {
+        "puuid": "ViL-fqc_05wIgsqrNTZm4GTXv24-oNM0A4p41gcFdq9ltxyATnijVFkdBdE9EEQnErx4q81yTGZT1A",
+        "name": "Chaffles",
+        "tag": "NA1",
+        "level": 269,
+        "revision_date": {
+          "$numberLong": "1736560266000"
+        },
+        "images": {
+          "icon": "/img/profileicon/19.png"
+        }
+      },
+      "runes": {
+        "primary": {
+          "name": {
+            "name": "Resolve",
+            "key": "7204_resolve"
+          },
+          "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7204_resolve.png",
+          "keystone": {
+            "id": 8437,
+            "name": "graspoftheundying",
+            "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/resolve/graspoftheundying/graspoftheundying.png"
+          }
+        },
+        "secondary": {
+          "name": {
+            "name": "Domination",
+            "key": "7200_domination"
+          },
+          "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7200_domination.png"
+        }
+      },
+      "summonerSpells": [
+        {
+          "casts": 2,
+          "id": 12,
+          "name": "Teleport",
+          "image": "/img/spell/SummonerTeleport.png"
+        },
+        {
+          "casts": 3,
+          "id": 4,
+          "name": "Flash",
+          "image": "/img/spell/SummonerFlash.png"
+        }
+      ],
+      "firstBlood": false,
+      "cs": 133,
+      "csm": 5.18,
+      "cs14": 128,
+      "dmg": 13066,
+      "dpm": 508.73,
+      "teamDmgPercent": 17,
+      "goldEarned": 8877,
+      "goldSpent": 7925,
+      "gpm": 345.63,
+      "killParticipation": 69,
+      "effectiveHealAndShielding": 2191,
+      "totalDamageTaken": 20106,
+      "damageTakenPercent": 22,
+      "visionScore": 16,
+      "vspm": 0.62,
+      "visionWardsBought": 1,
+      "wardsKilled": 2,
+      "wardsPlaced": 8,
+      "soloKills": 0,
+      "matchId": "NA1_5088658583",
+      "season": "2P",
+      "gameStartTimestamp": {
+        "$numberLong": "1723936091185"
+      },
+      "win": true,
+      "team": {
+        "name": "Gets on Base",
+        "image": "gets on base.png"
+      },
+      "vs": {
+        "puuid": "c2xoTJ33QjBVjNX4U2IzxcvMwd9keVQE0M0AcoJfh9l_82XMZSo07zyjg87RmWV-KjnlXqMzqcFm-A",
+        "teamImage": "discord kittens.png",
+        "teamName": "Discord Kittens",
+        "player": "Oasis psychotikk",
+        "championName": "Garen",
+        "championImage": {
+          "square": "/img/champion/Garen.png"
+        }
+      }
+    },
+    {
+      "role": "TOP",
+      "build": [
+        {
+          "id": 1054,
+          "name": "Doran's Shield",
+          "image": "/img/item/1054.png"
+        },
+        {
+          "id": 3748,
+          "name": "Titanic Hydra",
+          "image": "/img/item/3748.png"
+        },
+        {
+          "id": 3742,
+          "name": "Dead Man's Plate",
+          "image": "/img/item/3742.png"
+        },
+        {
+          "id": 1011,
+          "name": "Giant's Belt",
+          "image": "/img/item/1011.png"
+        },
+        {
+          "id": 3047,
+          "name": "Plated Steelcaps",
+          "image": "/img/item/3047.png"
+        },
+        {
+          "id": 3068,
+          "name": "Sunfire Aegis",
+          "image": "/img/item/3068.png"
+        }
+      ],
+      "trinket": {
+        "id": 3340,
+        "name": "Stealth Ward",
+        "image": "/img/item/3340.png"
+      },
+      "champion": {
+        "id": 98,
+        "name": "Shen",
+        "level": 15,
+        "experience": 14641,
+        "image": {
+          "square": "/img/champion/Shen.png"
+        }
+      },
+      "assists": 13,
+      "deaths": 3,
+      "kills": 9,
+      "kda": 7.33,
+      "profile": {
+        "puuid": "ViL-fqc_05wIgsqrNTZm4GTXv24-oNM0A4p41gcFdq9ltxyATnijVFkdBdE9EEQnErx4q81yTGZT1A",
+        "name": "Chaffles",
+        "tag": "NA1",
+        "level": 269,
+        "revision_date": {
+          "$numberLong": "1736560266000"
+        },
+        "images": {
+          "icon": "/img/profileicon/19.png"
+        }
+      },
+      "runes": {
+        "primary": {
+          "name": {
+            "name": "Resolve",
+            "key": "7204_resolve"
+          },
+          "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7204_resolve.png",
+          "keystone": {
+            "id": 8437,
+            "name": "graspoftheundying",
+            "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/resolve/graspoftheundying/graspoftheundying.png"
+          }
+        },
+        "secondary": {
+          "name": {
+            "name": "Domination",
+            "key": "7200_domination"
+          },
+          "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7200_domination.png"
+        }
+      },
+      "summonerSpells": [
+        {
+          "casts": 2,
+          "id": 12,
+          "name": "Teleport",
+          "image": "/img/spell/SummonerTeleport.png"
+        },
+        {
+          "casts": 4,
+          "id": 4,
+          "name": "Flash",
+          "image": "/img/spell/SummonerFlash.png"
+        }
+      ],
+      "firstBlood": false,
+      "cs": 142,
+      "csm": 4.45,
+      "cs14": 90,
+      "dmg": 18944,
+      "dpm": 593.55,
+      "teamDmgPercent": 17,
+      "goldEarned": 12318,
+      "goldSpent": 11875,
+      "gpm": 385.94,
+      "killParticipation": 81,
+      "effectiveHealAndShielding": 3074,
+      "totalDamageTaken": 29497,
+      "damageTakenPercent": 23,
+      "visionScore": 39,
+      "vspm": 1.22,
+      "visionWardsBought": 3,
+      "wardsKilled": 7,
+      "wardsPlaced": 12,
+      "soloKills": 0,
+      "matchId": "NA1_5088711758",
+      "season": "2P",
+      "gameStartTimestamp": {
+        "$numberLong": "1723939203426"
+      },
+      "win": true,
+      "team": {
+        "name": "Gets on Base",
+        "image": "gets on base.png"
+      },
+      "vs": {
+        "puuid": "c2xoTJ33QjBVjNX4U2IzxcvMwd9keVQE0M0AcoJfh9l_82XMZSo07zyjg87RmWV-KjnlXqMzqcFm-A",
+        "teamImage": "discord kittens.png",
+        "teamName": "Discord Kittens",
+        "player": "Oasis psychotikk",
+        "championName": "TahmKench",
+        "championImage": {
+          "square": "/img/champion/TahmKench.png"
+        }
+      }
+    },
+    {
+      "role": "TOP",
+      "build": [
+        {
+          "id": 3075,
+          "name": "Thornmail",
+          "image": "/img/item/3075.png"
+        },
+        {
+          "id": 3748,
+          "name": "Titanic Hydra",
+          "image": "/img/item/3748.png"
+        },
+        {
+          "id": 0,
+          "name": "Empty Slot",
+          "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/items/icons2d/gp_ui_placeholder.png"
+        },
+        {
+          "id": 3068,
+          "name": "Sunfire Aegis",
+          "image": "/img/item/3068.png"
+        },
+        {
+          "id": 3047,
+          "name": "Plated Steelcaps",
+          "image": "/img/item/3047.png"
+        },
+        {
+          "id": 0,
+          "name": "Empty Slot",
+          "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/items/icons2d/gp_ui_placeholder.png"
+        }
+      ],
+      "trinket": {
+        "id": 3340,
+        "name": "Stealth Ward",
+        "image": "/img/item/3340.png"
+      },
+      "champion": {
+        "id": 98,
+        "name": "Shen",
+        "level": 17,
+        "experience": 18098,
+        "image": {
+          "square": "/img/champion/Shen.png"
+        }
+      },
+      "assists": 17,
+      "deaths": 2,
+      "kills": 3,
+      "kda": 10,
+      "profile": {
+        "puuid": "ViL-fqc_05wIgsqrNTZm4GTXv24-oNM0A4p41gcFdq9ltxyATnijVFkdBdE9EEQnErx4q81yTGZT1A",
+        "name": "Chaffles",
+        "tag": "NA1",
+        "level": 269,
+        "revision_date": {
+          "$numberLong": "1736560266000"
+        },
+        "images": {
+          "icon": "/img/profileicon/19.png"
+        }
+      },
+      "runes": {
+        "primary": {
+          "name": {
+            "name": "Resolve",
+            "key": "7204_resolve"
+          },
+          "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7204_resolve.png",
+          "keystone": {
+            "id": 8437,
+            "name": "graspoftheundying",
+            "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/resolve/graspoftheundying/graspoftheundying.png"
+          }
+        },
+        "secondary": {
+          "name": {
+            "name": "Domination",
+            "key": "7200_domination"
+          },
+          "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7200_domination.png"
+        }
+      },
+      "summonerSpells": [
+        {
+          "casts": 4,
+          "id": 12,
+          "name": "Teleport",
+          "image": "/img/spell/SummonerTeleport.png"
+        },
+        {
+          "casts": 5,
+          "id": 4,
+          "name": "Flash",
+          "image": "/img/spell/SummonerFlash.png"
+        }
+      ],
+      "firstBlood": true,
+      "cs": 158,
+      "csm": 4.72,
+      "cs14": 123,
+      "dmg": 18094,
+      "dpm": 540.12,
+      "teamDmgPercent": 19,
+      "goldEarned": 11407,
+      "goldSpent": 10825,
+      "gpm": 340.51,
+      "killParticipation": 67,
+      "effectiveHealAndShielding": 2998,
+      "totalDamageTaken": 21496,
+      "damageTakenPercent": 21,
+      "visionScore": 28,
+      "vspm": 0.84,
+      "visionWardsBought": 3,
+      "wardsKilled": 3,
+      "wardsPlaced": 15,
+      "soloKills": 1,
+      "matchId": "NA1_5101366532",
+      "season": "2P",
+      "gameStartTimestamp": {
+        "$numberLong": "1725238509196"
+      },
+      "win": true,
+      "team": {
+        "name": "Gets on Base",
+        "image": "gets on base.png"
+      },
+      "vs": {
+        "puuid": "2_h_CpcRsZypWQHR66PnB_DU1rHiQYz8AmRETV54QFVuZuwX9Ly_ys7R3SOh7fFo9U1CZ9VlPv50Aw",
+        "teamImage": "league of liquor.png",
+        "teamName": "League of Liquor",
+        "player": "MattAP3X",
+        "championName": "Darius",
+        "championImage": {
+          "square": "/img/champion/Darius.png"
+        }
+      }
+    },
+    {
+      "role": "TOP",
+      "build": [
+        {
+          "id": 3075,
+          "name": "Thornmail",
+          "image": "/img/item/3075.png"
+        },
+        {
+          "id": 3748,
+          "name": "Titanic Hydra",
+          "image": "/img/item/3748.png"
+        },
+        {
+          "id": 3068,
+          "name": "Sunfire Aegis",
+          "image": "/img/item/3068.png"
+        },
+        {
+          "id": 3047,
+          "name": "Plated Steelcaps",
+          "image": "/img/item/3047.png"
+        },
+        {
+          "id": 1029,
+          "name": "Cloth Armor",
+          "image": "/img/item/1029.png"
+        },
+        {
+          "id": 0,
+          "name": "Empty Slot",
+          "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/items/icons2d/gp_ui_placeholder.png"
+        }
+      ],
+      "trinket": {
+        "id": 3364,
+        "name": "Oracle Lens",
+        "image": "/img/item/3364.png"
+      },
+      "champion": {
+        "id": 98,
+        "name": "Shen",
+        "level": 16,
+        "experience": 15590,
+        "image": {
+          "square": "/img/champion/Shen.png"
+        }
+      },
+      "assists": 10,
+      "deaths": 3,
+      "kills": 7,
+      "kda": 5.67,
+      "profile": {
+        "puuid": "ViL-fqc_05wIgsqrNTZm4GTXv24-oNM0A4p41gcFdq9ltxyATnijVFkdBdE9EEQnErx4q81yTGZT1A",
+        "name": "Chaffles",
+        "tag": "NA1",
+        "level": 269,
+        "revision_date": {
+          "$numberLong": "1736560266000"
+        },
+        "images": {
+          "icon": "/img/profileicon/19.png"
+        }
+      },
+      "runes": {
+        "primary": {
+          "name": {
+            "name": "Resolve",
+            "key": "7204_resolve"
+          },
+          "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7204_resolve.png",
+          "keystone": {
+            "id": 8437,
+            "name": "graspoftheundying",
+            "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/resolve/graspoftheundying/graspoftheundying.png"
+          }
+        },
+        "secondary": {
+          "name": {
+            "name": "Domination",
+            "key": "7200_domination"
+          },
+          "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7200_domination.png"
+        }
+      },
+      "summonerSpells": [
+        {
+          "casts": 4,
+          "id": 12,
+          "name": "Teleport",
+          "image": "/img/spell/SummonerTeleport.png"
+        },
+        {
+          "casts": 4,
+          "id": 4,
+          "name": "Flash",
+          "image": "/img/spell/SummonerFlash.png"
+        }
+      ],
+      "firstBlood": false,
+      "cs": 157,
+      "csm": 4.76,
+      "cs14": 118,
+      "dmg": 24632,
+      "dpm": 746.05,
+      "teamDmgPercent": 27,
+      "goldEarned": 11265,
+      "goldSpent": 10750,
+      "gpm": 341.19,
+      "killParticipation": 81,
+      "effectiveHealAndShielding": 3116,
+      "totalDamageTaken": 33658,
+      "damageTakenPercent": 25,
+      "visionScore": 21,
+      "vspm": 0.64,
+      "visionWardsBought": 0,
+      "wardsKilled": 6,
+      "wardsPlaced": 6,
+      "soloKills": 0,
+      "matchId": "NA1_5101460426",
+      "season": "2P",
+      "gameStartTimestamp": {
+        "$numberLong": "1725242074710"
+      },
+      "win": false,
+      "team": {
+        "name": "Gets on Base",
+        "image": "gets on base.png"
+      },
+      "vs": {
+        "puuid": "OMb9S_LJfcHcmNf2EeoK6oKVZPN_ilQ_atdZLBHcS-1cNv38UZObF9COSP54dJn9eD4-mP23xpHUug",
+        "teamImage": "league of liquor.png",
+        "teamName": "League of Liquor",
+        "player": "CoeWillieCash",
+        "championName": "Sion",
+        "championImage": {
+          "square": "/img/champion/Sion.png"
+        }
+      }
+    },
+    {
+      "role": "TOP",
+      "build": [
+        {
+          "id": 4645,
+          "name": "Shadowflame",
+          "image": "/img/item/4645.png"
+        },
+        {
+          "id": 3152,
+          "name": "Hextech Rocketbelt",
+          "image": "/img/item/3152.png"
+        },
+        {
+          "id": 2421,
+          "name": "Shattered Armguard",
+          "image": "/img/item/2421.png"
+        },
+        {
+          "id": 3020,
+          "name": "Sorcerer's Shoes",
+          "image": "/img/item/3020.png"
+        },
+        {
+          "id": 1058,
+          "name": "Needlessly Large Rod",
+          "image": "/img/item/1058.png"
+        },
+        {
+          "id": 0,
+          "name": "Empty Slot",
+          "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/items/icons2d/gp_ui_placeholder.png"
+        }
+      ],
+      "trinket": {
+        "id": 3340,
+        "name": "Stealth Ward",
+        "image": "/img/item/3340.png"
+      },
+      "champion": {
+        "id": 85,
+        "name": "Kennen",
+        "level": 14,
+        "experience": 12413,
+        "image": {
+          "square": "/img/champion/Kennen.png"
+        }
+      },
+      "assists": 2,
+      "deaths": 4,
+      "kills": 7,
+      "kda": 2.25,
+      "profile": {
+        "puuid": "ViL-fqc_05wIgsqrNTZm4GTXv24-oNM0A4p41gcFdq9ltxyATnijVFkdBdE9EEQnErx4q81yTGZT1A",
+        "name": "Chaffles",
+        "tag": "NA1",
+        "level": 269,
+        "revision_date": {
+          "$numberLong": "1736560266000"
+        },
+        "images": {
+          "icon": "/img/profileicon/19.png"
+        }
+      },
+      "runes": {
+        "primary": {
+          "name": {
+            "name": "Inspiration",
+            "key": "7203_whimsy"
+          },
+          "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7203_whimsy.png",
+          "keystone": {
+            "id": 8369,
+            "name": "firststrike",
+            "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/inspiration/firststrike/firststrike.png"
+          }
+        },
+        "secondary": {
+          "name": {
+            "name": "Domination",
+            "key": "7200_domination"
+          },
+          "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7200_domination.png"
+        }
+      },
+      "summonerSpells": [
+        {
+          "casts": 3,
+          "id": 12,
+          "name": "Teleport",
+          "image": "/img/spell/SummonerTeleport.png"
+        },
+        {
+          "casts": 3,
+          "id": 4,
+          "name": "Flash",
+          "image": "/img/spell/SummonerFlash.png"
+        }
+      ],
+      "firstBlood": true,
+      "cs": 125,
+      "csm": 4.45,
+      "cs14": 107,
+      "dmg": 26895,
+      "dpm": 956.55,
+      "teamDmgPercent": 37,
+      "goldEarned": 10596,
+      "goldSpent": 10150,
+      "gpm": 376.86,
+      "killParticipation": 69,
+      "effectiveHealAndShielding": 0,
+      "totalDamageTaken": 24450,
+      "damageTakenPercent": 20,
+      "visionScore": 17,
+      "vspm": 0.6,
+      "visionWardsBought": 0,
+      "wardsKilled": 1,
+      "wardsPlaced": 8,
+      "soloKills": 2,
+      "matchId": "NA1_5101538022",
+      "season": "2P",
+      "gameStartTimestamp": {
+        "$numberLong": "1725245416056"
+      },
+      "win": false,
+      "team": {
+        "name": "Gets on Base",
+        "image": "gets on base.png"
+      },
+      "vs": {
+        "puuid": "OMb9S_LJfcHcmNf2EeoK6oKVZPN_ilQ_atdZLBHcS-1cNv38UZObF9COSP54dJn9eD4-mP23xpHUug",
+        "teamImage": "league of liquor.png",
+        "teamName": "League of Liquor",
+        "player": "CoeWillieCash",
+        "championName": "Illaoi",
+        "championImage": {
+          "square": "/img/champion/Illaoi.png"
+        }
+      }
+    },
+    {
+      "role": "TOP",
+      "build": [
+        {
+          "id": 6657,
+          "name": "Rod of Ages",
+          "image": "/img/item/6657.png"
+        },
+        {
+          "id": 3065,
+          "name": "Spirit Visage",
+          "image": "/img/item/3065.png"
+        },
+        {
+          "id": 6675,
+          "name": "Navori Flickerblade",
+          "image": "/img/item/6675.png"
+        },
+        {
+          "id": 2502,
+          "name": "Unending Despair",
+          "image": "/img/item/2502.png"
+        },
+        {
+          "id": 3158,
+          "name": "Ionian Boots of Lucidity",
+          "image": "/img/item/3158.png"
+        },
+        {
+          "id": 1031,
+          "name": "Chain Vest",
+          "image": "/img/item/1031.png"
+        }
+      ],
+      "trinket": {
+        "id": 3340,
+        "name": "Stealth Ward",
+        "image": "/img/item/3340.png"
+      },
+      "champion": {
+        "id": 106,
+        "name": "Volibear",
+        "level": 18,
+        "experience": 18758,
+        "image": {
+          "square": "/img/champion/Volibear.png"
+        }
+      },
+      "assists": 5,
+      "deaths": 3,
+      "kills": 5,
+      "kda": 3.33,
+      "profile": {
+        "puuid": "ViL-fqc_05wIgsqrNTZm4GTXv24-oNM0A4p41gcFdq9ltxyATnijVFkdBdE9EEQnErx4q81yTGZT1A",
+        "name": "Chaffles",
+        "tag": "NA1",
+        "level": 269,
+        "email": "blaylock.vb@gmail.com",
+        "bio": "My name is Eric and I'm officially a too-old league player who started back in season 1. I primarily play top & when I am not 5 banned enjoy aggressive duelists or heavy teamfight impact champs. Any deaths I have in the LCC are either limit testing or \"good deaths\" for the macro.",
+        "primary_role": "TOP",
+        "secondary_role": "MID",
+        "can_sub": false,
+        "revision_date": {
+          "$numberLong": "1736560266000"
+        },
+        "images": {
+          "icon": "/img/profileicon/19.png"
+        },
+        "availability": {
+          "Monday": {
+            "morning": false,
+            "evening": false
+          },
+          "Tuesday": {
+            "morning": false,
+            "evening": true
+          },
+          "Wednesday": {
+            "morning": false,
+            "evening": true
+          },
+          "Thursday": {
+            "morning": false,
+            "evening": false
+          },
+          "Friday": {
+            "morning": false,
+            "evening": false
+          },
+          "Saturday": {
+            "morning": true,
+            "evening": false
+          },
+          "Sunday": {
+            "morning": false,
+            "evening": true
+          }
+        },
+        "is_active": true
+      },
+      "runes": {
+        "primary": {
+          "name": {
+            "name": "Precision",
+            "key": "7201_precision"
+          },
+          "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7201_precision.png",
+          "keystone": {
+            "id": 8005,
+            "name": "presstheattack",
+            "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/precision/presstheattack/presstheattack.png"
+          }
+        },
+        "secondary": {
+          "name": {
+            "name": "Inspiration",
+            "key": "7203_whimsy"
+          },
+          "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7203_whimsy.png"
+        }
+      },
+      "summonerSpells": [
+        {
+          "casts": 3,
+          "id": 12,
+          "name": "Teleport",
+          "image": "/img/spell/SummonerTeleport.png"
+        },
+        {
+          "casts": 2,
+          "id": 4,
+          "name": "Flash",
+          "image": "/img/spell/SummonerFlash.png"
+        }
+      ],
+      "firstBlood": false,
+      "cs": 240,
+      "csm": 6.29,
+      "cs14": 91,
+      "dmg": 25299,
+      "dpm": 662.57,
+      "teamDmgPercent": 28,
+      "goldEarned": 13269,
+      "goldSpent": 13100,
+      "gpm": 347.51,
+      "killParticipation": 71,
+      "effectiveHealAndShielding": 0,
+      "totalDamageTaken": 36521,
+      "damageTakenPercent": 25,
+      "visionScore": 31,
+      "vspm": 0.81,
+      "visionWardsBought": 2,
+      "wardsKilled": 2,
+      "wardsPlaced": 16,
+      "soloKills": 2,
+      "matchId": "NA1_5242800422",
+      "season": "3",
+      "gameStartTimestamp": {
+        "$numberLong": "1741313824905"
+      },
+      "win": false,
+      "team": {
+        "name": "Targon Titans",
+        "image": "targon titans.png"
+      },
+      "vs": {
+        "puuid": "3PQ9HQ9DLHuTpXkIur_ypIWVAFkod8wYqE8DmbETFbYx2wIrH16LC0CXuqey-7Kwc62YjUheIpajIw",
+        "teamImage": "zaun plague.png",
+        "teamName": "Zaun Plague",
+        "player": "420saveOrcas69",
+        "championName": "Chogath",
+        "championImage": {
+          "square": "/img/champion/Chogath.png"
+        }
+      }
+    },
+    {
+      "role": "TOP",
+      "build": [
+        {
+          "id": 3078,
+          "name": "Trinity Force",
+          "image": "/img/item/3078.png"
+        },
+        {
+          "id": 3053,
+          "name": "Sterak's Gage",
+          "image": "/img/item/3053.png"
+        },
+        {
+          "id": 6610,
+          "name": "Sundered Sky",
+          "image": "/img/item/6610.png"
+        },
+        {
+          "id": 3158,
+          "name": "Ionian Boots of Lucidity",
+          "image": "/img/item/3158.png"
+        },
+        {
+          "id": 2021,
+          "name": "Tunneler",
+          "image": "/img/item/2021.png"
+        },
+        {
+          "id": 0,
+          "name": "Empty Slot",
+          "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/items/icons2d/gp_ui_placeholder.png"
+        }
+      ],
+      "trinket": {
+        "id": 3340,
+        "name": "Stealth Ward",
+        "image": "/img/item/3340.png"
+      },
+      "champion": {
+        "id": 24,
+        "name": "Jax",
+        "level": 18,
+        "experience": 19171,
+        "image": {
+          "square": "/img/champion/Jax.png"
+        }
+      },
+      "assists": 5,
+      "deaths": 2,
+      "kills": 3,
+      "kda": 4,
+      "profile": {
+        "puuid": "ViL-fqc_05wIgsqrNTZm4GTXv24-oNM0A4p41gcFdq9ltxyATnijVFkdBdE9EEQnErx4q81yTGZT1A",
+        "name": "Chaffles",
+        "tag": "NA1",
+        "level": 269,
+        "email": "blaylock.vb@gmail.com",
+        "bio": "My name is Eric and I'm officially a too-old league player who started back in season 1. I primarily play top & when I am not 5 banned enjoy aggressive duelists or heavy teamfight impact champs. Any deaths I have in the LCC are either limit testing or \"good deaths\" for the macro.",
+        "primary_role": "TOP",
+        "secondary_role": "MID",
+        "can_sub": false,
+        "revision_date": {
+          "$numberLong": "1736560266000"
+        },
+        "images": {
+          "icon": "/img/profileicon/19.png"
+        },
+        "availability": {
+          "Monday": {
+            "morning": false,
+            "evening": false
+          },
+          "Tuesday": {
+            "morning": false,
+            "evening": true
+          },
+          "Wednesday": {
+            "morning": false,
+            "evening": true
+          },
+          "Thursday": {
+            "morning": false,
+            "evening": false
+          },
+          "Friday": {
+            "morning": false,
+            "evening": false
+          },
+          "Saturday": {
+            "morning": true,
+            "evening": false
+          },
+          "Sunday": {
+            "morning": false,
+            "evening": true
+          }
+        },
+        "is_active": true
+      },
+      "runes": {
+        "primary": {
+          "name": {
+            "name": "Resolve",
+            "key": "7204_resolve"
+          },
+          "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7204_resolve.png",
+          "keystone": {
+            "id": 8437,
+            "name": "graspoftheundying",
+            "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/resolve/graspoftheundying/graspoftheundying.png"
+          }
+        },
+        "secondary": {
+          "name": {
+            "name": "Inspiration",
+            "key": "7203_whimsy"
+          },
+          "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7203_whimsy.png"
+        }
+      },
+      "summonerSpells": [
+        {
+          "casts": 4,
+          "id": 12,
+          "name": "Teleport",
+          "image": "/img/spell/SummonerTeleport.png"
+        },
+        {
+          "casts": 4,
+          "id": 4,
+          "name": "Flash",
+          "image": "/img/spell/SummonerFlash.png"
+        }
+      ],
+      "firstBlood": false,
+      "cs": 245,
+      "csm": 7.54,
+      "cs14": 126,
+      "dmg": 26204,
+      "dpm": 806.69,
+      "teamDmgPercent": 33,
+      "goldEarned": 14372,
+      "goldSpent": 12433,
+      "gpm": 442.44,
+      "killParticipation": 53,
+      "effectiveHealAndShielding": 0,
+      "totalDamageTaken": 30163,
+      "damageTakenPercent": 35,
+      "visionScore": 23,
+      "vspm": 0.71,
+      "visionWardsBought": 2,
+      "wardsKilled": 2,
+      "wardsPlaced": 13,
+      "soloKills": 2,
+      "matchId": "NA1_5246843999",
+      "season": "3",
+      "gameStartTimestamp": {
+        "$numberLong": "1741907369440"
+      },
+      "win": true,
+      "team": {
+        "name": "Targon Titans",
+        "image": "targon titans.png"
+      },
+      "vs": {
+        "puuid": "NXI8oLuiHEaEYiE9mc1mUC1CgbdUNuoIB4Iz3__jPjTBSUZ3XkVeg4pjc4TgxMSV63hMxT2DDSRqtQ",
+        "teamImage": "freljord frost.png",
+        "teamName": "Freljord Frost",
+        "player": "DuckJugs",
+        "championName": "Sett",
+        "championImage": {
+          "square": "/img/champion/Sett.png"
+        }
+      }
+    },
+    {
+      "role": "TOP",
+      "build": [
+        {
+          "id": 1054,
+          "name": "Doran's Shield",
+          "image": "/img/item/1054.png"
+        },
+        {
+          "id": 3111,
+          "name": "Mercury's Treads",
+          "image": "/img/item/3111.png"
+        },
+        {
+          "id": 3068,
+          "name": "Sunfire Aegis",
+          "image": "/img/item/3068.png"
+        },
+        {
+          "id": 3084,
+          "name": "Heartsteel",
+          "image": "/img/item/3084.png"
+        },
+        {
+          "id": 0,
+          "name": "Empty Slot",
+          "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/items/icons2d/gp_ui_placeholder.png"
+        },
+        {
+          "id": 0,
+          "name": "Empty Slot",
+          "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/items/icons2d/gp_ui_placeholder.png"
+        }
+      ],
+      "trinket": {
+        "id": 3340,
+        "name": "Stealth Ward",
+        "image": "/img/item/3340.png"
+      },
+      "champion": {
+        "id": 98,
+        "name": "Shen",
+        "level": 15,
+        "experience": 14375,
+        "image": {
+          "square": "/img/champion/Shen.png"
+        }
+      },
+      "assists": 12,
+      "deaths": 2,
+      "kills": 3,
+      "kda": 7.5,
+      "profile": {
+        "puuid": "ViL-fqc_05wIgsqrNTZm4GTXv24-oNM0A4p41gcFdq9ltxyATnijVFkdBdE9EEQnErx4q81yTGZT1A",
+        "name": "Chaffles",
+        "tag": "NA1",
+        "level": 269,
+        "email": "blaylock.vb@gmail.com",
+        "bio": "My name is Eric and I'm officially a too-old league player who started back in season 1. I primarily play top & when I am not 5 banned enjoy aggressive duelists or heavy teamfight impact champs. Any deaths I have in the LCC are either limit testing or \"good deaths\" for the macro.",
+        "primary_role": "TOP",
+        "secondary_role": "MID",
+        "can_sub": false,
+        "revision_date": {
+          "$numberLong": "1736560266000"
+        },
+        "images": {
+          "icon": "/img/profileicon/19.png"
+        },
+        "availability": {
+          "Monday": {
+            "morning": false,
+            "evening": false
+          },
+          "Tuesday": {
+            "morning": false,
+            "evening": true
+          },
+          "Wednesday": {
+            "morning": false,
+            "evening": true
+          },
+          "Thursday": {
+            "morning": false,
+            "evening": false
+          },
+          "Friday": {
+            "morning": false,
+            "evening": false
+          },
+          "Saturday": {
+            "morning": true,
+            "evening": false
+          },
+          "Sunday": {
+            "morning": false,
+            "evening": true
+          }
+        },
+        "is_active": true
+      },
+      "runes": {
+        "primary": {
+          "name": {
+            "name": "Resolve",
+            "key": "7204_resolve"
+          },
+          "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7204_resolve.png",
+          "keystone": {
+            "id": 8437,
+            "name": "graspoftheundying",
+            "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/resolve/graspoftheundying/graspoftheundying.png"
+          }
+        },
+        "secondary": {
+          "name": {
+            "name": "Domination",
+            "key": "7200_domination"
+          },
+          "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7200_domination.png"
+        }
+      },
+      "summonerSpells": [
+        {
+          "casts": 4,
+          "id": 12,
+          "name": "Teleport",
+          "image": "/img/spell/SummonerTeleport.png"
+        },
+        {
+          "casts": 4,
+          "id": 4,
+          "name": "Flash",
+          "image": "/img/spell/SummonerFlash.png"
+        }
+      ],
+      "firstBlood": false,
+      "cs": 113,
+      "csm": 4.21,
+      "cs14": 103,
+      "dmg": 23401,
+      "dpm": 871,
+      "teamDmgPercent": 35,
+      "goldEarned": 9468,
+      "goldSpent": 7750,
+      "gpm": 352.41,
+      "killParticipation": 83,
+      "effectiveHealAndShielding": 2411,
+      "totalDamageTaken": 32944,
+      "damageTakenPercent": 30,
+      "visionScore": 23,
+      "vspm": 0.86,
+      "visionWardsBought": 2,
+      "wardsKilled": 2,
+      "wardsPlaced": 11,
+      "soloKills": 1,
+      "matchId": "NA1_5254926801",
+      "season": "3",
+      "gameStartTimestamp": {
+        "$numberLong": "1743121904129"
+      },
+      "win": true,
+      "team": {
+        "name": "Targon Titans",
+        "image": "targon titans.png"
+      },
+      "vs": {
+        "puuid": "2_h_CpcRsZypWQHR66PnB_DU1rHiQYz8AmRETV54QFVuZuwX9Ly_ys7R3SOh7fFo9U1CZ9VlPv50Aw",
+        "teamImage": "bandle city buckaroos.png",
+        "teamName": "Bandle City Buckaroos",
+        "player": "MattAP3X",
+        "championName": "Sett",
+        "championImage": {
+          "square": "/img/champion/Sett.png"
+        }
+      }
+    },
+    {
+      "role": "TOP",
+      "build": [
+        {
+          "id": 6657,
+          "name": "Rod of Ages",
+          "image": "/img/item/6657.png"
+        },
+        {
+          "id": 3065,
+          "name": "Spirit Visage",
+          "image": "/img/item/3065.png"
+        },
+        {
+          "id": 6675,
+          "name": "Navori Flickerblade",
+          "image": "/img/item/6675.png"
+        },
+        {
+          "id": 2502,
+          "name": "Unending Despair",
+          "image": "/img/item/2502.png"
+        },
+        {
+          "id": 3158,
+          "name": "Ionian Boots of Lucidity",
+          "image": "/img/item/3158.png"
+        },
+        {
+          "id": 1031,
+          "name": "Chain Vest",
+          "image": "/img/item/1031.png"
+        }
+      ],
+      "trinket": {
+        "id": 3340,
+        "name": "Stealth Ward",
+        "image": "/img/item/3340.png"
+      },
+      "champion": {
+        "id": 106,
+        "name": "Volibear",
+        "level": 18,
+        "experience": 18758,
+        "image": {
+          "square": "/img/champion/Volibear.png"
+        }
+      },
+      "assists": 5,
+      "deaths": 3,
+      "kills": 5,
+      "kda": 3.33,
+      "profile": {
+        "puuid": "ViL-fqc_05wIgsqrNTZm4GTXv24-oNM0A4p41gcFdq9ltxyATnijVFkdBdE9EEQnErx4q81yTGZT1A",
+        "name": "Chaffles",
+        "tag": "NA1",
+        "level": 269,
+        "email": "blaylock.vb@gmail.com",
+        "bio": "My name is Eric and I'm officially a too-old league player who started back in season 1. I primarily play top & when I am not 5 banned enjoy aggressive duelists or heavy teamfight impact champs. Any deaths I have in the LCC are either limit testing or \"good deaths\" for the macro.",
+        "primary_role": "TOP",
+        "secondary_role": "MID",
+        "can_sub": false,
+        "revision_date": {
+          "$numberLong": "1736560266000"
+        },
+        "images": {
+          "icon": "/img/profileicon/19.png"
+        },
+        "availability": {
+          "Monday": {
+            "morning": false,
+            "evening": false
+          },
+          "Tuesday": {
+            "morning": false,
+            "evening": true
+          },
+          "Wednesday": {
+            "morning": false,
+            "evening": true
+          },
+          "Thursday": {
+            "morning": false,
+            "evening": false
+          },
+          "Friday": {
+            "morning": false,
+            "evening": false
+          },
+          "Saturday": {
+            "morning": true,
+            "evening": false
+          },
+          "Sunday": {
+            "morning": false,
+            "evening": true
+          }
+        },
+        "is_active": true
+      },
+      "runes": {
+        "primary": {
+          "name": {
+            "name": "Precision",
+            "key": "7201_precision"
+          },
+          "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7201_precision.png",
+          "keystone": {
+            "id": 8005,
+            "name": "presstheattack",
+            "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/precision/presstheattack/presstheattack.png"
+          }
+        },
+        "secondary": {
+          "name": {
+            "name": "Inspiration",
+            "key": "7203_whimsy"
+          },
+          "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7203_whimsy.png"
+        }
+      },
+      "summonerSpells": [
+        {
+          "casts": 3,
+          "id": 12,
+          "name": "Teleport",
+          "image": "/img/spell/SummonerTeleport.png"
+        },
+        {
+          "casts": 2,
+          "id": 4,
+          "name": "Flash",
+          "image": "/img/spell/SummonerFlash.png"
+        }
+      ],
+      "firstBlood": false,
+      "cs": 240,
+      "csm": 6.29,
+      "dmg": 25299,
+      "dpm": 662.57,
+      "teamDmgPercent": 28,
+      "goldEarned": 13269,
+      "goldSpent": 13100,
+      "gpm": 347.51,
+      "killParticipation": 71,
+      "effectiveHealAndShielding": 0,
+      "totalDamageTaken": 36521,
+      "damageTakenPercent": 25,
+      "visionScore": 31,
+      "vspm": 0.81,
+      "visionWardsBought": 2,
+      "wardsKilled": 2,
+      "wardsPlaced": 16,
+      "soloKills": 2,
+      "cs14": 121,
+      "csd": 26,
+      "matchId": "NA1_5242800422",
+      "season": "3",
+      "gameStartTimestamp": {
+        "$numberLong": "1741313824905"
+      },
+      "win": false,
+      "team": {
+        "name": "Targon Titans",
+        "image": "targon titans.png"
+      },
+      "vs": {
+        "puuid": "3PQ9HQ9DLHuTpXkIur_ypIWVAFkod8wYqE8DmbETFbYx2wIrH16LC0CXuqey-7Kwc62YjUheIpajIw",
+        "teamImage": "zaun plague.png",
+        "teamName": "Zaun Plague",
+        "player": "420saveOrcas69",
+        "championName": "Chogath",
+        "championImage": {
+          "square": "/img/champion/Chogath.png"
+        }
+      }
+    },
+    {
+      "role": "TOP",
+      "build": [
+        {
+          "id": 3078,
+          "name": "Trinity Force",
+          "image": "/img/item/3078.png"
+        },
+        {
+          "id": 3053,
+          "name": "Sterak's Gage",
+          "image": "/img/item/3053.png"
+        },
+        {
+          "id": 6610,
+          "name": "Sundered Sky",
+          "image": "/img/item/6610.png"
+        },
+        {
+          "id": 3158,
+          "name": "Ionian Boots of Lucidity",
+          "image": "/img/item/3158.png"
+        },
+        {
+          "id": 2021,
+          "name": "Tunneler",
+          "image": "/img/item/2021.png"
+        },
+        {
+          "id": 0,
+          "name": "Empty Slot",
+          "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/items/icons2d/gp_ui_placeholder.png"
+        }
+      ],
+      "trinket": {
+        "id": 3340,
+        "name": "Stealth Ward",
+        "image": "/img/item/3340.png"
+      },
+      "champion": {
+        "id": 24,
+        "name": "Jax",
+        "level": 18,
+        "experience": 19171,
+        "image": {
+          "square": "/img/champion/Jax.png"
+        }
+      },
+      "assists": 5,
+      "deaths": 2,
+      "kills": 3,
+      "kda": 4,
+      "profile": {
+        "puuid": "ViL-fqc_05wIgsqrNTZm4GTXv24-oNM0A4p41gcFdq9ltxyATnijVFkdBdE9EEQnErx4q81yTGZT1A",
+        "name": "Chaffles",
+        "tag": "NA1",
+        "level": 269,
+        "email": "blaylock.vb@gmail.com",
+        "bio": "My name is Eric and I'm officially a too-old league player who started back in season 1. I primarily play top & when I am not 5 banned enjoy aggressive duelists or heavy teamfight impact champs. Any deaths I have in the LCC are either limit testing or \"good deaths\" for the macro.",
+        "primary_role": "TOP",
+        "secondary_role": "MID",
+        "can_sub": false,
+        "revision_date": {
+          "$numberLong": "1736560266000"
+        },
+        "images": {
+          "icon": "/img/profileicon/19.png"
+        },
+        "availability": {
+          "Monday": {
+            "morning": false,
+            "evening": false
+          },
+          "Tuesday": {
+            "morning": false,
+            "evening": true
+          },
+          "Wednesday": {
+            "morning": false,
+            "evening": true
+          },
+          "Thursday": {
+            "morning": false,
+            "evening": false
+          },
+          "Friday": {
+            "morning": false,
+            "evening": false
+          },
+          "Saturday": {
+            "morning": true,
+            "evening": false
+          },
+          "Sunday": {
+            "morning": false,
+            "evening": true
+          }
+        },
+        "is_active": true
+      },
+      "runes": {
+        "primary": {
+          "name": {
+            "name": "Resolve",
+            "key": "7204_resolve"
+          },
+          "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7204_resolve.png",
+          "keystone": {
+            "id": 8437,
+            "name": "graspoftheundying",
+            "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/resolve/graspoftheundying/graspoftheundying.png"
+          }
+        },
+        "secondary": {
+          "name": {
+            "name": "Inspiration",
+            "key": "7203_whimsy"
+          },
+          "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7203_whimsy.png"
+        }
+      },
+      "summonerSpells": [
+        {
+          "casts": 4,
+          "id": 12,
+          "name": "Teleport",
+          "image": "/img/spell/SummonerTeleport.png"
+        },
+        {
+          "casts": 4,
+          "id": 4,
+          "name": "Flash",
+          "image": "/img/spell/SummonerFlash.png"
+        }
+      ],
+      "firstBlood": false,
+      "cs": 245,
+      "csm": 7.54,
+      "dmg": 26204,
+      "dpm": 806.69,
+      "teamDmgPercent": 33,
+      "goldEarned": 14372,
+      "goldSpent": 12433,
+      "gpm": 442.44,
+      "killParticipation": 53,
+      "effectiveHealAndShielding": 0,
+      "totalDamageTaken": 30163,
+      "damageTakenPercent": 35,
+      "visionScore": 23,
+      "vspm": 0.71,
+      "visionWardsBought": 2,
+      "wardsKilled": 2,
+      "wardsPlaced": 13,
+      "soloKills": 2,
+      "cs14": 102,
+      "csd": 2,
+      "matchId": "NA1_5246843999",
+      "season": "3",
+      "gameStartTimestamp": {
+        "$numberLong": "1741907369440"
+      },
+      "win": true,
+      "team": {
+        "name": "Targon Titans",
+        "image": "targon titans.png"
+      },
+      "vs": {
+        "puuid": "NXI8oLuiHEaEYiE9mc1mUC1CgbdUNuoIB4Iz3__jPjTBSUZ3XkVeg4pjc4TgxMSV63hMxT2DDSRqtQ",
+        "teamImage": "freljord frost.png",
+        "teamName": "Freljord Frost",
+        "player": "DuckJugs",
+        "championName": "Sett",
+        "championImage": {
+          "square": "/img/champion/Sett.png"
+        }
+      }
+    },
+    {
+      "role": "TOP",
+      "build": [
+        {
+          "id": 1054,
+          "name": "Doran's Shield",
+          "image": "/img/item/1054.png"
+        },
+        {
+          "id": 3111,
+          "name": "Mercury's Treads",
+          "image": "/img/item/3111.png"
+        },
+        {
+          "id": 3068,
+          "name": "Sunfire Aegis",
+          "image": "/img/item/3068.png"
+        },
+        {
+          "id": 3084,
+          "name": "Heartsteel",
+          "image": "/img/item/3084.png"
+        },
+        {
+          "id": 0,
+          "name": "Empty Slot",
+          "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/items/icons2d/gp_ui_placeholder.png"
+        },
+        {
+          "id": 0,
+          "name": "Empty Slot",
+          "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/items/icons2d/gp_ui_placeholder.png"
+        }
+      ],
+      "trinket": {
+        "id": 3340,
+        "name": "Stealth Ward",
+        "image": "/img/item/3340.png"
+      },
+      "champion": {
+        "id": 98,
+        "name": "Shen",
+        "level": 15,
+        "experience": 14375,
+        "image": {
+          "square": "/img/champion/Shen.png"
+        }
+      },
+      "assists": 12,
+      "deaths": 2,
+      "kills": 3,
+      "kda": 7.5,
+      "profile": {
+        "puuid": "ViL-fqc_05wIgsqrNTZm4GTXv24-oNM0A4p41gcFdq9ltxyATnijVFkdBdE9EEQnErx4q81yTGZT1A",
+        "name": "Chaffles",
+        "tag": "NA1",
+        "level": 269,
+        "email": "blaylock.vb@gmail.com",
+        "bio": "My name is Eric and I'm officially a too-old league player who started back in season 1. I primarily play top & when I am not 5 banned enjoy aggressive duelists or heavy teamfight impact champs. Any deaths I have in the LCC are either limit testing or \"good deaths\" for the macro.",
+        "primary_role": "TOP",
+        "secondary_role": "MID",
+        "can_sub": false,
+        "revision_date": {
+          "$numberLong": "1736560266000"
+        },
+        "images": {
+          "icon": "/img/profileicon/19.png"
+        },
+        "availability": {
+          "Monday": {
+            "morning": false,
+            "evening": false
+          },
+          "Tuesday": {
+            "morning": false,
+            "evening": true
+          },
+          "Wednesday": {
+            "morning": false,
+            "evening": true
+          },
+          "Thursday": {
+            "morning": false,
+            "evening": false
+          },
+          "Friday": {
+            "morning": false,
+            "evening": false
+          },
+          "Saturday": {
+            "morning": true,
+            "evening": false
+          },
+          "Sunday": {
+            "morning": false,
+            "evening": true
+          }
+        },
+        "is_active": true
+      },
+      "runes": {
+        "primary": {
+          "name": {
+            "name": "Resolve",
+            "key": "7204_resolve"
+          },
+          "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7204_resolve.png",
+          "keystone": {
+            "id": 8437,
+            "name": "graspoftheundying",
+            "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/resolve/graspoftheundying/graspoftheundying.png"
+          }
+        },
+        "secondary": {
+          "name": {
+            "name": "Domination",
+            "key": "7200_domination"
+          },
+          "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7200_domination.png"
+        }
+      },
+      "summonerSpells": [
+        {
+          "casts": 4,
+          "id": 12,
+          "name": "Teleport",
+          "image": "/img/spell/SummonerTeleport.png"
+        },
+        {
+          "casts": 4,
+          "id": 4,
+          "name": "Flash",
+          "image": "/img/spell/SummonerFlash.png"
+        }
+      ],
+      "firstBlood": false,
+      "cs": 113,
+      "csm": 4.21,
+      "dmg": 23401,
+      "dpm": 871,
+      "teamDmgPercent": 35,
+      "goldEarned": 9468,
+      "goldSpent": 7750,
+      "gpm": 352.41,
+      "killParticipation": 83,
+      "effectiveHealAndShielding": 2411,
+      "totalDamageTaken": 32944,
+      "damageTakenPercent": 30,
+      "visionScore": 23,
+      "vspm": 0.86,
+      "visionWardsBought": 2,
+      "wardsKilled": 2,
+      "wardsPlaced": 11,
+      "soloKills": 1,
+      "cs14": 67,
+      "csd": -8,
+      "matchId": "NA1_5254926801",
+      "season": "3",
+      "gameStartTimestamp": {
+        "$numberLong": "1743121904129"
+      },
+      "win": true,
+      "team": {
+        "name": "Targon Titans",
+        "image": "targon titans.png"
+      },
+      "vs": {
+        "puuid": "2_h_CpcRsZypWQHR66PnB_DU1rHiQYz8AmRETV54QFVuZuwX9Ly_ys7R3SOh7fFo9U1CZ9VlPv50Aw",
+        "teamImage": "bandle city buckaroos.png",
+        "teamName": "Bandle City Buckaroos",
+        "player": "MattAP3X",
+        "championName": "Sett",
+        "championImage": {
+          "square": "/img/champion/Sett.png"
+        }
+      }
+    },
+    {
+      "role": "TOP",
+      "build": [
+        {
+          "id": 3053,
+          "name": "Sterak's Gage",
+          "image": "/img/item/3053.png"
+        },
+        {
+          "id": 1043,
+          "name": "Recurve Bow",
+          "image": "/img/item/1043.png"
+        },
+        {
+          "id": 6610,
+          "name": "Sundered Sky",
+          "image": "/img/item/6610.png"
+        },
+        {
+          "id": 3111,
+          "name": "Mercury's Treads",
+          "image": "/img/item/3111.png"
+        },
+        {
+          "id": 3078,
+          "name": "Trinity Force",
+          "image": "/img/item/3078.png"
+        },
+        {
+          "id": 1057,
+          "name": "Negatron Cloak",
+          "image": "/img/item/1057.png"
+        }
+      ],
+      "trinket": {
+        "id": 3340,
+        "name": "Stealth Ward",
+        "image": "/img/item/3340.png"
+      },
+      "champion": {
+        "id": 24,
+        "name": "Jax",
+        "level": 17,
+        "experience": 18150,
+        "image": {
+          "square": "/img/champion/Jax.png"
+        }
+      },
+      "assists": 7,
+      "deaths": 4,
+      "kills": 4,
+      "kda": 2.75,
+      "profile": {
+        "puuid": "ViL-fqc_05wIgsqrNTZm4GTXv24-oNM0A4p41gcFdq9ltxyATnijVFkdBdE9EEQnErx4q81yTGZT1A",
+        "name": "Chaffles",
+        "tag": "NA1",
+        "level": 269,
+        "email": "blaylock.vb@gmail.com",
+        "bio": "My name is Eric and I'm officially a too-old league player who started back in season 1. I primarily play top & when I am not 5 banned enjoy aggressive duelists or heavy teamfight impact champs. Any deaths I have in the LCC are either limit testing or \"good deaths\" for the macro.",
+        "primary_role": "TOP",
+        "secondary_role": "MID",
+        "can_sub": false,
+        "revision_date": {
+          "$numberLong": "1736560266000"
+        },
+        "images": {
+          "icon": "/img/profileicon/19.png"
+        },
+        "availability": {
+          "Monday": {
+            "morning": false,
+            "evening": false
+          },
+          "Tuesday": {
+            "morning": false,
+            "evening": true
+          },
+          "Wednesday": {
+            "morning": false,
+            "evening": true
+          },
+          "Thursday": {
+            "morning": false,
+            "evening": false
+          },
+          "Friday": {
+            "morning": false,
+            "evening": false
+          },
+          "Saturday": {
+            "morning": true,
+            "evening": false
+          },
+          "Sunday": {
+            "morning": false,
+            "evening": true
+          }
+        },
+        "is_active": true
+      },
+      "runes": {
+        "primary": {
+          "name": {
+            "name": "Resolve",
+            "key": "7204_resolve"
+          },
+          "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7204_resolve.png",
+          "keystone": {
+            "id": 8437,
+            "name": "graspoftheundying",
+            "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/resolve/graspoftheundying/graspoftheundying.png"
+          }
+        },
+        "secondary": {
+          "name": {
+            "name": "Inspiration",
+            "key": "7203_whimsy"
+          },
+          "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7203_whimsy.png"
+        }
+      },
+      "summonerSpells": [
+        {
+          "casts": 5,
+          "id": 12,
+          "name": "Teleport",
+          "image": "/img/spell/SummonerTeleport.png"
+        },
+        {
+          "casts": 6,
+          "id": 4,
+          "name": "Flash",
+          "image": "/img/spell/SummonerFlash.png"
+        }
+      ],
+      "firstBlood": false,
+      "cs": 213,
+      "csm": 5.13,
+      "dmg": 17383,
+      "dpm": 418.87,
+      "teamDmgPercent": 15,
+      "goldEarned": 14312,
+      "goldSpent": 13433,
+      "gpm": 344.87,
+      "killParticipation": 58,
+      "effectiveHealAndShielding": 0,
+      "totalDamageTaken": 46727,
+      "damageTakenPercent": 31,
+      "visionScore": 38,
+      "vspm": 0.92,
+      "visionWardsBought": 4,
+      "wardsKilled": 3,
+      "wardsPlaced": 19,
+      "soloKills": 0,
+      "cs14": 64,
+      "csd": -18,
+      "matchId": "NA1_5261429746",
+      "season": "3",
+      "gameStartTimestamp": {
+        "$numberLong": "1743978797555"
+      },
+      "win": false,
+      "team": {
+        "name": "Targon Titans",
+        "image": "targon titans.png"
+      },
+      "vs": {
+        "puuid": "o2pRUUL3W5RxfMpuIpl0YIJ7D6gsgibCoC1RdOYKnuLF_5Rkt4vw8jddLTjSoa5jqfA-mhsJtjmD7w",
+        "teamImage": "noxian gladiators.png",
+        "teamName": "Noxian Gladiators",
+        "player": "karpusky",
+        "championName": "Malphite",
+        "championImage": {
+          "square": "/img/champion/Malphite.png"
+        }
+      }
+    },
+    {
+      "role": "TOP",
+      "build": [
+        {
+          "id": 1056,
+          "name": "Doran's Ring",
+          "image": "/img/item/1056.png"
+        },
+        {
+          "id": 2065,
+          "name": "Shurelya's Battlesong",
+          "image": "/img/item/2065.png"
+        },
+        {
+          "id": 3075,
+          "name": "Thornmail",
+          "image": "/img/item/3075.png"
+        },
+        {
+          "id": 3742,
+          "name": "Dead Man's Plate",
+          "image": "/img/item/3742.png"
+        },
+        {
+          "id": 3013,
+          "name": "Synchronized Souls",
+          "image": "/img/item/3013.png"
+        },
+        {
+          "id": 3105,
+          "name": "Aegis of the Legion",
+          "image": "/img/item/3105.png"
+        }
+      ],
+      "trinket": {
+        "id": 3340,
+        "name": "Stealth Ward",
+        "image": "/img/item/3340.png"
+      },
+      "champion": {
+        "id": 31,
+        "name": "Chogath",
+        "level": 17,
+        "experience": 16778,
+        "image": {
+          "square": "/img/champion/Chogath.png"
+        }
+      },
+      "assists": 6,
+      "deaths": 1,
+      "kills": 3,
+      "kda": 9,
+      "profile": {
+        "puuid": "ViL-fqc_05wIgsqrNTZm4GTXv24-oNM0A4p41gcFdq9ltxyATnijVFkdBdE9EEQnErx4q81yTGZT1A",
+        "name": "Chaffles",
+        "tag": "NA1",
+        "level": 269,
+        "email": "blaylock.vb@gmail.com",
+        "bio": "My name is Eric and I'm officially a too-old league player who started back in season 1. I primarily play top & when I am not 5 banned enjoy aggressive duelists or heavy teamfight impact champs. Any deaths I have in the LCC are either limit testing or \"good deaths\" for the macro.",
+        "primary_role": "TOP",
+        "secondary_role": "MID",
+        "can_sub": false,
+        "revision_date": {
+          "$numberLong": "1736560266000"
+        },
+        "images": {
+          "icon": "/img/profileicon/19.png"
+        },
+        "availability": {
+          "Monday": {
+            "morning": false,
+            "evening": false
+          },
+          "Tuesday": {
+            "morning": false,
+            "evening": true
+          },
+          "Wednesday": {
+            "morning": false,
+            "evening": true
+          },
+          "Thursday": {
+            "morning": false,
+            "evening": false
+          },
+          "Friday": {
+            "morning": false,
+            "evening": false
+          },
+          "Saturday": {
+            "morning": true,
+            "evening": false
+          },
+          "Sunday": {
+            "morning": false,
+            "evening": true
+          }
+        },
+        "is_active": true
+      },
+      "runes": {
+        "primary": {
+          "name": {
+            "name": "Resolve",
+            "key": "7204_resolve"
+          },
+          "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7204_resolve.png",
+          "keystone": {
+            "id": 8437,
+            "name": "graspoftheundying",
+            "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/resolve/graspoftheundying/graspoftheundying.png"
+          }
+        },
+        "secondary": {
+          "name": {
+            "name": "Inspiration",
+            "key": "7203_whimsy"
+          },
+          "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7203_whimsy.png"
+        }
+      },
+      "summonerSpells": [
+        {
+          "casts": 4,
+          "id": 12,
+          "name": "Teleport",
+          "image": "/img/spell/SummonerTeleport.png"
+        },
+        {
+          "casts": 2,
+          "id": 4,
+          "name": "Flash",
+          "image": "/img/spell/SummonerFlash.png"
+        }
+      ],
+      "firstBlood": false,
+      "cs": 211,
+      "csm": 6.81,
+      "dmg": 18557,
+      "dpm": 598.61,
+      "teamDmgPercent": 29,
+      "goldEarned": 11803,
+      "goldSpent": 9975,
+      "gpm": 380.74,
+      "killParticipation": 50,
+      "effectiveHealAndShielding": 0,
+      "totalDamageTaken": 24759,
+      "damageTakenPercent": 25,
+      "visionScore": 21,
+      "vspm": 0.68,
+      "visionWardsBought": 3,
+      "wardsKilled": 0,
+      "wardsPlaced": 14,
+      "soloKills": 1,
+      "cs14": 84,
+      "csd": -17,
+      "matchId": "NA1_5264361260",
+      "season": "3",
+      "gameStartTimestamp": {
+        "$numberLong": "1744333668197"
+      },
+      "win": true,
+      "team": {
+        "name": "Targon Titans",
+        "image": "targon titans.png"
+      },
+      "vs": {
+        "puuid": "3PQ9HQ9DLHuTpXkIur_ypIWVAFkod8wYqE8DmbETFbYx2wIrH16LC0CXuqey-7Kwc62YjUheIpajIw",
+        "teamImage": "zaun plague.png",
+        "teamName": "Zaun Plague",
+        "player": "420saveOrcas69",
+        "championName": "Trundle",
+        "championImage": {
+          "square": "/img/champion/Trundle.png"
+        }
+      }
+    },
+    {
+      "role": "TOP",
+      "build": [
+        {
+          "id": 3158,
+          "name": "Ionian Boots of Lucidity",
+          "image": "/img/item/3158.png"
+        },
+        {
+          "id": 1033,
+          "name": "Null-Magic Mantle",
+          "image": "/img/item/1033.png"
+        },
+        {
+          "id": 6657,
+          "name": "Rod of Ages",
+          "image": "/img/item/6657.png"
+        },
+        {
+          "id": 6675,
+          "name": "Navori Flickerblade",
+          "image": "/img/item/6675.png"
+        },
+        {
+          "id": 0,
+          "name": "Empty Slot",
+          "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/items/icons2d/gp_ui_placeholder.png"
+        },
+        {
+          "id": 1056,
+          "name": "Doran's Ring",
+          "image": "/img/item/1056.png"
+        }
+      ],
+      "trinket": {
+        "id": 3340,
+        "name": "Stealth Ward",
+        "image": "/img/item/3340.png"
+      },
+      "champion": {
+        "id": 106,
+        "name": "Volibear",
+        "level": 14,
+        "experience": 12327,
+        "image": {
+          "square": "/img/champion/Volibear.png"
+        }
+      },
+      "assists": 2,
+      "deaths": 6,
+      "kills": 2,
+      "kda": 0.67,
+      "profile": {
+        "puuid": "ViL-fqc_05wIgsqrNTZm4GTXv24-oNM0A4p41gcFdq9ltxyATnijVFkdBdE9EEQnErx4q81yTGZT1A",
+        "name": "Chaffles",
+        "tag": "NA1",
+        "level": 269,
+        "email": "blaylock.vb@gmail.com",
+        "bio": "My name is Eric and I'm officially a too-old league player who started back in season 1. I primarily play top & when I am not 5 banned enjoy aggressive duelists or heavy teamfight impact champs. Any deaths I have in the LCC are either limit testing or \"good deaths\" for the macro.",
+        "primary_role": "TOP",
+        "secondary_role": "MID",
+        "can_sub": false,
+        "revision_date": {
+          "$numberLong": "1736560266000"
+        },
+        "images": {
+          "icon": "/img/profileicon/19.png"
+        },
+        "availability": {
+          "Monday": {
+            "morning": false,
+            "evening": false
+          },
+          "Tuesday": {
+            "morning": false,
+            "evening": true
+          },
+          "Wednesday": {
+            "morning": false,
+            "evening": true
+          },
+          "Thursday": {
+            "morning": false,
+            "evening": false
+          },
+          "Friday": {
+            "morning": false,
+            "evening": false
+          },
+          "Saturday": {
+            "morning": true,
+            "evening": false
+          },
+          "Sunday": {
+            "morning": false,
+            "evening": true
+          }
+        },
+        "is_active": true
+      },
+      "runes": {
+        "primary": {
+          "name": {
+            "name": "Precision",
+            "key": "7201_precision"
+          },
+          "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7201_precision.png",
+          "keystone": {
+            "id": 8005,
+            "name": "presstheattack",
+            "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/precision/presstheattack/presstheattack.png"
+          }
+        },
+        "secondary": {
+          "name": {
+            "name": "Inspiration",
+            "key": "7203_whimsy"
+          },
+          "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7203_whimsy.png"
+        }
+      },
+      "summonerSpells": [
+        {
+          "casts": 3,
+          "id": 12,
+          "name": "Teleport",
+          "image": "/img/spell/SummonerTeleport.png"
+        },
+        {
+          "casts": 4,
+          "id": 4,
+          "name": "Flash",
+          "image": "/img/spell/SummonerFlash.png"
+        }
+      ],
+      "firstBlood": true,
+      "cs": 153,
+      "csm": 6.04,
+      "dmg": 18561,
+      "dpm": 732.67,
+      "teamDmgPercent": 29,
+      "goldEarned": 7489,
+      "goldSpent": 7350,
+      "gpm": 295.62,
+      "killParticipation": 27,
+      "effectiveHealAndShielding": 0,
+      "totalDamageTaken": 27527,
+      "damageTakenPercent": 23,
+      "visionScore": 17,
+      "vspm": 0.67,
+      "visionWardsBought": 2,
+      "wardsKilled": 0,
+      "wardsPlaced": 10,
+      "soloKills": 2,
+      "cs14": 89,
+      "csd": 17,
+      "matchId": "NA1_5269159992",
+      "season": "3",
+      "gameStartTimestamp": {
+        "$numberLong": "1744932782712"
+      },
+      "win": false,
+      "team": {
+        "name": "Targon Titans",
+        "image": "targon titans.png"
+      },
+      "vs": {
+        "puuid": "NXI8oLuiHEaEYiE9mc1mUC1CgbdUNuoIB4Iz3__jPjTBSUZ3XkVeg4pjc4TgxMSV63hMxT2DDSRqtQ",
+        "teamImage": "freljord frost.png",
+        "teamName": "Freljord Frost",
+        "player": "DuckJugs",
+        "championName": "Sett",
+        "championImage": {
+          "square": "/img/champion/Sett.png"
+        }
+      }
+    },
+    {
+      "role": "TOP",
+      "build": [
+        {
+          "id": 6672,
+          "name": "Kraken Slayer",
+          "image": "/img/item/6672.png"
+        },
+        {
+          "id": 3153,
+          "name": "Blade of The Ruined King",
+          "image": "/img/item/3153.png"
+        },
+        {
+          "id": 3173,
+          "name": "Chainlaced Crushers",
+          "image": "/img/item/3173.png"
+        },
+        {
+          "id": 3181,
+          "name": "Hullbreaker",
+          "image": "/img/item/3181.png"
+        },
+        {
+          "id": 3091,
+          "name": "Wit's End",
+          "image": "/img/item/3091.png"
+        },
+        {
+          "id": 3053,
+          "name": "Sterak's Gage",
+          "image": "/img/item/3053.png"
+        }
+      ],
+      "trinket": {
+        "id": 3340,
+        "name": "Stealth Ward",
+        "image": "/img/item/3340.png"
+      },
+      "champion": {
+        "id": 39,
+        "name": "Irelia",
+        "level": 18,
+        "experience": 23775,
+        "image": {
+          "square": "/img/champion/Irelia.png"
+        }
+      },
+      "assists": 7,
+      "deaths": 3,
+      "kills": 5,
+      "kda": 4,
+      "profile": {
+        "puuid": "ViL-fqc_05wIgsqrNTZm4GTXv24-oNM0A4p41gcFdq9ltxyATnijVFkdBdE9EEQnErx4q81yTGZT1A",
+        "name": "Chaffles",
+        "tag": "NA1",
+        "level": 269,
+        "email": "blaylock.vb@gmail.com",
+        "bio": "My name is Eric and I'm officially a too-old league player who started back in season 1. I primarily play top & when I am not 5 banned enjoy aggressive duelists or heavy teamfight impact champs. Any deaths I have in the LCC are either limit testing or \"good deaths\" for the macro.",
+        "primary_role": "TOP",
+        "secondary_role": "MID",
+        "can_sub": false,
+        "revision_date": {
+          "$numberLong": "1736560266000"
+        },
+        "images": {
+          "icon": "/img/profileicon/19.png"
+        },
+        "availability": {
+          "Monday": {
+            "morning": false,
+            "evening": false
+          },
+          "Tuesday": {
+            "morning": false,
+            "evening": true
+          },
+          "Wednesday": {
+            "morning": false,
+            "evening": true
+          },
+          "Thursday": {
+            "morning": false,
+            "evening": false
+          },
+          "Friday": {
+            "morning": false,
+            "evening": false
+          },
+          "Saturday": {
+            "morning": true,
+            "evening": false
+          },
+          "Sunday": {
+            "morning": false,
+            "evening": true
+          }
+        },
+        "is_active": true
+      },
+      "runes": {
+        "primary": {
+          "name": {
+            "name": "Precision",
+            "key": "7201_precision"
+          },
+          "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7201_precision.png",
+          "keystone": {
+            "id": 8010,
+            "name": "conqueror",
+            "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/precision/conqueror/conqueror.png"
+          }
+        },
+        "secondary": {
+          "name": {
+            "name": "Inspiration",
+            "key": "7203_whimsy"
+          },
+          "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7203_whimsy.png"
+        }
+      },
+      "summonerSpells": [
+        {
+          "casts": 5,
+          "id": 12,
+          "name": "Teleport",
+          "image": "/img/spell/SummonerTeleport.png"
+        },
+        {
+          "casts": 5,
+          "id": 4,
+          "name": "Flash",
+          "image": "/img/spell/SummonerFlash.png"
+        }
+      ],
+      "firstBlood": false,
+      "cs": 347,
+      "csm": 8.89,
+      "dmg": 34913,
+      "dpm": 894.44,
+      "teamDmgPercent": 28,
+      "goldEarned": 17730,
+      "goldSpent": 17800,
+      "gpm": 454.23,
+      "killParticipation": 55,
+      "effectiveHealAndShielding": 0,
+      "totalDamageTaken": 52281,
+      "damageTakenPercent": 30,
+      "visionScore": 35,
+      "vspm": 0.9,
+      "visionWardsBought": 0,
+      "wardsKilled": 6,
+      "wardsPlaced": 14,
+      "soloKills": 2,
+      "cs14": 123,
+      "csd": 38,
+      "matchId": "NA1_5275886230",
+      "season": "3",
+      "gameStartTimestamp": {
+        "$numberLong": "1745786580262"
+      },
+      "win": false,
+      "team": {
+        "name": "Targon Titans",
+        "image": "targon titans.png"
+      },
+      "vs": {
+        "puuid": "elizZiDfWhmnAzOPJkA9b81khbGSrPTgAAf1aIATpkcQcx9iwlE9H6VCIvcIaUlANlXHunPBnJrung",
+        "teamImage": "demacian justice.png",
+        "teamName": "Demacian Justice",
+        "player": "Bellistic97",
+        "championName": "Gnar",
+        "championImage": {
+          "square": "/img/champion/Gnar.png"
+        }
+      }
+    },
+    {
+      "role": "TOP",
+      "build": [
+        {
+          "id": 1056,
+          "name": "Doran's Ring",
+          "image": "/img/item/1056.png"
+        },
+        {
+          "id": 6675,
+          "name": "Navori Flickerblade",
+          "image": "/img/item/6675.png"
+        },
+        {
+          "id": 3174,
+          "name": "Armored Advance",
+          "image": "/img/item/3174.png"
+        },
+        {
+          "id": 3211,
+          "name": "Spectre's Cowl",
+          "image": "/img/item/3211.png"
+        },
+        {
+          "id": 6657,
+          "name": "Rod of Ages",
+          "image": "/img/item/6657.png"
+        },
+        {
+          "id": 2022,
+          "name": "Glowing Mote",
+          "image": "/img/item/2022.png"
+        }
+      ],
+      "trinket": {
+        "id": 3340,
+        "name": "Stealth Ward",
+        "image": "/img/item/3340.png"
+      },
+      "champion": {
+        "id": 106,
+        "name": "Volibear",
+        "level": 17,
+        "experience": 17901,
+        "image": {
+          "square": "/img/champion/Volibear.png"
+        }
+      },
+      "assists": 10,
+      "deaths": 2,
+      "kills": 1,
+      "kda": 5.5,
+      "profile": {
+        "puuid": "ViL-fqc_05wIgsqrNTZm4GTXv24-oNM0A4p41gcFdq9ltxyATnijVFkdBdE9EEQnErx4q81yTGZT1A",
+        "name": "Chaffles",
+        "tag": "NA1",
+        "level": 269,
+        "email": "blaylock.vb@gmail.com",
+        "bio": "My name is Eric and I'm officially a too-old league player who started back in season 1. I primarily play top & when I am not 5 banned enjoy aggressive duelists or heavy teamfight impact champs. Any deaths I have in the LCC are either limit testing or \"good deaths\" for the macro.",
+        "primary_role": "TOP",
+        "secondary_role": "MID",
+        "can_sub": false,
+        "revision_date": {
+          "$numberLong": "1736560266000"
+        },
+        "images": {
+          "icon": "/img/profileicon/19.png"
+        },
+        "availability": {
+          "Monday": {
+            "morning": false,
+            "evening": false
+          },
+          "Tuesday": {
+            "morning": false,
+            "evening": true
+          },
+          "Wednesday": {
+            "morning": false,
+            "evening": true
+          },
+          "Thursday": {
+            "morning": false,
+            "evening": false
+          },
+          "Friday": {
+            "morning": false,
+            "evening": false
+          },
+          "Saturday": {
+            "morning": true,
+            "evening": false
+          },
+          "Sunday": {
+            "morning": false,
+            "evening": true
+          }
+        },
+        "is_active": true
+      },
+      "runes": {
+        "primary": {
+          "name": {
+            "name": "Precision",
+            "key": "7201_precision"
+          },
+          "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7201_precision.png",
+          "keystone": {
+            "id": 8005,
+            "name": "presstheattack",
+            "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/precision/presstheattack/presstheattack.png"
+          }
+        },
+        "secondary": {
+          "name": {
+            "name": "Resolve",
+            "key": "7204_resolve"
+          },
+          "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7204_resolve.png"
+        }
+      },
+      "summonerSpells": [
+        {
+          "casts": 3,
+          "id": 12,
+          "name": "Teleport",
+          "image": "/img/spell/SummonerTeleport.png"
+        },
+        {
+          "casts": 4,
+          "id": 4,
+          "name": "Flash",
+          "image": "/img/spell/SummonerFlash.png"
+        }
+      ],
+      "firstBlood": false,
+      "cs": 216,
+      "csm": 7.84,
+      "dmg": 15899,
+      "dpm": 576.75,
+      "teamDmgPercent": 22,
+      "goldEarned": 11501,
+      "goldSpent": 9200,
+      "gpm": 417.21,
+      "killParticipation": 61,
+      "effectiveHealAndShielding": 0,
+      "totalDamageTaken": 21977,
+      "damageTakenPercent": 30,
+      "visionScore": 20,
+      "vspm": 0.73,
+      "visionWardsBought": 2,
+      "wardsKilled": 0,
+      "wardsPlaced": 11,
+      "soloKills": 1,
+      "cs14": 109,
+      "csd": 22,
+      "matchId": "NA1_5278513213",
+      "season": "3",
+      "gameStartTimestamp": {
+        "$numberLong": "1746144828645"
+      },
+      "win": true,
+      "team": {
+        "name": "Targon Titans",
+        "image": "targon titans.png"
+      },
+      "vs": {
+        "puuid": "2_h_CpcRsZypWQHR66PnB_DU1rHiQYz8AmRETV54QFVuZuwX9Ly_ys7R3SOh7fFo9U1CZ9VlPv50Aw",
+        "teamImage": "bandle city buckaroos.png",
+        "teamName": "Bandle City Buckaroos",
+        "player": "MattAP3X",
+        "championName": "Sett",
+        "championImage": {
+          "square": "/img/champion/Sett.png"
+        }
+      }
+    },
+    {
+      "role": "TOP",
+      "build": [
+        {
+          "id": 4645,
+          "name": "Shadowflame",
+          "image": "/img/item/4645.png"
+        },
+        {
+          "id": 3152,
+          "name": "Hextech Rocketbelt",
+          "image": "/img/item/3152.png"
+        },
+        {
+          "id": 0,
+          "name": "Empty Slot",
+          "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/items/icons2d/gp_ui_placeholder.png"
+        },
+        {
+          "id": 1058,
+          "name": "Needlessly Large Rod",
+          "image": "/img/item/1058.png"
+        },
+        {
+          "id": 3020,
+          "name": "Sorcerer's Shoes",
+          "image": "/img/item/3020.png"
+        },
+        {
+          "id": 0,
+          "name": "Empty Slot",
+          "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/assets/items/icons2d/gp_ui_placeholder.png"
+        }
+      ],
+      "trinket": {
+        "id": 3340,
+        "name": "Stealth Ward",
+        "image": "/img/item/3340.png"
+      },
+      "champion": {
+        "id": 85,
+        "name": "Kennen",
+        "level": 14,
+        "experience": 12940,
+        "image": {
+          "square": "/img/champion/Kennen.png"
+        }
+      },
+      "assists": 5,
+      "deaths": 6,
+      "kills": 2,
+      "kda": 1.17,
+      "profile": {
+        "puuid": "ViL-fqc_05wIgsqrNTZm4GTXv24-oNM0A4p41gcFdq9ltxyATnijVFkdBdE9EEQnErx4q81yTGZT1A",
+        "name": "Chaffles",
+        "tag": "NA1",
+        "level": 269,
+        "email": "blaylock.vb@gmail.com",
+        "bio": "My name is Eric and I'm officially a too-old league player who started back in season 1. I primarily play top & when I am not 5 banned enjoy aggressive duelists or heavy teamfight impact champs. Any deaths I have in the LCC are either limit testing or \"good deaths\" for the macro.",
+        "primary_role": "TOP",
+        "secondary_role": "MID",
+        "can_sub": false,
+        "revision_date": {
+          "$numberLong": "1736560266000"
+        },
+        "images": {
+          "icon": "/img/profileicon/19.png"
+        },
+        "availability": {
+          "Monday": {
+            "morning": false,
+            "evening": false
+          },
+          "Tuesday": {
+            "morning": false,
+            "evening": true
+          },
+          "Wednesday": {
+            "morning": false,
+            "evening": true
+          },
+          "Thursday": {
+            "morning": false,
+            "evening": false
+          },
+          "Friday": {
+            "morning": false,
+            "evening": false
+          },
+          "Saturday": {
+            "morning": true,
+            "evening": false
+          },
+          "Sunday": {
+            "morning": false,
+            "evening": true
+          }
+        },
+        "is_active": true
+      },
+      "runes": {
+        "primary": {
+          "name": {
+            "name": "Domination",
+            "key": "7200_domination"
+          },
+          "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7200_domination.png",
+          "keystone": {
+            "id": 8112,
+            "name": "electrocute",
+            "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/domination/electrocute/electrocute.png"
+          }
+        },
+        "secondary": {
+          "name": {
+            "name": "Sorcery",
+            "key": "7202_sorcery"
+          },
+          "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7202_sorcery.png"
+        }
+      },
+      "summonerSpells": [
+        {
+          "casts": 3,
+          "id": 12,
+          "name": "Teleport",
+          "image": "/img/spell/SummonerTeleport.png"
+        },
+        {
+          "casts": 2,
+          "id": 4,
+          "name": "Flash",
+          "image": "/img/spell/SummonerFlash.png"
+        }
+      ],
+      "firstBlood": false,
+      "cs": 178,
+      "csm": 5.78,
+      "dmg": 23483,
+      "dpm": 762.44,
+      "teamDmgPercent": 24,
+      "goldEarned": 9196,
+      "goldSpent": 8800,
+      "gpm": 298.57,
+      "killParticipation": 88,
+      "effectiveHealAndShielding": 0,
+      "totalDamageTaken": 21722,
+      "damageTakenPercent": 22,
+      "visionScore": 24,
+      "vspm": 0.78,
+      "visionWardsBought": 2,
+      "wardsKilled": 3,
+      "wardsPlaced": 13,
+      "soloKills": 0,
+      "cs14": 99,
+      "csd": 23,
+      "matchId": "NA1_5283185620",
+      "season": "3",
+      "gameStartTimestamp": {
+        "$numberLong": "1746753333617"
+      },
+      "win": false,
+      "team": {
+        "name": "Targon Titans",
+        "image": "targon titans.png"
+      },
+      "vs": {
+        "puuid": "o2pRUUL3W5RxfMpuIpl0YIJ7D6gsgibCoC1RdOYKnuLF_5Rkt4vw8jddLTjSoa5jqfA-mhsJtjmD7w",
+        "teamImage": "noxian gladiators.png",
+        "teamName": "Noxian Gladiators",
+        "player": "karpusky",
+        "championName": "Sejuani",
+        "championImage": {
+          "square": "/img/champion/Sejuani.png"
+        }
+      }
+    },
+    {
+      "role": "TOP",
+      "build": [
+        {
+          "id": 1031,
+          "name": "Chain Vest",
+          "image": "/img/item/1031.png"
+        },
+        {
+          "id": 3084,
+          "name": "Heartsteel",
+          "image": "/img/item/3084.png"
+        },
+        {
+          "id": 3170,
+          "name": "Swiftmarch",
+          "image": "/img/item/3170.png"
+        },
+        {
+          "id": 6664,
+          "name": "Hollow Radiance",
+          "image": "/img/item/6664.png"
+        },
+        {
+          "id": 2502,
+          "name": "Unending Despair",
+          "image": "/img/item/2502.png"
+        },
+        {
+          "id": 3066,
+          "name": "Winged Moonplate",
+          "image": "/img/item/3066.png"
+        }
+      ],
+      "trinket": {
+        "id": 3364,
+        "name": "Oracle Lens",
+        "image": "/img/item/3364.png"
+      },
+      "champion": {
+        "id": 31,
+        "name": "Chogath",
+        "level": 17,
+        "experience": 17029,
+        "image": {
+          "square": "/img/champion/Chogath.png"
+        }
+      },
+      "assists": 8,
+      "deaths": 1,
+      "kills": 8,
+      "kda": 16,
+      "profile": {
+        "puuid": "ViL-fqc_05wIgsqrNTZm4GTXv24-oNM0A4p41gcFdq9ltxyATnijVFkdBdE9EEQnErx4q81yTGZT1A",
+        "name": "Chaffles",
+        "tag": "NA1",
+        "level": 269,
+        "email": "blaylock.vb@gmail.com",
+        "bio": "My name is Eric and I'm officially a too-old league player who started back in season 1. I primarily play top & when I am not 5 banned enjoy aggressive duelists or heavy teamfight impact champs. Any deaths I have in the LCC are either limit testing or \"good deaths\" for the macro.",
+        "primary_role": "TOP",
+        "secondary_role": "MID",
+        "can_sub": false,
+        "revision_date": {
+          "$numberLong": "1736560266000"
+        },
+        "images": {
+          "icon": "/img/profileicon/19.png"
+        },
+        "availability": {
+          "Monday": {
+            "morning": false,
+            "evening": false
+          },
+          "Tuesday": {
+            "morning": false,
+            "evening": true
+          },
+          "Wednesday": {
+            "morning": false,
+            "evening": true
+          },
+          "Thursday": {
+            "morning": false,
+            "evening": false
+          },
+          "Friday": {
+            "morning": false,
+            "evening": false
+          },
+          "Saturday": {
+            "morning": true,
+            "evening": false
+          },
+          "Sunday": {
+            "morning": false,
+            "evening": true
+          }
+        },
+        "is_active": true
+      },
+      "runes": {
+        "primary": {
+          "name": {
+            "name": "Resolve",
+            "key": "7204_resolve"
+          },
+          "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7204_resolve.png",
+          "keystone": {
+            "id": 8437,
+            "name": "graspoftheundying",
+            "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/resolve/graspoftheundying/graspoftheundying.png"
+          }
+        },
+        "secondary": {
+          "name": {
+            "name": "Inspiration",
+            "key": "7203_whimsy"
+          },
+          "image": "https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/7203_whimsy.png"
+        }
+      },
+      "summonerSpells": [
+        {
+          "casts": 2,
+          "id": 12,
+          "name": "Teleport",
+          "image": "/img/spell/SummonerTeleport.png"
+        },
+        {
+          "casts": 4,
+          "id": 4,
+          "name": "Flash",
+          "image": "/img/spell/SummonerFlash.png"
+        }
+      ],
+      "firstBlood": false,
+      "cs": 203,
+      "csm": 7.11,
+      "dmg": 17915,
+      "dpm": 627.13,
+      "teamDmgPercent": 22,
+      "goldEarned": 13562,
+      "goldSpent": 11975,
+      "gpm": 474.75,
+      "killParticipation": 50,
+      "effectiveHealAndShielding": 0,
+      "totalDamageTaken": 27077,
+      "damageTakenPercent": 28,
+      "visionScore": 17,
+      "vspm": 0.6,
+      "visionWardsBought": 1,
+      "wardsKilled": 2,
+      "wardsPlaced": 6,
+      "soloKills": 3,
+      "cs14": 95,
+      "csd": 7,
+      "matchId": "NA1_5283240386",
+      "season": "3T",
+      "gameStartTimestamp": {
+        "$numberLong": "1746756620357"
+      },
+      "win": true,
+      "team": {
+        "name": "Targon Titans",
+        "image": "targon titans.png"
+      },
+      "vs": {
+        "puuid": "elizZiDfWhmnAzOPJkA9b81khbGSrPTgAAf1aIATpkcQcx9iwlE9H6VCIvcIaUlANlXHunPBnJrung",
+        "teamImage": "demacian justice.png",
+        "teamName": "Demacian Justice",
+        "player": "Bellistic97",
+        "championName": "Mordekaiser",
+        "championImage": {
+          "square": "/img/champion/Mordekaiser.png"
+        }
+      }
     }
-  }
-  
+  ],
+  "champion_mastery": [
+    {
+      "id": "Kennen",
+      "name": "Kennen",
+      "title": "the Heart of the Tempest",
+      "image": {
+        "full": "/img/champion/Kennen.png",
+        "square": "/img/champion/Kennen.png"
+      },
+      "championMastery": 35,
+      "championPoints": 363002,
+      "lastPlayTime": {
+        "$numberLong": "1772342674000"
+      }
+    },
+    {
+      "id": "Lux",
+      "name": "Lux",
+      "title": "the Lady of Luminosity",
+      "image": {
+        "full": "/img/champion/Lux.png",
+        "square": "/img/champion/Lux.png"
+      },
+      "championMastery": 27,
+      "championPoints": 268560,
+      "lastPlayTime": {
+        "$numberLong": "1772738155000"
+      }
+    },
+    {
+      "id": "Shen",
+      "name": "Shen",
+      "title": "the Eye of Twilight",
+      "image": {
+        "full": "/img/champion/Shen.png",
+        "square": "/img/champion/Shen.png"
+      },
+      "championMastery": 26,
+      "championPoints": 263852,
+      "lastPlayTime": {
+        "$numberLong": "1772421033000"
+      }
+    }
+  ],
+  "discord": {
+    "id": "",
+    "username": "",
+    "avatar_url": ""
+  },
+  "teams": [
+    {
+      "3": {
+        "role": "TOP",
+        "name": "Targon Titans"
+      }
+    }
+  ]
+}

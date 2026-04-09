@@ -1,128 +1,127 @@
+"""
+teams.py
+--------
+Flask Blueprint providing all team-related API endpoints for the LCC API.
+
+Includes routes for creating and querying teams, managing rosters by season,
+assigning players, and aggregating win/loss records.
+"""
 import os
 from bson import ObjectId
+from datetime import datetime
 from flask import request, jsonify, Blueprint
 from .mongo_connection import MongoConnection
-from .players import add_team_to_player
-from datetime import datetime
+from .players import add_team_to_player, check_admin_auth
 
 bp = Blueprint('teams', __name__)
-teams = MongoConnection().get_teams_collection()
-matches = MongoConnection().get_matches_collection()
+
+_db = MongoConnection()
+teams = _db.get_teams_collection()
+matches = _db.get_matches_collection()
+
+
+# ── Helpers ───────────────────────────────────────────────────────────────────
+
+def _check_password(data):
+    """Return a 401 response tuple if the password is wrong, else None."""
+    if data.get('password') != os.getenv('ADMIN_PW'):
+        return jsonify({'message': 'Incorrect password'}), 401
+    return None
+
+
+def convert_object_ids(document):
+    """Recursively convert all ObjectId values in a document to strings."""
+    if isinstance(document, list):
+        return [convert_object_ids(item) for item in document]
+    if isinstance(document, dict):
+        return {key: convert_object_ids(value) for key, value in document.items()}
+    if isinstance(document, ObjectId):
+        return str(document)
+    return document
+
+
+# ── Routes ────────────────────────────────────────────────────────────────────
 
 @bp.route('/teams/<season>/add', methods=['POST'])
 def add_team(season):
+    """Add a new team or update an existing team's roster for a season. Requires admin cookie auth."""
+    if not check_admin_auth(cookie_user_id=request.cookies.get('token')):
+        return jsonify({'message': 'Unauthorized'}), 401
     data = request.json
-    password = os.getenv("ADMIN_PW")
-    if(data["password"] != password):
-        return jsonify({'message': 'Incorrect password'}), 401
-    roster = data.get("roster", [])
-    if teams.find_one({"team_name": data["teamName"]}) is None:
-        teams.insert_one({"team_name": data["teamName"], "rosters": {season: roster}, "image": data["image"]})
+    roster = data.get('roster', [])
+    if teams.find_one({'team_name': data['teamName']}) is None:
+        teams.insert_one({'team_name': data['teamName'], 'rosters': {season: roster}, 'image': data['image']})
         return jsonify({'message': 'Team added successfully'})
-    elif teams.find_one({"team_name": data["teamName"], f"rosters.{season}": {"$exists": False}}):
+    if teams.find_one({'team_name': data['teamName'], f'rosters.{season}': {'$exists': False}}):
         teams.update_one(
-            {"team_name": data["teamName"]},
-            {"$set": {f"rosters.{season}": roster, "image": data["image"]}}
+            {'team_name': data['teamName']},
+            {'$set': {f'rosters.{season}': roster, 'image': data['image']}}
         )
         return jsonify({'message': 'Team roster updated'})
-    else:
-        return jsonify({'message': 'Team already exists'})
+    return jsonify({'message': 'Team already exists'})
  
-@bp.route('/teams/<season>', methods=['GET'])
-def get_all_teams_by_season(season):
-    season = season
-    team_data = list(teams.find({f"rosters.{season}": {"$exists": True, "$ne": [], "$ne": None}}, {'_id': 0}))
-    return jsonify(team_data)
-
 @bp.route('/teams/all', methods=['GET'])
 def get_all_teams():
+    """Return all team documents."""
     team_data = list(teams.find({}, {'_id': 0}))
     return jsonify(team_data)
 
 @bp.route('/teams/records', methods=['GET'])
 def get_team_records():
-    """Return wins/losses per season and totals for teams by team_ids, including rosters."""
-    # Get team_ids from query parameter (comma-separated)
+    """Aggregate wins/losses/rosters across all provided team_ids into a single combined record."""
     team_ids_param = request.args.get('team_ids', '')
     if not team_ids_param:
         return jsonify({'message': 'team_ids parameter is required'}), 400
-    team_ids = [tid.strip() for tid in team_ids_param.split(',')]
-    
-    # Get all team documents for the requested team_ids
-    team_docs = list(teams.find({"team_name": {"$in": team_ids}}, {'_id': 0, 'team_id': 1, 'team_name': 1, 'former_name': 1, 'rosters': 1}))
+    team_ids = [tid.strip() for tid in team_ids_param.split(',') if tid.strip()]
+
+    # Fetch a doc for each team_id — each is a separate team name in MongoDB
+    team_docs = list(teams.find({'team_name': {'$in': team_ids}}, {'_id': 0, 'team_name': 1, 'rosters': 1}))
     if not team_docs:
         return jsonify({'message': 'No teams found'}), 404
-    
-    # Build mapping of team_name -> team_doc and collect all names (current and former)
-    team_name_to_doc = {}
-    all_team_names = []
-    
-    for team_doc in team_docs:
-        team_name = team_doc.get("team_name")
-        former_name = team_doc.get("former_name")
-        
-        team_name_to_doc[team_name] = team_doc
-        all_team_names.append(team_name)
-        
-        if former_name:
-            team_name_to_doc[former_name] = team_doc
-            all_team_names.append(former_name)
-    
+
+    all_team_names = [doc['team_name'] for doc in team_docs]
+
     pipeline = [
-        {"$unwind": "$info.teams"},
-        {"$match": {"info.teams.name": {"$in": all_team_names}}},
-        {"$unwind": "$info.teams.players"},
-        {"$group": {
-            "_id": {
-                "matchId": "$metadata.matchId",
-                "team": "$info.teams.name",
-                "season": "$metadata.season"
+        {'$unwind': '$info.teams'},
+        {'$match': {'info.teams.name': {'$in': all_team_names}}},
+        {'$unwind': '$info.teams.players'},
+        {'$group': {
+            '_id': {
+                'matchId': '$metadata.matchId',
+                'team':    '$info.teams.name',
+                'season':  '$metadata.season',
             },
-            "gameOutcome": {"$first": "$info.teams.gameOutcome"},
-            "teamKills": {"$first": "$info.teams.kills"},
-            "assists": {"$sum": {"$ifNull": ["$info.teams.players.assists", 0]}},
-            "deaths": {"$sum": {"$ifNull": ["$info.teams.players.deaths", 0]}}
+            'gameOutcome': {'$first': '$info.teams.gameOutcome'},
+            'teamKills':   {'$first': '$info.teams.kills'},
+            'assists':     {'$sum': {'$ifNull': ['$info.teams.players.assists', 0]}},
+            'deaths':      {'$sum': {'$ifNull': ['$info.teams.players.deaths', 0]}},
         }},
-        {"$group": {
-            "_id": {
-                "team": "$_id.team",
-                "season": "$_id.season"
-            },
-            "wins": {"$sum": {"$cond": [{"$eq": ["$gameOutcome", True]}, 1, 0]}},
-            "losses": {"$sum": {"$cond": [{"$eq": ["$gameOutcome", False]}, 1, 0]}},
-            "kills": {"$sum": {"$ifNull": ["$teamKills", 0]}},
-            "assists": {"$sum": {"$ifNull": ["$assists", 0]}},
-            "deaths": {"$sum": {"$ifNull": ["$deaths", 0]}}
-        }}
+        {'$group': {
+            '_id':     {'season': '$_id.season'},
+            'wins':    {'$sum': {'$cond': [{'$eq': ['$gameOutcome', True]},  1, 0]}},
+            'losses':  {'$sum': {'$cond': [{'$eq': ['$gameOutcome', False]}, 1, 0]}},
+            'kills':   {'$sum': {'$ifNull': ['$teamKills', 0]}},
+            'assists': {'$sum': {'$ifNull': ['$assists',   0]}},
+            'deaths':  {'$sum': {'$ifNull': ['$deaths',    0]}},
+        }},
     ]
 
     results = list(matches.aggregate(pipeline))
 
-    # Group results by team (using current team name)
-    records_by_team = {}
-    for team_doc in team_docs:
-        current_team_name = team_doc.get("team_name")
-        if current_team_name and current_team_name not in records_by_team:
-            records_by_team[current_team_name] = {
-                "teamName": current_team_name,
-                "seasons": [],
-                "totalWins": 0,
-                "totalLosses": 0,
-                "totalKills": 0,
-                "totalAssists": 0,
-                "totalDeaths": 0
-            }
-    
+    # Build a single combined record for all team_ids
+    combined = {
+        "teamName": team_ids[0],
+        "formerNames": team_ids[1:],
+        "seasons": [],
+        "totalWins": 0,
+        "totalLosses": 0,
+        "totalKills": 0,
+        "totalAssists": 0,
+        "totalDeaths": 0
+    }
+
+    seasons_map = {}
     for item in results:
-        matched_team_name = item["_id"]["team"]
-        team_doc = team_name_to_doc.get(matched_team_name)
-        
-        if not team_doc:
-            continue
-            
-        # Use the current team name as the key
-        current_team_name = team_doc.get("team_name")
-        
         season = item["_id"]["season"]
         wins = item.get("wins", 0)
         losses = item.get("losses", 0)
@@ -130,114 +129,103 @@ def get_team_records():
         assists = item.get("assists", 0)
         deaths = item.get("deaths", 0)
 
-        records_by_team[current_team_name]["seasons"].append({
+        seasons_map[str(season)] = {
             "season": season,
             "wins": wins,
             "losses": losses,
             "kills": kills,
             "assists": assists,
             "deaths": deaths,
-            "roster": []  # Will be populated below
-        })
-        records_by_team[current_team_name]["totalWins"] += wins
-        records_by_team[current_team_name]["totalLosses"] += losses
-        records_by_team[current_team_name]["totalKills"] += kills
-        records_by_team[current_team_name]["totalAssists"] += assists
-        records_by_team[current_team_name]["totalDeaths"] += deaths
+            "roster": []
+        }
+        combined["totalWins"] += wins
+        combined["totalLosses"] += losses
+        combined["totalKills"] += kills
+        combined["totalAssists"] += assists
+        combined["totalDeaths"] += deaths
 
-    # Fetch roster data for each team, ensuring seasons exist even without matches
+    # Merge rosters from all team docs
     for team_doc in team_docs:
-        team_name = team_doc.get("team_name")
-        if team_name not in records_by_team:
-            continue
+        for season_key, roster in (team_doc.get("rosters") or {}).items():
+            if season_key not in seasons_map:
+                seasons_map[season_key] = {
+                    "season": season_key,
+                    "wins": 0,
+                    "losses": 0,
+                    "kills": 0,
+                    "assists": 0,
+                    "deaths": 0,
+                    "roster": roster
+                }
+            else:
+                seasons_map[season_key]["roster"] = roster
 
-        rosters = team_doc.get("rosters", {})
-        if rosters:
-            existing_seasons = {str(s["season"]) for s in records_by_team[team_name]["seasons"]}
-            for season_key, roster in rosters.items():
-                if season_key not in existing_seasons:
-                    records_by_team[team_name]["seasons"].append({
-                        "season": season_key,
-                        "wins": 0,
-                        "losses": 0,
-                        "kills": 0,
-                        "assists": 0,
-                        "deaths": 0,
-                        "roster": roster
-                    })
-                else:
-                    for season_record in records_by_team[team_name]["seasons"]:
-                        if str(season_record["season"]) == season_key:
-                            season_record["roster"] = roster
-                            break
+    def season_sort_key(s):
+        season_str = str(s["season"])
+        digits = ''.join(filter(str.isdigit, season_str))
+        suffix = ''.join(c for c in season_str if not c.isdigit())
+        return (int(digits) if digits else 0, suffix)
 
-    # Sort seasons for each team
-    for record in records_by_team.values():
-        record["seasons"].sort(
-            key=lambda s: int(s["season"]) if str(s["season"]).isdigit() else str(s["season"])
-        )
+    combined["seasons"] = sorted(seasons_map.values(), key=season_sort_key)
 
-    return jsonify(list(records_by_team.values()))
+    return jsonify([combined])
+
+@bp.route('/teams/<season>', methods=['GET'])
+def get_all_teams_by_season(season):
+    """Return all teams that have a roster registered for the given season."""
+    team_data = list(teams.find({f'rosters.{season}': {'$exists': True}}, {'_id': 0}))
+    return jsonify(team_data)
+
 
 @bp.route('/roster/<team_name>/<season>', methods=['GET'])
 def get_team_roster_by_season(team_name, season):
-    team_data = teams.find_one({"team_name": team_name}, {'_id': 0})
-    if team_data and "rosters" in team_data and team_data["rosters"][int(season)]:
-        return jsonify(team_data["rosters"][int(season)])
-    else:
-        return jsonify({'message': 'No roster found'})
+    """Return the roster for a specific team and season."""
+    team_data = teams.find_one({'team_name': team_name}, {'_id': 0})
+    roster = (team_data or {}).get('rosters', {}).get(str(season))
+    if roster is not None:
+        return jsonify(roster)
+    return jsonify({'message': 'No roster found'})
+
 
 @bp.route('/roster/<team_name>', methods=['GET'])
 def get_team_roster(team_name):
-    team_data = teams.find_one({"team_name": team_name}, {'_id': 0})
+    """Return the full team document including all season rosters."""
+    team_data = teams.find_one({'team_name': team_name}, {'_id': 0})
     return jsonify(team_data)
 
 @bp.route('/roster/<team_name>/<season>/add', methods=['POST'])
 def add_player_to_team(team_name, season):
+    """Add a player to a team's season roster. Requires admin password."""
     data = request.json
-    password = os.getenv("ADMIN_PW")
-    if(data["password"] != password):
-        return jsonify({'message': 'Incorrect password'}), 401
-    if teams.find_one({"team_name": data["team_name"]}) is not None:
-        updated_team = teams.find_one_and_update(
-            {"team_name": data["team_name"] },
-            {"$addToSet": {f"rosters.{season}": data}},
-            return_document=True
-        )
-        add_team_to_player(data, team_name, season)
-
-        updated_team = convert_object_ids(updated_team)
-        print(updated_team)
-        return jsonify({'message': 'Player added to team roster', 'updatedTeam': updated_team})
-    else:
+    if err := _check_password(data):
+        return err
+    if teams.find_one({'team_name': data['team_name']}) is None:
         return jsonify({'message': 'Team not found'})
+    updated_team = teams.find_one_and_update(
+        {'team_name': data['team_name']},
+        {'$addToSet': {f'rosters.{season}': data}},
+        return_document=True
+    )
+    add_team_to_player(data, team_name, season)
+    return jsonify({'message': 'Player added to team roster', 'updatedTeam': convert_object_ids(updated_team)})
 
 @bp.route('/roster/assign', methods=['POST'])
 def assign_player_to_team():
+    """Assign a player to a team roster for a given season. Requires admin cookie auth."""
+    if not check_admin_auth(cookie_user_id=request.cookies.get('token')):
+        return jsonify({'message': 'Unauthorized'}), 401
     data = request.json
-    password = os.getenv("ADMIN_PW")
-    if(data["password"] != password):
-        return jsonify({'message': 'Incorrect password'}), 401
-    if teams.find_one({"team_name": data["teamName"]}) is not None:
-        updated_team = teams.find_one_and_update(
-            {"team_name": data["teamName"] },
-            {"$push": {f"rosters.{data["season"]}": {"name": data["player"]["name"], "role": data["role"], "puuid": data["player"]["puuid"], "date_joined": datetime.now()}}},
-            return_document=True
-        )
-        add_team_to_player(data, data["teamName"], data["season"])
-
-        updated_team = convert_object_ids(updated_team)
-        print(updated_team)
-        return jsonify({'message': 'Player added to team roster', 'updatedTeam': updated_team})
-    else:
+    if teams.find_one({'team_name': data['teamName']}) is None:
         return jsonify({'message': 'Team not found'})
-
-def convert_object_ids(document):
-    if isinstance(document, list):
-        return [convert_object_ids(item) for item in document]
-    elif isinstance(document, dict):
-        return {key: convert_object_ids(value) for key, value in document.items()}
-    elif isinstance(document, ObjectId):
-        return str(document)
-    else:
-        return document
+    updated_team = teams.find_one_and_update(
+        {'team_name': data['teamName']},
+        {'$push': {f"rosters.{data['season']}": {
+            'name':        data['player']['name'],
+            'role':        data['role'],
+            'puuid':       data['player']['puuid'],
+            'date_joined': datetime.now(),
+        }}},
+        return_document=True
+    )
+    add_team_to_player(data, data['teamName'], data['season'])
+    return jsonify({'message': 'Player added to team roster', 'updatedTeam': convert_object_ids(updated_team)})
