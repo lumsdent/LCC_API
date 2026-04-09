@@ -495,4 +495,3 @@ def get_matches_by_champion(champion_name):
     }
     results = list(match_performances.find(query, projection).sort('gameCreation', -1))
     return jsonify(results)
-
