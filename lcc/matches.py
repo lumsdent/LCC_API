@@ -11,14 +11,6 @@ import os
 from flask import request, jsonify, Blueprint
 from .mongo_connection import MongoConnection
 from .process_match_reports import process_match, save_match_performances
-from .players import check_admin_auth
-
-def _cookie_admin_check():
-    """Return a 401 response tuple if the cookie token is not an admin, else None."""
-    if not check_admin_auth(cookie_user_id=request.cookies.get('token')):
-        return jsonify({'message': 'Unauthorized'}), 401
-    return None
-
 bp = Blueprint('matches', __name__, url_prefix='/matches')
 
 _db = MongoConnection()
@@ -88,7 +80,7 @@ def _build_player(p, mins):
 
 # ── Routes ────────────────────────────────────────────────────────────────────
 
-@bp.route('', methods=['GET'], strict_slashes=False)
+@bp.route('/', methods=['GET'], strict_slashes=False)
 def get_all_matches():
     """Return all match documents, sorted by game creation timestamp descending."""
     results = list(matches.find({}, {'_id': 0}).sort('info.gameCreation', -1))
@@ -97,9 +89,7 @@ def get_all_matches():
 
 @bp.route('/add', methods=['POST'])
 def add_match():
-    """Add or update a match from a Riot match ID. Requires admin cookie auth."""
-    if err := _cookie_admin_check():
-        return err
+    """Add or update a match from a Riot match ID."""
     data = request.json
 
     match_id = data['matchId']
@@ -125,9 +115,7 @@ def get_match_by_lcc_id(lcc_id):
 
 @bp.route('/lcc/<lcc_id>/mvp', methods=['PATCH'])
 def set_mvp(lcc_id):
-    """Assign the MVP for a match identified by its LCC ID. Requires admin cookie auth."""
-    if err := _cookie_admin_check():
-        return err
+    """Assign the MVP for a match identified by its LCC ID."""
     data = request.json
     result = matches.update_one(
         {'metadata.matchIdLCC': str(lcc_id)},
@@ -144,10 +132,8 @@ def refresh_matches():
     Re-process all matches in the matches_index from the Riot API.
 
     Iterates every record in matches_index, re-fetches and processes each match,
-    then upserts the result and regenerates matchup history. Requires admin password.
+    then upserts the result and regenerates matchup history.
     """
-    if err := _cookie_admin_check():
-        return err
     data = request.json or {}
 
     index_records = list(matches_index.find({}, {'_id': 0}))
@@ -185,14 +171,12 @@ def refresh_matches():
 @bp.route('/manual', methods=['POST'])
 def add_manual_match():
     """
-    Create or update a manually entered match record. Requires admin cookie auth.
+    Create or update a manually entered match record.
 
     Accepts a full match payload with blue/red team rosters, game duration in
     seconds, and metadata. Builds normalised player documents and upserts both
     the match document and the matches_index entry.
     """
-    if err := _cookie_admin_check():
-        return err
     data = request.json
 
     lcc_id        = str(data['matchIdLCC'])
@@ -260,9 +244,7 @@ def get_match(match_id):
 
 @bp.route('/<match_id>/vod', methods=['PATCH'])
 def update_vod(match_id):
-    """Set or update the VOD URL for a match. Requires admin cookie auth."""
-    if not check_admin_auth(cookie_user_id=request.cookies.get('token')):
-        return jsonify({'message': 'Unauthorized'}), 401
+    """Set or update the VOD URL for a match."""
     data = request.json
     vod_url = data.get('vod')
     if not vod_url:

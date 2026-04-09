@@ -154,9 +154,6 @@ def link_discord(puuid):
     Body: { discord_id, discord_username, discord_avatar (optional), password (optional) }
     """
     data = request.get_json(force=True, silent=True) or {}
-    cookie_user_id = request.cookies.get('token')
-    if not check_admin_auth(data=data, cookie_user_id=cookie_user_id):
-        return jsonify({'message': 'Unauthorized'}), 401
     discord_id = str(data.get('discord_id', '')).strip()
     if not discord_id:
         return jsonify({'message': 'discord_id is required'}), 400
@@ -323,7 +320,7 @@ def get_player_champion_stats(puuid):
     stats = list(match_performances.aggregate(pipeline))
     return jsonify(stats)
 
-@bp.route('', methods=['GET'], strict_slashes=False)
+@bp.route('/', methods=['GET'], strict_slashes=False)
 def get_players():
     """Return all player documents, with duplicate accounts merged."""
     player_data = list(players.find({}, {'_id': 0}))

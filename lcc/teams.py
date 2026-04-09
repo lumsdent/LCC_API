@@ -6,12 +6,11 @@ Flask Blueprint providing all team-related API endpoints for the LCC API.
 Includes routes for creating and querying teams, managing rosters by season,
 assigning players, and aggregating win/loss records.
 """
-import os
 from bson import ObjectId
 from datetime import datetime
 from flask import request, jsonify, Blueprint
 from .mongo_connection import MongoConnection
-from .players import add_team_to_player, check_admin_auth
+from .players import add_team_to_player
 
 bp = Blueprint('teams', __name__)
 
@@ -21,13 +20,6 @@ matches = _db.get_matches_collection()
 
 
 # ── Helpers ───────────────────────────────────────────────────────────────────
-
-def _check_password(data):
-    """Return a 401 response tuple if the password is wrong, else None."""
-    if data.get('password') != os.getenv('ADMIN_PW'):
-        return jsonify({'message': 'Incorrect password'}), 401
-    return None
-
 
 def convert_object_ids(document):
     """Recursively convert all ObjectId values in a document to strings."""
@@ -44,9 +36,7 @@ def convert_object_ids(document):
 
 @bp.route('/teams/<season>/add', methods=['POST'])
 def add_team(season):
-    """Add a new team or update an existing team's roster for a season. Requires admin cookie auth."""
-    if not check_admin_auth(cookie_user_id=request.cookies.get('token')):
-        return jsonify({'message': 'Unauthorized'}), 401
+    """Add a new team or update an existing team's roster for a season."""
     data = request.json
     roster = data.get('roster', [])
     if teams.find_one({'team_name': data['teamName']}) is None:
@@ -211,9 +201,7 @@ def add_player_to_team(team_name, season):
 
 @bp.route('/roster/assign', methods=['POST'])
 def assign_player_to_team():
-    """Assign a player to a team roster for a given season. Requires admin cookie auth."""
-    if not check_admin_auth(cookie_user_id=request.cookies.get('token')):
-        return jsonify({'message': 'Unauthorized'}), 401
+    """Assign a player to a team roster for a given season."""
     data = request.json
     if teams.find_one({'team_name': data['teamName']}) is None:
         return jsonify({'message': 'Team not found'})
