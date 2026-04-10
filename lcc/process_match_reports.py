@@ -13,6 +13,18 @@ from .mongo_connection import MongoConnection
 
 DDRAGON_CDN = 'https://ddragon.leagueoflegends.com/cdn/latest'
 
+def _ddragon_cdn():
+    """Return the DDragon CDN base URL for the current live patch version."""
+    try:
+        resp = requests.get(
+            'https://ddragon.leagueoflegends.com/api/versions.json', timeout=5
+        )
+        resp.raise_for_status()
+        latest = resp.json()[0]
+    except Exception:
+        latest = 'latest'
+    return f'https://ddragon.leagueoflegends.com/cdn/{latest}'
+
 # Duplicate accounts belonging to the same player — remap old → canonical.
 _MERGE_OLD_PUUID = 'OMb9S_LJfcHcmNf2EeoK6oKVZPN_ilQ_atdZLBHcS-1cNv38UZObF9COSP54dJn9eD4-mP23xpHUug'
 _MERGE_NEW_PUUID = '2_h_CpcRsZypWQHR66PnB_DU1rHiQYz8AmRETV54QFVuZuwX9Ly_ys7R3SOh7fFo9U1CZ9VlPv50Aw'
@@ -152,9 +164,9 @@ def save_match_performances(match_data):
             )
 
 
+def get_position_data(participants):
     """
     Build a role → team ID → PUUID mapping from a list of Riot participant dicts.
-
     Returns a dict keyed by position name (TOP, JUNGLE, etc.) where each value
     maps team ID 100/200 to the occupying player's PUUID.
     """
@@ -283,7 +295,7 @@ def get_champion_by_id(champion_id):
 
 def fetch_champion_data():
     """Fetch and return an iterable of champion data dicts from DDragon."""
-    url = f'{DDRAGON_CDN}/data/en_US/champion.json'
+    url = f'{_ddragon_cdn()}/data/en_US/champion.json'
     try:
         response = requests.get(url, timeout=10)
         response.raise_for_status()
@@ -359,7 +371,7 @@ def calculate_csd14(match_data, timeline_data):
 
 def fetch_item_data():
     """Fetch and return the DDragon item data dict keyed by item ID string."""
-    url = f'{DDRAGON_CDN}/data/en_US/item.json'
+    url = f'{_ddragon_cdn()}/data/en_US/item.json'
     response = requests.get(url, timeout=10)
     if response.status_code == 200:
         return response.json()['data']
@@ -542,7 +554,7 @@ def ddragon_get_runes_dict():
     Tree IDs map to ``{'name': str, 'key': str}`` dicts; individual rune IDs
     map to their lowercase key string. Returns ``{}`` on failure.
     """
-    url = f'{DDRAGON_CDN}/data/en_US/runesReforged.json'
+    url = f'{_ddragon_cdn()}/data/en_US/runesReforged.json'
     try:
         response = requests.get(url, timeout=10)
         response.raise_for_status()
@@ -558,7 +570,7 @@ def ddragon_get_runes_dict():
 
 def fetch_summoner_spell_data():
     """Fetch summoner spell data from DDragon, keyed by numeric spell ID string."""
-    url = f'{DDRAGON_CDN}/data/en_US/summoner.json'
+    url = f'{_ddragon_cdn()}/data/en_US/summoner.json'
     try:
         response = requests.get(url, timeout=10)
         response.raise_for_status()
