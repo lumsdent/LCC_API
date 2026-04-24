@@ -22,7 +22,7 @@ from pymongo.server_api import ServerApi
 load_dotenv()
 
 SOURCE_DB = sys.argv[1] if len(sys.argv) > 1 else 'lcc_lol'
-DEST_DB   = sys.argv[2] if len(sys.argv) > 2 else 'lcc_lol_bkp1'
+DEST_DB   = sys.argv[2] if len(sys.argv) > 2 else 'lcc_lol_local'
 
 client = MongoClient(os.getenv('MONGO_URI'), server_api=ServerApi('1'))
 

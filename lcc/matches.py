@@ -235,6 +235,70 @@ def add_manual_match():
     return jsonify({'message': f'Manual match {action} successfully'}), status
 
 
+@bp.route('/forfeit', methods=['POST'])
+def add_forfeit():
+    """
+    Record a forfeit result.
+
+    Stores a minimal match document flagged as a forfeit so that the winning
+    and losing teams appear correctly in standings. No player data is written,
+    so the match_performances collection and all stat aggregations are
+    completely unaffected.
+
+    Expected JSON body:
+        season        (str)  – e.g. "4"
+        winningTeam   (str)  – team name of the winner
+        losingTeam    (str)  – team name of the loser
+        matchIdLCC    (str)  – optional LCC match ID; auto-generated if omitted
+    """
+    data = request.json
+    if not data:
+        return jsonify({'message': 'No data provided'}), 400
+
+    season      = str(data.get('season', ''))
+    winning     = str(data.get('winningTeam', ''))
+    losing      = str(data.get('losingTeam', ''))
+    lcc_id      = str(data.get('matchIdLCC', '')) or f'FORFEIT_{winning}_vs_{losing}_{season}'
+
+    if not season or not winning or not losing:
+        return jsonify({'message': 'season, winningTeam, and losingTeam are required'}), 400
+
+    match_id = f'FORFEIT_{lcc_id}'
+
+    match_doc = {
+        'metadata': {
+            'matchId':    match_id,
+            'matchIdLCC': lcc_id,
+            'season':     season,
+            'matchName':  f'{winning} vs {losing}',
+            'forfeit':    True,
+        },
+        'info': {
+            'gameCreation':      0,
+            'gameDuration':      0,
+            'gameStartTime':     0,
+            'gameEndTimestamp':  0,
+            'gameVersion':       '',
+            'gameMode':          'FORFEIT',
+            'gameId':            match_id,
+            'teams': [
+                {'name': winning, 'side': 'Blue', 'teamId': 100, 'gameOutcome': True,  'kills': 0, 'players': [], 'bans': [], 'objectives': {}},
+                {'name': losing,  'side': 'Red',  'teamId': 200, 'gameOutcome': False, 'kills': 0, 'players': [], 'bans': [], 'objectives': {}},
+            ],
+        },
+    }
+
+    query = {'metadata.matchId': match_id}
+    if matches.find_one(query):
+        update_match(query, match_doc)
+        action, status = 'updated', 200
+    else:
+        save_match(match_doc)
+        action, status = 'recorded', 201
+
+    return jsonify({'message': f'Forfeit {action}: {winning} def. {losing} (Season {season})'}), status
+
+
 @bp.route('/<match_id>', methods=['GET'])
 def get_match(match_id):
     """Return a single match document by its Riot match ID (without the NA1_ prefix)."""

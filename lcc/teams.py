@@ -74,7 +74,7 @@ def get_team_records():
     pipeline = [
         {'$unwind': '$info.teams'},
         {'$match': {'info.teams.name': {'$in': all_team_names}}},
-        {'$unwind': '$info.teams.players'},
+        {'$unwind': {'path': '$info.teams.players', 'preserveNullAndEmptyArrays': True}},
         {'$group': {
             '_id': {
                 'matchId': '$metadata.matchId',
@@ -217,3 +217,65 @@ def assign_player_to_team():
     )
     add_team_to_player(data, data['teamName'], data['season'])
     return jsonify({'message': 'Player added to team roster', 'updatedTeam': convert_object_ids(updated_team)})
+
+
+@bp.route('/standings/<season>', methods=['GET'])
+def get_standings(season):
+    """Return team standings for a season, sorted by record with head-to-head tiebreaker."""
+    import functools
+
+    # Fetch every match result for the season (only the fields we need)
+    season_matches = list(matches.find(
+        {'metadata.season': season},
+        {'_id': 0, 'info.teams.name': 1, 'info.teams.gameOutcome': 1}
+    ))
+
+    # Build overall W/L and a head-to-head map:
+    # h2h[teamA][teamB] = wins that teamA has against teamB
+    records = {}  # teamName -> {'wins': int, 'losses': int}
+    h2h = {}      # teamName -> {opponentName: wins}
+
+    for match in season_matches:
+        teams_list = match.get('info', {}).get('teams', [])
+        if len(teams_list) != 2:
+            continue
+        t0, t1 = teams_list[0], teams_list[1]
+        for team, opp in [(t0, t1), (t1, t0)]:
+            name = team.get('name')
+            opp_name = opp.get('name')
+            if not name:
+                continue
+            if name not in records:
+                records[name] = {'wins': 0, 'losses': 0}
+            if team.get('gameOutcome'):
+                records[name]['wins'] += 1
+                h2h.setdefault(name, {})
+                h2h[name][opp_name] = h2h[name].get(opp_name, 0) + 1
+            else:
+                records[name]['losses'] += 1
+
+    # Build sortable list
+    standings = []
+    for name, rec in records.items():
+        w, l = rec['wins'], rec['losses']
+        games = w + l
+        standings.append({
+            'teamName': name,
+            'wins':     w,
+            'losses':   l,
+            'games':    games,
+            'winRate':  round(w / games, 4) if games else 0,
+        })
+
+    # Sort: primary = wins desc, tiebreaker = head-to-head wins, final = fewest losses
+    def cmp(a, b):
+        if a['wins'] != b['wins']:
+            return b['wins'] - a['wins']
+        a_vs_b = h2h.get(a['teamName'], {}).get(b['teamName'], 0)
+        b_vs_a = h2h.get(b['teamName'], {}).get(a['teamName'], 0)
+        if a_vs_b != b_vs_a:
+            return b_vs_a - a_vs_b
+        return a['losses'] - b['losses']
+
+    standings.sort(key=functools.cmp_to_key(cmp))
+    return jsonify(standings)
